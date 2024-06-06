@@ -1,5 +1,6 @@
 
 
+using _Project.Scripts.Character.Runtime;
 using _Project.Scripts.Loader;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,10 @@ namespace _Project.Scripts
         protected override void Configure(IContainerBuilder builder)
         {
             base.Configure(builder);
+
+            builder.RegisterComponentInHierarchy<PlayerSM>();
+            //  builder.RegisterComponentInHierarchy<PlayerController>();
+
             _isValid = true;
         }
         private void Start()

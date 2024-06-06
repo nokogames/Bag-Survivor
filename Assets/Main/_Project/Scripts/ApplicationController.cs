@@ -1,5 +1,7 @@
 
 using _Project.Scripts.Loader;
+using Pack.GameData;
+using ScriptableObjects;
 using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
@@ -10,6 +12,9 @@ namespace _Project.Scripts
     public class ApplicationController : LifetimeScope
     {
         [SerializeField] private LoaderMediator loaderMediatorPrefab;
+        [SerializeField] private InputDataSO inputData;
+        [SerializeField] private GameData gameData;
+
         // private LoaderMediator _loaderMediator;
         private SceneLoader _sceneLoader;
         protected override void Awake()
@@ -22,7 +27,8 @@ namespace _Project.Scripts
             builder.RegisterComponentInNewPrefab(loaderMediatorPrefab, Lifetime.Scoped).DontDestroyOnLoad();
 
             builder.Register<SceneLoader>(Lifetime.Singleton);
-
+            builder.RegisterInstance(gameData);
+            builder.RegisterInstance(inputData);
 
         }
 

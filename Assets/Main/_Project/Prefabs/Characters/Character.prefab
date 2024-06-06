@@ -341,8 +341,8 @@ MonoBehaviour:
     Acceleration: 5000
     AnimationMultiplier: 1
   movementAimingSettings:
-    RotationSpeed: 6
-    MoveSpeed: 3
+    RotationSpeed: 3
+    MoveSpeed: 2
     Acceleration: 5000
     AnimationMultiplier: 1
   leftHandRig: {fileID: 5996602864052844808}

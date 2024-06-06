@@ -31,6 +31,17 @@ public class EnemyDetector : MonoBehaviour
             }
         }
     }
+
+    private float _timeRate = .1f;
+    private float _crrTime = 0;
+    private void FixedUpdate()
+    {
+        _crrTime += Time.fixedDeltaTime;
+        if (_crrTime < _timeRate) return;
+        UpdateClosestEnemy();
+        _crrTime = 0;
+
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.CompareTag(ENEMY_TAG))

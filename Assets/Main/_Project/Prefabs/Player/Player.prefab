@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6251757144566680548}
   - component: {fileID: 2644440612253361203}
+  - component: {fileID: 1774340603785315184}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -47,10 +48,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDetectedEnemy: 0
-  inputData: {fileID: 11400000, guid: e7edd0d328c86d141b50fa84de8fbe3e, type: 2}
+--- !u!114 &1774340603785315184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2877113618900973114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013f0c8fa872c52499e3933241a0859c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   characterGraphics: {fileID: 8500595481359558600}
   gunBehavior: {fileID: 6048916029748959633}
   enemyDetector: {fileID: 2643809602053826388}
+  playerController: {fileID: 2644440612253361203}
 --- !u!1 &8728651774676838947
 GameObject:
   m_ObjectHideFlags: 0
