@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _Project.Scripts.Character.Bot;
 using _Project.Scripts.Character.Runtime.Controllers;
 using _Project.Scripts.Reusable;
 using UnityEngine;
@@ -12,22 +13,23 @@ namespace _Project.Scripts.Character.Runtime
 {
     public class PlayerSM : StateMachineMB, ICharacter
     {
-        private LifetimeScope _parentScope;
-        private LifetimeScope _playerScope;
+
         //PlayerController
         [SerializeField] private CharacterGraphics characterGraphics;
         [SerializeField] private BaseGunBehavior gunBehavior;
         [SerializeField] private EnemyDetector enemyDetector;
-
+        [SerializeField] private List<Transform> botPlacePoints;
+        private LifetimeScope _parentScope;
+        private LifetimeScope _playerScope;
 
         //Controllers
         private PlayerMovementController _playerMovementController;
         private DetectionController _detectionController;
-
-
+        private BotController _botController;
+        private List<BotSM> _bots;
 
         [Inject]
-        void InjectDependenciesAndInitialize(LifetimeScope parentScope)
+        public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
         {
             _parentScope = parentScope;
             CreatePlayerScope();
@@ -43,12 +45,23 @@ namespace _Project.Scripts.Character.Runtime
                 builder.RegisterComponent(characterGraphics);
                 builder.RegisterComponent(transform);
                 builder.Register<DetectionController>(Lifetime.Scoped);
-
                 builder.Register<PlayerMovementController>(Lifetime.Scoped);
+                builder.Register<BotController>(Lifetime.Scoped);
+
 
 
             });
+            RegisterBots();
         }
+
+        private void RegisterBots()
+        {
+            _bots = new List<BotSM>();
+            _bots = transform.FindComponentsInChild<BotSM>();
+            _bots.ForEach(bot => bot.InjectDependenciesAndInitialize(_playerScope));
+
+        }
+
         private void Awake()
         {
             Resolve();
@@ -62,6 +75,7 @@ namespace _Project.Scripts.Character.Runtime
             gunBehavior.InitialiseCharacter(characterGraphics, this);
             enemyDetector.Initialise(_detectionController);
             _playerMovementController.Initialise();
+            _botController.Initialise(_bots, botPlacePoints);
         }
 
         private void Resolve()
@@ -81,10 +95,7 @@ namespace _Project.Scripts.Character.Runtime
         }
 
 
-        private void Start()
-        {
 
-        }
 
 
         //About detection
@@ -92,22 +103,17 @@ namespace _Project.Scripts.Character.Runtime
 
 
 
-        public new bool TryGetComponent<T>(out T component)
-        {
-            if (typeof(T) == typeof(IEnemyDetector))
-            {
 
-                Debug.Log("ddd");
-                component = (T)(object)_detectionController;
-                return true;
-            }
-
-            return gameObject.TryGetComponent(out component);
-        }
 
         private void OnDestroy()
         {
             _playerScope.Dispose();
         }
+
+        // public void AWAKE_TEST()
+        // {
+        //     Resolve();
+        //     Initialize();
+        // }
     }
 }

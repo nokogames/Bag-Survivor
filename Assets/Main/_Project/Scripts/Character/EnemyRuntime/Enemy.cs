@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEnemy
@@ -8,6 +9,17 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private bool _isDead;
     public bool IsDead { get => _isDead; set => _isDead = value; }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<ICharacter>(out ICharacter character))
+        {
+            Debug.Log("Icharacter triggered");
+        }
+    }
+
+
 }
 
 
