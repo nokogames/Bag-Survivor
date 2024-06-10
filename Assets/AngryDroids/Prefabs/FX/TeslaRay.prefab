@@ -9767,7 +9767,7 @@ MonoBehaviour:
   onAnimationEnd: 3
   layerMask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 1
   material: {fileID: 2100000, guid: e9c0f74ef8e65574f8ebe0226dfff4ac, type: 2}
   lineStartColor:
     serializedVersion: 2
