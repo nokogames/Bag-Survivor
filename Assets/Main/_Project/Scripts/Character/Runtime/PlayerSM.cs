@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using _Project.Scripts.Character.Bot;
+
+using _Project.Scripts.Character.Craft;
 using _Project.Scripts.Character.Runtime.Controllers;
+using _Project.Scripts.Character.Runtime.States;
 using _Project.Scripts.Reusable;
 using UnityEngine;
 using VContainer;
@@ -15,10 +15,12 @@ namespace _Project.Scripts.Character.Runtime
     {
 
         //PlayerController
+        [SerializeField] private CraftDetector craftDetector;
         [SerializeField] private CharacterGraphics characterGraphics;
         [SerializeField] private BaseGunBehavior gunBehavior;
         [SerializeField] private EnemyDetector enemyDetector;
         [SerializeField] private List<Transform> botPlacePoints;
+        [SerializeField] private GameObject botPrefab;
         private LifetimeScope _parentScope;
         private LifetimeScope _playerScope;
 
@@ -26,7 +28,11 @@ namespace _Project.Scripts.Character.Runtime
         private PlayerMovementController _playerMovementController;
         private DetectionController _detectionController;
         private BotController _botController;
-        private List<BotSM> _bots;
+
+
+        //States
+        public IdleState IdleState { get; set; }
+        public CraftState CraftState { get; set; }
 
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
@@ -37,30 +43,31 @@ namespace _Project.Scripts.Character.Runtime
 
         private void CreatePlayerScope()
         {
+
+
             _playerScope = _parentScope.CreateChild(builder =>
             {
 
+                builder.RegisterInstance(GetComponent<ICharacter>());
                 builder.RegisterComponent(enemyDetector);
                 builder.RegisterComponent(gunBehavior);
                 builder.RegisterComponent(characterGraphics);
                 builder.RegisterComponent(transform);
-                builder.Register<DetectionController>(Lifetime.Scoped);
+                builder.RegisterComponent(craftDetector);
+                builder.Register<BotController>(Lifetime.Scoped);
+                builder.Register<DetectionController>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
                 builder.Register<PlayerMovementController>(Lifetime.Scoped);
                 builder.Register<BotController>(Lifetime.Scoped);
-
+                //States
+                builder.Register<IdleState>(Lifetime.Scoped);
+                builder.Register<CraftState>(Lifetime.Scoped);
 
 
             });
-            RegisterBots();
-        }
-
-        private void RegisterBots()
-        {
-            _bots = new List<BotSM>();
-            _bots = transform.FindComponentsInChild<BotSM>();
-            _bots.ForEach(bot => bot.InjectDependenciesAndInitialize(_playerScope));
 
         }
+
+
 
         private void Awake()
         {
@@ -75,27 +82,19 @@ namespace _Project.Scripts.Character.Runtime
             gunBehavior.InitialiseCharacter(characterGraphics, this);
             enemyDetector.Initialise(_detectionController);
             _playerMovementController.Initialise();
-            _botController.Initialise(_bots, botPlacePoints);
+            _botController.Initialise(botPrefab, botPlacePoints);
+            _detectionController.Initialise(this);
         }
 
         private void Resolve()
         {
             _playerMovementController = _playerScope.Container.Resolve<PlayerMovementController>();
             _detectionController = _playerScope.Container.Resolve<DetectionController>();
+            _botController = _playerScope.Container.Resolve<BotController>();
+            //States
+            IdleState = _playerScope.Container.Resolve<IdleState>();
+            CraftState = _playerScope.Container.Resolve<CraftState>();
         }
-
-
-
-
-        public override void Update()
-        {
-            base.Update();
-            gunBehavior.UpdateHandRig();
-            _playerMovementController.Update();
-        }
-
-
-
 
 
         //About detection
@@ -103,17 +102,16 @@ namespace _Project.Scripts.Character.Runtime
 
 
 
-
+        private void Start()
+        {
+            ChangeState(IdleState);
+        }
 
         private void OnDestroy()
         {
             _playerScope.Dispose();
         }
 
-        // public void AWAKE_TEST()
-        // {
-        //     Resolve();
-        //     Initialize();
-        // }
+
     }
 }

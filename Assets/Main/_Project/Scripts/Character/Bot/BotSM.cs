@@ -75,8 +75,11 @@ namespace _Project.Scripts.Character.Bot
             InitializeStates();
             ChangeState(PlaceToPlayerState);
         }
+        public void Initialize()
+        {
 
-       
+        }
+
     }
 
 }
