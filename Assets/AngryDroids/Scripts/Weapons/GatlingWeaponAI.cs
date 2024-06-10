@@ -4,7 +4,7 @@ using System.Collections;
 namespace GravityBox.AngryDroids
 {
     [System.Serializable]
-    public class GunBarrel 
+    public class GunBarrel
     {
         public Transform barrel;
         public Transform muzzlePoint;
@@ -17,7 +17,7 @@ namespace GravityBox.AngryDroids
         private RaycastHit hit;
         private DamageInfo damage;
 
-        public void Init(ParticleSystem muzzlePrefab, ParticleSystem smokePrefab) 
+        public void Init(ParticleSystem muzzlePrefab, ParticleSystem smokePrefab)
         {
             if (muzzlePrefab != null)
             {
@@ -25,15 +25,17 @@ namespace GravityBox.AngryDroids
                 muzzle.transform.parent = barrel.parent;
                 smoke = Object.Instantiate(smokePrefab, smokePoint.position, smokePoint.rotation);
                 smoke.transform.parent = barrel.parent;
+                smoke.transform.name = "TarikSmokePref";
+            
             }
 
             shellsSubParticles = muzzle.GetComponentsInChildren<ParticleSystem>(true);
         }
 
-        public void Fire(GatlingWeaponAI gun, SmallObjectPool pool) 
+        public void Fire(GatlingWeaponAI gun, SmallObjectPool pool)
         {
             SetEffect();
-            
+
             Vector3 forward = barrel.forward + Random.onUnitSphere * gun.offset;
 
             if (Physics.Raycast(barrel.position, forward, out hit, gun.rangeMax, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
@@ -65,14 +67,14 @@ namespace GravityBox.AngryDroids
             }
         }
 
-        public void Stop() 
+        public void Stop()
         {
             var main = smoke.main;
             main.loop = false;
         }
     }
 
-    public class GatlingWeaponAI : WeaponAI, IWeapon 
+    public class GatlingWeaponAI : WeaponAI, IWeapon
     {
         public float damagePerShot = 1f;
         public float offset = 0.01f;
@@ -81,7 +83,7 @@ namespace GravityBox.AngryDroids
         public GunBarrel[] barrels;
         public ParticleSystem muzzle;
         public ParticleSystem smoke;
-        
+
         private SmallObjectPool hits;
 
         protected override void OnAwake()
@@ -98,7 +100,7 @@ namespace GravityBox.AngryDroids
                 b.Fire(this, hits);
 
             isFiring = false;
-            
+
             yield return new WaitForSeconds(0.1f);
             fireLight.intensity = 0;
             foreach (GunBarrel b in barrels)

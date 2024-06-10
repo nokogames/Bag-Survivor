@@ -6,7 +6,8 @@ namespace _Project.Scripts.Character.Bot
 
     public interface IBot
     {
-
+       public Transform PlayerPlacePoint{ get; set; }
+       public Transform Transform {get;}
     }
 
 }

@@ -34,13 +34,14 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         {
             for (int i = 0; i < _botPlacePoints.Count; i++)
             {
+                var crrPoint = _botPlacePoints[i];
                 var obj = GameObject.Instantiate(_botPrefab);
-                obj.transform.SetParent(_botPlacePoints[i]);
+                obj.transform.SetParent(crrPoint);
                 obj.transform.localPosition = Vector3.zero;
                 obj.transform.localRotation = Quaternion.identity;
                 var botSm = obj.GetComponent<BotSM>();
                 botSm.InjectDependenciesAndInitialize(_playerScope);
-                botSm.Initialize();
+                botSm.Initialize(crrPoint);
                 _bots.Add(botSm);
             }
         }

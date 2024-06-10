@@ -9,13 +9,16 @@ namespace _Project.Scripts.Character.Bot.States
     {
         [Inject] private BotAgentController _botAgentCotroller;
         [Inject] private BotAnimationController _botAnimController;
+        // [Inject] private IBot _bot;
         public void Initalize()
         {
 
         }
         public void Enter()
         {
-
+            _botAnimController.SetActiveAnimation(false);
+            _botAnimController.Place();
+            _botAgentCotroller.SetAgentStatus(false);
         }
 
         public void Exit()
@@ -30,6 +33,8 @@ namespace _Project.Scripts.Character.Bot.States
 
         public void Tick()
         {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) _botAnimController.Place();
+            if (Input.GetKeyDown(KeyCode.Alpha2)) _botAnimController.UnPlace();
 
         }
     }

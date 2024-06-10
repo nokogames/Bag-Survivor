@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,12 @@ namespace _Project.Scripts.Character.Bot
     public class BotAgentController
     {
         [Inject] private NavMeshAgent _agent;
-        
 
+        public void SetAgentStatus(bool status)
+        {
+            _agent.enabled = status;
+        }
 
-
+       
     }
 }

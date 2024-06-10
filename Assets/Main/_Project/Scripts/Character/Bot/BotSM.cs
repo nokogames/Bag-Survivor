@@ -25,7 +25,11 @@ namespace _Project.Scripts.Character.Bot
         public AttackState AttackState { get; set; }
         public CraftState CraftState { get; set; }
         public UnPlaceFromPlayerState UnPlaceFromPlayerState { get; set; }
+        public Transform PlayerPlacePoint { get => _playerPlacePoint; set => _playerPlacePoint = value; }
 
+        public Transform Transform => transform;
+
+        private Transform _playerPlacePoint;
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
         {
@@ -38,6 +42,7 @@ namespace _Project.Scripts.Character.Bot
         {
             _childScope = _parentScope.CreateChild(builder =>
             {
+                builder.RegisterInstance(GetComponent<IBot>());
                 builder.RegisterComponent(GetComponent<NavMeshAgent>());
                 builder.RegisterComponent(animator);
 
@@ -75,11 +80,20 @@ namespace _Project.Scripts.Character.Bot
             InitializeStates();
             ChangeState(PlaceToPlayerState);
         }
-        public void Initialize()
+        public void Initialize(Transform playerPlacePoint)
         {
-
+            _playerPlacePoint = playerPlacePoint;
         }
+
 
     }
 
 }
+
+/* 
+NavMeshMovementMotor  =navmesh control etmek icin 
+ADWalkerAnimator     = animasyon control icin 
+
+
+
+*/
