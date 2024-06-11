@@ -1,9 +1,10 @@
 
+using _Project.Scripts.Character.Craft;
 using UnityEngine;
 
 
-public interface IEnemy
+public interface IEnemy : ITargetable
 {
-    public Transform Transform { get; }
+   
     public bool IsDead { get; set; }
 }

@@ -38,6 +38,10 @@ public abstract class BaseGunBehavior : MonoBehaviour
 
     }
 
+    public void SetActivity(bool status)
+    {
+        gameObject.SetActive(status);
+    }
 
 #if UNITY_EDITOR
     [ExecuteWithButton("PrepareWeapon")]

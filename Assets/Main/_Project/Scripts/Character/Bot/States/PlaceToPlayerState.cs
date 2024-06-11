@@ -9,16 +9,21 @@ namespace _Project.Scripts.Character.Bot.States
     {
         [Inject] private BotAgentController _botAgentCotroller;
         [Inject] private BotAnimationController _botAnimController;
-        // [Inject] private IBot _bot;
-        public void Initalize()
-        {
+        [Inject] private BotUIMediator _botUIMediator;
 
+        private BotSM _botSM;
+        // [Inject] private IBot _bot;
+        public void Initalize(BotSM botSM)
+        {
+            _botSM = botSM;
         }
         public void Enter()
-        {
-            _botAnimController.SetActiveAnimation(false);
-            _botAnimController.Place();
+        { Debug.Log("PlaceToPlayerState");
+            _botUIMediator.SetDebugImgColor(Color.red);
             _botAgentCotroller.SetAgentStatus(false);
+
+            //  _botAnimController.SetActiveAnimation(false);
+            _botAnimController.Place(OnCompletedPlace);
         }
 
         public void Exit()
@@ -33,9 +38,14 @@ namespace _Project.Scripts.Character.Bot.States
 
         public void Tick()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) _botAnimController.Place();
-            if (Input.GetKeyDown(KeyCode.Alpha2)) _botAnimController.UnPlace();
 
+
+        }
+
+
+        public void OnCompletedPlace()
+        {
+            //_botSM.ChangeState(_botSM.UnPlaceFromPlayerState);
         }
     }
 }

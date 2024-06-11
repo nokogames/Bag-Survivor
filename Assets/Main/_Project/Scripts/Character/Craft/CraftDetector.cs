@@ -11,13 +11,26 @@ namespace _Project.Scripts.Character.Craft
         [Inject] private ICraftDetectorReciver _reciver;
         private ICraftable _crrCraftable;
         private void OnTriggerEnter(Collider other)
-        {  
+        {
             Debug.Log($"Reciver -{_reciver}");
             if (!other.transform.CompareTag(CRAFTABLE_TAG)) return;
+
             if (other.transform.TryGetComponent<ICraftable>(out ICraftable craftable))
             {
                 _crrCraftable = craftable;
                 _reciver.OnCraftableDetect(_crrCraftable);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            Debug.Log($"Reciver -{_reciver}");
+            if (!other.transform.CompareTag(CRAFTABLE_TAG)) return;
+            
+            if (other.transform.TryGetComponent<ICraftable>(out ICraftable craftable))
+            {
+                _crrCraftable = null;
+                _reciver.OnCraftableDetect(null);
             }
         }
         private readonly string CRAFTABLE_TAG = "Craftable";

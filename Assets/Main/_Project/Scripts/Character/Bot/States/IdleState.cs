@@ -11,6 +11,7 @@ namespace _Project.Scripts.Character.Bot.States
     {
         [Inject] private BotAgentController _botAgentCotroller;
         [Inject] private BotAnimationController _botAnimController;
+         [Inject] private BotUIMediator _botUIMediator;
         public void Initalize()
         {
 

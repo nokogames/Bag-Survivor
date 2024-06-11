@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Character.Craft;
 using UnityEngine;
 
 public interface ICharacter
 {
-    public IEnemy TargetEnemy { get; }
+    public ITargetable Target { get; }
+    public Transform Transform {get;}
     // GameObject Weapon { get; }
     // Transform ClosestEnemyBehaviour { get; }
     // BaseCharacterGraphics Graphics { get; }

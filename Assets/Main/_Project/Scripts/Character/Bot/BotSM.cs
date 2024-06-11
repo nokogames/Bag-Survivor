@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Character.Bot.Controllers;
 using _Project.Scripts.Character.Bot.States;
 using _Project.Scripts.Reusable;
 
@@ -15,8 +16,9 @@ namespace _Project.Scripts.Character.Bot
     public class BotSM : StateMachineMB, IBot
     {
         [SerializeField] private Animator animator;
-
-
+        [SerializeField] private BotUIMediator botUIMediator;
+        //
+        private ICharacter _character;
         private LifetimeScope _parentScope;
         private LifetimeScope _childScope;
         //States
@@ -25,14 +27,18 @@ namespace _Project.Scripts.Character.Bot
         public AttackState AttackState { get; set; }
         public CraftState CraftState { get; set; }
         public UnPlaceFromPlayerState UnPlaceFromPlayerState { get; set; }
+        //
         public Transform PlayerPlacePoint { get => _playerPlacePoint; set => _playerPlacePoint = value; }
 
         public Transform Transform => transform;
 
+        public Transform UnPlacePoint { get; set; }
+
         private Transform _playerPlacePoint;
         [Inject]
-        public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
+        public void InjectDependenciesAndInitialize(LifetimeScope parentScope, ICharacter character)
         {
+            _character = character;
             _parentScope = parentScope;
             CreateBotScope();
         }
@@ -45,7 +51,7 @@ namespace _Project.Scripts.Character.Bot
                 builder.RegisterInstance(GetComponent<IBot>());
                 builder.RegisterComponent(GetComponent<NavMeshAgent>());
                 builder.RegisterComponent(animator);
-
+                builder.RegisterComponent(botUIMediator);
                 builder.Register<BotAgentController>(Lifetime.Scoped);
                 builder.Register<BotAnimationController>(Lifetime.Scoped);
 
@@ -54,6 +60,7 @@ namespace _Project.Scripts.Character.Bot
                 builder.Register<AttackState>(Lifetime.Scoped);
                 builder.Register<CraftState>(Lifetime.Scoped);
                 builder.Register<UnPlaceFromPlayerState>(Lifetime.Scoped);
+                builder.Register<BotMovementController>(Lifetime.Scoped);
             });
         }
         private void ResolveStates()
@@ -64,14 +71,16 @@ namespace _Project.Scripts.Character.Bot
             CraftState = _childScope.Container.Resolve<CraftState>();
             UnPlaceFromPlayerState = _childScope.Container.Resolve<UnPlaceFromPlayerState>();
 
+
         }
         private void InitializeStates()
         {
             IdleState.Initalize();
-            PlaceToPlayerState.Initalize();
-            AttackState.Initalize();
-            CraftState.Initalize();
-            UnPlaceFromPlayerState.Initalize();
+            PlaceToPlayerState.Initalize(this);
+            AttackState.Initalize(this);
+            CraftState.Initalize(this);
+            UnPlaceFromPlayerState.Initalize(this);
+            _childScope.Container.Resolve<BotAgentController>().Initialise();
         }
 
         private void Start()
@@ -83,10 +92,23 @@ namespace _Project.Scripts.Character.Bot
         public void Initialize(Transform playerPlacePoint)
         {
             _playerPlacePoint = playerPlacePoint;
+            UnPlacePoint = _playerPlacePoint.GetChild(0);
         }
 
+        public void ChangeStatByPlayer(IState stateIn)
+        {
+            if (CurrentState == stateIn) return;
 
+            if (CurrentState == PlaceToPlayerState)
+            {
+                UnPlaceFromPlayerState.AfterState = null;
+                UnPlaceFromPlayerState.AfterState = stateIn;
+                ChangeState(UnPlaceFromPlayerState);
+            }
+            else ChangeState(stateIn);
+        }
     }
+
 
 }
 

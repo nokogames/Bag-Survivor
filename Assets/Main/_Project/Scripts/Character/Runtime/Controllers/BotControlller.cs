@@ -15,6 +15,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     public class BotController
     {
         [Inject] private LifetimeScope _playerScope;
+        [Inject] private ICharacter _character;
         private List<Transform> _botPlacePoints;
         private List<BotSM> _bots;
         private List<Sequence> _sequnce;
@@ -40,7 +41,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
                 obj.transform.localPosition = Vector3.zero;
                 obj.transform.localRotation = Quaternion.identity;
                 var botSm = obj.GetComponent<BotSM>();
-                botSm.InjectDependenciesAndInitialize(_playerScope);
+                botSm.InjectDependenciesAndInitialize(_playerScope, _character);
                 botSm.Initialize(crrPoint);
                 _bots.Add(botSm);
             }
@@ -48,16 +49,21 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         public void PlaceBots()
         {
-            for (int i = 0; i < _bots.Count; i++)
-            {
-                var crrBot = _bots[i];
-                var sequence = _sequnce[i];
-                if (sequence != null) sequence.Kill();
-
-            }
+            _bots.ForEach(bot => bot.ChangeStatByPlayer(bot.PlaceToPlayerState));
         }
         public void UnPlaceBots()
         {
+
+        }
+
+        internal void CraftBots()
+        {
+            _bots.ForEach(bot => bot.ChangeStatByPlayer(bot.CraftState));
+        }
+
+        internal void AttackBots()
+        {
+            _bots.ForEach(bot => bot.ChangeStatByPlayer(bot.AttackState));
 
         }
     }

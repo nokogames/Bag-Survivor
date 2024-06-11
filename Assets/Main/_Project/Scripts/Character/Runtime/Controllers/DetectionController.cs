@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-
 using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.Character.Craft;
@@ -8,47 +7,46 @@ using _Project.Scripts.Interactable.Craft;
 using Codice.Client.BaseCommands.Import;
 using UnityEngine;
 using VContainer;
-
 namespace _Project.Scripts.Character.Runtime.Controllers
 {
     public class DetectionController : IEnemyDetector, ICraftDetectorReciver
     {
         [Inject] private PlayerMovementController _playerMovementController;
+        [Inject] private BotController _botController;
         private PlayerSM _playerSM;
-        private IEnemy _targetEnemy;
-        public IEnemy TargetEnemy => _targetEnemy;
-        private ICraftable _carftable;
-        public ICraftable Craftable => _carftable;
-
+        private ITargetable _target;
+        public ITargetable Target => _target;
+        private ICraftable _craftable;
+        public ICraftable Craftable => _craftable;
+        private IEnemy _enemy;
+        public IEnemy Enemy => _enemy;
         public void Initialise(PlayerSM playerSM)
         {
             _playerSM = playerSM;
-
         }
         public void OnCraftableDetect(ICraftable crrCraftable)
         {
-            _carftable = crrCraftable;
-            ChangeStateToCraft();
+            _craftable = crrCraftable;
+            SetTarget();
+            CheckState();
         }
-
-        private void ChangeStateToCraft()
-        {
-            if (_targetEnemy != null || _carftable == null || _carftable.CanCraftable) return;
-            _playerSM.ChangeState(_playerSM.CraftState);
-
-        }
-
         public void OnEnemyDetected(IEnemy detectedEnemyInfo)
         {
-
-            _targetEnemy = detectedEnemyInfo;
-            // _isCloseEnemyFound = detectedEnemyInfo != null;
-
-            _playerMovementController.TargetEnemy = detectedEnemyInfo;
-            _playerMovementController.IsCloseEnemyFound = detectedEnemyInfo != null;
-            if (detectedEnemyInfo == null) ChangeStateToCraft();
-
-
+            _enemy = detectedEnemyInfo;
+            SetTarget();
+            CheckState();
+        }
+        private void SetTarget()
+        {
+            _target = _enemy != null ? _enemy : _craftable;
+            _playerMovementController.Target = _target;
+            _playerMovementController.IsCloseEnemyFound = _target != null;
+        }
+        private void CheckState()
+        {
+            if (_enemy != null) _playerSM.ChangeState(_playerSM.AttackState);
+            else if (_craftable != null) _playerSM.ChangeState(_playerSM.CraftState);
+            else _playerSM.ChangeState(_playerSM.IdleState);
         }
     }
 }

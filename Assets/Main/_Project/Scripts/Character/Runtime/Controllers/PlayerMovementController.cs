@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _Project.Scripts.Character.Craft;
 using ScriptableObjects;
 using UnityEngine;
 using VContainer;
@@ -27,11 +28,11 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
 
         public MovementSettings ActiveMovementSettings { set => _activeMovementSettings = value; }
-        public IEnemy TargetEnemy { get => _targetEnemy; set => _targetEnemy = value; }
+        public ITargetable Target { get => _target; set => _target = value; }
 
         public bool IsMoving { get => _isMoving; set => _isMoving = value; }
 
-        private IEnemy _targetEnemy;
+        private ITargetable _target;
         private MovementSettings _activeMovementSettings;
         private bool _isCloseEnemyFound = false;
         private bool _isMoving = false;
@@ -85,11 +86,11 @@ namespace _Project.Scripts.Character.Runtime.Controllers
              Quaternion.Lerp(_playerTransform.rotation, Quaternion.LookRotation(_inputData.MovementInput), Time.deltaTime * _activeMovementSettings.RotationSpeed);
             else
             {
-                Vector3 newTargetPoint = _targetEnemy.Transform.position;
+                Vector3 newTargetPoint = _target.Transform.position;
                 newTargetPoint.y = _playerTransform.position.y;
                 Quaternion targetRotation = Quaternion.LookRotation(newTargetPoint - _playerTransform.position);
                 _playerTransform.rotation = Quaternion.Lerp(_playerTransform.rotation, targetRotation, Time.deltaTime * _activeMovementSettings.RotationSpeed);
-             //   _playerTransform.LookAt(new Vector3(_targetEnemy.Transform.position.x, _playerTransform.position.y, _targetEnemy.Transform.position.z));
+                //   _playerTransform.LookAt(new Vector3(_targetEnemy.Transform.position.x, _playerTransform.position.y, _targetEnemy.Transform.position.z));
             }
         }
 

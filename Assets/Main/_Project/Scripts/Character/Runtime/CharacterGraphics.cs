@@ -9,7 +9,7 @@ public class CharacterGraphics : BaseCharacterGraphics
     private static readonly int ANIMATOR_RUNNING_HASH = Animator.StringToHash("IsRunning");
     private static readonly int ANIMATOR_MOVEMENT_X_HASH = Animator.StringToHash("MovementX");
     private static readonly int ANIMATOR_MOVEMENT_Y_HASH = Animator.StringToHash("MovementY");
-
+    private readonly int CRAFT_ANIMATION_HASH = Animator.StringToHash("Craft");
     public override void OnMovingStarted()
     {
         characterAnimator.SetBool(ANIMATOR_RUNNING_HASH, true);
@@ -19,12 +19,25 @@ public class CharacterGraphics : BaseCharacterGraphics
     {
         characterAnimator.SetBool(ANIMATOR_RUNNING_HASH, false);
     }
+    public void CraftStatus(bool status)
+    {
+        characterAnimator.SetBool(CRAFT_ANIMATION_HASH, status);
+
+    }
+    public override void DisableIK()
+    {
+        base.DisableIK();
+    }
+    public override void EnableIK()
+    {
+        base.EnableIK();
+    }
     public override void OnMoving(float speedPercent, Vector3 direction, bool isTargetFound = false)
     {
         if (isTargetFound)
         {
 
-            var enemyPosition = character.TargetEnemy.Transform.position;
+            var enemyPosition = character.Target.Transform.position;
 
             var angle = Mathf.Atan2(enemyPosition.x - transform.position.x, enemyPosition.z - transform.position.z) * 180 / Mathf.PI;
 

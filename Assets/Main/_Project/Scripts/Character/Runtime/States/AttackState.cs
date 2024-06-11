@@ -1,26 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+
 using _Project.Scripts.Character.Runtime.Controllers;
 using _Project.Scripts.Reusable;
 using VContainer;
 
 namespace _Project.Scripts.Character.Runtime.States
 {
-    public class IdleState : IState
+    public class AttackState : IState
     {
         [Inject] private BaseGunBehavior _gunBehavior;
         [Inject] private PlayerMovementController _playerMovementController;
+        [Inject] private CharacterGraphics _characterGraphics;
         [Inject] private BotController _botController;
-
+        [Inject] private DetectionController _detectionController;
         public void Initialize()
         {
 
         }
         public void Enter()
         {
-            _botController.PlaceBots();
+            _characterGraphics.EnableIK();
+            _gunBehavior.SetActivity(true);
+            _botController.AttackBots();
         }
 
         public void Exit()

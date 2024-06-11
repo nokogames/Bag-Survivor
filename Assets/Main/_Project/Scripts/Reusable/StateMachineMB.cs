@@ -22,6 +22,7 @@ namespace _Project.Scripts.Reusable
 
 		bool _inTransition = false;
 
+		
 		public void ChangeState(IState newState)
 		{
 			// ensure we're ready for a new state
@@ -38,8 +39,8 @@ namespace _Project.Scripts.Reusable
 		}
 
 		void ChangeStateRoutine(IState newState)
-		{  
-		//	Debug.Log($"Changing State to {newState.GetType().Name}");
+		{
+			//	Debug.Log($"Changing State to {newState.GetType().Name}");
 			_inTransition = true;
 			// begin our exit sequence, to prepare for new state
 			if (CurrentState != null)
@@ -53,8 +54,9 @@ namespace _Project.Scripts.Reusable
 			// begin our new Enter sequence
 			if (CurrentState != null)
 				CurrentState.Enter();
-
 			_inTransition = false;
+
+			CurrentState.AfterEnter();
 		}
 
 		// pass down Update ticks to States, since they won't have a MonoBehaviour

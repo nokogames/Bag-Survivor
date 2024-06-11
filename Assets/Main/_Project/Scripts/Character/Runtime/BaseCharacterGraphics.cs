@@ -13,6 +13,7 @@ public abstract class BaseCharacterGraphics : MonoBehaviour
     private readonly int GRUNT_ANIMATION_HASH = Animator.StringToHash("Grunt");
 
 
+
     [SerializeField]
     protected Animator characterAnimator;
     [SerializeField] SkinnedMeshRenderer meshRenderer;
@@ -70,10 +71,15 @@ public abstract class BaseCharacterGraphics : MonoBehaviour
     //public abstract void OnMoving(float speedPercent, Vector3 direction, bool isTargetFound);
     public abstract void OnMoving(float speedPercent, Vector3 direction, bool isTargetFound = false);
 
-    public void DisableIK()
+    public virtual void DisableIK()
     {
         rightHandRig.weight = 0;
         leftHandRig.weight = 0;
+    }
+    public virtual void EnableIK()
+    {
+        rightHandRig.weight = 1;
+        leftHandRig.weight = 1;
     }
 
 #if UNITY_EDITOR
