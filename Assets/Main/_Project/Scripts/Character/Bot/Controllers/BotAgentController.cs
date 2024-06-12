@@ -10,10 +10,12 @@ namespace _Project.Scripts.Character.Bot
     {
         [Inject] private NavMeshAgent _agent;
         [Inject] private BotAnimationController _botAnimController;
+        [Inject] private IBot _bot;
         private float _defaultStopDistance;
         private float _enemyStopDistance = 2f;
+        private float _playerStopDistance = 2.5f;
         private float _craftableStopDistance = 1f;
-        private float proximityThreshold = 1.0f;
+        private float proximityThreshold = .1f;
 
         //public Action OnTargetReached;
         public void Initialise()
@@ -27,7 +29,12 @@ namespace _Project.Scripts.Character.Bot
         {
             _agent.enabled = status;
         }
-
+        internal void FollowPlayer(Vector3 position)
+        {
+            //if (!_agent.pathPending) return;
+            _agent.stoppingDistance = _playerStopDistance;
+            _agent.SetDestination(position);
+        }
         internal void SetDestination(Vector3 position)
         {
             _agent.stoppingDistance = _defaultStopDistance;
@@ -52,22 +59,22 @@ namespace _Project.Scripts.Character.Bot
         public void Update()
         {
 
-            if (!_agent.pathPending && _agent.remainingDistance <= proximityThreshold)
+            if (IsReachDestination(proximityThreshold))
             {
-                if (_agent.hasPath && _agent.remainingDistance == 0)
-                {
-                    _botAnimController.Stop();
+                _botAnimController.Stop();
 
-
-                }
-
-
+                // Hedefe ulaşıldığında animasyonu durdur
             }
-            else if (_agent.remainingDistance > _agent.stoppingDistance && _agent.hasPath && !_agent.pathPending)
+            else
             {
-                _botAnimController.Move();
+                _botAnimController.Move();  // Hedefe henüz ulaşılmadıysa hareket animasyonunu sürdür
             }
 
+        }
+
+        internal float Distance(Vector3 position)
+        {
+            return Vector3.Distance(position, _bot.Transform.position);
         }
     }
 }

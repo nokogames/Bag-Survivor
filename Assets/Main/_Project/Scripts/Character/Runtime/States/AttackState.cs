@@ -30,6 +30,7 @@ namespace _Project.Scripts.Character.Runtime.States
 
         public void FixedTick()
         {
+            _gunBehavior.GunFixedUpdate();
         }
 
         public void Tick()

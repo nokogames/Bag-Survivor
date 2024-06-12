@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,5 +52,10 @@ public class CharacterGraphics : BaseCharacterGraphics
         characterAnimator.SetFloat(ANIMATOR_MOVEMENT_X_HASH, 0);
         characterAnimator.SetFloat(ANIMATOR_MOVEMENT_Y_HASH, 1);
 
+    }
+
+    public void OnShoot()
+    {
+        characterAnimator.Play(ANIMATION_SHOT_HASH, animatorShootingLayerIndex, 0);
     }
 }

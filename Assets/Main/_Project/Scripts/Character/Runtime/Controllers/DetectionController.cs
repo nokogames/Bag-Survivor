@@ -20,6 +20,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         public ICraftable Craftable => _craftable;
         private IEnemy _enemy;
         public IEnemy Enemy => _enemy;
+        public bool IsEnemyFound { get; set; }
         public void Initialise(PlayerSM playerSM)
         {
             _playerSM = playerSM;
@@ -44,9 +45,21 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         }
         private void CheckState()
         {
-            if (_enemy != null) _playerSM.ChangeState(_playerSM.AttackState);
-            else if (_craftable != null) _playerSM.ChangeState(_playerSM.CraftState);
-            else _playerSM.ChangeState(_playerSM.IdleState);
+            if (_enemy != null)
+            {
+                IsEnemyFound = true;
+                _playerSM.ChangeState(_playerSM.AttackState);
+            }
+            else if (_craftable != null)
+            {
+                IsEnemyFound = false;
+                _playerSM.ChangeState(_playerSM.CraftState);
+            }
+            else
+            {
+                IsEnemyFound = false;
+                _playerSM.ChangeState(_playerSM.IdleState);
+            }
         }
     }
 }

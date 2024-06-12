@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Character.Bot.Controllers;
+using _Project.Scripts.Character.Bot.Gun;
 using _Project.Scripts.Character.Bot.States;
 using _Project.Scripts.Reusable;
 
@@ -15,6 +16,7 @@ namespace _Project.Scripts.Character.Bot
     [RequireComponent(typeof(NavMeshAgent))]
     public class BotSM : StateMachineMB, IBot
     {
+        [SerializeField] private List<BotGunBase> guns;
         [SerializeField] private Animator animator;
         [SerializeField] private BotUIMediator botUIMediator;
         //
@@ -54,13 +56,20 @@ namespace _Project.Scripts.Character.Bot
                 builder.RegisterComponent(botUIMediator);
                 builder.Register<BotAgentController>(Lifetime.Scoped);
                 builder.Register<BotAnimationController>(Lifetime.Scoped);
-
+                builder.Register<BotGunController>(Lifetime.Scoped);
                 builder.Register<IdleState>(Lifetime.Scoped);
                 builder.Register<PlaceToPlayerState>(Lifetime.Scoped);
                 builder.Register<AttackState>(Lifetime.Scoped);
                 builder.Register<CraftState>(Lifetime.Scoped);
                 builder.Register<UnPlaceFromPlayerState>(Lifetime.Scoped);
                 builder.Register<BotMovementController>(Lifetime.Scoped);
+                for (int i = 0; i < guns.Count; i++)
+                {
+                    var crr = guns[i];
+                    Type type = crr.GetType();
+                    builder.RegisterComponent(crr).As(type);
+                }
+
             });
         }
         private void ResolveStates()

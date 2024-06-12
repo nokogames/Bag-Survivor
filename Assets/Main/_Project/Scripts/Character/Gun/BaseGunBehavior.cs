@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class BaseGunBehavior : MonoBehaviour
 {
+    [SerializeField] protected GunData gunData;
 
     [Header("Animations")]
     [SerializeField] AnimationClip characterShootAnimation;
@@ -18,7 +19,7 @@ public abstract class BaseGunBehavior : MonoBehaviour
     private Transform _leftHandRigController;
     private Transform _rightHandRigController;
     //Player
-    private ICharacter _character;
+    protected ICharacter _character;
 
     public virtual void InitialiseCharacter(BaseCharacterGraphics characterGraphics, ICharacter character)
     {
@@ -28,7 +29,7 @@ public abstract class BaseGunBehavior : MonoBehaviour
 
 
     }
-
+  
     public void UpdateHandRig()
     {
         _leftHandRigController.position = leftHandHolder.position;
@@ -41,6 +42,11 @@ public abstract class BaseGunBehavior : MonoBehaviour
     public void SetActivity(bool status)
     {
         gameObject.SetActive(status);
+    }
+    public virtual void GunFixedUpdate() { }
+    public void Fire()
+    {
+
     }
 
 #if UNITY_EDITOR

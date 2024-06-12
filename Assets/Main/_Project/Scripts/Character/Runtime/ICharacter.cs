@@ -6,7 +6,9 @@ using UnityEngine;
 public interface ICharacter
 {
     public ITargetable Target { get; }
-    public Transform Transform {get;}
+    public Transform Transform { get; }
+    public bool IsEnemyFound { get; }
+    public void OnGunShooted();
     // GameObject Weapon { get; }
     // Transform ClosestEnemyBehaviour { get; }
     // BaseCharacterGraphics Graphics { get; }

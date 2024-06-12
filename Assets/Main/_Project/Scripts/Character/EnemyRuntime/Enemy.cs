@@ -1,25 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Reusable;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IEnemy
+
+namespace _Project.Scripts.Character.EnemyRuntime
 {
-    public Transform Transform => transform;
 
-    private bool _isDead;
-    public bool IsDead { get => _isDead; set => _isDead = value; }
-
-
-    private void OnTriggerEnter(Collider other)
+    public class Enemy : StateMachineMB, IEnemy
     {
-        if (other.gameObject.TryGetComponent<ICharacter>(out ICharacter character))
+        public Transform Transform => transform;
+
+        private bool _isDead;
+        public bool IsDead { get => _isDead; set => _isDead = value; }
+        private float _healt = 100;
+
+        private void OnEnable()
         {
-            Debug.Log("Icharacter triggered");
+            _isDead = false;
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.TryGetComponent<ICharacter>(out ICharacter character))
+            {
+                Debug.Log("Icharacter triggered");
+            }
+        }
+
+        public void GetDamage(float damage)
+        {
+            _healt -= damage;
+            if (_healt <= 0)
+            {
+                _isDead = true;
+                gameObject.SetActive(false);
+            }
         }
     }
-
-
 }
 
 

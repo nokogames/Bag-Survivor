@@ -14,5 +14,10 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         {
             _characterGraphics.CraftStatus(status);
         }
+
+        internal void OnGunShooted()
+        {
+            _characterGraphics.OnShoot();
+        }
     }
 }

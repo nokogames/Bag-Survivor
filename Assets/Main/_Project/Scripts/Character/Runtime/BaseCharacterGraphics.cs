@@ -6,7 +6,7 @@ using UnityEngine.Animations.Rigging;
 public abstract class BaseCharacterGraphics : MonoBehaviour
 {
 
-    private readonly int ANIMATION_SHOT_HASH = Animator.StringToHash("Shot");
+    protected readonly int ANIMATION_SHOT_HASH = Animator.StringToHash("Shot");
     private readonly int ANIMATION_HIT_HASH = Animator.StringToHash("Hit");
 
     private readonly int JUMP_ANIMATION_HASH = Animator.StringToHash("Jump");
@@ -53,7 +53,7 @@ public abstract class BaseCharacterGraphics : MonoBehaviour
 
     protected ICharacter character;
     private AnimatorOverrideController animatorOverrideController;
-    private int animatorShootingLayerIndex;
+    protected int animatorShootingLayerIndex;
 
 
     public virtual void Initialise(ICharacter character)

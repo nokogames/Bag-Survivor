@@ -39,7 +39,7 @@ namespace _Project.Scripts.Character.Bot
             KillAllCustomAnims();
             SetActiveAnimation(false);
             // _botAgentController.SetAgentStatus(false);
-            _placeScaleTween = _bot.Transform.DOScale(.3f, .5f).SetDelay(.1f);
+            _placeScaleTween = _bot.Transform.DOScale(.3f, .3f).SetDelay(.1f);
             _placeRotationTween = _bot.Transform.DOLocalRotate(Vector3.zero, .2f);
             _openCorotine = StaticHelper.Instance.StartCoroutine(_bot.Transform.CustomDoJump(_bot.PlayerPlacePoint, 2f, .5f, () => Placed(onCompleted)));
         }
@@ -57,7 +57,7 @@ namespace _Project.Scripts.Character.Bot
 
             Vector3 destinationPos = _bot.UnPlacePoint.position;
             destinationPos.y = 0;
-            _placeTween = _bot.Transform.DOJump(destinationPos, .5f, 2, 1f)
+            _placeTween = _bot.Transform.DOJump(destinationPos, .5f, 2, .5f)
             .OnComplete(() =>
             {
                 // _botAgentController.SetAgentStatus(true);
@@ -66,7 +66,7 @@ namespace _Project.Scripts.Character.Bot
             });
 
             _placeRotationTween = _bot.Transform.DOLocalRotate(Vector3.zero, .2f);
-            _placeScaleTween = _bot.Transform.DOScale(1f, .5f).OnComplete(() => SetActiveAnimation(true));
+            _placeScaleTween = _bot.Transform.DOScale(1f, .3f).OnComplete(() => SetActiveAnimation(true));
         }
 
         private void KillAllCustomAnims()

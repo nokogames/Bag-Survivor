@@ -7,4 +7,6 @@ public interface IEnemy : ITargetable
 {
    
     public bool IsDead { get; set; }
+
+    public void GetDamage(float damage);
 }

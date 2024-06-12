@@ -37,6 +37,9 @@ namespace _Project.Scripts.Character.Runtime
         public CraftState CraftState { get; set; }
         public AttackState AttackState { get; set; }
 
+
+         private PlayerAnimationController _playerAnimationController;
+
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
         {
@@ -107,6 +110,7 @@ namespace _Project.Scripts.Character.Runtime
             IdleState = _playerScope.Container.Resolve<IdleState>();
             CraftState = _playerScope.Container.Resolve<CraftState>();
             AttackState = _playerScope.Container.Resolve<AttackState>();
+            _playerAnimationController= _playerScope.Container.Resolve<PlayerAnimationController>();
         }
 
 
@@ -114,6 +118,8 @@ namespace _Project.Scripts.Character.Runtime
         public ITargetable Target => _detectionController.Target;
 
         public Transform Transform => transform;
+
+        public bool IsEnemyFound => _detectionController.IsEnemyFound;
 
         private void Start()
         {
@@ -124,7 +130,10 @@ namespace _Project.Scripts.Character.Runtime
         {
             _playerScope.Dispose();
         }
-
+        public void OnGunShooted()
+        {
+          _playerAnimationController.OnGunShooted();
+        }
 
     }
 }

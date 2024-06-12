@@ -59,7 +59,7 @@ public class EnemyDetector : MonoBehaviour
     {
         if (detectedEnemiesCount == 0)
         {
-            if (closestEnemy != null)
+            if (closestEnemy == null)
                 _enemyDetector.OnEnemyDetected(null);
 
             closestEnemy = null;

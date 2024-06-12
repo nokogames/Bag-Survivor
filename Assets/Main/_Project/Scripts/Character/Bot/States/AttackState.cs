@@ -17,6 +17,8 @@ namespace _Project.Scripts.Character.Bot.States
         [Inject] private BotAnimationController _botAnimController;
         [Inject] private BotUIMediator _botUIMediator;
         [Inject] private BotMovementController _botMovementController;
+        [Inject] private BotGunController _botGunController;
+        [Inject] private ICharacter _character;
         private BotSM _botSM;
         public void Initalize(BotSM botSM)
         {
@@ -26,7 +28,7 @@ namespace _Project.Scripts.Character.Bot.States
         {
             Debug.Log("AttackState");
             _botUIMediator.SetDebugImgColor(Color.yellow);
-        _botMovementController.FollowEnemy();
+            _botMovementController.FollowEnemy();
         }
         public void AfterEnter()
         {
@@ -39,8 +41,15 @@ namespace _Project.Scripts.Character.Bot.States
 
         public void FixedTick()
         {
+
+            _botGunController.FixedTick();
+            _botMovementController.RotateToTarget();
             //Change
-          
+            if (_botMovementController.EnemyDistance() > 3)
+            {
+                _botMovementController.FollowEnemy();
+            }
+
 
         }
 
