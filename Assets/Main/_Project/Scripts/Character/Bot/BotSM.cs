@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Character.Bot.Controllers;
 using _Project.Scripts.Character.Bot.Gun;
 using _Project.Scripts.Character.Bot.States;
+using _Project.Scripts.Character.Bot.Tools;
 using _Project.Scripts.Reusable;
 
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace _Project.Scripts.Character.Bot
         [SerializeField] private List<BotGunBase> guns;
         [SerializeField] private Animator animator;
         [SerializeField] private BotUIMediator botUIMediator;
+        [SerializeField] private BotCraftTool botCraftTool;
+
         //
         private ICharacter _character;
         private LifetimeScope _parentScope;
@@ -54,6 +57,9 @@ namespace _Project.Scripts.Character.Bot
                 builder.RegisterComponent(GetComponent<NavMeshAgent>());
                 builder.RegisterComponent(animator);
                 builder.RegisterComponent(botUIMediator);
+                builder.RegisterComponent(botCraftTool);
+
+                builder.Register<BotCraftController>(Lifetime.Scoped);
                 builder.Register<BotAgentController>(Lifetime.Scoped);
                 builder.Register<BotAnimationController>(Lifetime.Scoped);
                 builder.Register<BotGunController>(Lifetime.Scoped);

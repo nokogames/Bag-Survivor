@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
@@ -207,7 +207,7 @@ PrefabInstance:
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
@@ -565,7 +565,7 @@ PrefabInstance:
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
@@ -707,7 +707,7 @@ PrefabInstance:
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
@@ -1498,7 +1498,7 @@ PrefabInstance:
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
@@ -1971,7 +1971,7 @@ PrefabInstance:
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 586389736974211816, guid: 6199805f3b0baaf49b81b431077b7224,
         type: 3}

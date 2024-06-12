@@ -22,11 +22,24 @@ namespace _Project.Scripts.Character.Craft
             }
         }
 
+        private float _crrTime = 0;
+        public void FixedUpdate()
+        {
+            _crrTime += Time.fixedDeltaTime;
+            if (_crrTime < .1f) return;
+            _crrTime = 0;
+            if (_crrCraftable != null && !_crrCraftable.CanCraftable)
+            {
+                _crrCraftable = null;
+                _reciver.OnCraftableDetect(null);
+            }
+
+        }
         private void OnTriggerExit(Collider other)
         {
             Debug.Log($"Reciver -{_reciver}");
             if (!other.transform.CompareTag(CRAFTABLE_TAG)) return;
-            
+
             if (other.transform.TryGetComponent<ICraftable>(out ICraftable craftable))
             {
                 _crrCraftable = null;

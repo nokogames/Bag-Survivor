@@ -11,6 +11,8 @@ namespace _Project.Scripts.Character.Bot.Controllers
     {
         [Inject] private ICharacter _character;
         [Inject] private BasicBotGun _botGun;
+        [Inject] private UpgradedBotGun _upgradedGun;
+
         // public void UpdateGun(BotGunBase botGunBase)
         // {
         //     _botGun = botGunBase;
@@ -19,6 +21,7 @@ namespace _Project.Scripts.Character.Bot.Controllers
         public void FixedTick()
         {
             _botGun.FixedTick();
+            if (_upgradedGun.gameObject.activeSelf) _botGun.FixedTick();
         }
     }
 }
