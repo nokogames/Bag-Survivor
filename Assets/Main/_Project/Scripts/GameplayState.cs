@@ -1,5 +1,6 @@
 
 
+using _Project.Scripts.Character.EnemyRuntime;
 using _Project.Scripts.Character.Runtime;
 using _Project.Scripts.Loader;
 using UnityEngine;
@@ -28,6 +29,7 @@ namespace _Project.Scripts
             base.Configure(builder);
 
             builder.RegisterComponentInHierarchy<PlayerSM>();
+            builder.RegisterComponentInHierarchy<EnemyManager>();
             //  builder.RegisterComponentInHierarchy<PlayerController>();
 
             _isValid = true;

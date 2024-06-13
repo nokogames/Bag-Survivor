@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Character.Craft;
 using _Project.Scripts.Character.Runtime.Controllers;
 using _Project.Scripts.Character.Runtime.States;
+using _Project.Scripts.Interactable.Craft;
 using _Project.Scripts.Reusable;
 using UnityEngine;
 using VContainer;
@@ -38,7 +39,7 @@ namespace _Project.Scripts.Character.Runtime
         public AttackState AttackState { get; set; }
 
 
-         private PlayerAnimationController _playerAnimationController;
+        private PlayerAnimationController _playerAnimationController;
 
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
@@ -110,12 +111,13 @@ namespace _Project.Scripts.Character.Runtime
             IdleState = _playerScope.Container.Resolve<IdleState>();
             CraftState = _playerScope.Container.Resolve<CraftState>();
             AttackState = _playerScope.Container.Resolve<AttackState>();
-            _playerAnimationController= _playerScope.Container.Resolve<PlayerAnimationController>();
+            _playerAnimationController = _playerScope.Container.Resolve<PlayerAnimationController>();
         }
 
 
         //About detection
         public ITargetable Target => _detectionController.Target;
+        public ICraftable Craftable => _detectionController.Craftable;
 
         public Transform Transform => transform;
 
@@ -132,7 +134,7 @@ namespace _Project.Scripts.Character.Runtime
         }
         public void OnGunShooted()
         {
-          _playerAnimationController.OnGunShooted();
+            _playerAnimationController.OnGunShooted();
         }
 
     }

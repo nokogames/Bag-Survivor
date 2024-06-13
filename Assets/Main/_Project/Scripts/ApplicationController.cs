@@ -14,6 +14,7 @@ namespace _Project.Scripts
         [SerializeField] private LoaderMediator loaderMediatorPrefab;
         [SerializeField] private InputDataSO inputData;
         [SerializeField] private GameData gameData;
+        [SerializeField] private EnemySpawnData enemySpawnData;
 
         // private LoaderMediator _loaderMediator;
         private SceneLoader _sceneLoader;
@@ -29,6 +30,7 @@ namespace _Project.Scripts
             builder.Register<SceneLoader>(Lifetime.Singleton);
             builder.RegisterInstance(gameData);
             builder.RegisterInstance(inputData);
+            builder.RegisterInstance(enemySpawnData);
 
         }
 

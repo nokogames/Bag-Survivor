@@ -52,6 +52,7 @@ namespace _Project.Scripts.Character.Bot
         }
         public bool IsReachDestination(float offset = 0)
         {
+            if (!_agent.enabled) return false;
             return _agent.remainingDistance <= _agent.stoppingDistance + offset && !_agent.pathPending;
         }
 

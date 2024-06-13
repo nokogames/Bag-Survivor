@@ -1560,6 +1560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1865814268}
   - component: {fileID: 1865814269}
+  - component: {fileID: 1865814270}
   m_Layer: 0
   m_Name: ObjectPool
   m_TagString: Untagged
@@ -1607,6 +1608,24 @@ MonoBehaviour:
       type: 3}
     amountToPool: 0
     shouldExpand: 1
+  pooledObjects: []
+--- !u!114 &1865814270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865814267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773efd0d70cdf37448006b0504381c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsToPool:
+  - enemyType: 0
+    objectToPool: {fileID: 0}
+    amountToPool: 0
+    shouldExpand: 0
   pooledObjects: []
 --- !u!1 &1895615157
 GameObject:

@@ -20,7 +20,9 @@ namespace _Project.Scripts.Character.Runtime.States
         [Inject] private AnimationEventHandler _animationEventHandler;
         [Inject] private PlayerAnimationController _playerAnimationController;
         [Inject] private BotController _botController;
+        [Inject] private ICharacter _character;
         private GameObject _pickAxe;
+        private float _craftPercentage = 10f;
         public void Initialize(GameObject pickAxe)
         {
             _animationEventHandler.OnCraft += Craft;
@@ -41,10 +43,10 @@ namespace _Project.Scripts.Character.Runtime.States
         public void Exit()
         {
             _playerAnimationController.SetCraftStatus(false);
-           
+
             _pickAxe.SetActive(false);
 
-          //  _botController.PlaceBots();
+            //  _botController.PlaceBots();
         }
 
         public void FixedTick()
@@ -59,6 +61,8 @@ namespace _Project.Scripts.Character.Runtime.States
 
         internal void Craft()
         {
+            if (_character.Craftable == null) return;
+            _character.Craftable.Craft(_craftPercentage);
             Debug.Log("Crafted");
         }
     }

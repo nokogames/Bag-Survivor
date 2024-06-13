@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Character.Craft;
+using _Project.Scripts.Interactable.Craft;
 using UnityEngine;
 
 public interface ICharacter
 {
     public ITargetable Target { get; }
+    public ICraftable Craftable { get; }
     public Transform Transform { get; }
     public bool IsEnemyFound { get; }
     public void OnGunShooted();
