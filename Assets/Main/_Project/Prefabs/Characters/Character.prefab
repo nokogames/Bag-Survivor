@@ -597,7 +597,7 @@ MonoBehaviour:
     Acceleration: 5000
     AnimationMultiplier: 1
   movementAimingSettings:
-    RotationSpeed: 5
+    RotationSpeed: 6
     MoveSpeed: 2
     Acceleration: 5000
     AnimationMultiplier: 1

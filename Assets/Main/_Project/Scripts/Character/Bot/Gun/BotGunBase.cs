@@ -60,15 +60,9 @@ namespace _Project.Scripts.Character.Bot.Gun
 
         internal void RotateToTarget()
         {
-            // Vector3 targetDirection = _target.Transform.position - transform.position;
-            // targetDirection.y = 0;
+            shootPoint.LookAt(_character.Target.Transform.position);
 
-            // if (targetDirection != Vector3.zero)
-            // {
-            //     Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            //     transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.fixedDeltaTime);
 
-            // }
         }
     }
 

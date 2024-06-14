@@ -12,6 +12,27 @@ using Random = UnityEngine.Random;
 
 public static class CoreExtensions
 {
+    #region TARIK
+
+    public static bool TryGetEnumType<T>(this string tag, out T type) where T : struct, Enum
+    {
+        // Enum.TryParse kullanarak güvenli bir şekilde string'den enum'a dönüşüm yapılır
+        return Enum.TryParse<T>(tag, true, out type);
+    }
+    public static float CustomDistance(this Vector3 start, Vector3 end)
+    {
+        return Mathf.Abs(start.x - end.x) + Mathf.Abs(start.z - end.z);
+    }
+
+
+
+
+
+
+
+
+
+    #endregion
     public static List<T> FindComponentsInChild<T>(this Transform startGameObject)
     {
         List<T> foundComponents = new List<T>();

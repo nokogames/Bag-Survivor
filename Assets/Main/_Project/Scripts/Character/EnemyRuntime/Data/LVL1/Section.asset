@@ -15,4 +15,4 @@ MonoBehaviour:
   waveInfos:
   - spawnEnemyInfos:
     - enemyType: 0
-      Count: 5
+      Count: 50

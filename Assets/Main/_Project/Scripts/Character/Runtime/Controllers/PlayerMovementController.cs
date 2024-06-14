@@ -48,6 +48,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         }
         private void Move()
         {
+            Rotate();
             if (!_inputData.IsValid && _isMoving) MovingStoped();
 
             if (!_inputData.IsValid) return;
@@ -65,7 +66,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             _characterGraphics.OnMoving(Mathf.InverseLerp(0, _activeMovementSettings.MoveSpeed, _speed),
                  _inputData.MovementInput, _isCloseEnemyFound);
             //If not found enemy 
-            Rotate();
+            //  Rotate();
 
         }
         public void Update()

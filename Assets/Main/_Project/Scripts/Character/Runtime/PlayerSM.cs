@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Character.Craft;
 using _Project.Scripts.Character.Runtime.Controllers;
 using _Project.Scripts.Character.Runtime.States;
+using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
 using _Project.Scripts.Reusable;
 using UnityEngine;
@@ -12,10 +13,11 @@ using VContainer.Unity;
 
 namespace _Project.Scripts.Character.Runtime
 {
-    public class PlayerSM : StateMachineMB, ICharacter
+    public class PlayerSM : StateMachineMB, ICharacter, IDamagableByEnemy
     {
 
         //PlayerController
+        [SerializeField] private CollectableDetector collectableDetector;
         [SerializeField] private CraftDetector craftDetector;
         [SerializeField] private CharacterGraphics characterGraphics;
         [SerializeField] private BaseGunBehavior gunBehavior;
@@ -31,6 +33,7 @@ namespace _Project.Scripts.Character.Runtime
         private PlayerMovementController _playerMovementController;
         private DetectionController _detectionController;
         private BotController _botController;
+        private HealthController _healthController;
 
 
         //States
@@ -62,12 +65,15 @@ namespace _Project.Scripts.Character.Runtime
                 builder.RegisterComponent(craftDetector);
                 builder.RegisterComponent(characterGraphics);
                 builder.RegisterComponent(animationEventHandler);
-
+                builder.RegisterComponent(collectableDetector);
+                
                 builder.Register<BotController>(Lifetime.Scoped);
                 builder.Register<DetectionController>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
                 builder.Register<PlayerMovementController>(Lifetime.Scoped);
                 builder.Register<BotController>(Lifetime.Scoped);
                 builder.Register<PlayerAnimationController>(Lifetime.Scoped);
+                builder.Register<HealthController>(Lifetime.Scoped);
+
                 //States
                 builder.Register<IdleState>(Lifetime.Scoped);
                 builder.Register<CraftState>(Lifetime.Scoped);
@@ -112,6 +118,7 @@ namespace _Project.Scripts.Character.Runtime
             CraftState = _playerScope.Container.Resolve<CraftState>();
             AttackState = _playerScope.Container.Resolve<AttackState>();
             _playerAnimationController = _playerScope.Container.Resolve<PlayerAnimationController>();
+            _healthController = _playerScope.Container.Resolve<HealthController>();
         }
 
 
@@ -137,5 +144,11 @@ namespace _Project.Scripts.Character.Runtime
             _playerAnimationController.OnGunShooted();
         }
 
+        public void GetDamage(float damage)
+        {
+            _healthController.GetDamage(damage);
+        }
     }
+
+
 }

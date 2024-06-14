@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Reusable;
@@ -8,14 +9,19 @@ using UnityEngine;
 namespace _Project.Scripts.Character.EnemyRuntime
 {
 
-    public class Enemy : StateMachineMB, IEnemy
+    public class Enemy : MonoBehaviour, IEnemy
     {
+        [SerializeField] private float _damageAmount = 1;
+
+        private EnemyManager _enemyManger;
+        private IDamagableByEnemy _damageableByEnemy;
         public Transform Transform => transform;
 
         private bool _isDead;
         public bool IsDead { get => _isDead; set => _isDead = value; }
-        private float _healt = 100;
-
+        private float _healt = 5;
+        private float _attackDistance = 1;
+        private Transform _playerTransform;
         private void OnEnable()
         {
             _isDead = false;
@@ -32,51 +38,47 @@ namespace _Project.Scripts.Character.EnemyRuntime
         {
             _healt -= damage;
             if (_healt <= 0)
+                Dead();
+        }
+
+        private void Dead()
+        {
+            _isDead = true;
+            gameObject.SetActive(false);
+            var obj = ObjectPooler.SharedInstance.GetPooledObject(3);
+
+            obj.transform.position = transform.position.SetY(1f);
+            obj.SetActive(true);
+        }
+
+        private void FixedUpdate()
+        {
+            if (_playerTransform == null) return;
+            var distance = Vector3.Distance(transform.position, _playerTransform.position);
+            Quaternion lookAt = Quaternion.LookRotation(_playerTransform.position - transform.position);
+            if (distance < _attackDistance)
             {
-                _isDead = true;
-                gameObject.SetActive(false);
+                Attack();
+                return;
             }
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.fixedDeltaTime * 5);
+            transform.Translate(Vector3.forward * Time.fixedDeltaTime);
+
+        }
+
+        private void Attack()
+        {
+            _damageableByEnemy.GetDamage(_damageAmount);
+        }
+
+        internal void Initialize(Transform playerTransform, EnemyManager enemyManager, IDamagableByEnemy damagableByEnemy)
+        {
+            _playerTransform = playerTransform;
+            _enemyManger = enemyManager;
+            _damageableByEnemy = damagableByEnemy;
         }
     }
 }
 
 
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
 
-// public class Enemy : MonoBehaviour
-// {
-//     public EnemyInfo enemyInfo;
-//     private void Awake()
-//     {
-//         enemyInfo = new(transform);
-//     }
-//     public new bool TryGetComponent<T>(out T component)
-//     {
-//         if (typeof(T) == typeof(IEnemy))
-//         {
-
-//             Debug.Log("ddd");
-//             component = (T)(object)enemyInfo;
-//             return true;
-//         }
-
-//         return gameObject.TryGetComponent(out component);
-//     }
-// }
-
-
-// public class EnemyInfo : IEnemy
-// {
-//     public Transform Transform { get; set; }
-
-//     private bool _isDead;
-
-//     public EnemyInfo(Transform transform)
-//     {
-//         Transform = transform;
-//     }
-
-//     public bool IsDead { get => _isDead; set => _isDead = value; }
-// }

@@ -10,6 +10,7 @@ namespace ScriptableObjects
         public float Vertical = 0;
         public Vector3 MovementInput;
         public UpTouchDelegate UpTouch;
+        public bool disableJoystick;
 
         public delegate void UpTouchDelegate();
         public bool IsInputValid()

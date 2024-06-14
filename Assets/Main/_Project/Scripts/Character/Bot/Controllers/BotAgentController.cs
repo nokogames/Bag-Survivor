@@ -31,6 +31,7 @@ namespace _Project.Scripts.Character.Bot
         }
         internal void FollowPlayer(Vector3 position)
         {
+            if (!_agent.enabled) return;
             //if (!_agent.pathPending) return;
             _agent.stoppingDistance = _playerStopDistance;
             _agent.SetDestination(position);
@@ -42,11 +43,13 @@ namespace _Project.Scripts.Character.Bot
         }
         internal void FollowEnemy(Vector3 position)
         {
+            if (!_agent.enabled) return;
             _agent.stoppingDistance = _defaultStopDistance + _enemyStopDistance;
             _agent.SetDestination(position);
         }
         internal void FollowCraftable(Vector3 position)
         {
+            if (!_agent.enabled) return;
             _agent.stoppingDistance = _defaultStopDistance + _craftableStopDistance;
             _agent.SetDestination(position);
         }

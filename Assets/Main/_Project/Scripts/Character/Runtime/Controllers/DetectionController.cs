@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.Character.Craft;
+using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
 using Codice.Client.BaseCommands.Import;
 using UnityEngine;
 using VContainer;
 namespace _Project.Scripts.Character.Runtime.Controllers
 {
-    public class DetectionController : IEnemyDetector, ICraftDetectorReciver
+    public class DetectionController : IEnemyDetector, ICraftDetectorReciver, ICollectableDetectorReciver
     {
         [Inject] private PlayerMovementController _playerMovementController;
         [Inject] private BotController _botController;
@@ -61,5 +62,17 @@ namespace _Project.Scripts.Character.Runtime.Controllers
                 _playerSM.ChangeState(_playerSM.IdleState);
             }
         }
+
+        public void OnCollectableDetected(CollectableType collectableType, Transform collectableTransform)
+        {
+            StaticHelper.Instance.StartCoroutine(StaticHelper.Instance.MoveToPositionWithFollow(_playerSM.transform, collectableTransform, OnCompletedCollecting));
+        }
+
+        private void OnCompletedCollecting(Transform collectable)
+        {
+            collectable.gameObject.SetActive(false);
+        }
     }
+
+
 }

@@ -16,9 +16,36 @@ public class BasicGun : BaseGunBehavior
     public override void GunFixedUpdate()
     {
         _crrTime += Time.fixedDeltaTime;
-        if (!_character.IsEnemyFound || _crrTime < gunData.spawnTimeRate) return;
+
+        if (!_character.IsEnemyFound)
+        {
+            transform.localRotation = Quaternion.Euler(Vector3.zero);
+            return;
+        }
+        if (_crrTime < gunData.spawnTimeRate) return;
+
+
+        RotateToTarget();
         _crrTime = 0;
         Shoot();
+
+
+    }
+
+    private void RotateToTarget()
+    {
+        Vector3 lookDirection = _character.Target.Transform.position - transform.position; // Hedefe doğru vektör
+        lookDirection = transform.InverseTransformDirection(lookDirection); // Dünya koordinatlarından lokal koordinatlara çevir
+      
+
+        // Lokal koordinatlarda rotasyon oluşturulur
+        Quaternion localRotation = Quaternion.LookRotation(lookDirection);
+
+        // // Açıları Euler açılarına dönüştürür ve clamp işlemi uygular
+        // float clampedX = Mathf.Clamp(localRotation.eulerAngles.x, -40, 40);
+
+        // Yerel rotasyonu günceller, burada X ve Z eksenleri sabit tutulmuş, Y ekseni sınırlandırılmıştır
+        transform.localRotation = Quaternion.Euler(localRotation.x, transform.localEulerAngles.y, transform.localEulerAngles.z);
 
 
     }
