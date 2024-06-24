@@ -1,5 +1,6 @@
 
 using _Project.Scripts.Loader;
+using _Project.Scripts.UI;
 using Pack.GameData;
 using ScriptableObjects;
 using Unity.VisualScripting;
@@ -15,7 +16,7 @@ namespace _Project.Scripts
         [SerializeField] private InputDataSO inputData;
         [SerializeField] private GameData gameData;
         [SerializeField] private EnemySpawnData enemySpawnData;
-
+       
         // private LoaderMediator _loaderMediator;
         private SceneLoader _sceneLoader;
         protected override void Awake()
@@ -26,7 +27,7 @@ namespace _Project.Scripts
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponentInNewPrefab(loaderMediatorPrefab, Lifetime.Scoped).DontDestroyOnLoad();
-
+            builder.RegisterComponentInHierarchy<UIMediator>().DontDestroyOnLoad();
             builder.Register<SceneLoader>(Lifetime.Singleton);
             builder.RegisterInstance(gameData);
             builder.RegisterInstance(inputData);
