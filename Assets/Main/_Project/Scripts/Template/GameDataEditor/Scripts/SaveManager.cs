@@ -16,7 +16,7 @@ public static class SaveManager
     }
     public static void SaveData(ScriptableObject so) => SaveDataAtPath(so, path);
 
-    public static void SaveDefaultData(ScriptableObject so) => SaveDefaultDataAtPath(so, defaultPath);
+    // public static void SaveDefaultData(ScriptableObject so) => SaveDefaultDataAtPath(so, defaultPath);
     public static void SaveDefaultData(ScriptableObject so, string fullPath) => SaveDefaultDataAtFullPath(so, fullPath);
     //public static string DefaultPath => Application.persistentDataPath;
     public static string DefaultPath => "Assets/Main/_Project/Scripts/Template/GameDataEditor/Data/";
@@ -24,17 +24,17 @@ public static class SaveManager
     private static void SaveDataAtPath(ScriptableObject so, string pathIn)
     {
 
-#if UNITY_EDITOR
+        // #if UNITY_EDITOR
 
-        string filePath = Application.dataPath + "/Main/_Project/Scripts/Template/GameDataEditor/Data/" + "GameData.json";
-        CreateFolder(Application.dataPath + "/Main/_Project/Scripts/Template/GameDataEditor/Data");
-#endif
+        //         string filePath = Application.dataPath + "/Main/_Project/Scripts/Template/GameDataEditor/Data/" + "GameData.json";
+        //         CreateFolder(Application.dataPath + "/Main/_Project/Scripts/Template/GameDataEditor/Data");
+        // #endif
 
-#if !UNITY_EDITOR
-        
+        // #if !UNITY_EDITOR
+
+        // #endif
         string filePath = Application.persistentDataPath + pathIn + "GameData.json";
         CreateFolder(Application.persistentDataPath + pathIn);
-#endif
 
         var soToJson = JsonUtility.ToJson(so);
         File.WriteAllText(filePath, soToJson);
@@ -69,16 +69,19 @@ public static class SaveManager
         // string folderPath = Application.persistentDataPath + path;
         // string filePath = folderPath + "GameData.json";
 
-#if UNITY_EDITOR
-        string folderPath = Application.dataPath + "/Main/_Project/Scripts/Template/GameDataEditor/Data/";
-        string filePath = folderPath + "GameData.json";
-        //   CreateFolder(Application.dataPath + "/Main/_Project/Scripts/Template/GameDataEditor/Data");
-#endif
+        // #if UNITY_EDITOR
+        //         string folderPath = Application.dataPath + "/Main/_Project/Scripts/Template/GameDataEditor/Data/";
+        //         string filePath = folderPath + "GameData.json";
+        //         //   CreateFolder(Application.dataPath + "/Main/_Project/Scripts/Template/GameDataEditor/Data");
+        // #endif
 
-#if !UNITY_EDITOR
-        string folderPath=Application.persistentDataPath+path;
-         string filePath = folderPath+ "GameData.json";
-#endif
+        // #if !UNITY_EDITOR
+        //         string folderPath=Application.persistentDataPath+path;
+        //          string filePath = folderPath+ "GameData.json";
+        // #endif 
+
+        string folderPath = Application.persistentDataPath + path;
+        string filePath = folderPath + "GameData.json";
 
         Debug.Log(folderPath);
         Debug.Log(filePath);

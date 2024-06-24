@@ -83,6 +83,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         private void Rotate()
         {
+            if (_inputData.MovementInput.Equals(Vector3.zero)) return;
+            
             if (!_isCloseEnemyFound) _playerTransform.rotation =
              Quaternion.Lerp(_playerTransform.rotation, Quaternion.LookRotation(_inputData.MovementInput), Time.deltaTime * _activeMovementSettings.RotationSpeed);
             else

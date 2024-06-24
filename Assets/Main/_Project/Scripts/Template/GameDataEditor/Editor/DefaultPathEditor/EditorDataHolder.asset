@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bccf1849f58ded41abd1f331b549712, type: 3}
   m_Name: EditorDataHolder
   m_EditorClassIdentifier: 
-  DefaultDataPathes:
-  - E:/unity_oyunlar/BaseArcadeIdleTemplate/Assets/Main/_Project/Scripts/Template/GameDataEditor/Data/New.json
-  - E:/unity_oyunlar/BaseArcadeIdleTemplate/Assets/Main/_Project/Scripts/Template/GameDataEditor/Data/GameData.json
+  DefaultDataPathes: []

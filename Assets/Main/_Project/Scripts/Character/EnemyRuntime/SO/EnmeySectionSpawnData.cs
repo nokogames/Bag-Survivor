@@ -5,4 +5,6 @@ using UnityEngine;
 public class EnmeySectionSpawnData : ScriptableObject
 {
     public List<WaveInfo> waveInfos;
+    public float timeOffset;
+    public WaveInfo WaveInfo(int waveId) => waveInfos[waveId];
 }

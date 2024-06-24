@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static _Project.Scripts.Character.EnemyRuntime.EnemyManager;
 
 namespace _Project.Scripts.Character.EnemyRuntime
 {

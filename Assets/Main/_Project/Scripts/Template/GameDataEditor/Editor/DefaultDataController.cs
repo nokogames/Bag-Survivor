@@ -15,7 +15,7 @@ namespace Pack.GameData
         private Foldout _mainFoldout;
         private VisualElement _addVisualElement;
         string _defaultDataInfo = "";
-        string _dafultDataSaveFolderPath = "/Main/_Project/Scripts/Template/GameDataEditor/Data";
+        string _dafultDataSaveFolderPath = "/Main/_Project/Scripts/Template/GameDataEditor/DefaultData";
         private GameData _gamedData;
 
         public DefaultDataController(VisualElement root, GameData gameData)

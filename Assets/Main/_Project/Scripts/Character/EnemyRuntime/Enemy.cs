@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using _Project.Scripts.Reusable;
-using Unity.VisualScripting;
+
+
 using UnityEngine;
 
 
@@ -22,9 +22,15 @@ namespace _Project.Scripts.Character.EnemyRuntime
         private float _healt = 5;
         private float _attackDistance = 1;
         private Transform _playerTransform;
+        private CharacterController _characterController;
+        private void Awake()
+        {
+            // _characterController = GetComponent<CharacterController>();
+        }
         private void OnEnable()
         {
             _isDead = false;
+            _healt=5;
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -36,6 +42,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         public void GetDamage(float damage)
         {
+            if (IsDead) return;
             _healt -= damage;
             if (_healt <= 0)
                 Dead();
@@ -49,11 +56,13 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
             obj.transform.position = transform.position.SetY(1f);
             obj.SetActive(true);
+           _enemyManger.EnmeyDead(this);
         }
 
         private void FixedUpdate()
         {
-            if (_playerTransform == null) return;
+            if (_playerTransform == null || IsDead) return;
+
             var distance = Vector3.Distance(transform.position, _playerTransform.position);
             Quaternion lookAt = Quaternion.LookRotation(_playerTransform.position - transform.position);
             if (distance < _attackDistance)
@@ -63,6 +72,10 @@ namespace _Project.Scripts.Character.EnemyRuntime
             }
             transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.fixedDeltaTime * 5);
             transform.Translate(Vector3.forward * Time.fixedDeltaTime);
+            // var dest = transform.forward * Time.fixedDeltaTime;
+            // if (!_characterController.isGrounded) dest += Vector3.down;
+
+            // _characterController.Move(dest);
 
         }
 

@@ -6,7 +6,7 @@ namespace GravityBox.AngryDroids
 
     public class AI : MonoBehaviour
     {
-        public AIBehaviour behaviourOnSpotted;        
+        public AIBehaviour behaviourOnSpotted;
         public AIBehaviour behaviourOnLostTrack;
 
         [SerializeField]
@@ -21,7 +21,7 @@ namespace GravityBox.AngryDroids
         private IHealth _health;
 
         private static HashSet<AI> activeAIs = new HashSet<AI>();
-        
+
         //player(or target) components;
         private IHealth targetHealth;
         private Collider targetCollider;
@@ -53,7 +53,7 @@ namespace GravityBox.AngryDroids
                 _spawnPos = transform.position;
                 _animator = GetComponentInParent<Animator>();
                 _sight = GetComponentInParent<AISight>();
-                _motor = character.GetComponent<IMovementMotor>();                
+                _motor = character.GetComponent<IMovementMotor>();
                 _weapon = character.GetComponent<IWeapon>();
                 _health = character.GetComponent<IHealth>();
             }
@@ -67,7 +67,7 @@ namespace GravityBox.AngryDroids
             activator.gameObject.SetActive(true);
         }
 
-        void OnEnable() 
+        void OnEnable()
         {
             if (character.gameObject.activeInHierarchy)
                 activeAIs.Add(this);
@@ -105,15 +105,16 @@ namespace GravityBox.AngryDroids
             if (behaviourOnSpotted.enabled) return;
 
             //pick first available enemy (single one in most cases)
-            foreach (var enemy in enemies) 
+            foreach (var enemy in enemies)
             {
-                if(CheckIfEnemy(enemy))
+                if (CheckIfEnemy(enemy))
                     return;
             }
         }
 
-        bool CheckIfEnemy(Collider other) 
+        bool CheckIfEnemy(Collider other)
         {
+            return false;
             ////ignore triggers as most of activators in scene are colliders (but also triggerts)
             //if (other.isTrigger) return;
             ////if target has different faction, i.e. different tag
@@ -136,7 +137,7 @@ namespace GravityBox.AngryDroids
             return false;
         }
 
-        bool IsEnemy(Collider other) 
+        bool IsEnemy(Collider other)
         {
             if (other == null) return false;
             //ignore triggers as most of activators in scene are colliders (but also triggerts)
@@ -189,7 +190,7 @@ namespace GravityBox.AngryDroids
 
         public bool CanSeePlayer()
         {
-            if (targetCollider == null) 
+            if (targetCollider == null)
                 return false;
             else
                 return sight.CanSee(targetCollider);
@@ -197,20 +198,20 @@ namespace GravityBox.AngryDroids
 
         public bool IsPlayerDead()
         {
-            if(_player == null) 
-                return true; 
-            else 
+            if (_player == null)
+                return true;
+            else
                 return (targetHealth == null || targetHealth.Dead);
         }
 
         public Vector3 GetPlayerDirection(bool horizontal = false) { return horizontal ? sight.GetTargetGroundDirection(_player) : sight.GetTargetDirection(targetCollider); }
         public Vector3 GetPlayerNearestDirection(float offsetFromPlayer) { return sight.GetPlayerNearestDirection(offsetFromPlayer); }
-        public Vector3 GetPlayerVelocity() 
+        public Vector3 GetPlayerVelocity()
         {
-            if(_player == null) 
-                return Vector3.zero; 
-            else  
-                return targetRigidbody!=null ? targetRigidbody.velocity : targetController.velocity;   
+            if (_player == null)
+                return Vector3.zero;
+            else
+                return targetRigidbody != null ? targetRigidbody.velocity : targetController.velocity;
         }
 
         public void Activate(bool active) { _animator.SetBool("active", active); _weapon.Activate(active); }

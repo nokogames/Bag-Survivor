@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995e3261fe3fb0043862eee493da1167, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  saveableCubes: []
+  CurrentLvl: 0
+  CurrentSection: 0

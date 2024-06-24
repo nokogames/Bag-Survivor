@@ -11,7 +11,7 @@ using System.IO;
 */
 namespace Pack.GameData
 {
-    
+
     public class GameDataEditor : EditorWindow
     {
         [MenuItem("Window/UI Toolkit/GameDataEditor")]
@@ -31,19 +31,19 @@ namespace Pack.GameData
             LoadDatas();
             CreateDataElements();
             ButtonBinding();
-            _defaultDataController = new(rootVisualElement, gameData);
+            if (_defaultDataController == null) _defaultDataController = new(rootVisualElement, gameData);
         }
 
         private void ButtonBinding()
         {
             var root = rootVisualElement;
             var saveData = rootVisualElement.Q<Button>("SaveData");
-           var loadData = rootVisualElement.Q<Button>("LoadData");
+            var loadData = rootVisualElement.Q<Button>("LoadData");
             // var openData = rootVisualElement.Q<Button>("OpenData");
             // var saveAsDeafultData = rootVisualElement.Q<Button>("SaveAsDeafultData");
             // var loadDefaultData = rootVisualElement.Q<Button>("LoadDefaultData");
             saveData.clicked += SaveData;
-//             loadData.clicked += LoadData;
+            //             loadData.clicked += LoadData;
             // openData.clicked += OpenFolder;
 
             // saveAsDeafultData.clicked += SaveAsDeafultData;
@@ -65,7 +65,7 @@ namespace Pack.GameData
             var fieldsContainer = new ScrollView(); // ScrollView oluşturuluyor
             fieldsContainer.style.flexGrow = 1; // Görünümün tamamını kaplaması için stil ayarı
             rootVisualElement.Add(fieldsContainer); // ScrollView kök eleman olarak ekleniyor
-            
+
             SerializedObject serializedObject = new SerializedObject(gameData);
             SerializedProperty property = serializedObject.GetIterator();
 

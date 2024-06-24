@@ -59,7 +59,7 @@ public class EnemyDetector : MonoBehaviour
     {
         if (detectedEnemiesCount == 0)
         {
-            if (closestEnemy == null)
+            if (closestEnemy != null)
                 _enemyDetector.OnEnemyDetected(null);
 
             closestEnemy = null;
@@ -69,7 +69,17 @@ public class EnemyDetector : MonoBehaviour
 
         float minDistanceSqr = float.MaxValue;
         IEnemy tempEnemy = null;
+        for (int i = 0; i < _detectedEnemies.Count; i++)
+        {
+            var enemy = _detectedEnemies[i];
+            if (enemy.IsDead)
+            {
+                _detectedEnemies.Remove(enemy);
+                detectedEnemiesCount--;
+                i--;
+            }
 
+        }
         for (int i = 0; i < _detectedEnemies.Count; i++)
         {
             var enemy = _detectedEnemies[i];

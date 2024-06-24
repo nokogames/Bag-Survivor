@@ -7,5 +7,6 @@ using UnityEngine;
 public class EnemyLevelSpawnData : ScriptableObject
 {
     public List<EnmeySectionSpawnData> enmeySectionSpawnDatas;
+    public EnmeySectionSpawnData EnmeySectionSpawnData(int sectionId) => enmeySectionSpawnDatas[sectionId];
 }
 
