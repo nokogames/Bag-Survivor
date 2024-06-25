@@ -7,6 +7,7 @@ using _Project.Scripts.Character.Runtime.States;
 using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
 using _Project.Scripts.Reusable;
+using _Project.Scripts.UI;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -43,11 +44,13 @@ namespace _Project.Scripts.Character.Runtime
 
 
         private PlayerAnimationController _playerAnimationController;
+     
 
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
         {
             _parentScope = parentScope;
+            // var result = parentScope.Container.Resolve<UIMediator>();
             CreatePlayerScope();
         }
 
@@ -66,9 +69,9 @@ namespace _Project.Scripts.Character.Runtime
                 builder.RegisterComponent(characterGraphics);
                 builder.RegisterComponent(animationEventHandler);
                 builder.RegisterComponent(collectableDetector);
-                
+
                 builder.Register<BotController>(Lifetime.Scoped);
-                builder.Register<DetectionController>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
+                builder.RegisterEntryPoint<DetectionController>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
                 builder.Register<PlayerMovementController>(Lifetime.Scoped);
                 builder.Register<BotController>(Lifetime.Scoped);
                 builder.Register<PlayerAnimationController>(Lifetime.Scoped);

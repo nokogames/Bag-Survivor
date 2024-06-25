@@ -1,5 +1,6 @@
 
 
+using _Project.Scripts.Character.Datas;
 using _Project.Scripts.Character.EnemyRuntime;
 using _Project.Scripts.Character.Runtime;
 using _Project.Scripts.Loader;
@@ -15,8 +16,8 @@ namespace _Project.Scripts
         private bool _isValid;
         protected override void Awake()
         {
-            base.Awake();
 
+            base.Awake();
             if (Parent != null)
             {
                 Parent.Container.Inject(this);
@@ -26,11 +27,12 @@ namespace _Project.Scripts
 
         protected override void Configure(IContainerBuilder builder)
         {
-            base.Configure(builder);
+            //base.Configure(builder);
 
             builder.RegisterComponentInHierarchy<PlayerSM>();
             builder.RegisterComponentInHierarchy<EnemyManager>();
-            //  builder.RegisterComponentInHierarchy<PlayerController>();
+            builder.Register<PlayerInGameUpgradeData>(Lifetime.Scoped);
+            
 
             _isValid = true;
         }

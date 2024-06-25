@@ -53,3 +53,7 @@ MonoBehaviour:
   inputData: {fileID: 11400000, guid: e7edd0d328c86d141b50fa84de8fbe3e, type: 2}
   gameData: {fileID: 11400000, guid: 925eced93935efc4ab52ace535dcecae, type: 2}
   enemySpawnData: {fileID: 11400000, guid: 15a4c86a80bf74342acc86309bd58465, type: 2}
+  playerUpgradeDatabase: {fileID: 11400000, guid: 9c3438d32f08b004d99c895b11a8aa4c,
+    type: 2}
+  uiMediatorPref: {fileID: 1239853251392225962, guid: 88dcb6857c120294a8016f414adced1a,
+    type: 3}
