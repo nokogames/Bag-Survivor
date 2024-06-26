@@ -16,7 +16,7 @@ namespace _Project.Scripts.UI
         private LifetimeScope _parentScope;
         public LifetimeScope _uiScope;
         [SerializeField] private PlayerInGameUpgradeBarControllerData playerInGameUpgradeBarControllerData;
-        [SerializeField] private SillUIControllerData sillUIControllerData;
+        [SerializeField] private SkillUIControllerData sillUIControllerData;
         public PlayerInGameUpgradeBarController PlayerInGameUpgradeBarController { get; private set; }
         public SkillUIController SkillUIController { get; set; }
         public UIMediatorEventHandler UIMediatorEventHandler { get; set; }
@@ -36,8 +36,8 @@ namespace _Project.Scripts.UI
                builder.RegisterComponent(GetComponent<UIMediatorEventHandler>());
                builder.RegisterInstance(playerInGameUpgradeBarControllerData);
                builder.RegisterInstance(sillUIControllerData);
-               builder.Register<PlayerInGameUpgradeData>(Lifetime.Scoped);
-               builder.RegisterEntryPoint<PlayerInGameUpgradeBarController>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
+
+               builder.RegisterEntryPoint<PlayerInGameUpgradeBarController>(Lifetime.Scoped).AsSelf();
                builder.RegisterEntryPoint<SkillUIController>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
            });
             _uiScope.name = "UIMediatorScope";

@@ -57,3 +57,5 @@ MonoBehaviour:
     type: 2}
   uiMediatorPref: {fileID: 1239853251392225962, guid: 88dcb6857c120294a8016f414adced1a,
     type: 3}
+  playerRuntimeUpgradeData: {fileID: 11400000, guid: cb6cbfd369335614a988248b3585b885,
+    type: 2}

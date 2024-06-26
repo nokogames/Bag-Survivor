@@ -1313,6 +1313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea476db50bb81439edc29df98150cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skills:
+  - {fileID: 11400000, guid: f2318404da8360d4ab051d3f764751f6, type: 2}
 --- !u!1 &1468255825
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,9 +2215,9 @@ MonoBehaviour:
   parentReference:
     TypeName: _Project.Scripts.ApplicationController
   autoRun: 1
-  autoInjectGameObjects:
-  - {fileID: 1412161330}
-  - {fileID: 1435509584}
+  autoInjectGameObjects: []
+  playerRuntimeUpgradeData: {fileID: 11400000, guid: cb6cbfd369335614a988248b3585b885,
+    type: 2}
 --- !u!1 &2061529092
 GameObject:
   m_ObjectHideFlags: 0

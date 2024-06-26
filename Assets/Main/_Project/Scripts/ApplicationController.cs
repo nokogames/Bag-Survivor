@@ -1,4 +1,5 @@
 
+using _Project.Scripts.Character.Datas;
 using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.Loader;
 using _Project.Scripts.UI;
@@ -18,6 +19,7 @@ namespace _Project.Scripts
         [SerializeField] private EnemySpawnData enemySpawnData;
         [SerializeField] private PlayerUpgradeDatabase playerUpgradeDatabase;
         [SerializeField] private UIMediator uiMediatorPref;
+        //  [SerializeField] private PlayerRuntimeUpgradeData playerRuntimeUpgradeData;
 
         // private LoaderMediator _loaderMediator;
         private SceneLoader _sceneLoader;
@@ -36,6 +38,7 @@ namespace _Project.Scripts
             builder.RegisterInstance(inputData);
             builder.RegisterInstance(enemySpawnData);
             builder.RegisterInstance(playerUpgradeDatabase);
+            //  builder.RegisterInstance(playerRuntimeUpgradeData);
 
         }
 

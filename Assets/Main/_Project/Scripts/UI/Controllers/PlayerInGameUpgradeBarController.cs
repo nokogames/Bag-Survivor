@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.Character.Datas;
 using _Project.Scripts.Character.Datas.SO;
+using _Project.Scripts.UI.Interfacies;
 using Pack.GameData;
 using TMPro;
 using UnityEngine;
@@ -14,35 +15,37 @@ using VContainer.Unity;
 namespace _Project.Scripts.UI.Controllers
 {
 
-    public class PlayerInGameUpgradeBarController : IStartable
+    public class PlayerInGameUpgradeBarController 
     {
         [Inject] private PlayerInGameUpgradeBarControllerData _data;
-        [Inject] private PlayerInGameUpgradeData _playerInGameUpgradeData;
-        [Inject] private GameData _gameData;
-        [Inject] private PlayerUpgradeDatabase _playerUpgradeDatabase;
-        [Inject] private SkillUIController _skillUIController;
-        private float _barProgressAmountPerXp;
+        // [Inject] private PlayerRuntimeUpgradeData _playerInGameUpgradeData;
+        // [Inject] private GameData _gameData;
+        // [Inject] private PlayerUpgradeDatabase _playerUpgradeDatabase;
+        // [Inject] private SkillUIController _skillUIController;
 
-        public void Start()
-        {
-            PrepareData();
-            SetStartValuesToUi();
-        }
+        // // public ISkillReciever SkillReciever { get; set; }
+        // private float _barProgressAmountPerXp;
 
-        private void PrepareData()
-        {
-            var levelInfo = _playerUpgradeDatabase.levelInfos[_gameData.CurrentLvl];
-            _barProgressAmountPerXp = 1f / levelInfo.XPList[_playerInGameUpgradeData.StartLvl];
-        }
+        // public void Start()
+        // {
+        //     // PrepareData();
+        //     // SetStartValuesToUi();
+        // }
 
-        private void SetStartValuesToUi()
-        {
-            SetCurrentUpgradeLvl(_playerInGameUpgradeData.StartLvl);
-            SetNextUpgradeLvl(_playerInGameUpgradeData.NextLvl);
-            SetBar(_playerInGameUpgradeData.BarFillAmount);
-        }
+        // private void PrepareData()
+        // {
+        //     var levelInfo = _playerUpgradeDatabase.levelInfos[_gameData.CurrentLvl];
+        //     _barProgressAmountPerXp = 1f / levelInfo.XPList[_playerInGameUpgradeData.StartLvl];
+        // }
 
-        private void SetBar(float barFillAmount)
+        // private void SetStartValuesToUi()
+        // {
+        //     SetCurrentUpgradeLvl(_playerInGameUpgradeData.StartLvl);
+        //     SetNextUpgradeLvl(_playerInGameUpgradeData.NextLvl);
+        //     SetBar(_playerInGameUpgradeData.BarFillAmount);
+        // }
+
+        public void SetBar(float barFillAmount)
         {
             _data.bar.fillAmount = barFillAmount;
         }
@@ -57,19 +60,26 @@ namespace _Project.Scripts.UI.Controllers
 
         }
 
-        public void CollectedXp()
-        {
-            _playerInGameUpgradeData.BarFillAmount += _barProgressAmountPerXp;
-            SetBar(_playerInGameUpgradeData.BarFillAmount);
-            if (_playerInGameUpgradeData.BarFillAmount >= 1) AbleToUpgrade();
-        }
+        // public void CollectedXp()
+        // {
+        //     _playerInGameUpgradeData.BarFillAmount += _barProgressAmountPerXp;
+        //     SetBar(_playerInGameUpgradeData.BarFillAmount);
+        //     if (_playerInGameUpgradeData.BarFillAmount >= 1) AbleToUpgrade();
+        // }
 
-        private void AbleToUpgrade()
-        {
-            _skillUIController.ShowPanel();
-            //Show Skill panel
+        // private void AbleToUpgrade()
+        // {
+        //     SkillReciever.AbleToUpgrade();
 
-        }
+        // }
+        // public void Upgraded()
+        // {
+
+        //     _playerInGameUpgradeData.LevelUp();
+        //     PrepareData();
+        //     SetStartValuesToUi();
+
+        // }
     }
 
     [System.Serializable]

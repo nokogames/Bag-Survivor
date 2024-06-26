@@ -9,13 +9,19 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using _Project.Scripts.UI.Controllers;
+using _Project.Scripts.SkillManagement.SO.Skills;
 
-namespace _Project.Scripts.SkillManager.Controllers
+namespace _Project.Scripts.SkillManagement.Controllers
 {
 
-    public class SkillReciverController : ISkillReciever, IStartable, IDisposable
+    public class SkillReciverController : ISkillReciever, IStartable, IDisposable, ITickable
     {
         [Inject] private UIMediatorEventHandler _uiMediatorEventHandler;
+        [Inject] private SkillUIController _skillUIController;
+        [Inject] private SkillCreator _skillCreator;
+        // [Inject] private PlayerInGameUpgradeBarController _playerInGameUpgradeBarController;
+        [Inject] private BarController _barController;
+        // [Inject] private SkillCreator _skillCreator;
         public void CloseBtnClicked()
         {
 
@@ -25,11 +31,41 @@ namespace _Project.Scripts.SkillManager.Controllers
 
         public void Start()
         {
+            // _playerInGameUpgradeBarController.SkillReciever = this;
             _uiMediatorEventHandler.AddReciever(this);
         }
+
+        public void OnSkillBtnClicked(SkillBase skill)
+        {
+            skill.OnSelectedSkill();
+            _skillUIController.HidePanel();
+            //  _playerInGameUpgradeBarController.Upgraded();
+            _barController.Upgraded();
+        }
+
+
+
+        public void RerollBtnClicked()
+        {
+            _skillCreator.Reroll();
+            Debug.Log($"Reroll");
+        }
+
+        public void AbleToUpgrade()
+        {
+
+        }
+
+
+
+
         public void Dispose()
         {
             _uiMediatorEventHandler.RemoveReciever(this);
+        }
+        public void Tick()
+        {
+            if (Input.GetKeyDown(KeyCode.U)) _skillUIController.ShowPanel();
         }
     }
 }
