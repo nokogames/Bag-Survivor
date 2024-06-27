@@ -7,6 +7,7 @@ using UnityEngine;
 public class BasicGun : BaseGunBehavior
 {
     [SerializeField] private ParticleSystem shootParticle;
+
     private float _crrTime;
     private void Start()
     {
@@ -36,7 +37,7 @@ public class BasicGun : BaseGunBehavior
     {
         Vector3 lookDirection = _character.Target.Transform.position - transform.position; // Hedefe doğru vektör
         lookDirection = transform.InverseTransformDirection(lookDirection); // Dünya koordinatlarından lokal koordinatlara çevir
-      
+
 
         // Lokal koordinatlarda rotasyon oluşturulur
         Quaternion localRotation = Quaternion.LookRotation(lookDirection);
@@ -64,6 +65,8 @@ public class BasicGun : BaseGunBehavior
     private void CreateBullet()
     {
         GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject(gunData.bulletPoolIndex);
+        var bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
+        bulletBehaviour.Initialise(gunData.Damage);
         bullet.transform.position = shootPoint.position;
         bullet.transform.forward = shootPoint.forward;
         bullet.SetActive(true);

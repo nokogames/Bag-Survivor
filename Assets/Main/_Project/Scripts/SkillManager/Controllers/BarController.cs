@@ -15,37 +15,37 @@ namespace _Project.Scripts.SkillManagement.Controllers
     {
         [Inject] private PlayerInGameUpgradeBarController _barUiController;
         [Inject] private PlayerUpgradeDatabase _playerUpgradeDatabase;
-        private RunTimePlayerData _playerRuntimeUpgradeData;
-        private GameData _gameData;
-        private SkillUIController _skillUIController;
+        [Inject] private BarData _barData;
+        [Inject] private GameData _gameData;
+        [Inject] private SkillUIController _skillUIController;
 
         //[Inject] private SkillReciverController _skillReciever;
         private float _barProgressAmountPerXp;
         public void Start()
         {
+            // _playerRuntimeUpgradeData = new();
+            _barData.Reset();
             PrepareData();
             SetStartValuesToUi();
-            _playerRuntimeUpgradeData = new();
-            _playerRuntimeUpgradeData.Reset();
         }
         private void PrepareData()
         {
             var levelInfo = _playerUpgradeDatabase.levelInfos[_gameData.CurrentLvl];
-            _barProgressAmountPerXp = 1f / levelInfo.XPList[_playerRuntimeUpgradeData.StartLvl];
+            _barProgressAmountPerXp = 1f / levelInfo.XPList[_barData.StartLvl];
         }
         private void SetStartValuesToUi()
         {
-            _barUiController.SetCurrentUpgradeLvl(_playerRuntimeUpgradeData.StartLvl);
-            _barUiController.SetNextUpgradeLvl(_playerRuntimeUpgradeData.NextLvl);
-            _barUiController.SetBar(_playerRuntimeUpgradeData.BarFillAmount);
+            _barUiController.SetCurrentUpgradeLvl(_barData.StartLvl);
+            _barUiController.SetNextUpgradeLvl(_barData.NextLvl);
+            _barUiController.SetBar(_barData.BarFillAmount);
         }
 
 
         public void CollectedXp()
         {
-            _playerRuntimeUpgradeData.BarFillAmount += _barProgressAmountPerXp;
-            _barUiController.SetBar(_playerRuntimeUpgradeData.BarFillAmount);
-            if (_playerRuntimeUpgradeData.BarFillAmount >= 1) AbleToUpgrade();
+            _barData.BarFillAmount += _barProgressAmountPerXp;
+            _barUiController.SetBar(_barData.BarFillAmount);
+            if (_barData.BarFillAmount >= 1) AbleToUpgrade();
         }
 
         private void AbleToUpgrade()
@@ -56,7 +56,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
         public void Upgraded()
         {
 
-            _playerRuntimeUpgradeData.LevelUp();
+            _barData.LevelUp();
             PrepareData();
             SetStartValuesToUi();
 

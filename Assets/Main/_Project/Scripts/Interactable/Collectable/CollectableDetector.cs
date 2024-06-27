@@ -8,6 +8,12 @@ namespace _Project.Scripts.Interactable.Collectable
     public class CollectableDetector : MonoBehaviour
     {
         [Inject] private ICollectableDetectorReciver _reciver;
+
+        public void SetRadius(float radius)
+        {
+            transform.localScale = new Vector3(radius, radius, radius);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.transform.tag.TryGetEnumType<CollectableType>(out CollectableType type))

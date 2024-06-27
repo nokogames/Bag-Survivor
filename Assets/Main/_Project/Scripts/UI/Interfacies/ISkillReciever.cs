@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _Project.Scripts.SkillManagement.Controllers;
 using _Project.Scripts.SkillManagement.SO.Skills;
 
 namespace _Project.Scripts.UI.Interfacies
@@ -11,7 +12,7 @@ namespace _Project.Scripts.UI.Interfacies
         void AbleToUpgrade();
         public void CloseBtnClicked();
 
-        public void OnSkillBtnClicked(SkillBase skill);
+        public void OnSkillBtnClicked(CreatedSkillInfo createdSkillInfo);
         void RerollBtnClicked();
     }
 }

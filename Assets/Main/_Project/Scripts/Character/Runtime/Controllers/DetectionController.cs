@@ -18,9 +18,9 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     public class DetectionController : IEnemyDetector, ICraftDetectorReciver, ICollectableDetectorReciver, IStartable
     {
         [Inject] private PlayerMovementController _playerMovementController;
-        [Inject] private BotController _botController;
-        private SkillManager _skillManager;
-        private BarController _barController;
+        // [Inject] private BotController _botController;
+
+        [Inject] private BarController _barController;
         // [Inject] private UIMediator _uiMediator;
         //private PlayerInGameUpgradeBarController _playerInGameUpgradeBarController;
         private PlayerSM _playerSM;
@@ -39,7 +39,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         public void Start()
         {
             //_playerInGameUpgradeBarController = _uiMediator.PlayerInGameUpgradeBarController;
-            _barController = _skillManager.BarController;
+            //  _barController = _skillManager.BarController;
         }
         public void OnCraftableDetect(ICraftable crrCraftable)
         {

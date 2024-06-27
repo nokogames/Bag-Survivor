@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.SkillManagement.Controllers;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI.Controllers;
 using _Project.Scripts.UI.Interfacies;
@@ -18,6 +19,7 @@ namespace _Project.Scripts.SkillManagement
         [SerializeField] private TextMeshProUGUI infoTxt;
         [SerializeField] private TextMeshPro valueTxt;
 
+        private CreatedSkillInfo _createdSkillInfo;
         private SkillBase _currentSkill;
         private UIMediatorEventHandler _uiEventHandler;
         private Button _btn;
@@ -31,21 +33,23 @@ namespace _Project.Scripts.SkillManagement
         {
             _uiEventHandler = eventHandler;
         }
-      
-        public void Setup(SkillBase skill)
+
+        public void Setup(CreatedSkillInfo createdSkillInfo)
         {
-            _currentSkill = skill;
+            _createdSkillInfo = createdSkillInfo;
+            _currentSkill = _createdSkillInfo.Skill;
             SetupUI();
         }
 
         private void SetupUI()
         {
-            skillBackGround.sprite = _currentSkill.skillCommenUIInfo.GetSprite(_currentSkill.CurrentRarity);
+            skillBackGround.sprite = _currentSkill.skillCommenUIInfo.GetSprite(_createdSkillInfo.SkillRarity);
             skillIconHolder.sprite = _currentSkill.Icon;
+            infoTxt.text = _currentSkill.GetInfoTxt(_createdSkillInfo.SkillRarity);
 
         }
 
-        public void OnBtnClicked() => _uiEventHandler.OnSkillBtnClicked(_currentSkill);
+        public void OnBtnClicked() => _uiEventHandler.OnSkillBtnClicked(_createdSkillInfo);
 
 
     }

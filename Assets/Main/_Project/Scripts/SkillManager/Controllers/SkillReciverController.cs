@@ -10,6 +10,7 @@ using VContainer;
 using VContainer.Unity;
 using _Project.Scripts.UI.Controllers;
 using _Project.Scripts.SkillManagement.SO.Skills;
+using _Project.Scripts.Character.Datas.SO;
 
 namespace _Project.Scripts.SkillManagement.Controllers
 {
@@ -21,6 +22,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
         [Inject] private SkillCreator _skillCreator;
         // [Inject] private PlayerInGameUpgradeBarController _playerInGameUpgradeBarController;
         [Inject] private BarController _barController;
+        [Inject] private PlayerUpgradedData _playerUpgradedData;
         // [Inject] private SkillCreator _skillCreator;
         public void CloseBtnClicked()
         {
@@ -35,9 +37,9 @@ namespace _Project.Scripts.SkillManagement.Controllers
             _uiMediatorEventHandler.AddReciever(this);
         }
 
-        public void OnSkillBtnClicked(SkillBase skill)
+        public void OnSkillBtnClicked(CreatedSkillInfo createdSkillInfo)
         {
-            skill.OnSelectedSkill();
+            createdSkillInfo.Skill.OnSelectedSkill(_playerUpgradedData, createdSkillInfo.SkillRarity);
             _skillUIController.HidePanel();
             //  _playerInGameUpgradeBarController.Upgraded();
             _barController.Upgraded();

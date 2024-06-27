@@ -1,7 +1,9 @@
 
+using System.Collections.Generic;
 using _Project.Scripts.Character.Datas;
 using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.Loader;
+using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI;
 using Pack.GameData;
 using ScriptableObjects;
@@ -19,14 +21,16 @@ namespace _Project.Scripts
         [SerializeField] private EnemySpawnData enemySpawnData;
         [SerializeField] private PlayerUpgradeDatabase playerUpgradeDatabase;
         [SerializeField] private UIMediator uiMediatorPref;
-        //  [SerializeField] private PlayerRuntimeUpgradeData playerRuntimeUpgradeData;
-
+        [SerializeField] private PlayerUpgradeDataSO playerRuntimeUpgradeData;
+        [SerializeField] private List<SkillBase> Skills;
         // private LoaderMediator _loaderMediator;
         private SceneLoader _sceneLoader;
         protected override void Awake()
         {
+            gameData.Load();
             base.Awake();
             DontDestroyOnLoad(gameObject);
+
 
         }
         protected override void Configure(IContainerBuilder builder)
@@ -38,7 +42,11 @@ namespace _Project.Scripts
             builder.RegisterInstance(inputData);
             builder.RegisterInstance(enemySpawnData);
             builder.RegisterInstance(playerUpgradeDatabase);
-            //  builder.RegisterInstance(playerRuntimeUpgradeData);
+
+            builder.RegisterInstance(playerRuntimeUpgradeData.savedPlayerData);
+            builder.RegisterInstance(playerRuntimeUpgradeData.barData);
+            builder.RegisterInstance(playerRuntimeUpgradeData.playerUpgradedData);
+            builder.RegisterInstance(Skills).AsSelf();
 
         }
 

@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 570be6b0485954e42bc5f0268dffabfc, type: 3}
-  m_Name: DamageSkill
+  m_Script: {fileID: 11500000, guid: 4f19501c869f23f4db6039765000d86d, type: 3}
+  m_Name: BotDamgeSkill
   m_EditorClassIdentifier: 
-  InfoTxt: Damage
+  InfoTxt: Bot Damage
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
   SkillRarityPercentage: {fileID: 11400000, guid: f4594527709e2a447bccd7f2cf58ca20,
     type: 2}
-  Icon: {fileID: 21300000, guid: 3c3aa4f8b56e109458da665f287dca72, type: 3}
-  damageAmountByRarity:
+  Icon: {fileID: 21300000, guid: 13fc917a0968235448ce2c9bc4121c86, type: 3}
+  botDamageAmountByRarity:
   - rarity: 0
     damageAmount: 0.1
   - rarity: 1
@@ -25,4 +25,4 @@ MonoBehaviour:
   - rarity: 2
     damageAmount: 0.2
   - rarity: 3
-    damageAmount: 0.3
+    damageAmount: 0.25

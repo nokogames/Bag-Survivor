@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.SkillManagement.Controllers;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI.Interfacies;
 using UnityEngine;
@@ -28,9 +29,9 @@ namespace _Project.Scripts.UI.Controllers
             _recievers.ForEach(reciever => reciever.RerollBtnClicked());
         }
 
-        public void OnSkillBtnClicked(SkillBase skill)
+        public void OnSkillBtnClicked(CreatedSkillInfo createdSkillInfo)
         {
-            _recievers.ForEach(reciever => reciever.OnSkillBtnClicked(skill));
+            _recievers.ForEach(reciever => reciever.OnSkillBtnClicked(createdSkillInfo));
         }
     }
 

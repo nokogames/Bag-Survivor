@@ -10,7 +10,12 @@ namespace Pack.GameData
         public int CurrentSection;
         public int Money;
         public int Xp;
-        
+
+
+
+        public void Load() => SaveManager.LoadData(this);
+        public void Save() => SaveManager.SaveData(this);
+
     }
 
 }

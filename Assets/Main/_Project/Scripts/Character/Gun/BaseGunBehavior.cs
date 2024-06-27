@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class BaseGunBehavior : MonoBehaviour
 {
     [SerializeField] protected GunData gunData;
+    
 
     [Header("Animations")]
     [SerializeField] AnimationClip characterShootAnimation;

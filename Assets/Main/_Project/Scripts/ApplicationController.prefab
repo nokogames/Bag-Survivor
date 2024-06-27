@@ -59,3 +59,9 @@ MonoBehaviour:
     type: 3}
   playerRuntimeUpgradeData: {fileID: 11400000, guid: cb6cbfd369335614a988248b3585b885,
     type: 2}
+  Skills:
+  - {fileID: 11400000, guid: 90f7c79c4d29ab4438be6d0ef2e46b53, type: 2}
+  - {fileID: 11400000, guid: d928ba05bf1e2d34a85a49ae49b624d4, type: 2}
+  - {fileID: 11400000, guid: f2318404da8360d4ab051d3f764751f6, type: 2}
+  - {fileID: 11400000, guid: ced8c95338830b64c98903310a5dc1ae, type: 2}
+  - {fileID: 11400000, guid: 26360533487e3ca47b6c6c5b6309f40a, type: 2}

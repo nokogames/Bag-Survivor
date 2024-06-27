@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
-
+    public GameObject enemy;
 
     private List<IEnemy> _detectedEnemies = new List<IEnemy>();
 
@@ -100,6 +100,10 @@ public class EnemyDetector : MonoBehaviour
         }
 
         closestEnemy = tempEnemy;
+    }
+    public void SetRadius(float radius)
+    {
+        transform.localScale = new Vector3(radius, radius, radius);
     }
 
     private readonly string ENEMY_TAG = "Enemy";

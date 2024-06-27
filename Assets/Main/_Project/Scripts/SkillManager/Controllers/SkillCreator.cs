@@ -42,10 +42,11 @@ namespace _Project.Scripts.SkillManagement.Controllers
                 // UnityEngine.Random.InitState(i);
                 int randomIndex = UnityEngine.Random.Range(0, Skills.Count);
                 SkillBase rondomSkill = Skills[randomIndex];
-                rondomSkill.GetRandomRarity();
+                SkillRarity skillRarity = rondomSkill.GetRandomRarity();
 
                 SkillBehaviour skillBehaviour = _skillBehaviors[i];
-                skillBehaviour.Setup(rondomSkill);
+
+                skillBehaviour.Setup(new CreatedSkillInfo(skillRarity, rondomSkill));
 
             }
 
@@ -54,6 +55,23 @@ namespace _Project.Scripts.SkillManagement.Controllers
         internal void Reroll()
         {
             CreateSkill();
+        }
+
+
+
+    }
+
+
+    public class CreatedSkillInfo
+    {
+        private SkillRarity _skillRarity;
+        private SkillBase _skillBase;
+        public SkillRarity SkillRarity => _skillRarity;
+        public SkillBase Skill => _skillBase;
+        public CreatedSkillInfo(SkillRarity skillRarity, SkillBase skillBase)
+        {
+            _skillBase = skillBase;
+            _skillRarity = skillRarity;
         }
     }
 }

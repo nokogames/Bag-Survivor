@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _Project.Scripts.Character.Datas.SO;
 using UnityEngine;
 
 namespace _Project.Scripts.SkillManagement.SO.Skills
@@ -9,18 +10,20 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
 
     public class SkillBase : ScriptableObject
     {
-
+        public string InfoTxt;
         public SkillCommenUIInfo skillCommenUIInfo;
         public SkillRarityPercentage SkillRarityPercentage;
         public Sprite Icon;
-        private SkillRarity _skillRarity;
-        public SkillRarity CurrentRarity => _skillRarity;
+        // private SkillRarity _skillRarity;
+        // public SkillRarity CurrentRarity => _skillRarity;
         public int Level { get; set; } = 0;
 
-        public virtual void OnSelectedSkill() { }
+        public virtual void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity) { }
+        public virtual string GetInfoTxt(SkillRarity rarity) => "";
 
-        public void GetRandomRarity(int seed = 0)
+        public SkillRarity GetRandomRarity(int seed = 0)
         {
+            SkillRarity _skillRarity = SkillRarity.Common;
             float cumulative = 0;
             var skills = SkillRarityPercentage.SkillRarityPercentageHolders;
             var randomValue = UnityEngine.Random.Range(0, 100);
@@ -31,11 +34,11 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
                 if (randomValue < cumulative)
                 {
                     _skillRarity = skill.rarity;
-                    return;
+                    return _skillRarity;
                 }
             }
 
-            _skillRarity = SkillRarity.Common;
+            return _skillRarity;
         }
     }
 }

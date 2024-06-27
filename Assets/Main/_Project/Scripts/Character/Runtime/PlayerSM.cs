@@ -7,6 +7,7 @@ using _Project.Scripts.Character.Runtime.States;
 using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
 using _Project.Scripts.Reusable;
+using _Project.Scripts.SkillManagement;
 using _Project.Scripts.UI;
 using UnityEngine;
 using VContainer;
@@ -29,7 +30,7 @@ namespace _Project.Scripts.Character.Runtime
         [SerializeField] private GameObject pickAxe;
         private LifetimeScope _parentScope;
         private LifetimeScope _playerScope;
-
+        private SkillManager _skillManager;
         //Controllers
         private PlayerMovementController _playerMovementController;
         private DetectionController _detectionController;
@@ -44,11 +45,12 @@ namespace _Project.Scripts.Character.Runtime
 
 
         private PlayerAnimationController _playerAnimationController;
-     
+
 
         [Inject]
-        public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
+        public void InjectDependenciesAndInitialize(LifetimeScope parentScope, SkillManager skillManager)
         {
+            _skillManager = skillManager;
             _parentScope = parentScope;
             // var result = parentScope.Container.Resolve<UIMediator>();
             CreatePlayerScope();
@@ -76,6 +78,9 @@ namespace _Project.Scripts.Character.Runtime
                 builder.Register<BotController>(Lifetime.Scoped);
                 builder.Register<PlayerAnimationController>(Lifetime.Scoped);
                 builder.Register<HealthController>(Lifetime.Scoped);
+                builder.Register(_ => _skillManager.BarController, Lifetime.Scoped);
+
+                builder.RegisterEntryPoint<UpgradeDataApplyer>(Lifetime.Singleton);
 
                 //States
                 builder.Register<IdleState>(Lifetime.Scoped);
@@ -84,7 +89,7 @@ namespace _Project.Scripts.Character.Runtime
 
 
             });
-
+            //_playerScope.Container.Resolve<UpgradeDataApplyer>();
         }
 
 
