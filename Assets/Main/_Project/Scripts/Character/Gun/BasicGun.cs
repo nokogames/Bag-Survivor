@@ -11,7 +11,7 @@ public class BasicGun : BaseGunBehavior
     private float _crrTime;
     private void Start()
     {
-        _crrTime = gunData.spawnTimeRate;
+        _crrTime = gunData.SpawnTimeRate;
 
     }
     public override void GunFixedUpdate()
@@ -23,7 +23,7 @@ public class BasicGun : BaseGunBehavior
             transform.localRotation = Quaternion.Euler(Vector3.zero);
             return;
         }
-        if (_crrTime < gunData.spawnTimeRate) return;
+        if (_crrTime < gunData.SpawnTimeRate) return;
 
 
         RotateToTarget();
@@ -66,6 +66,8 @@ public class BasicGun : BaseGunBehavior
     {
         GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject(gunData.bulletPoolIndex);
         var bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
+        var damage = gunData.Damage;
+        Debug.Log($"==Gun damage={damage}");
         bulletBehaviour.Initialise(gunData.Damage);
         bullet.transform.position = shootPoint.position;
         bullet.transform.forward = shootPoint.forward;
