@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using _Project.Scripts.Character.Craft;
 using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
-using _Project.Scripts.SkillManagement;
+
 using _Project.Scripts.SkillManagement.Controllers;
-using _Project.Scripts.UI;
-using _Project.Scripts.UI.Controllers;
-using Codice.Client.BaseCommands.Import;
+
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

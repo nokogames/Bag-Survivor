@@ -17,7 +17,7 @@ MonoBehaviour:
     - enemyType: 0
       Count: 10
     timeOffset: 10
-    mustClearNextWave: 1
+    mustClearNextWave: 0
   - spawnEnemyInfos:
     - enemyType: 0
       Count: 10
@@ -25,4 +25,11 @@ MonoBehaviour:
       Count: 5
     timeOffset: 10
     mustClearNextWave: 0
-  timeOffset: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 10
+    - enemyType: 1
+      Count: 5
+    timeOffset: 10
+    mustClearNextWave: 0
+  timeOffset: 10

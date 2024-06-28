@@ -1,3 +1,5 @@
+
+#if UNITY_EDITOR
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +13,7 @@ namespace Pack.GameData
         public EditorDataHolder editorDataHolder;
         private VisualElement _root;
         private ListView listView;
-        SerializedObject _serializedEditorData;
+        private SerializedObject _serializedEditorData;
         private Foldout _mainFoldout;
         private VisualElement _addVisualElement;
         string _defaultDataInfo = "";
@@ -188,3 +190,5 @@ namespace Pack.GameData
         }
     }
 }
+
+#endif

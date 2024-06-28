@@ -23,10 +23,10 @@ public class BasicGun : BaseGunBehavior
             transform.localRotation = Quaternion.Euler(Vector3.zero);
             return;
         }
+        RotateToTarget();
         if (_crrTime < gunData.SpawnTimeRate) return;
 
 
-        RotateToTarget();
         _crrTime = 0;
         Shoot();
 

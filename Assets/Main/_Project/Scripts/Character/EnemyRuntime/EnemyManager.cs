@@ -70,6 +70,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
             if (levelData.IsCompletedSections(_gameData.CurrentSection + 1)) NextLevel();
             else
             {
+                yield return new WaitForSeconds(sectionData.timeOffset);
                 _gameData.CurrentSection++;
                 StartCoroutine(SpawnEnemys());
             }
