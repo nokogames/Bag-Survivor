@@ -7,6 +7,7 @@ namespace _Project.Scripts.Interactable.Craft
 
     public class Gem : MonoBehaviour, ICraftable
     {
+        [SerializeField] private List<CuttableSecion> cuttableSecions;
         private float _remainPercentage = 100;
 
         private bool _canCraftable = true;
@@ -26,8 +27,18 @@ namespace _Project.Scripts.Interactable.Craft
 
         private void SetModelAndGemStatus()
         {
+            if (_remainPercentage < 90)
+            {
+                cuttableSecions[0].SetActive(false);
+            }
+            if (_remainPercentage < 50)
+            {
+                cuttableSecions[1].SetActive(false);
+            }
+
             if (_remainPercentage <= 0)
             {
+                cuttableSecions[2].SetActive(false);
                 Crafted();
             }
         }
@@ -39,4 +50,14 @@ namespace _Project.Scripts.Interactable.Craft
         }
     }
 
+    [Serializable]
+    public class CuttableSecion
+    {
+        public List<GameObject> objects;
+
+        internal void SetActive(bool v)
+        {
+            objects.ForEach(x => x.SetActive(v));
+        }
+    }
 }

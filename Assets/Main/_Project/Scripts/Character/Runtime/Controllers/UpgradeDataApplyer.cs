@@ -21,8 +21,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         [Inject] private CollectableDetector _collectableDetector;
 
 
-        private float _enemyDetectorBaseRadius = 5f;
-        private float _collectableDetectorBaseRadius = 6f;
+        private float _enemyDetectorBaseRadius = 6f;
+        private float _collectableDetectorBaseRadius = 5.8f;
         public void Start()
         {
 

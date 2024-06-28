@@ -14,7 +14,7 @@ namespace _Project.Scripts.Character.Bot.Tools
         [SerializeField] private Transform shootPoint;
         [Inject] private ICharacter _character;
 
-        private float _shootTimeRate = .5f;
+        private float _shootTimeRate = .3f;
         private int _bulletPoolIndex = 1;
         private float _craftPercentage = 1f;
 

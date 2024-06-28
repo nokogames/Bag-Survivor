@@ -14,12 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillRarityIconHolders:
   - rarity: 0
-    rarityBgImage: {fileID: 21300000, guid: de00e1e12a751614fa628d1dff1d3c17, type: 3}
+    rarityBgImage: {fileID: 21300000, guid: 78e370511928243b4a14437ca252db0e, type: 3}
   - rarity: 1
-    rarityBgImage: {fileID: 21300000, guid: 42b157634aa133244893e3311800fcc0, type: 3}
+    rarityBgImage: {fileID: 21300000, guid: 6af1e67b22b9d4ec5a4245fbe02e2b81, type: 3}
   - rarity: 2
-    rarityBgImage: {fileID: 21300000, guid: b5634db2732e76147971ce63b8a2b3e9, type: 3}
+    rarityBgImage: {fileID: 21300000, guid: 0ad57373bedb74880a33b86cfd21cd72, type: 3}
   - rarity: 3
     rarityBgImage: {fileID: 21300000, guid: ff329e8c258e4774cb4d492d4c630c5b, type: 3}
-  SkillRarityPercentage: {fileID: 11400000, guid: f4594527709e2a447bccd7f2cf58ca20,
-    type: 2}
