@@ -1551,6 +1551,9 @@ MonoBehaviour:
     - {fileID: 4926111931118555492}
     - {fileID: 6962811475503067961}
     RerollBtn: {fileID: 4962554745441316516}
+  sectionUIControllerData:
+    LevelTxt: {fileID: 178900371014025479}
+    SectionTxt: {fileID: 1981015849625555221}
 --- !u!114 &9031136529486994253
 MonoBehaviour:
   m_ObjectHideFlags: 0

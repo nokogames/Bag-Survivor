@@ -8,5 +8,6 @@ public class EnemyLevelSpawnData : ScriptableObject
 {
     public List<EnmeySectionSpawnData> enmeySectionSpawnDatas;
     public EnmeySectionSpawnData EnmeySectionSpawnData(int sectionId) => enmeySectionSpawnDatas[sectionId];
+    public bool IsCompletedSections(int section) => section >= enmeySectionSpawnDatas.Count;
 }
 

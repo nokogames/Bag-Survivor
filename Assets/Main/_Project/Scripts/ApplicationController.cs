@@ -54,8 +54,12 @@ namespace _Project.Scripts
         {
             //  _loaderMediator = Container.Resolve<LoaderMediator>();
             _sceneLoader = Container.Resolve<SceneLoader>();
-            _sceneLoader.LoadLevel("GamePlay");
+            _sceneLoader.LoadLevel("Level1");
             var uiM = Container.Resolve<UIMediator>();
+#if !UNITY_EDITOR
+            Debug.unityLogger.logEnabled=false;
+            
+#endif
 
         }
         private void Update()

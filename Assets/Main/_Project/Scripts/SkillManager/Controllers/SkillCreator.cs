@@ -57,7 +57,10 @@ namespace _Project.Scripts.SkillManagement.Controllers
             CreateSkill();
         }
 
-
+        internal void ReCreateSkill()
+        {
+            CreateSkill();
+        }
 
     }
 

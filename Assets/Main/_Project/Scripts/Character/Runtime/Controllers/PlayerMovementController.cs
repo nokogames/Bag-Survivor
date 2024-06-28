@@ -51,7 +51,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             Rotate();
             if (!_inputData.IsValid && _isMoving) MovingStoped();
 
-            if (!_inputData.IsValid) return;
+            if (!_inputData.IsValid && _target == null) return;
 
             if (!_isMoving) MovingStarted();
 

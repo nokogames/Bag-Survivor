@@ -18,6 +18,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
         [Inject] private BarData _barData;
         [Inject] private GameData _gameData;
         [Inject] private SkillUIController _skillUIController;
+        [Inject] private SkillCreator _skillCreator;
 
         //[Inject] private SkillReciverController _skillReciever;
         private float _barProgressAmountPerXp;
@@ -50,6 +51,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
 
         private void AbleToUpgrade()
         {
+            _skillCreator.ReCreateSkill();
             _skillUIController.ShowPanel();
 
         }

@@ -25,7 +25,7 @@ public class StaticHelper : MonoBehaviour
     public IEnumerator MoveToPositionWithFollow(Transform target, Transform follower, Action<Transform> onCompleted)
     {
         float speed = 10f;
-        while (target.position.CustomDistance(follower.position) > 1f)
+        while (target!=null&&target.position.CustomDistance(follower.position) > 1f)
         {
             var direction = follower.position - target.position;
             follower.position -= direction.normalized * speed * Time.deltaTime;

@@ -26,7 +26,7 @@ namespace _Project.Scripts
             {
                 Parent.Container.Inject(this);
             }
-            
+            if (!_isValid) SceneManager.LoadScene("Startup");
         }
 
         protected override void Configure(IContainerBuilder builder)
@@ -47,7 +47,7 @@ namespace _Project.Scripts
              Container.Resolve<SavedPlayerData>();
              Container.Resolve<PlayerUpgradedData>().Reset();
 
-            if (!_isValid) SceneManager.LoadScene("Startup");
+            
         }
     }
 }

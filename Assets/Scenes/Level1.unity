@@ -870,7 +870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &862081234
 Transform:
   m_ObjectHideFlags: 0
@@ -1293,12 +1293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea476db50bb81439edc29df98150cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skills:
-  - {fileID: 11400000, guid: f2318404da8360d4ab051d3f764751f6, type: 2}
-  - {fileID: 11400000, guid: d928ba05bf1e2d34a85a49ae49b624d4, type: 2}
-  - {fileID: 11400000, guid: 26360533487e3ca47b6c6c5b6309f40a, type: 2}
-  - {fileID: 11400000, guid: 90f7c79c4d29ab4438be6d0ef2e46b53, type: 2}
-  - {fileID: 11400000, guid: ced8c95338830b64c98903310a5dc1ae, type: 2}
 --- !u!1 &1468255825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1916,6 +1910,11 @@ MonoBehaviour:
   itemsToPool:
   - enemyType: 0
     objectToPool: {fileID: 7705978550122137453, guid: 6199805f3b0baaf49b81b431077b7224,
+      type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - enemyType: 1
+    objectToPool: {fileID: 6235212639050972488, guid: 73873a47acd560b4e9d73fa01359f1f7,
       type: 3}
     amountToPool: 0
     shouldExpand: 1

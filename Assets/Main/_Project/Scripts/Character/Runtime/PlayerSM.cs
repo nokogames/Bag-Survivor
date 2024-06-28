@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using _Project.Scripts.Character.Craft;
 using _Project.Scripts.Character.Runtime.Controllers;
+using _Project.Scripts.Character.Runtime.SerializeData;
 using _Project.Scripts.Character.Runtime.States;
 using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
@@ -17,9 +18,9 @@ namespace _Project.Scripts.Character.Runtime
 {
     public class PlayerSM : StateMachineMB, ICharacter, IDamagableByEnemy
     {
-
+        [Header("UI Elements"), SerializeField] private PlayerUIData playerUIData;
         //PlayerController
-        [SerializeField] private CollectableDetector collectableDetector;
+        [Header("Components"), SerializeField] private CollectableDetector collectableDetector;
         [SerializeField] private CraftDetector craftDetector;
         [SerializeField] private CharacterGraphics characterGraphics;
         [SerializeField] private BaseGunBehavior gunBehavior;
@@ -71,13 +72,14 @@ namespace _Project.Scripts.Character.Runtime
                 builder.RegisterComponent(characterGraphics);
                 builder.RegisterComponent(animationEventHandler);
                 builder.RegisterComponent(collectableDetector);
+                builder.RegisterComponent(playerUIData);
 
                 builder.Register<BotController>(Lifetime.Scoped);
                 builder.RegisterEntryPoint<DetectionController>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
                 builder.Register<PlayerMovementController>(Lifetime.Scoped);
                 builder.Register<BotController>(Lifetime.Scoped);
                 builder.Register<PlayerAnimationController>(Lifetime.Scoped);
-                builder.Register<HealthController>(Lifetime.Scoped);
+                builder.RegisterEntryPoint<HealthController>(Lifetime.Scoped).AsSelf();
                 builder.Register(_ => _skillManager.BarController, Lifetime.Scoped);
 
                 builder.RegisterEntryPoint<UpgradeDataApplyer>(Lifetime.Singleton);

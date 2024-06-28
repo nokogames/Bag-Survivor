@@ -12,7 +12,7 @@ namespace _Project.Scripts.Character.Craft
         private ICraftable _crrCraftable;
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log($"Reciver -{_reciver}");
+           
             if (!other.transform.CompareTag(CRAFTABLE_TAG)) return;
 
             if (other.transform.TryGetComponent<ICraftable>(out ICraftable craftable))
@@ -37,7 +37,7 @@ namespace _Project.Scripts.Character.Craft
         }
         private void OnTriggerExit(Collider other)
         {
-            Debug.Log($"Reciver -{_reciver}");
+           
             if (!other.transform.CompareTag(CRAFTABLE_TAG)) return;
 
             if (other.transform.TryGetComponent<ICraftable>(out ICraftable craftable))

@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
-
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -22,15 +21,18 @@ namespace _Project.Scripts.Character.EnemyRuntime
         private float _healt = 5;
         private float _attackDistance = 1;
         private Transform _playerTransform;
-        private CharacterController _characterController;
+        //private CharacterController _characterController;
+        private Rigidbody _rb;
         private void Awake()
         {
+            _rb = GetComponent<Rigidbody>();
             // _characterController = GetComponent<CharacterController>();
         }
         private void OnEnable()
         {
+            _rb.velocity = Vector3.zero;
             _isDead = false;
-            _healt=5;
+            _healt = 5;
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -54,9 +56,9 @@ namespace _Project.Scripts.Character.EnemyRuntime
             gameObject.SetActive(false);
             var obj = ObjectPooler.SharedInstance.GetPooledObject(3);
 
-            obj.transform.position = transform.position.SetY(1f);
+            obj.transform.position = transform.position.SetY(.1f);
             obj.SetActive(true);
-           _enemyManger.EnmeyDead(this);
+            _enemyManger.EnmeyDead(this);
         }
 
         private void FixedUpdate()
@@ -64,26 +66,40 @@ namespace _Project.Scripts.Character.EnemyRuntime
             if (_playerTransform == null || IsDead) return;
 
             var distance = Vector3.Distance(transform.position, _playerTransform.position);
-            Quaternion lookAt = Quaternion.LookRotation(_playerTransform.position - transform.position);
+            var destination = new Vector3(_playerTransform.position.x, transform.position.y, _playerTransform.position.z);
+            Quaternion lookAt = Quaternion.LookRotation(destination - transform.position);
             if (distance < _attackDistance)
             {
                 Attack();
+
                 return;
             }
+            _rb.velocity = Vector3.zero;
             transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.fixedDeltaTime * 5);
             transform.Translate(Vector3.forward * Time.fixedDeltaTime);
+            //_rb.velocity = transform.forward * 8;
             // var dest = transform.forward * Time.fixedDeltaTime;
             // if (!_characterController.isGrounded) dest += Vector3.down;
 
             // _characterController.Move(dest);
 
         }
-
+        private float _crrTime = 0;
+        private float _attackTimeRate = .2f;
         private void Attack()
         {
-            _damageableByEnemy.GetDamage(_damageAmount);
-        }
+            _crrTime += Time.fixedDeltaTime;
+            if (_crrTime < _attackTimeRate) return;
+            _crrTime = 0;
 
+            _damageableByEnemy.GetDamage(_damageAmount);
+            MoveForwardAndBack();
+        }
+        void MoveForwardAndBack()
+        {
+            // Objeyi ileri hareket ettir
+            // transform.DOMoveZ(transform.position.z + .5f, .2f).SetLoops(2, LoopType.Yoyo);
+        }
         internal void Initialize(Transform playerTransform, EnemyManager enemyManager, IDamagableByEnemy damagableByEnemy)
         {
             _playerTransform = playerTransform;
