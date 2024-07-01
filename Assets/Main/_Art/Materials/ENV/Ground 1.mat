@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground
+  m_Name: Ground 1
   m_Shader: {fileID: 4800000, guid: 7ffc1bc2bbb1ef64f84b552b2d2f0619, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -205,7 +205,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.7169812, g: 0.5607144, b: 0.36863655, a: 1}
+    - _BaseColor: {r: 0.6037736, g: 0.45379022, b: 0.29334286, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
