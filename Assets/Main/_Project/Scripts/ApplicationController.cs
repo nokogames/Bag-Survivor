@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using _Project.Scripts.Character.Datas;
 using _Project.Scripts.Character.Datas.SO;
+using _Project.Scripts.Level;
 using _Project.Scripts.Loader;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI;
@@ -48,13 +49,18 @@ namespace _Project.Scripts
             builder.RegisterInstance(playerRuntimeUpgradeData.playerUpgradedData);
             builder.RegisterInstance(Skills).AsSelf();
 
-        }
+            //Events
+            builder.RegisterInstance(new InLevelEvents()).AsSelf().AsImplementedInterfaces();
 
+        }
+        private InLevelEvents _inLevelEvents;
         private void Start()
         {
             //  _loaderMediator = Container.Resolve<LoaderMediator>();
             _sceneLoader = Container.Resolve<SceneLoader>();
             _sceneLoader.LoadLevel("Level1");
+            _inLevelEvents = Container.Resolve<InLevelEvents>();
+
             var uiM = Container.Resolve<UIMediator>();
 #if !UNITY_EDITOR
             Debug.unityLogger.logEnabled=false;
@@ -69,6 +75,11 @@ namespace _Project.Scripts
             if (Input.GetKeyDown(KeyCode.E)) _sceneLoader.LoadLevelWithSplash("GamePlay");
             #endregion
         }
+        protected override void OnDestroy()
+        {
+            if (_inLevelEvents != null) _inLevelEvents.Dispose();
+            base.OnDestroy();
 
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using static _Project.Scripts.Character.EnemyRuntime.EnemyManager;
 
 
 namespace _Project.Scripts.Character.EnemyRuntime
@@ -10,8 +11,9 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
     public class Enemy : MonoBehaviour, IEnemy
     {
+        [SerializeField] private EnemyType enemyType;
         [SerializeField] private float _damageAmount = 1;
-
+        public EnemyType EnemyType => enemyType;
         private EnemyManager _enemyManger;
         private IDamagableByEnemy _damageableByEnemy;
         public Transform Transform => transform;
@@ -52,6 +54,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         private void Dead()
         {
+
             _isDead = true;
             gameObject.SetActive(false);
             var obj = ObjectPooler.SharedInstance.GetPooledObject(3);
@@ -60,7 +63,16 @@ namespace _Project.Scripts.Character.EnemyRuntime
             obj.SetActive(true);
             _enemyManger.EnmeyDead(this);
         }
+        public void CompletedSection()
+        {
+            
+            _isDead = true;
+            gameObject.SetActive(false);
+            var obj = ObjectPooler.SharedInstance.GetPooledObject(3);
 
+            obj.transform.position = transform.position.SetY(.1f);
+            obj.SetActive(true);
+        }
         private void FixedUpdate()
         {
             if (_playerTransform == null || IsDead) return;

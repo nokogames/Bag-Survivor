@@ -1,4 +1,5 @@
 
+using System;
 using _Project.Scripts.Character.Craft;
 using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
@@ -16,6 +17,11 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         // [Inject] private BotController _botController;
 
         [Inject] private BarController _barController;
+        private bool _eneble = true;
+        public bool Enable { get => _eneble; set => SetActivity(value); }
+
+
+
         // [Inject] private UIMediator _uiMediator;
         //private PlayerInGameUpgradeBarController _playerInGameUpgradeBarController;
         private PlayerSM _playerSM;
@@ -38,12 +44,14 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         }
         public void OnCraftableDetect(ICraftable crrCraftable)
         {
+            if (!_eneble) return;
             _craftable = crrCraftable;
             SetTarget();
             CheckState();
         }
         public void OnEnemyDetected(IEnemy detectedEnemyInfo)
         {
+            if (!_eneble) return;
             _enemy = detectedEnemyInfo;
             SetTarget();
             CheckState();
@@ -84,7 +92,18 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             collectable.gameObject.SetActive(false);
         }
 
+        private void SetActivity(bool value)
+        {
+            _eneble = value;
+            if (!value)
+            {
+                _target = null;
+                _playerMovementController.Target = null;
+                _playerMovementController.IsCloseEnemyFound = false;
 
+            }
+            // _botController.Enable = value;
+        }
     }
 
 

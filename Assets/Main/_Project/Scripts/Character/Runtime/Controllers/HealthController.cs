@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.Character.Runtime.SerializeData;
 using _Project.Scripts.Loader;
+using _Project.Scripts.UI.Controllers;
 using Pack.GameData;
 using UnityEngine;
 using VContainer;
@@ -11,18 +12,26 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
   public class HealthController : IFixedTickable
   {
-    [Inject] private ICharacter _character;
+    private PlayerSM _playerSm;
     [Inject] private SceneLoader _sceneLoader;
     [Inject] private GameData _gameData;
     [Inject] private PlayerUIData _playerUIData;
-    private float _baseHealth = 100f;
-    private float _health = 100f;
+
+    private float _baseHealth = 1;
+    private float _health = 1;
+    // private float _baseHealth = 100f;
+    // private float _health = 100f;
     private bool _isDead = false;
 
     //
     private float _crrTime = 0;
     private float _healingTimeRate = .1f;
-    private float _healingAmount = 1f;
+    private float _healingAmount = 0.1f;
+
+    public void Initialise(PlayerSM playerSM)
+    {
+      _playerSm = playerSM;
+    }
     public void FixedTick()
     {
 
@@ -45,7 +54,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     public void GetDamage(float damage)
     {
       _playerUIData.EnabledBar = true;
-      Debug.LogWarning($"Player damaged {damage}");
+    
       if (_isDead) return;
       _health -= damage;
 
@@ -55,10 +64,13 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     }
 
     private void Dead()
-    {
+    {  
+      _isDead = true;
       Debug.LogWarning("Player dead");
-      string lvl = "Level" + (_gameData.CurrentLvl + 1).ToString();
-      _sceneLoader.LoadLevel(lvl);
+
+      _playerSm.ChangeState(_playerSm.DiedState);
+      // string lvl = "Level" + (_gameData.CurrentLvl + 1).ToString();
+      // _sceneLoader.LoadLevel(lvl);
     }
   }
 }

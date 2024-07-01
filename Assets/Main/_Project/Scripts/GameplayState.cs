@@ -4,6 +4,7 @@ using _Project.Scripts.Character.Datas;
 using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.Character.EnemyRuntime;
 using _Project.Scripts.Character.Runtime;
+using _Project.Scripts.Level;
 using _Project.Scripts.Loader;
 using _Project.Scripts.SkillManagement;
 using UnityEngine;
@@ -16,8 +17,12 @@ namespace _Project.Scripts
 {
     public class GameplayState : LifetimeScope
     {
+
         // [SerializeField] private PlayerRuntimeUpgradeData playerRuntimeUpgradeData;
         private bool _isValid;
+
+
+
         protected override void Awake()
         {
 
@@ -33,21 +38,23 @@ namespace _Project.Scripts
         {
             //base.Configure(builder);
 
+            builder.RegisterComponentInHierarchy<PortalController>();
             builder.RegisterComponentInHierarchy<PlayerSM>();
             builder.RegisterComponentInHierarchy<EnemyManager>();
             builder.RegisterComponentInHierarchy<SkillManager>().AsSelf();
-            // builder.RegisterInstance(playerRuntimeUpgradeData.runTimePlayerData);
+
+
 
 
             _isValid = true;
 
         }
         private void Start()
-        {    
-             Container.Resolve<SavedPlayerData>();
-             Container.Resolve<PlayerUpgradedData>().Reset();
+        {
+            Container.Resolve<SavedPlayerData>();
+            Container.Resolve<PlayerUpgradedData>().Reset();
 
-            
         }
+
     }
 }

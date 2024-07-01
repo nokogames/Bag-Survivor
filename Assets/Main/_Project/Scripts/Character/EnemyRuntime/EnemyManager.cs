@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Character.Runtime;
+using _Project.Scripts.Level;
 using _Project.Scripts.UI;
 using _Project.Scripts.UI.Controllers;
 using Pack.GameData;
@@ -18,12 +19,15 @@ namespace _Project.Scripts.Character.EnemyRuntime
         [Inject] private PlayerSM _playerSm;
         [Inject] private GameData _gameData;
         [Inject] private UIMediator _uiMediator;
+        [Inject] private InLevelEvents _inLevelEvents;
         private Transform _playerTransform;
         private IDamagableByEnemy _damageableByEnemy;
         private List<Transform> _spawnedEnemys = new List<Transform>();
         private List<Enemy> _spawnedEnemyBehaviour = new List<Enemy>();
         private Transform[] _spawnPoints;
         private SectionUIController _sectionUIController;
+        private Enemy _boseEnemy;
+        private EnemyLevelSpawnData _levelData;
         private void Awake()
         {
             _sectionUIController = _uiMediator._uiScope.Container.Resolve<SectionUIController>();
@@ -31,6 +35,18 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
             _playerTransform = _playerSm.Transform;
             _damageableByEnemy = _playerSm;
+        }
+
+        private void OnEnable()
+        {
+
+            _inLevelEvents.onNextSection += NextSection;
+        }
+
+        private void OnDisable()
+        {
+            _inLevelEvents.onNextSection -= NextSection;
+
         }
         private void Start()
         {  //Debug
@@ -44,8 +60,8 @@ namespace _Project.Scripts.Character.EnemyRuntime
         }
         IEnumerator SpawnEnemys()
         {
-            var levelData = _enemySpawnData.EnemyLevelSpawnData(_gameData.CurrentLvl);
-            var sectionData = levelData.EnmeySectionSpawnData(_gameData.CurrentSection);
+            _levelData = _enemySpawnData.EnemyLevelSpawnData(_gameData.CurrentLvl);
+            var sectionData = _levelData.EnmeySectionSpawnData(_gameData.CurrentSection);
             var waveInfos = sectionData.waveInfos;
             _sectionUIController.SetSectionTxt(_gameData.CurrentSection + 1);
 
@@ -58,6 +74,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
                 for (int j = 0; j < crrWave.spawnEnemyInfos.Count; j++)
                 {
                     var typeOfType = crrWave.spawnEnemyInfos[j].enemyType;
+
                     CreateEnemy(typeOfType, crrWave.spawnEnemyInfos[j].Count);
                     yield return null;
                     // yield return new WaitForEndOfFrame();
@@ -67,13 +84,15 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
 
             }
-            if (levelData.IsCompletedSections(_gameData.CurrentSection + 1)) NextLevel();
-            else
-            {
-                yield return new WaitForSeconds(sectionData.timeOffset);
-                _gameData.CurrentSection++;
-                StartCoroutine(SpawnEnemys());
-            }
+
+            // else
+            // {
+            //     Debug.Log("New section is coming...");
+
+            //     yield return new WaitForSeconds(sectionData.timeOffset);
+            //     yield return new WaitWhile(() => _boseEnemy != null);
+
+            // }
 
         }
 
@@ -94,6 +113,8 @@ namespace _Project.Scripts.Character.EnemyRuntime
                 var obj = EnemyPool.SharedInstance.GetPooledObject(typeOfType);
 
                 var enemyBehaviour = obj.GetComponent<Enemy>();
+                if (IsTypeBose(typeOfType)) _boseEnemy = enemyBehaviour;
+
                 _spawnedEnemyBehaviour.Add(enemyBehaviour);
                 _spawnedEnemys.Add(obj.transform);
                 UnityEngine.Random.InitState(i);
@@ -106,12 +127,48 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         }
 
+
+
         public void EnmeyDead(Enemy enemy)
         {
             if (!_spawnedEnemyBehaviour.Contains(enemy)) return;
             _spawnedEnemyBehaviour.Remove(enemy);
             _spawnedEnemys.Remove(enemy.transform);
+            if (enemy == IsTypeBose(enemy.EnemyType))
+            {
+                Debug.Log("Bose is dead...");
+                _boseEnemy = null;
+                if (_levelData.IsCompletedSections(_gameData.CurrentSection + 1)) NextLevel();
+                else
+                {
+                    _spawnedEnemyBehaviour.ForEach(x => x.CompletedSection());
+                    _spawnedEnemys.Clear();
+                    _spawnedEnemyBehaviour.Clear();
+                    _inLevelEvents.onAbleToNextSection?.Invoke();
+                    //Show next section ui
+                    //Clear all enemies
+                }
+            }
         }
+
+
+        public void StartNewSection()
+        {
+            _gameData.CurrentSection++;
+            StartCoroutine(SpawnEnemys());
+        }
+
+        private void NextSection()
+        {
+            //Controle level 
+            StartNewSection();
+        }
+
+        private bool IsTypeBose(EnemyType typeOfType)
+        {
+            return typeOfType == EnemyType.Boss1 || typeOfType == EnemyType.Boss2 || typeOfType == EnemyType.Boss3;
+        }
+
         public enum EnemyType
         {
             Level1,

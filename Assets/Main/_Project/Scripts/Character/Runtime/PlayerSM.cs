@@ -7,6 +7,7 @@ using _Project.Scripts.Character.Runtime.SerializeData;
 using _Project.Scripts.Character.Runtime.States;
 using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
+using _Project.Scripts.Level;
 using _Project.Scripts.Reusable;
 using _Project.Scripts.SkillManagement;
 using _Project.Scripts.UI;
@@ -32,6 +33,7 @@ namespace _Project.Scripts.Character.Runtime
         private LifetimeScope _parentScope;
         private LifetimeScope _playerScope;
         private SkillManager _skillManager;
+        private UIMediator _uiMediator;
         //Controllers
         private PlayerMovementController _playerMovementController;
         private DetectionController _detectionController;
@@ -43,16 +45,19 @@ namespace _Project.Scripts.Character.Runtime
         public IdleState IdleState { get; set; }
         public CraftState CraftState { get; set; }
         public AttackState AttackState { get; set; }
+        public DiedState DiedState { get; set; }
 
 
         private PlayerAnimationController _playerAnimationController;
-
+        private InLevelEvents _inLevelEvents;
 
         [Inject]
-        public void InjectDependenciesAndInitialize(LifetimeScope parentScope, SkillManager skillManager)
+        public void InjectDependenciesAndInitialize(LifetimeScope parentScope, SkillManager skillManager, UIMediator uIMediator, InLevelEvents inlevelEvents)
         {
+            _inLevelEvents = inlevelEvents;
             _skillManager = skillManager;
             _parentScope = parentScope;
+            _uiMediator = uIMediator;
             // var result = parentScope.Container.Resolve<UIMediator>();
             CreatePlayerScope();
         }
@@ -81,6 +86,7 @@ namespace _Project.Scripts.Character.Runtime
                 builder.Register<PlayerAnimationController>(Lifetime.Scoped);
                 builder.RegisterEntryPoint<HealthController>(Lifetime.Scoped).AsSelf();
                 builder.Register(_ => _skillManager.BarController, Lifetime.Scoped);
+                builder.Register(_ => _uiMediator.PanelController, Lifetime.Scoped);
 
                 builder.RegisterEntryPoint<UpgradeDataApplyer>(Lifetime.Singleton);
 
@@ -88,6 +94,7 @@ namespace _Project.Scripts.Character.Runtime
                 builder.Register<IdleState>(Lifetime.Scoped);
                 builder.Register<CraftState>(Lifetime.Scoped);
                 builder.Register<AttackState>(Lifetime.Scoped);
+                builder.Register<DiedState>(Lifetime.Scoped);
 
 
             });
@@ -101,7 +108,20 @@ namespace _Project.Scripts.Character.Runtime
             Resolve();
             Initialize();
         }
+        private void OnEnable()
+        {
+            _inLevelEvents.onNextLevel += OnLevelStart;
+        }
+        private void OnDisable()
+        {
+            _inLevelEvents.onNextLevel -= OnLevelStart;
 
+        }
+        public void OnLevelStart()
+        {
+            //Reset Some
+            Start();
+        }
         private void Initialize()
         {
 
@@ -112,10 +132,13 @@ namespace _Project.Scripts.Character.Runtime
             _playerMovementController.Initialise();
             _botController.Initialise(botPrefab, botPlacePoints);
             _detectionController.Initialise(this);
+            _healthController.Initialise(this);
             //States
             IdleState.Initialize();
             CraftState.Initialize(pickAxe);
             AttackState.Initialize();
+
+
         }
 
         private void Resolve()
@@ -127,6 +150,8 @@ namespace _Project.Scripts.Character.Runtime
             IdleState = _playerScope.Container.Resolve<IdleState>();
             CraftState = _playerScope.Container.Resolve<CraftState>();
             AttackState = _playerScope.Container.Resolve<AttackState>();
+            DiedState = _playerScope.Container.Resolve<DiedState>();
+
             _playerAnimationController = _playerScope.Container.Resolve<PlayerAnimationController>();
             _healthController = _playerScope.Container.Resolve<HealthController>();
         }
