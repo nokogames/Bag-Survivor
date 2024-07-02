@@ -11,6 +11,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
     public class Enemy : MonoBehaviour, IEnemy
     {
+        [SerializeField] private GameObject deathParticle;
         [SerializeField] private EnemyType enemyType;
         [SerializeField] private float _damageAmount = 1;
         [SerializeField] private Animator animator;
@@ -80,7 +81,15 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         private void SetFalse()
         {
-            transform.DOScale(Vector3.one*.1f, 1f).OnComplete(() =>
+            if (deathParticle != null)
+            {
+                var go = ParticlePool.SharedInstance.GetPooledObject(deathParticle);
+                go.transform.position = transform.position;
+                go.SetActive(true);
+
+
+            }
+            transform.DOScale(Vector3.one * .1f, .5f).OnComplete(() =>
             {
                 gameObject.SetActive(false);
                 gameObject.transform.localScale = Vector3.one;

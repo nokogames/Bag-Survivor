@@ -17,7 +17,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     [Inject] private GameData _gameData;
     [Inject] private PlayerUIData _playerUIData;
 
-    private float _baseHealth = 50;
+    private float _baseHealth = 1;
     private float _health = 50;
     // private float _baseHealth = 100f;
     // private float _health = 100f;
@@ -54,7 +54,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     public void GetDamage(float damage)
     {
       _playerUIData.EnabledBar = true;
-    
+
       if (_isDead) return;
       _health -= damage;
 
@@ -64,13 +64,19 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     }
 
     private void Dead()
-    {  
+    {
       _isDead = true;
       Debug.LogWarning("Player dead");
 
       _playerSm.ChangeState(_playerSm.DiedState);
       // string lvl = "Level" + (_gameData.CurrentLvl + 1).ToString();
       // _sceneLoader.LoadLevel(lvl);
+    }
+
+    internal void ResetHealth()
+    {
+      _isDead = false;
+      _health = _baseHealth;
     }
   }
 }

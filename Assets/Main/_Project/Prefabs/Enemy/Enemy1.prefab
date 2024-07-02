@@ -80,7 +80,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f766b7bc9649ab14d878070e5b58ed92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticle: {fileID: 395031058680739610, guid: 2f78b35c7aadc1e4782a97d7558897f1,
+    type: 3}
+  enemyType: 0
   _damageAmount: 1
+  animator: {fileID: 0}
+  baseHealt: 5
+  _attackDistance: 2
+  speed: 5
 --- !u!136 &7031041042669796911
 CapsuleCollider:
   m_ObjectHideFlags: 0

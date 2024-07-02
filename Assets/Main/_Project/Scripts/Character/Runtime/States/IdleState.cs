@@ -14,7 +14,7 @@ namespace _Project.Scripts.Character.Runtime.States
         [Inject] private PlayerMovementController _playerMovementController;
         [Inject] private BotController _botController;
         [Inject] private CharacterGraphics _characterGraphics;
-
+        [Inject] private DetectionController _detectionController;
         public void Initialize()
         {
 
@@ -24,6 +24,7 @@ namespace _Project.Scripts.Character.Runtime.States
             _botController.PlaceBots();
             _characterGraphics.EnableIK();
             _gunBehavior.SetActivity(true);
+            _detectionController.Enable = true;
         }
 
         public void Exit()

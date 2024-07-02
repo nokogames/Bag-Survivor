@@ -24,6 +24,7 @@ namespace _Project.Scripts
         [SerializeField] private UIMediator uiMediatorPref;
         [SerializeField] private PlayerUpgradeDataSO playerRuntimeUpgradeData;
         [SerializeField] private List<SkillBase> Skills;
+        [SerializeField] private ParticlePool particlePool;
         // private LoaderMediator _loaderMediator;
         private SceneLoader _sceneLoader;
         protected override void Awake()
@@ -38,6 +39,7 @@ namespace _Project.Scripts
         {
             builder.RegisterComponentInNewPrefab(loaderMediatorPrefab, Lifetime.Scoped).DontDestroyOnLoad();
             builder.RegisterComponentInNewPrefab(uiMediatorPref, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+            builder.RegisterComponentInNewPrefab(particlePool, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
             builder.Register<SceneLoader>(Lifetime.Singleton);
             builder.RegisterInstance(gameData);
             builder.RegisterInstance(inputData);
@@ -58,6 +60,7 @@ namespace _Project.Scripts
         {
             //  _loaderMediator = Container.Resolve<LoaderMediator>();
             _sceneLoader = Container.Resolve<SceneLoader>();
+            Container.Resolve<ParticlePool>();
             _sceneLoader.LoadLevel("Level1");
             _inLevelEvents = Container.Resolve<InLevelEvents>();
 
