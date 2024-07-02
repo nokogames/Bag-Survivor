@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -19,7 +20,7 @@ namespace _Project.Scripts.Loader
             if (_asyncLoad != null && !_asyncLoad.isDone) return;
 
             _loaderMediator.StartLoading();
-             _asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
+            _asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
             while (!_asyncLoad.isDone)
             {
                 var fillAmount = Mathf.Clamp01(_asyncLoad.progress / 0.9f);
@@ -46,10 +47,10 @@ namespace _Project.Scripts.Loader
             _loaderMediator.FinishLoading();
 
         }
-        public async void LoadLevelWithSplash(string levelName)
+        public async void LoadLevelWithSplash(string levelName, Action action)
         {
             if (_asyncLoad != null && !_asyncLoad.isDone) return;
-            
+
             _loaderMediator.StartSplashLoading();
             await Task.Delay(500);
             _asyncLoad = SceneManager.LoadSceneAsync(levelName);
@@ -58,6 +59,21 @@ namespace _Project.Scripts.Loader
             await Task.Delay(500);
             // Thread.Sleep(10);
             _loaderMediator.FinishSplashLoading();
+            action?.Invoke();
+        }
+        public async void LoadLevelWithSplash(string levelName)
+        {
+            if (_asyncLoad != null && !_asyncLoad.isDone) return;
+
+            _loaderMediator.StartSplashLoading();
+            await Task.Delay(500);
+            _asyncLoad = SceneManager.LoadSceneAsync(levelName);
+            while (!_asyncLoad.isDone) await Task.Yield();
+            _loaderMediator.StopSplashLoading();
+            await Task.Delay(500);
+            // Thread.Sleep(10);
+            _loaderMediator.FinishSplashLoading();
+          
         }
 
         public void TestLog()

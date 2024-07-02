@@ -49,7 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 3
-  _damageAmount: 1
+  _damageAmount: 2
+  animator: {fileID: 5640224344953539740}
+  baseHealt: 100
+  _attackDistance: 3
+  speed: 7
 --- !u!136 &4074875358263012368
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -69,10 +73,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.38
+  m_Radius: 0.77
   m_Height: 1.18
   m_Direction: 2
-  m_Center: {x: 0, y: 0.22, z: 0}
+  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!136 &1132848503160541082
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -92,10 +96,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.23
+  m_Radius: 0.44
   m_Height: 1
   m_Direction: 2
-  m_Center: {x: 0, y: 0.28, z: 0}
+  m_Center: {x: 0, y: 0.53, z: 0}
 --- !u!54 &8757625841590044544
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -226,6 +230,12 @@ PrefabInstance:
 --- !u!4 &1776167559323358950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7577235302657907196, guid: 2fd6d6c14fb243743a0b5a4e363a7592,
+    type: 3}
+  m_PrefabInstance: {fileID: 8178969721546460954}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5640224344953539740 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4595804157734323078, guid: 2fd6d6c14fb243743a0b5a4e363a7592,
     type: 3}
   m_PrefabInstance: {fileID: 8178969721546460954}
   m_PrefabAsset: {fileID: 0}

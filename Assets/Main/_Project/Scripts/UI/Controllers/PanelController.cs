@@ -1,5 +1,7 @@
 using System;
 using _Project.Scripts.Level;
+using _Project.Scripts.Loader;
+using Pack.GameData;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -11,6 +13,8 @@ namespace _Project.Scripts.UI.Controllers
     {
         [Inject] private PanelControllerData _panelControllerData;
         [Inject] private InLevelEvents _inLevelEvents;
+        [Inject] private SceneLoader _sceneLoader;
+        [Inject] private GameData _gameData;
 
         public void Start()
         {
@@ -22,12 +26,27 @@ namespace _Project.Scripts.UI.Controllers
         {
             _panelControllerData.nextSectionBtn.onClick.AddListener(() => _inLevelEvents.onNextSection?.Invoke());
             _panelControllerData.goMainMenuBtn.onClick.AddListener(() => OpenMainMenu());
+            _panelControllerData.nextLevelBtn.onClick.AddListener(() => LoadNextLvl());
             _inLevelEvents.onShowNextSectionUI += ShowNextSectionPanel;
             _inLevelEvents.onNextSection += NextSection;
             _inLevelEvents.onNextLevel += NextLevel;
+            _inLevelEvents.onShowNextLevelUI += ShowNextLevelPanel;
+
 
         }
 
+        private void LoadNextLvl()
+        {
+            _gameData.CurrentLvl++;
+
+            _sceneLoader.LoadLevelWithSplash("Level" + (_gameData.CurrentLvl + 1).ToString(), _inLevelEvents.onNextLevel);
+
+        }
+
+        private void ShowNextLevelPanel()
+        {
+            _panelControllerData.OpenPanel(_panelControllerData.NextLevelPanel);
+        }
         private void NextLevel()
         {
             _panelControllerData.OpenPanel(_panelControllerData.InGamePanel);
@@ -44,7 +63,7 @@ namespace _Project.Scripts.UI.Controllers
 
         private void ShowNextSectionPanel()
         {
-            _panelControllerData.OpenPanel(_panelControllerData.NextLevelPanel);
+            _panelControllerData.OpenPanel(_panelControllerData.NextSectionPanel);
         }
         //From button
         public void OpenMainMenu()
@@ -58,7 +77,9 @@ namespace _Project.Scripts.UI.Controllers
     {
         public GameObject InGamePanel;
         public GameObject NextLevelPanel;
+        public GameObject NextSectionPanel;
         public Button nextSectionBtn;
+        public Button nextLevelBtn;
         public GameObject diedPanel;
         public GameObject mainPanel;
         public Button goMainMenuBtn;
@@ -67,15 +88,16 @@ namespace _Project.Scripts.UI.Controllers
             OpenPanel(InGamePanel);
         }
 
-        internal void OpenPanel(GameObject nextLevelPanel)
+        internal void OpenPanel(GameObject panel)
         {
             CloseAll();
-            nextLevelPanel.SetActive(true);
+            panel.SetActive(true);
         }
 
         private void CloseAll()
         {
             InGamePanel.SetActive(false);
+            NextSectionPanel.SetActive(false);
             NextLevelPanel.SetActive(false);
             diedPanel.SetActive(false);
             mainPanel.SetActive(false);

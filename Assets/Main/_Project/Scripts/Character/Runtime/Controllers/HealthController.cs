@@ -17,8 +17,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     [Inject] private GameData _gameData;
     [Inject] private PlayerUIData _playerUIData;
 
-    private float _baseHealth = 1;
-    private float _health = 1;
+    private float _baseHealth = 50;
+    private float _health = 50;
     // private float _baseHealth = 100f;
     // private float _health = 100f;
     private bool _isDead = false;

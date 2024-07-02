@@ -5,7 +5,7 @@ using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.Character.EnemyRuntime;
 using _Project.Scripts.Character.Runtime;
 using _Project.Scripts.Level;
-using _Project.Scripts.Loader;
+
 using _Project.Scripts.SkillManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;

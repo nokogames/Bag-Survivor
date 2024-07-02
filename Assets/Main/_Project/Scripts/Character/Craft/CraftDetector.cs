@@ -8,11 +8,15 @@ namespace _Project.Scripts.Character.Craft
 
     public class CraftDetector : MonoBehaviour
     {
-        [Inject] private ICraftDetectorReciver _reciver;
+        private ICraftDetectorReciver _reciver;
         private ICraftable _crrCraftable;
+        public void Initialise(ICraftDetectorReciver reciver)
+        {
+           _reciver=reciver;
+        }
         private void OnTriggerEnter(Collider other)
         {
-           
+
             if (!other.transform.CompareTag(CRAFTABLE_TAG)) return;
 
             if (other.transform.TryGetComponent<ICraftable>(out ICraftable craftable))
@@ -37,7 +41,7 @@ namespace _Project.Scripts.Character.Craft
         }
         private void OnTriggerExit(Collider other)
         {
-           
+
             if (!other.transform.CompareTag(CRAFTABLE_TAG)) return;
 
             if (other.transform.TryGetComponent<ICraftable>(out ICraftable craftable))

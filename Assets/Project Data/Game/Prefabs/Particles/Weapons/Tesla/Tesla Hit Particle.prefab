@@ -9750,6 +9750,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9074963768980416444}
     m_Modifications:
+    - target: {fileID: 1758680673420782367, guid: 8575551f921cea74b8b26066ebc4a841,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1802209127429376085, guid: 8575551f921cea74b8b26066ebc4a841,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -9789,6 +9794,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tesla Hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947653665861197513, guid: 8575551f921cea74b8b26066ebc4a841,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5226451099953829505, guid: 8575551f921cea74b8b26066ebc4a841,
         type: 3}
@@ -9864,6 +9874,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
       value: 0.82722807
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236481817611931104, guid: 8575551f921cea74b8b26066ebc4a841,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

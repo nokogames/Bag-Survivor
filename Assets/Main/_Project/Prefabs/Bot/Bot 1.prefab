@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 1579862315266170124}
   - component: {fileID: 2727611336084484611}
   m_Layer: 0
-  m_Name: Bot
+  m_Name: Bot 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -571,11 +571,7 @@ PrefabInstance:
       propertyPath: shootParticle
       value: 
       objectReference: {fileID: 721026720938929929}
-    m_RemovedComponents:
-    - {fileID: 3122135373068383882, guid: ad691f6555ff64742b5d896a4d742df7, type: 3}
-    - {fileID: 5011616092633597957, guid: ad691f6555ff64742b5d896a4d742df7, type: 3}
-    - {fileID: 5448632709421361589, guid: ad691f6555ff64742b5d896a4d742df7, type: 3}
-    - {fileID: 7439904801021574077, guid: ad691f6555ff64742b5d896a4d742df7, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7009177279878768646, guid: ad691f6555ff64742b5d896a4d742df7, type: 3}
     m_AddedGameObjects:

@@ -26,7 +26,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
         private List<Enemy> _spawnedEnemyBehaviour = new List<Enemy>();
         private Transform[] _spawnPoints;
         private SectionUIController _sectionUIController;
-        private Enemy _boseEnemy;
+
         private EnemyLevelSpawnData _levelData;
         private void Awake()
         {
@@ -41,13 +41,23 @@ namespace _Project.Scripts.Character.EnemyRuntime
         {
 
             _inLevelEvents.onNextSection += NextSection;
+            _inLevelEvents.onNextLevel += OnNextLevel;
+
         }
 
         private void OnDisable()
         {
             _inLevelEvents.onNextSection -= NextSection;
+            _inLevelEvents.onNextLevel -= OnNextLevel;
 
         }
+
+        private void OnNextLevel()
+        {
+            _gameData.CurrentSection = 0;
+            StartCoroutine(SpawnEnemys());
+        }
+
         private void Start()
         {  //Debug
             _gameData.CurrentSection = 0;
@@ -76,8 +86,8 @@ namespace _Project.Scripts.Character.EnemyRuntime
                     var typeOfType = crrWave.spawnEnemyInfos[j].enemyType;
 
                     CreateEnemy(typeOfType, crrWave.spawnEnemyInfos[j].Count);
-                    yield return null;
-                    // yield return new WaitForEndOfFrame();
+
+                    yield return new WaitForSeconds(0.1f);
                 }
                 if (crrWave.mustClearNextWave) yield return new WaitWhile(() => IsAliveEnemy());
                 yield return new WaitForSeconds(crrWave.timeOffset);
@@ -96,16 +106,20 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         }
 
-        private void NextLevel()
-        {
-            Debug.LogWarning("..Next Level is coming...");
-        }
+
 
         private bool IsAliveEnemy()
         {
             return _spawnedEnemys.Count > 0;
         }
+        public void PlayerDied()
+        {
+            _spawnedEnemyBehaviour.Clear();
+            _spawnedEnemys.ForEach(t => t.gameObject.SetActive(false));
+            _spawnedEnemys.Clear();
+            _gameData.CurrentSection = 0;
 
+        }
         private void CreateEnemy(EnemyType typeOfType, int count)
         {
             for (int i = 0; i < count; i++)
@@ -113,12 +127,13 @@ namespace _Project.Scripts.Character.EnemyRuntime
                 var obj = EnemyPool.SharedInstance.GetPooledObject(typeOfType);
 
                 var enemyBehaviour = obj.GetComponent<Enemy>();
-                if (IsTypeBose(typeOfType)) _boseEnemy = enemyBehaviour;
+
 
                 _spawnedEnemyBehaviour.Add(enemyBehaviour);
                 _spawnedEnemys.Add(obj.transform);
-                UnityEngine.Random.InitState(i);
-                obj.transform.position = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Length)].position.GetRandomPositionAroundObject(1f);
+                //  UnityEngine.Random.InitState(i);
+                var spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Length)];
+                obj.transform.position = spawnPoint.position.GetRandomPositionAroundObject(2f);
                 obj.SetActive(true);
                 obj.transform.position = obj.transform.position.SetY(-0.37f);
                 enemyBehaviour.Initialize(_playerTransform, this, _damageableByEnemy);
@@ -137,13 +152,13 @@ namespace _Project.Scripts.Character.EnemyRuntime
             if (enemy == IsTypeBose(enemy.EnemyType))
             {
                 Debug.Log("Bose is dead...");
-                _boseEnemy = null;
-                if (_levelData.IsCompletedSections(_gameData.CurrentSection + 1)) NextLevel();
+
+                _spawnedEnemyBehaviour.ForEach(x => x.CompletedSection());
+                _spawnedEnemys.Clear();
+                _spawnedEnemyBehaviour.Clear();
+                if (_levelData.IsCompletedSections(_gameData.CurrentSection + 1)) _inLevelEvents.onAbleToNextLevel?.Invoke();
                 else
                 {
-                    _spawnedEnemyBehaviour.ForEach(x => x.CompletedSection());
-                    _spawnedEnemys.Clear();
-                    _spawnedEnemyBehaviour.Clear();
                     _inLevelEvents.onAbleToNextSection?.Invoke();
                     //Show next section ui
                     //Clear all enemies
@@ -152,16 +167,17 @@ namespace _Project.Scripts.Character.EnemyRuntime
         }
 
 
-        public void StartNewSection()
-        {
-            _gameData.CurrentSection++;
-            StartCoroutine(SpawnEnemys());
-        }
+        // public void StartNewSection()
+        // {
+        //     _gameData.CurrentSection++;
+        //     StartCoroutine(SpawnEnemys());
+        // }
 
         private void NextSection()
         {
             //Controle level 
-            StartNewSection();
+            _gameData.CurrentSection++;
+            StartCoroutine(SpawnEnemys());
         }
 
         private bool IsTypeBose(EnemyType typeOfType)

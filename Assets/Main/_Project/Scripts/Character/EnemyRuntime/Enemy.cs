@@ -13,6 +13,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
     {
         [SerializeField] private EnemyType enemyType;
         [SerializeField] private float _damageAmount = 1;
+        [SerializeField] private Animator animator;
         public EnemyType EnemyType => enemyType;
         private EnemyManager _enemyManger;
         private IDamagableByEnemy _damageableByEnemy;
@@ -20,8 +21,10 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         private bool _isDead;
         public bool IsDead { get => _isDead; set => _isDead = value; }
+        [SerializeField] private float baseHealt = 5;
         private float _healt = 5;
-        private float _attackDistance = 1;
+        [SerializeField] private float _attackDistance = 2;
+        [SerializeField] private float speed = 5;
         private Transform _playerTransform;
         //private CharacterController _characterController;
         private Rigidbody _rb;
@@ -32,9 +35,10 @@ namespace _Project.Scripts.Character.EnemyRuntime
         }
         private void OnEnable()
         {
+            if (animator != null) animator.SetBool("Dead", false);
             _rb.velocity = Vector3.zero;
             _isDead = false;
-            _healt = 5;
+            _healt = baseHealt;
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -54,18 +58,40 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         private void Dead()
         {
-
             _isDead = true;
-            gameObject.SetActive(false);
             var obj = ObjectPooler.SharedInstance.GetPooledObject(3);
-
             obj.transform.position = transform.position.SetY(.1f);
             obj.SetActive(true);
-            _enemyManger.EnmeyDead(this);
+
+            if (animator != null)
+            {
+                animator.SetBool("Dead", true);
+                StartCoroutine(WaitAndWork(1f, () =>
+                {
+                    SetFalse();
+                }));
+            }
+            else
+            {
+                SetFalse();
+            }
+
         }
+
+        private void SetFalse()
+        {
+            transform.DOScale(Vector3.one*.1f, 1f).OnComplete(() =>
+            {
+                gameObject.SetActive(false);
+                gameObject.transform.localScale = Vector3.one;
+                _enemyManger.EnmeyDead(this);
+
+            });
+        }
+
         public void CompletedSection()
         {
-            
+            if (animator != null) animator.SetBool("Dead", true);
             _isDead = true;
             gameObject.SetActive(false);
             var obj = ObjectPooler.SharedInstance.GetPooledObject(3);
@@ -86,8 +112,9 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
                 return;
             }
+            if (animator != null) animator.SetBool("Move", true);
             _rb.velocity = Vector3.zero;
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.fixedDeltaTime * 5);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.fixedDeltaTime * speed);
             transform.Translate(Vector3.forward * Time.fixedDeltaTime);
             //_rb.velocity = transform.forward * 8;
             // var dest = transform.forward * Time.fixedDeltaTime;
@@ -100,6 +127,8 @@ namespace _Project.Scripts.Character.EnemyRuntime
         private float _attackTimeRate = .2f;
         private void Attack()
         {
+            if (animator != null) animator.SetBool("Move", false);
+            if (animator != null) animator.SetTrigger("Attack");
             _crrTime += Time.fixedDeltaTime;
             if (_crrTime < _attackTimeRate) return;
             _crrTime = 0;
@@ -118,6 +147,14 @@ namespace _Project.Scripts.Character.EnemyRuntime
             _enemyManger = enemyManager;
             _damageableByEnemy = damagableByEnemy;
         }
+
+        IEnumerator WaitAndWork(float time, Action action)
+        {
+            yield return new WaitForSeconds(time);
+            action?.Invoke();
+        }
+
+
     }
 }
 

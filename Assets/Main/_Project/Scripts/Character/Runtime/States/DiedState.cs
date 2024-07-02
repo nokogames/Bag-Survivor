@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using _Project.Scripts.Character.EnemyRuntime;
 using _Project.Scripts.Character.Runtime.Controllers;
 using _Project.Scripts.Reusable;
 using _Project.Scripts.UI.Controllers;
@@ -17,6 +15,8 @@ namespace _Project.Scripts.Character.Runtime.States
         [Inject] private CharacterGraphics _characterGraphics;
         [Inject] private PanelController _panelController;
         [Inject] private DetectionController _detectionController;
+        [Inject] private EnemyManager _enemyManager;
+        //  [Inject] private InLevelEvents _inLevelEvents;
         public void Initialize()
         {
 
@@ -24,17 +24,21 @@ namespace _Project.Scripts.Character.Runtime.States
         public void Enter()
         {
             _detectionController.Enable = false;
+
             _botController.PlaceBots();
             _characterGraphics.DisableIK();
             _gunBehavior.SetActivity(false);
 
             _panelController.PlayerDied();
+            _enemyManager.PlayerDied();
 
         }
 
         public void Exit()
         {
-              _detectionController.Enable =true;
+            _detectionController.Enable = true;
+            _characterGraphics.EnableIK();
+            _gunBehavior.SetActivity(true);
         }
 
         public void FixedTick()
@@ -43,7 +47,7 @@ namespace _Project.Scripts.Character.Runtime.States
 
         public void Tick()
         {
- 
+
         }
     }
 }

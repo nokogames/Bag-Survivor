@@ -39,7 +39,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
         {
             for (int i = 0; i < skillCount; i++)
             {
-                // UnityEngine.Random.InitState(i);
+                //UnityEngine.Random.InitState(i);
                 int randomIndex = UnityEngine.Random.Range(0, Skills.Count);
                 SkillBase rondomSkill = Skills[randomIndex];
                 SkillRarity skillRarity = rondomSkill.GetRandomRarity();

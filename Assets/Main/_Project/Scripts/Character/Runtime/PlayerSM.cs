@@ -128,7 +128,9 @@ namespace _Project.Scripts.Character.Runtime
             characterGraphics.Initialise(this);
             gunBehavior.InitialiseCharacter(characterGraphics, this);
             enemyDetector.Initialise(_detectionController);
-
+            collectableDetector.Initialise(_detectionController);
+            craftDetector.Initialise(_detectionController);
+            
             _playerMovementController.Initialise();
             _botController.Initialise(botPrefab, botPlacePoints);
             _detectionController.Initialise(this);
@@ -167,6 +169,7 @@ namespace _Project.Scripts.Character.Runtime
 
         private void Start()
         {
+
             ChangeState(IdleState);
         }
 

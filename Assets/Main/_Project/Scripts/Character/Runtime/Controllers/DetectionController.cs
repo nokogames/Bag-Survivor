@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using _Project.Scripts.Character.Craft;
 using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
@@ -35,6 +36,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         public void Initialise(PlayerSM playerSM)
         {
             _playerSM = playerSM;
+
             //  _playerInGameUpgradeBarController = uIMediator.PlayerInGameUpgradeBarController;
         }
         public void Start()
@@ -83,13 +85,18 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         public void OnCollectableDetected(CollectableType collectableType, Transform collectableTransform)
         {
-            StaticHelper.Instance.StartCoroutine(StaticHelper.Instance.MoveToPositionWithFollow(_playerSM.transform, collectableTransform, OnCompletedCollecting));
-            if (collectableType == CollectableType.XP) _barController.CollectedXp();
+            if (!_eneble) return;
+
+            //  var coroutine = StaticHelper.Instance.MoveToPositionWithFollow(_playerSM.Transform, collectableTransform, collectableType, OnCompletedCollecting);
+            var coroutine = collectableTransform.CustomDoJump(_playerSM.Transform, collectableType, 3f, .3f, OnCompletedCollecting);
+            StaticHelper.Instance.StartHelperCoroutine(coroutine);
+
         }
 
-        private void OnCompletedCollecting(Transform collectable)
+        private void OnCompletedCollecting(Transform collectable, CollectableType collectableType)
         {
             collectable.gameObject.SetActive(false);
+            if (collectableType == CollectableType.XP) _barController.CollectedXp();
         }
 
         private void SetActivity(bool value)
@@ -100,10 +107,14 @@ namespace _Project.Scripts.Character.Runtime.Controllers
                 _target = null;
                 _playerMovementController.Target = null;
                 _playerMovementController.IsCloseEnemyFound = false;
+                IsEnemyFound = false;
 
             }
             // _botController.Enable = value;
         }
+
+
+
     }
 
 
