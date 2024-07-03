@@ -56,7 +56,7 @@ namespace _Project.Scripts.Loader
             _asyncLoad = SceneManager.LoadSceneAsync(levelName);
             while (!_asyncLoad.isDone) await Task.Yield();
             _loaderMediator.StopSplashLoading();
-            await Task.Delay(500);
+            await Task.Delay(1000);
             // Thread.Sleep(10);
             _loaderMediator.FinishSplashLoading();
             action?.Invoke();

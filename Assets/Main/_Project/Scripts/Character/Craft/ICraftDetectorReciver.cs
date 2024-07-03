@@ -9,5 +9,6 @@ namespace _Project.Scripts.Character.Craft
     public interface ICraftDetectorReciver
     {
         void OnCraftableDetect(ICraftable crrCraftable);
+       // public CraftDetector CraftDetector { get; set; }
     }
 }

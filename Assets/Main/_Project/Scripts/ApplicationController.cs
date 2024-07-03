@@ -65,6 +65,7 @@ namespace _Project.Scripts
             _inLevelEvents = Container.Resolve<InLevelEvents>();
 
             var uiM = Container.Resolve<UIMediator>();
+            Application.targetFrameRate = 60;
 #if !UNITY_EDITOR
             Debug.unityLogger.logEnabled=false;
             

@@ -111,11 +111,16 @@ namespace _Project.Scripts.Character.Runtime
         private void OnEnable()
         {
             _inLevelEvents.onNextLevel += OnLevelStart;
-            
+            _inLevelEvents.onNextSection += OnSectionStart;
+
         }
+
+
+
         private void OnDisable()
         {
             _inLevelEvents.onNextLevel -= OnLevelStart;
+            _inLevelEvents.onNextSection -= OnSectionStart;
 
         }
         public void OnLevelStart()
@@ -124,7 +129,10 @@ namespace _Project.Scripts.Character.Runtime
             _healthController.ResetHealth();
             ChangeState(IdleState);
         }
-        
+        private void OnSectionStart()
+        {
+            _healthController.ResetHealth();
+        }
         private void Initialize()
         {
 
@@ -189,6 +197,9 @@ namespace _Project.Scripts.Character.Runtime
         {
             _healthController.GetDamage(damage);
         }
+
+
+
     }
 
 

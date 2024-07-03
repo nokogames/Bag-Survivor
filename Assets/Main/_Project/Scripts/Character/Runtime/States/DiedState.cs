@@ -24,6 +24,7 @@ namespace _Project.Scripts.Character.Runtime.States
         public void Enter()
         {
             _detectionController.Enable = false;
+            _playerMovementController.PlayerIsDeath = true;
 
             _botController.PlaceBots();
             _characterGraphics.DisableIK();
@@ -39,6 +40,7 @@ namespace _Project.Scripts.Character.Runtime.States
             _detectionController.Enable = true;
             _characterGraphics.EnableIK();
             _gunBehavior.SetActivity(true);
+            _playerMovementController.PlayerIsDeath = false;
         }
 
         public void FixedTick()

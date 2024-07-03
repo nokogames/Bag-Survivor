@@ -11,6 +11,7 @@ using VContainer.Unity;
 using _Project.Scripts.UI.Controllers;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.Character.Datas.SO;
+using _Project.Scripts.Level;
 
 namespace _Project.Scripts.SkillManagement.Controllers
 {
@@ -23,6 +24,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
         // [Inject] private PlayerInGameUpgradeBarController _playerInGameUpgradeBarController;
         [Inject] private BarController _barController;
         [Inject] private PlayerUpgradedData _playerUpgradedData;
+        [Inject] private InLevelEvents _inLevelEvents;
         // [Inject] private SkillCreator _skillCreator;
         public void CloseBtnClicked()
         {
@@ -35,6 +37,13 @@ namespace _Project.Scripts.SkillManagement.Controllers
         {
             // _playerInGameUpgradeBarController.SkillReciever = this;
             _uiMediatorEventHandler.AddReciever(this);
+            _inLevelEvents.onNextLevel += NextLevel;
+
+        }
+
+        private void NextLevel()
+        {
+            _playerUpgradedData.Reset();
         }
 
         public void OnSkillBtnClicked(CreatedSkillInfo createdSkillInfo)
@@ -64,6 +73,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
         public void Dispose()
         {
             _uiMediatorEventHandler.RemoveReciever(this);
+            _inLevelEvents.onNextLevel -= NextLevel;
         }
         public void Tick()
         {

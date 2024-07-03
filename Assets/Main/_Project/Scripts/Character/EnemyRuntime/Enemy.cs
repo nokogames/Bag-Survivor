@@ -11,6 +11,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
     public class Enemy : MonoBehaviour, IEnemy
     {
+        [SerializeField] private GameObject xpPrefab;
         [SerializeField] private GameObject deathParticle;
         [SerializeField] private EnemyType enemyType;
         [SerializeField] private float _damageAmount = 1;
@@ -60,10 +61,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
         private void Dead()
         {
             _isDead = true;
-            var obj = ObjectPooler.SharedInstance.GetPooledObject(3);
-            obj.transform.position = transform.position.SetY(.1f);
-            obj.SetActive(true);
-
+            DropXP();
             if (animator != null)
             {
                 animator.SetBool("Dead", true);
@@ -76,6 +74,16 @@ namespace _Project.Scripts.Character.EnemyRuntime
             {
                 SetFalse();
             }
+
+        }
+
+        private void DropXP()
+        {
+            if (xpPrefab == null) return;
+
+            var obj = ParticlePool.SharedInstance.GetPooledObject(xpPrefab);
+            obj.transform.position = transform.position.SetY(.5f);
+            obj.SetActive(true);
 
         }
 
@@ -95,6 +103,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
                 gameObject.transform.localScale = Vector3.one;
                 _enemyManger.EnmeyDead(this);
 
+
             });
         }
 
@@ -103,10 +112,10 @@ namespace _Project.Scripts.Character.EnemyRuntime
             if (animator != null) animator.SetBool("Dead", true);
             _isDead = true;
             gameObject.SetActive(false);
-            var obj = ObjectPooler.SharedInstance.GetPooledObject(3);
+            // var obj = ObjectPooler.SharedInstance.GetPooledObject(3);
 
-            obj.transform.position = transform.position.SetY(.1f);
-            obj.SetActive(true);
+            // obj.transform.position = transform.position.SetY(.1f);
+            // obj.SetActive(true);
         }
         private void FixedUpdate()
         {

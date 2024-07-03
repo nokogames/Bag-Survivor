@@ -122,6 +122,12 @@ namespace _Project.Scripts.Character.Bot
             }
             else ChangeState(stateIn);
         }
+
+
+        private void OnDestroy()
+        {
+            _childScope.Dispose();
+        }
     }
 
 

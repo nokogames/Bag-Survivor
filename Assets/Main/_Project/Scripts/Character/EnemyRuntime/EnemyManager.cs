@@ -15,6 +15,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
     public class EnemyManager : MonoBehaviour
     {
+
         [Inject] private EnemySpawnData _enemySpawnData;
         [Inject] private PlayerSM _playerSm;
         [Inject] private GameData _gameData;
@@ -28,6 +29,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
         private SectionUIController _sectionUIController;
 
         private EnemyLevelSpawnData _levelData;
+        private Coroutine _spawnCoroutine;
         private void Awake()
         {
             _sectionUIController = _uiMediator._uiScope.Container.Resolve<SectionUIController>();
@@ -35,17 +37,14 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
             _playerTransform = _playerSm.Transform;
             _damageableByEnemy = _playerSm;
-        }
 
-        private void OnEnable()
-        {
 
             _inLevelEvents.onNextSection += NextSection;
             _inLevelEvents.onNextLevel += OnNextLevel;
-
         }
 
-        private void OnDisable()
+
+        private void OnDestroy()
         {
             _inLevelEvents.onNextSection -= NextSection;
             _inLevelEvents.onNextLevel -= OnNextLevel;
@@ -55,19 +54,19 @@ namespace _Project.Scripts.Character.EnemyRuntime
         private void OnNextLevel()
         {
             _gameData.CurrentSection = 0;
-            StartCoroutine(SpawnEnemys());
+            _spawnCoroutine = StartCoroutine(SpawnEnemys());
         }
 
         private void Start()
         {  //Debug
             _gameData.CurrentSection = 0;
             _sectionUIController.SetLevelTxt(_gameData.CurrentLvl + 1);
-            GameStarted();
+            // GameStarted();
         }
-        public void GameStarted()
-        {
-            StartCoroutine(SpawnEnemys());
-        }
+        // public void GameStarted()
+        // {
+        //     _spawnCoroutine = StartCoroutine(SpawnEnemys());
+        // }
         IEnumerator SpawnEnemys()
         {
             _levelData = _enemySpawnData.EnemyLevelSpawnData(_gameData.CurrentLvl);
@@ -114,10 +113,12 @@ namespace _Project.Scripts.Character.EnemyRuntime
         }
         public void PlayerDied()
         {
+            if (_spawnCoroutine != null) StopCoroutine(_spawnCoroutine);
             _spawnedEnemyBehaviour.Clear();
             _spawnedEnemys.ForEach(t => t.gameObject.SetActive(false));
             _spawnedEnemys.Clear();
             _gameData.CurrentSection = 0;
+
 
         }
         private void CreateEnemy(EnemyType typeOfType, int count)
@@ -135,7 +136,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
                 var spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Length)];
                 obj.transform.position = spawnPoint.position.GetRandomPositionAroundObject(2f);
                 obj.SetActive(true);
-                obj.transform.position = obj.transform.position.SetY(-0.37f);
+                obj.transform.position = obj.transform.position.SetY(0.05f);
                 enemyBehaviour.Initialize(_playerTransform, this, _damageableByEnemy);
             }
 

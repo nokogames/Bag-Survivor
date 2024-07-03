@@ -14,6 +14,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 {
     public class DetectionController : IEnemyDetector, ICraftDetectorReciver, ICollectableDetectorReciver, IStartable
     {
+        [Inject] private EnemyDetector _enemyDetector;
+        [Inject] private CraftDetector _craftDetector;
         [Inject] private PlayerMovementController _playerMovementController;
         // [Inject] private BotController _botController;
 
@@ -33,6 +35,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         private IEnemy _enemy;
         public IEnemy Enemy => _enemy;
         public bool IsEnemyFound { get; set; }
+
+
         public void Initialise(PlayerSM playerSM)
         {
             _playerSM = playerSM;
@@ -41,6 +45,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         }
         public void Start()
         {
+            // _enemyDetector.Initialise(this);
+            // _craftDetector.Initialise(this);
             //_playerInGameUpgradeBarController = _uiMediator.PlayerInGameUpgradeBarController;
             //  _barController = _skillManager.BarController;
         }
@@ -87,7 +93,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         {
             if (!_eneble) return;
 
-            //  var coroutine = StaticHelper.Instance.MoveToPositionWithFollow(_playerSM.Transform, collectableTransform, collectableType, OnCompletedCollecting);
+            //  var coroutine = StaticHelper.Instance.MoveToPositionWithFollow(_playerSM.Transform, collectableTransform, collectableType, OnCompletedCollecting);\
+            if (collectableType == CollectableType.XP) _barController.CollectedXp();
             var coroutine = collectableTransform.CustomDoJump(_playerSM.Transform, collectableType, 3f, .3f, OnCompletedCollecting);
             StaticHelper.Instance.StartHelperCoroutine(coroutine);
 
@@ -96,7 +103,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         private void OnCompletedCollecting(Transform collectable, CollectableType collectableType)
         {
             collectable.gameObject.SetActive(false);
-            if (collectableType == CollectableType.XP) _barController.CollectedXp();
+
         }
 
         private void SetActivity(bool value)
@@ -108,9 +115,13 @@ namespace _Project.Scripts.Character.Runtime.Controllers
                 _playerMovementController.Target = null;
                 _playerMovementController.IsCloseEnemyFound = false;
                 IsEnemyFound = false;
+                _craftable = null;
+                _enemy = null;
+                _enemyDetector.ClearDeatected();
+                _craftDetector.ClearDeatected();
 
             }
-            // _botController.Enable = value;
+            //    _botController.Enable = value;
         }
 
 

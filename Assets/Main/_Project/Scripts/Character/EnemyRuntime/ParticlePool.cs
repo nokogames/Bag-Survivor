@@ -3,7 +3,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Level;
 using UnityEngine;
+using VContainer;
 
 namespace _Project.Scripts
 {
@@ -26,6 +28,7 @@ namespace _Project.Scripts
 
     public class ParticlePool : MonoBehaviour
     {
+
         public static ParticlePool SharedInstance;
         public List<ParticleObjectPoolItem> itemsToPool;
         public Dictionary<GameObject, int> objectToIndex;
@@ -34,6 +37,25 @@ namespace _Project.Scripts
         public List<GameObject> pooledObjects;
         private List<int> positions;
 
+        [Inject]
+        public void InjectDependenciesAndInitialize(InLevelEvents events)
+        {
+            events.onNextSection += SetActiveFalseAll;
+            events.onNextLevel += SetActiveFalseAll;
+        }
+
+        private void SetActiveFalseAll()
+        {
+            for (int i = 0; i < pooledObjectsList.Count; i++)
+            {
+                var crr = pooledObjectsList[i];
+                for (int j = 0; j < crr.Count; j++)
+                {
+                    crr[j].SetActive(false);
+                }
+
+            }
+        }
 
         private void FillItemTOIndex()
         {
@@ -57,7 +79,7 @@ namespace _Project.Scripts
             pooledObjectsList = new List<List<GameObject>>();
             pooledObjects = new List<GameObject>();
             positions = new List<int>();
-          
+
 
             for (int i = 0; i < itemsToPool.Count; i++)
             {

@@ -16,7 +16,7 @@ namespace _Project.Scripts.SkillManagement
 
     public class SkillManager : MonoBehaviour
     {
-       
+
         // [Inject] private PlayerSM playerSM;
         [Inject] private UIMediator uiMediator;
         private LifetimeScope _skillManagerScope;
@@ -42,7 +42,7 @@ namespace _Project.Scripts.SkillManagement
                    builder.RegisterEntryPoint<BarController>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
                    builder.RegisterEntryPoint<SkillCreator>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
                    builder.RegisterEntryPoint<SkillReciverController>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
-                  // builder.RegisterInstance(Skills).AsSelf();
+                   // builder.RegisterInstance(Skills).AsSelf();
 
                });
 
@@ -58,7 +58,10 @@ namespace _Project.Scripts.SkillManagement
         {
 
         }
-
+        private void OnDestroy()
+        {
+            _skillManagerScope.Dispose();
+        }
 
     }
 

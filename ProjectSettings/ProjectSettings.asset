@@ -167,7 +167,7 @@ PlayerSettings:
     Standalone: com.Unity-Technologies.com.unity.template.urp-blank
     iPhone: com.nokogames.mechadiver
   buildNumber:
-    Standalone: 0
+    Standalone: 1
     VisionOS: 0
     iPhone: 1
     tvOS: 0

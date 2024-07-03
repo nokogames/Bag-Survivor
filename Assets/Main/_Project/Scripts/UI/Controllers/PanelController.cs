@@ -39,8 +39,17 @@ namespace _Project.Scripts.UI.Controllers
         {
             _gameData.CurrentLvl++;
 
-            _sceneLoader.LoadLevelWithSplash("Level" + (_gameData.CurrentLvl + 1).ToString(), _inLevelEvents.onNextLevel);
+            _sceneLoader.LoadLevelWithSplash("Level" + (_gameData.CurrentLvl + 1).ToString(), LoadedNextLvl);
 
+        }
+
+        private void LoadedNextLvl()
+        {
+            // foreach (Delegate d in _inLevelEvents.onNextLevel.GetInvocationList())
+            // {
+            //     Debug.Log($"Method: {d.Method.Name}, Target: {d.Target}");
+            // }
+            _inLevelEvents.onNextLevel?.Invoke();
         }
 
         private void ShowNextLevelPanel()
@@ -85,7 +94,7 @@ namespace _Project.Scripts.UI.Controllers
         public Button goMainMenuBtn;
         internal void Initialize()
         {
-            OpenPanel(InGamePanel);
+            OpenPanel(mainPanel);
         }
 
         internal void OpenPanel(GameObject panel)

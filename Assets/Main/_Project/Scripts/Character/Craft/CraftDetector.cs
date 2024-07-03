@@ -12,7 +12,8 @@ namespace _Project.Scripts.Character.Craft
         private ICraftable _crrCraftable;
         public void Initialise(ICraftDetectorReciver reciver)
         {
-           _reciver=reciver;
+            _reciver = reciver;
+            
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -51,6 +52,9 @@ namespace _Project.Scripts.Character.Craft
             }
         }
         private readonly string CRAFTABLE_TAG = "Craftable";
-
+        public void ClearDeatected()
+        {
+            _crrCraftable = null;
+        }
     }
 }

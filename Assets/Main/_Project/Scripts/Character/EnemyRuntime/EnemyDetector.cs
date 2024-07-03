@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
+    [SerializeField] private GameObject circle;
     public GameObject enemy;
 
     private List<IEnemy> _detectedEnemies = new List<IEnemy>();
@@ -16,6 +17,8 @@ public class EnemyDetector : MonoBehaviour
     public void Initialise(IEnemyDetector enemyDetector)
     {
         _enemyDetector = enemyDetector;
+        circle.transform.parent = null;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,8 +37,15 @@ public class EnemyDetector : MonoBehaviour
 
     private float _timeRate = .1f;
     private float _crrTime = 0;
+
+    private void Update()
+    {
+        circle.transform.position = transform.position;
+        circle.transform.localScale = transform.localScale;
+    }
     private void FixedUpdate()
     {
+
         _crrTime += Time.fixedDeltaTime;
         if (_crrTime < _timeRate) return;
         UpdateClosestEnemy();
@@ -105,6 +115,9 @@ public class EnemyDetector : MonoBehaviour
     {
         transform.localScale = new Vector3(radius, radius, radius);
     }
-
+    public void ClearDeatected()
+    {
+        _detectedEnemies.Clear();
+    }
     private readonly string ENEMY_TAG = "Enemy";
 }

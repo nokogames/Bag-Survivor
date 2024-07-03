@@ -21,7 +21,7 @@ namespace _Project.Scripts.Interactable.Collectable
         {
             if (other.transform.tag.TryGetEnumType<CollectableType>(out CollectableType type))
             {
-               
+              
                 _reciver.OnCollectableDetected(type, other.transform);
             };
             //Check if tag xp or gem  it  will be true

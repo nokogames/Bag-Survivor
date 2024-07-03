@@ -39,7 +39,15 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         private float _speed = 0;
         private Vector3 _movementVelocity;
 
-
+        private bool _isDeath = false;
+        public bool PlayerIsDeath
+        {
+            get => _isDeath; set
+            {
+                _isDeath = value;
+                if (value) MovingStoped();
+            }
+        }
 
         public void Initialise()
         {
@@ -48,6 +56,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         }
         private void Move()
         {
+            if (_isDeath) return;
             Rotate();
             if (!_inputData.IsValid && _isMoving) MovingStoped();
 

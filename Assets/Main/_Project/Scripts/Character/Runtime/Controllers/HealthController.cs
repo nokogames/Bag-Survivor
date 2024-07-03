@@ -17,7 +17,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     [Inject] private GameData _gameData;
     [Inject] private PlayerUIData _playerUIData;
 
-    private float _baseHealth = 1;
+    private float _baseHealth = 50;
     private float _health = 50;
     // private float _baseHealth = 100f;
     // private float _health = 100f;
@@ -60,6 +60,11 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
       if (_health <= 0) Dead();
 
+      SetHealtBar();
+    }
+
+    private void SetHealtBar()
+    {
       _playerUIData.BarFillAomunt = _health / _baseHealth;
     }
 
@@ -77,6 +82,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     {
       _isDead = false;
       _health = _baseHealth;
+      SetHealtBar();
     }
   }
 }

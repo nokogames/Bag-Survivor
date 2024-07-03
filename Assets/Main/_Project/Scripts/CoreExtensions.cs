@@ -60,7 +60,7 @@ public static class CoreExtensions
     /// </summary>
     public static int SetRandomSign(this int value)
     {
-        return value * Random.value < 0.5f ? 1 : -1;
+        return (Random.value < 0.5f) ? value : -value;
     }
     #endregion
 
@@ -80,7 +80,7 @@ public static class CoreExtensions
     /// </summary>
     public static double SetRandomSign(this double value)
     {
-        return value * Random.value < 0.5f ? 1 : -1;
+        return value * (Random.value < 0.5f ? 1 : -1);
     }
     #endregion
 

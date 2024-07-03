@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLevelSpawnDatas:
   - {fileID: 11400000, guid: bd8a66e54ccafe84b8f45fdecc6f02fc, type: 2}
+  - {fileID: 11400000, guid: bd8a66e54ccafe84b8f45fdecc6f02fc, type: 2}
