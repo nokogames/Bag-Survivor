@@ -369,7 +369,7 @@ Light:
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 5000
-  m_UseColorTemperature: 1
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -1036,7 +1036,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f766b7bc9649ab14d878070e5b58ed92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticle: {fileID: 0}
+  enemyType: 0
   _damageAmount: 1
+  animator: {fileID: 0}
+  baseHealt: 5
+  _attackDistance: 2
+  speed: 5
 --- !u!65 &1700305637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1183,7 +1189,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f766b7bc9649ab14d878070e5b58ed92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticle: {fileID: 0}
+  enemyType: 0
   _damageAmount: 1
+  animator: {fileID: 0}
+  baseHealt: 5
+  _attackDistance: 2
+  speed: 5
 --- !u!65 &1826600523
 BoxCollider:
   m_ObjectHideFlags: 0
