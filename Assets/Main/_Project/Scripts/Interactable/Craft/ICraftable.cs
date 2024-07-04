@@ -10,5 +10,7 @@ namespace _Project.Scripts.Interactable.Craft
     {
         public bool CanCraftable { get; }
         public void Craft(float craftPercentage);
+        public void CraftWithParticle(float craftPercentage);
+
     }
 }

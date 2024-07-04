@@ -21,6 +21,8 @@ namespace _Project.Scripts.Character.EnemyRuntime
         [Inject] private GameData _gameData;
         [Inject] private UIMediator _uiMediator;
         [Inject] private InLevelEvents _inLevelEvents;
+        [Inject] private LevelDataManager _levelDataManager;
+
         private Transform _playerTransform;
         private IDamagableByEnemy _damageableByEnemy;
         private List<Transform> _spawnedEnemys = new List<Transform>();
@@ -41,6 +43,8 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
             _inLevelEvents.onNextSection += NextSection;
             _inLevelEvents.onNextLevel += OnNextLevel;
+
+            _levelDataManager.EnemyManager = this;
         }
 
 
@@ -53,8 +57,11 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         private void OnNextLevel()
         {
+            _clearedEnemyCount = 0;
+            _allEnemyCountInLevel = _enemySpawnData.EnemyLevelSpawnData(_gameData.CurrentLvl).AllEnemyCount();
             _gameData.CurrentSection = 0;
             _spawnCoroutine = StartCoroutine(SpawnEnemys());
+
         }
 
         private void Start()
@@ -67,9 +74,26 @@ namespace _Project.Scripts.Character.EnemyRuntime
         // {
         //     _spawnCoroutine = StartCoroutine(SpawnEnemys());
         // }
+
+        private int _allEnemyCountInLevel;
+        private float _clearedEnemyCount;
+
+        public float ClearedPercentage()
+        {
+            return (_clearedEnemyCount / _allEnemyCountInLevel) * 100;
+        }
+        public float EarnedCoin()
+        {
+            return _levelData.TotalCoinCount * (_clearedEnemyCount / _allEnemyCountInLevel);
+        }
+        // private void FixedUpdate()
+        // {
+        //     Debug.Log($"Percentage -{ClearedPercentage()}");
+        // }
         IEnumerator SpawnEnemys()
         {
             _levelData = _enemySpawnData.EnemyLevelSpawnData(_gameData.CurrentLvl);
+
             var sectionData = _levelData.EnmeySectionSpawnData(_gameData.CurrentSection);
             var waveInfos = sectionData.waveInfos;
             _sectionUIController.SetSectionTxt(_gameData.CurrentSection + 1);
@@ -148,6 +172,8 @@ namespace _Project.Scripts.Character.EnemyRuntime
         public void EnmeyDead(Enemy enemy)
         {
             if (!_spawnedEnemyBehaviour.Contains(enemy)) return;
+            _clearedEnemyCount++;
+
             _spawnedEnemyBehaviour.Remove(enemy);
             _spawnedEnemys.Remove(enemy.transform);
             if (enemy == IsTypeBose(enemy.EnemyType))

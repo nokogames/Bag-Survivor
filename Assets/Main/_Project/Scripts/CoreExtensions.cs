@@ -26,7 +26,12 @@ public static class CoreExtensions
 
 
 
-
+    public static string FormatTime(this float timeInSeconds)
+    {
+        int minutes = Mathf.FloorToInt(timeInSeconds / 60F);
+        int seconds = Mathf.FloorToInt(timeInSeconds % 60F);
+        return string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
 
 
 

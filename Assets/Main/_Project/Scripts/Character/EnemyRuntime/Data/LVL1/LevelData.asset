@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   enmeySectionSpawnDatas:
-  - {fileID: 11400000, guid: 10dde292bb0f83c4b867c328d671ce66, type: 2}
-  - {fileID: 11400000, guid: 10dde292bb0f83c4b867c328d671ce66, type: 2}
+  - {fileID: 11400000, guid: 05602b2adc05c0b47bb3222526181f35, type: 2}
+  - {fileID: 11400000, guid: 05602b2adc05c0b47bb3222526181f35, type: 2}
+  EnemyCount: 12

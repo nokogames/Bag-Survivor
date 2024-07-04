@@ -6,7 +6,8 @@ using _Project.Scripts.Interactable.Collectable;
 using _Project.Scripts.Interactable.Craft;
 
 using _Project.Scripts.SkillManagement.Controllers;
-
+using _Project.Scripts.UI.Controllers;
+using Pack.GameData;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -17,9 +18,11 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         [Inject] private EnemyDetector _enemyDetector;
         [Inject] private CraftDetector _craftDetector;
         [Inject] private PlayerMovementController _playerMovementController;
+        [Inject] private InGamePanelController _inGamePanelController;
         // [Inject] private BotController _botController;
 
         [Inject] private BarController _barController;
+        [Inject] private GameData _gameData;
         private bool _eneble = true;
         public bool Enable { get => _eneble; set => SetActivity(value); }
 
@@ -95,9 +98,16 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
             //  var coroutine = StaticHelper.Instance.MoveToPositionWithFollow(_playerSM.Transform, collectableTransform, collectableType, OnCompletedCollecting);\
             if (collectableType == CollectableType.XP) _barController.CollectedXp();
+            else if (collectableType == CollectableType.GEM) CollectedGem();
             var coroutine = collectableTransform.CustomDoJump(_playerSM.Transform, collectableType, 3f, .3f, OnCompletedCollecting);
             StaticHelper.Instance.StartHelperCoroutine(coroutine);
 
+        }
+
+        private void CollectedGem()
+        {
+            _gameData.playerResource.GemCount++;
+            _inGamePanelController.SetGemCountTxt();
         }
 
         private void OnCompletedCollecting(Transform collectable, CollectableType collectableType)

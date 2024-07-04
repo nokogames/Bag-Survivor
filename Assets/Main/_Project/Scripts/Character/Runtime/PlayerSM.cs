@@ -87,6 +87,7 @@ namespace _Project.Scripts.Character.Runtime
                 builder.RegisterEntryPoint<HealthController>(Lifetime.Scoped).AsSelf();
                 builder.Register(_ => _skillManager.BarController, Lifetime.Scoped);
                 builder.Register(_ => _uiMediator.PanelController, Lifetime.Scoped);
+                builder.Register(_ => _uiMediator.InGamePanelController, Lifetime.Scoped);
 
                 builder.RegisterEntryPoint<UpgradeDataApplyer>(Lifetime.Singleton);
 

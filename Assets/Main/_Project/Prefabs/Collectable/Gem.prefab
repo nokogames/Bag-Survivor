@@ -68,6 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf74de4c8ad8fe479a7ae7bfa04fd21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  craftParticle: {fileID: 8163684771574148739, guid: fbaa36d53ba339c408c2acc145e65433,
+    type: 3}
+  gemCount: 0
+  gemPrefab: {fileID: 944131630768492333, guid: e8fa3f26ed307f344801121127fcc407,
+    type: 3}
   cuttableSecions:
   - objects:
     - {fileID: 3067601408627282041}

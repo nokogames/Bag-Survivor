@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Pack.GameData
@@ -8,14 +9,30 @@ namespace Pack.GameData
     {
         public int CurrentLvl;
         public int CurrentSection;
-        public int Money;
-        public int Xp;
+
+        public PlayerResource playerResource;
+
 
 
 
         public void Load() => SaveManager.LoadData(this);
         public void Save() => SaveManager.SaveData(this);
 
+    }
+
+    [SerializeField]
+    public class SavedLevelData
+    {
+        public bool IsOpen;
+        public float MaxPlayTime;
+        public float MaxClearedEnemyPercentage;
+
+    }
+    [Serializable]
+    public class PlayerResource
+    {
+        public int GemCount;
+        public int CoinCount;
     }
 
 }

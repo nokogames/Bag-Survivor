@@ -8,6 +8,7 @@ TagManager:
   - Craftable
   - XP
   - FxTemporaire
+  - GEM
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ using VContainer;
 namespace _Project.Scripts.Interactable.Collectable
 {
     public class CollectableDetector : MonoBehaviour
-    {
+    {   
         private ICollectableDetectorReciver _reciver;
         public void Initialise(ICollectableDetectorReciver reciver)
         {

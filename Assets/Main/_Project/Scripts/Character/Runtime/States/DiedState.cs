@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.Character.EnemyRuntime;
 using _Project.Scripts.Character.Runtime.Controllers;
+using _Project.Scripts.Level;
 using _Project.Scripts.Reusable;
 using _Project.Scripts.UI.Controllers;
 using VContainer;
@@ -16,6 +17,7 @@ namespace _Project.Scripts.Character.Runtime.States
         [Inject] private PanelController _panelController;
         [Inject] private DetectionController _detectionController;
         [Inject] private EnemyManager _enemyManager;
+        [Inject] private LevelDataManager _levelDataManager;
         //  [Inject] private InLevelEvents _inLevelEvents;
         public void Initialize()
         {
@@ -32,6 +34,7 @@ namespace _Project.Scripts.Character.Runtime.States
 
             _panelController.PlayerDied();
             _enemyManager.PlayerDied();
+            _levelDataManager.PlayerDied();
 
         }
 

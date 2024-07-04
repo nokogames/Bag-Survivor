@@ -16,6 +16,8 @@ namespace _Project.Scripts.UI
     {
         private LifetimeScope _parentScope;
         public LifetimeScope _uiScope;
+        [Header("In game elements"), SerializeField] private InGamePanelView inGamePanelView;
+        [Header("Level End Collected PlayTime"), SerializeField] private LevelEndDataPanelView levelEndDataPanelView;
         [Header("Main Menu Data"), SerializeField] private MainMenuControllerData mainMenuControllerData;
         [Header("Panels"), SerializeField] private PanelControllerData panelControllerData;
         [Header("Bar"), SerializeField] private PlayerInGameUpgradeBarControllerData playerInGameUpgradeBarControllerData;
@@ -26,6 +28,8 @@ namespace _Project.Scripts.UI
         public SkillUIController SkillUIController { get; set; }
         public UIMediatorEventHandler UIMediatorEventHandler { get; set; }
         public PanelController PanelController { get; private set; }
+        public InGamePanelController InGamePanelController { get; private set; }
+        public LevelEndDataPanel LevelEndDataPanel { get; private set; }
 
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
@@ -46,11 +50,17 @@ namespace _Project.Scripts.UI
                builder.RegisterInstance(sectionUIControllerData);
                builder.RegisterInstance(panelControllerData);
                builder.RegisterInstance(mainMenuControllerData);
+               builder.RegisterInstance(levelEndDataPanelView);
+               builder.RegisterInstance(inGamePanelView);
 
                builder.RegisterEntryPoint<PlayerInGameUpgradeBarController>(Lifetime.Scoped).AsSelf();
                builder.RegisterEntryPoint<SkillUIController>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
                builder.RegisterEntryPoint<PanelController>(Lifetime.Scoped).AsSelf();
                builder.RegisterEntryPoint<MainMenuController>(Lifetime.Scoped).AsSelf();
+               builder.RegisterEntryPoint<LevelEndDataPanel>(Lifetime.Scoped).AsSelf();
+               builder.RegisterEntryPoint<InGamePanelController>(Lifetime.Scoped).AsSelf();
+
+
 
                builder.Register<SectionUIController>(Lifetime.Scoped);
 
@@ -69,6 +79,8 @@ namespace _Project.Scripts.UI
             SkillUIController = _uiScope.Container.Resolve<SkillUIController>();
             UIMediatorEventHandler = _uiScope.Container.Resolve<UIMediatorEventHandler>();
             PanelController = _uiScope.Container.Resolve<PanelController>();
+            InGamePanelController = _uiScope.Container.Resolve<InGamePanelController>();
+            LevelEndDataPanel = _uiScope.Container.Resolve<LevelEndDataPanel>();
         }
     }
 

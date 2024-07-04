@@ -41,6 +41,7 @@ namespace _Project.Scripts
             builder.RegisterComponentInNewPrefab(uiMediatorPref, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
             builder.RegisterComponentInNewPrefab(particlePool, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
             builder.Register<SceneLoader>(Lifetime.Singleton);
+            builder.RegisterEntryPoint<LevelDataManager>(Lifetime.Singleton).AsSelf();
             builder.RegisterInstance(gameData);
             builder.RegisterInstance(inputData);
             builder.RegisterInstance(enemySpawnData);

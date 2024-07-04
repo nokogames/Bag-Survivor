@@ -62,7 +62,7 @@ namespace _Project.Scripts.Character.Runtime.States
         internal void Craft()
         {
             if (_character.Craftable == null) return;
-            _character.Craftable.Craft(_craftPercentage);
+            _character.Craftable.CraftWithParticle(_craftPercentage);
             Debug.Log("Crafted");
         }
     }
