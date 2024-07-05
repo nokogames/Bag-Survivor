@@ -5,6 +5,7 @@ using _Project.Scripts.Character.Datas;
 using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.Level;
 using _Project.Scripts.UI.Controllers;
+using _Project.Scripts.UI.Controllers.MainMenu;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -18,7 +19,7 @@ namespace _Project.Scripts.UI
         public LifetimeScope _uiScope;
         [Header("In game elements"), SerializeField] private InGamePanelView inGamePanelView;
         [Header("Level End Collected PlayTime"), SerializeField] private LevelEndDataPanelView levelEndDataPanelView;
-        [Header("Main Menu Data"), SerializeField] private MainMenuControllerData mainMenuControllerData;
+        [Header("Main Menu Data"), SerializeField] private MainMenuView mainMenuControllerData;
         [Header("Panels"), SerializeField] private PanelControllerData panelControllerData;
         [Header("Bar"), SerializeField] private PlayerInGameUpgradeBarControllerData playerInGameUpgradeBarControllerData;
         [SerializeField] private SkillUIControllerData sillUIControllerData;
@@ -59,6 +60,7 @@ namespace _Project.Scripts.UI
                builder.RegisterEntryPoint<MainMenuController>(Lifetime.Scoped).AsSelf();
                builder.RegisterEntryPoint<LevelEndDataPanel>(Lifetime.Scoped).AsSelf();
                builder.RegisterEntryPoint<InGamePanelController>(Lifetime.Scoped).AsSelf();
+               builder.RegisterEntryPoint<SwipeController>(Lifetime.Scoped).AsSelf();
 
 
 

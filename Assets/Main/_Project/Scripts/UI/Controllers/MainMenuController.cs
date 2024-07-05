@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using _Project.Scripts.Level;
+using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
@@ -7,11 +9,11 @@ using VContainer.Unity;
 namespace _Project.Scripts.UI.Controllers
 {
 
-    public class MainMenuController : IStartable
+    public class MainMenuController : IStartable, ITickable
     {
-        [Inject] private MainMenuControllerData _data;
+        [Inject] private MainMenuView _data;
         [Inject] private InLevelEvents _inLevelEvents;
-        
+
 
 
 
@@ -32,11 +34,25 @@ namespace _Project.Scripts.UI.Controllers
             //Delay
             _inLevelEvents.onNextLevel?.Invoke();
         }
+
+        public void Tick()
+        {
+        }
     }
     [Serializable]
-    public class MainMenuControllerData
+    public class MainMenuView
     {
         public Button playBtn;
+        public List<GameObject> pages;
+        public List<MenuBtnBehaviour> menuBtnBehaviours;
+        public Scrollbar mainScrollBar;
+
+
+        [Header("Play Page")]
+        public List<MapBehaviour> mapBehaviours;
+        public Scrollbar mapScrollBar;
+        public Button leftBtn;
+        public Button rightBtn;
     }
 
 
