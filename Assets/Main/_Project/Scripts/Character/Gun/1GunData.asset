@@ -15,5 +15,4 @@ MonoBehaviour:
   playerUpgradeDataSO: {fileID: 11400000, guid: cb6cbfd369335614a988248b3585b885,
     type: 2}
   bulletPoolIndex: 1
-  spawnTimeRate: 0.4
   baseDamage: 1

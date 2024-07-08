@@ -50,6 +50,7 @@ namespace _Project.Scripts
             builder.RegisterInstance(playerRuntimeUpgradeData.savedPlayerData);
             builder.RegisterInstance(playerRuntimeUpgradeData.barData);
             builder.RegisterInstance(playerRuntimeUpgradeData.playerUpgradedData);
+
             builder.RegisterInstance(Skills).AsSelf();
 
             //Events
@@ -73,13 +74,13 @@ namespace _Project.Scripts
 #endif
 
         }
-        private void Update()
-        {
-            #region  Debug
-            if (Input.GetKeyDown(KeyCode.R)) _sceneLoader.LoadLevelWithSplash("Fighting");
-            if (Input.GetKeyDown(KeyCode.E)) _sceneLoader.LoadLevelWithSplash("GamePlay");
-            #endregion
-        }
+        // private void Update()
+        // {
+        //     #region  Debug
+        //     if (Input.GetKeyDown(KeyCode.R)) _sceneLoader.LoadLevelWithSplash("Fighting");
+        //     if (Input.GetKeyDown(KeyCode.E)) _sceneLoader.LoadLevelWithSplash("GamePlay");
+        //     #endregion
+        // }
         protected override void OnDestroy()
         {
             if (_inLevelEvents != null) _inLevelEvents.Dispose();

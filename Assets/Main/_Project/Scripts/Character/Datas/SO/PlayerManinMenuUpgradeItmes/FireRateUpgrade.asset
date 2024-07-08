@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dedd7a8bfbcf6d40b981b255f7bd590, type: 3}
+  m_Name: FireRateUpgrade
+  m_EditorClassIdentifier: 
+  BgSprite: {fileID: 21300000, guid: d01fb4f9c4816724e80b9b7d1094e59b, type: 3}
+  UpgradeInfo: Fire Rate
+  Lvl: 6
+  IsCompleted: 0
+  fireRateInfos:
+  - Price: 0
+    FireRate: 0.5
+  - Price: 100
+    FireRate: 0.45
+  - Price: 200
+    FireRate: 0.4
+  - Price: 300
+    FireRate: 0.38
+  - Price: 400
+    FireRate: 0.35
+  - Price: 500
+    FireRate: 0.4
+  - Price: 600
+    FireRate: 0.37
+  - Price: 700
+    FireRate: 0.35
+  - Price: 800
+    FireRate: 0.3
+  - Price: 900
+    FireRate: 0.28
+  - Price: 1300
+    FireRate: 0.25

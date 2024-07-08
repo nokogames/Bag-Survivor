@@ -85,6 +85,7 @@ namespace _Project.Scripts.Character.Runtime
                 builder.Register<BotController>(Lifetime.Scoped);
                 builder.Register<PlayerAnimationController>(Lifetime.Scoped);
                 builder.RegisterEntryPoint<HealthController>(Lifetime.Scoped).AsSelf();
+                
                 builder.Register(_ => _skillManager.BarController, Lifetime.Scoped);
                 builder.Register(_ => _uiMediator.PanelController, Lifetime.Scoped);
                 builder.Register(_ => _uiMediator.InGamePanelController, Lifetime.Scoped);

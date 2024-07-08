@@ -35,12 +35,16 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
 
         private Vector3 _mouseStartPos;
 
+
         public void Tick()
         {
             _data.menuBtnBehaviours.ForEach(x => x.SetAnimByValue(_data.mainScrollBar.value));
             _data.mapBehaviours.ForEach(x => x.SetAnimByValue(_data.mapScrollBar.value));
-
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonDown(0))
+            {
+                _mouseStartPos = Input.mousePosition;
+            }
+            if (Input.GetMouseButtonUp(0) && Vector3.Magnitude(_mouseStartPos - Input.mousePosition) > 50f)
             {
                 MainClampAnim();
                 MapClampAnim();

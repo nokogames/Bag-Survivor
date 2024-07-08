@@ -25,12 +25,22 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
     //
     private float _crrTime = 0;
-    private float _healingTimeRate = .1f;
+    private float _healingTimeRate = .5f;
     private float _healingAmount = 0.1f;
 
     public void Initialise(PlayerSM playerSM)
     {
       _playerSm = playerSM;
+    }
+
+    public void SetBaseHealt(float baseHealth)
+    {
+      _baseHealth = baseHealth;
+      _health = baseHealth;
+    }
+    public void SetHealingAmount(float healingAmount)
+    {
+      _healingAmount = healingAmount;
     }
     public void FixedTick()
     {

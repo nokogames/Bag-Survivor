@@ -7,6 +7,7 @@ using _Project.Scripts.Character.Runtime;
 using _Project.Scripts.Level;
 
 using _Project.Scripts.SkillManagement;
+using Pack.GameData;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer;
@@ -20,7 +21,7 @@ namespace _Project.Scripts
 
         // [SerializeField] private PlayerRuntimeUpgradeData playerRuntimeUpgradeData;
         private bool _isValid;
-
+        [Inject] private GameData _gameData;
 
 
         protected override void Awake()
@@ -32,6 +33,8 @@ namespace _Project.Scripts
                 Parent.Container.Inject(this);
             }
             if (!_isValid) SceneManager.LoadScene("Startup");
+
+            Container.Resolve<PlayerUpgradeDatabase>().Initialize(_gameData);
         }
 
         protected override void Configure(IContainerBuilder builder)
@@ -48,11 +51,13 @@ namespace _Project.Scripts
 
             _isValid = true;
 
+
         }
         private void Start()
         {
             Container.Resolve<SavedPlayerData>();
             Container.Resolve<PlayerUpgradedData>().Reset();
+
 
         }
 

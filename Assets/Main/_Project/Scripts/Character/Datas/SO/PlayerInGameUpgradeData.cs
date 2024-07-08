@@ -27,6 +27,7 @@ namespace _Project.Scripts.Character.Datas.SO
         public float firerate = 0;//=
         public float botDamage = 0;
         public float botFirerate = 0;
+        public float healt = 0;
         //Aditional mechanics
         public float pickUpRange = 0;
         public int botCount = 0;
@@ -67,6 +68,7 @@ namespace _Project.Scripts.Character.Datas.SO
             //Collectable
             collectedXpMultiply = 1;
             healtRegenRate = 0;//Ca
+            healt = 0;
 
         }
     }
@@ -79,9 +81,25 @@ namespace _Project.Scripts.Character.Datas.SO
         public float firerate = 0;//=
         public float botDamage = 0;
         public float botFirerate = 0;
-
+        public float healtRegenAmount = 0;
         public float pickUpRange = 0;
         public int botCount = 0;
+        public float healt = 0;
+        public float speed=0;
+
+        private List<IPlayerUpgradedReciver> _recivers = new();
+        public void AddReciver(IPlayerUpgradedReciver reciver)
+        {
+            if (!_recivers.Contains(reciver)) _recivers.Add(reciver);
+        }
+        public void RemoveReciver(IPlayerUpgradedReciver reciver)
+        {
+            if (_recivers.Contains(reciver)) _recivers.Remove(reciver);
+        }
+        public void Upgraded()
+        {
+            _recivers.ForEach(x => x.OnUpgraded());
+        }
     }
 
     [Serializable]

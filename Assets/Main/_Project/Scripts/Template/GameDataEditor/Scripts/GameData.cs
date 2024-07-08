@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Pack.GameData
@@ -12,15 +14,33 @@ namespace Pack.GameData
 
         public PlayerResource playerResource;
 
-
+        [SerializeField] private List<PlayerSavedUpgradeInfos> playerSavedUpgradeInfos;
+        public int GetSavedUpgradeLvl<T>()
+        {
+            var result = playerSavedUpgradeInfos.FirstOrDefault(x => x.type == typeof(T).ToString());
+            if (result != null) return result.Level;
+            var info = new PlayerSavedUpgradeInfos(typeof(T).ToString());
+            playerSavedUpgradeInfos.Add(info);
+            return info.Level;
+        }
 
 
         public void Load() => SaveManager.LoadData(this);
         public void Save() => SaveManager.SaveData(this);
 
     }
-
-    [SerializeField]
+    [Serializable]
+    public class PlayerSavedUpgradeInfos
+    {
+        public string type;
+        public int Level;
+        public PlayerSavedUpgradeInfos(string typeName)
+        {
+            type = typeName;
+            Level = 0;
+        }
+    }
+    [Serializable]
     public class SavedLevelData
     {
         public bool IsOpen;

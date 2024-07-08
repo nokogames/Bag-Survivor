@@ -19,31 +19,47 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         //Components
         [Inject] private EnemyDetector _enemyDetector;
         [Inject] private CollectableDetector _collectableDetector;
+        //Controllers
+        [Inject] private HealthController _healthController;
 
-
-        private float _enemyDetectorBaseRadius = 6f;
-        private float _collectableDetectorBaseRadius = 5.8f;
+        // private float _enemyDetectorBaseRadius = 6f;
+        // private float _collectableDetectorBaseRadius = 5.8f;
         public void Start()
         {
 
-            _enemyDetector.SetRadius(_enemyDetectorBaseRadius);
-            _collectableDetector.SetRadius(_collectableDetectorBaseRadius);
+            _enemyDetector.SetRadius(_savedPlayerData.range);
+            _collectableDetector.SetRadius(_savedPlayerData.pickUpRange);
+
+            _healthController.SetBaseHealt(_savedPlayerData.healt);
+            _healthController.SetHealingAmount(_savedPlayerData.healtRegenAmount);
+
             _upgradedData.AddReciver(this);
+            _savedPlayerData.AddReciver(this);
         }
         public void OnUpgraded()
         {
 
             SetEnemyDetector();
             SetCollectableDetector();
+            SetHealt();
+            SetHealingAmount();
         }
 
+        private void SetHealt()
+        {
+            _healthController.SetBaseHealt(_savedPlayerData.healt + _upgradedData.healt);
+        }
+        private void SetHealingAmount()
+        {
+            _healthController.SetHealingAmount(_savedPlayerData.healtRegenAmount + _upgradedData.healtRegenRate);
+        }
         private void SetEnemyDetector()
         {
-            _enemyDetector.SetRadius(_enemyDetectorBaseRadius + _upgradedData.range);
+            _enemyDetector.SetRadius(_savedPlayerData.range + _upgradedData.range);
         }
         private void SetCollectableDetector()
         {
-            _collectableDetector.SetRadius(_collectableDetectorBaseRadius + _upgradedData.pickUpRange);
+            _collectableDetector.SetRadius(_savedPlayerData.pickUpRange + _upgradedData.pickUpRange);
         }
 
         public void Dispose()

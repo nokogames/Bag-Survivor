@@ -35,7 +35,7 @@ namespace _Project.Scripts.Loader
         {
             if (_asyncLoad != null && !_asyncLoad.isDone) return;
             _loaderMediator.StartLoading();
-
+            await Task.Delay(20);
             _asyncLoad = SceneManager.LoadSceneAsync(levelName);
             while (!_asyncLoad.isDone)
             {
@@ -73,7 +73,7 @@ namespace _Project.Scripts.Loader
             await Task.Delay(500);
             // Thread.Sleep(10);
             _loaderMediator.FinishSplashLoading();
-          
+
         }
 
         public void TestLog()
