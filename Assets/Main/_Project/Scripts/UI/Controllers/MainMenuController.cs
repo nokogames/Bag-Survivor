@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Level;
 using _Project.Scripts.Loader;
 using _Project.Scripts.UI.Controllers.MainMenu;
+using Pack.GameData;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -20,6 +21,7 @@ namespace _Project.Scripts.UI.Controllers
         [Inject] private MainMenuBotUpgradePanelController _botUpgradePanelController;
 
         [Inject] private UpgradeVisualController _upgradeVisualController;
+        [Inject] private GameData _gameData;
 
         private int _targetLvl;
         public void Start()
@@ -50,7 +52,14 @@ namespace _Project.Scripts.UI.Controllers
             if (_targetLvl > 2) _targetLvl = 1;
             string targetLvlName = $"Level{_targetLvl + 1}";
 
-            _sceneLoader.LoadLevelWithSplash(targetLvlName, () => _inLevelEvents.onNextLevel?.Invoke());
+            _sceneLoader.LoadLevelWithSplash(targetLvlName, () =>
+            {
+                _gameData.CurrentLvl = _targetLvl;
+                _gameData.GetSavedLevelData().IsOpen = true;
+                _gameData.Save();
+                _inLevelEvents.onNextLevel?.Invoke();
+            }
+            );
 
         }
         private void OpenPlayerUpgradeBtnClicked()

@@ -42,7 +42,8 @@ namespace _Project.Scripts.UI.Controllers
         private void LoadNextLvl()
         {
             _gameData.CurrentLvl++;
-
+            if (_gameData.CurrentLvl >= 2) _gameData.CurrentLvl = 2;
+            _gameData.GetSavedLevelData().IsOpen = true;
             _sceneLoader.LoadLevelWithSplash("Level" + (_gameData.CurrentLvl + 1).ToString(), LoadedNextLvl);
 
         }

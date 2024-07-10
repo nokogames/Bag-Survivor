@@ -39,6 +39,7 @@ namespace _Project.Scripts.Level
 
         private void OnDisable()
         {
+            if (_arrowTween != null) _arrowTween.Kill();
             UnsubscribeEvents();
 
 

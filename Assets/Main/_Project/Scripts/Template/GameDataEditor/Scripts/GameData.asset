@@ -15,7 +15,7 @@ MonoBehaviour:
   CurrentLvl: 0
   CurrentSection: 0
   playerResource:
-    GemCount: 100
-    CoinCount: 100
+    GemCount: 10000
+    CoinCount: 10000
   savedLevelDatas: []
   playerSavedUpgradeInfos: []
