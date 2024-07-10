@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4682d42de31a68646a70940f37d3389a, type: 3}
   m_Name: BotCountUpgrade
   m_EditorClassIdentifier: 
-  BgSprite: {fileID: 21300000, guid: 6997b7faee515f64a9a17aa204dd1bc2, type: 3}
+  BgSprite: {fileID: 21300000, guid: 72a758e65449ff2468b871410ee7aeac, type: 3}
   UpgradeInfo: Bot Count
-  Lvl: 0
+  Lvl: 2
   IsCompleted: 0
   botCountInfos:
   - Price: 0

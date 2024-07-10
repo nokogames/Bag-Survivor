@@ -21,14 +21,17 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
             Lvl++;
             var crrDamageInfo = healtRegenInfos[Lvl];
             savedPlayerData.healtRegenAmount = crrDamageInfo.HealtRegenAmount;
-
+            base.Upgraded(savedPlayerData);
         }
 
 
         public override void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
-            Lvl = gameData.GetSavedUpgradeLvl<HealtRegenUpgrade>();
-             var crrDamageInfo = healtRegenInfos[Lvl];
+            base.Initialize(gameData, savedPlayerData);
+            base.SetupData<HealtRegenUpgrade>();
+            Lvl = data.Level;
+
+            var crrDamageInfo = healtRegenInfos[Lvl];
             savedPlayerData.healtRegenAmount = crrDamageInfo.HealtRegenAmount;
         }
 

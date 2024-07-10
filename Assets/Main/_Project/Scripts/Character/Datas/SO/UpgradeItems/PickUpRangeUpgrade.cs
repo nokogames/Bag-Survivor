@@ -18,14 +18,17 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
             Lvl++;
             var crrPickUpRangeInfo = picUpRangeInfos[Lvl];
             savedPlayerData.pickUpRange = crrPickUpRangeInfo.Range;
-
+            base.Upgraded(savedPlayerData);
         }
 
 
         public override void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
-            Lvl = gameData.GetSavedUpgradeLvl<PickUpRangeUpgrade>();
-             var crrPickUpRangeInfo = picUpRangeInfos[Lvl];
+            base.Initialize(gameData, savedPlayerData);
+            base.SetupData<PickUpRangeUpgrade>();
+            Lvl = data.Level;
+
+            var crrPickUpRangeInfo = picUpRangeInfos[Lvl];
             savedPlayerData.pickUpRange = crrPickUpRangeInfo.Range;
         }
 

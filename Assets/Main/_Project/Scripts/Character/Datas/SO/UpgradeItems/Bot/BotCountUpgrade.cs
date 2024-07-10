@@ -24,13 +24,20 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
             Lvl++;
             var crr = botCountInfos[Lvl];
             savedPlayerData.botCount = crr.BotCount;
+            
+            base.Upgraded(savedPlayerData);
 
         }
 
 
         public override void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
-            Lvl = gameData.GetSavedUpgradeLvl<BotCountUpgrade>();
+            base.Initialize(gameData, savedPlayerData);
+            base.SetupData<BotCountUpgrade>();
+
+            Lvl = data.Level;
+
+
             var crrFireRateInfo = botCountInfos[Lvl];
             savedPlayerData.botCount = crrFireRateInfo.BotCount;
         }

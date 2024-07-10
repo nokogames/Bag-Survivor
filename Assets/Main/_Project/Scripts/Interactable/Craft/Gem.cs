@@ -19,7 +19,14 @@ namespace _Project.Scripts.Interactable.Craft
 
         public Transform Transform => transform;
         private Collider _collider;
-
+        public void Reset()
+        {
+            _remainPercentage = 100;
+            cuttableSecions.ForEach(x => x.SetActive(true));
+            _canCraftable = true;
+            _collider.enabled = true;
+            _craftLvl = 0;
+        }
         private void Awake()
         {
             _collider = GetComponent<Collider>();

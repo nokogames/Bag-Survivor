@@ -16,13 +16,15 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
             Lvl++;
             var crrDamageInfo = damageInfos[Lvl];
             savedPlayerData.damage = crrDamageInfo.DamageAmount;
-
+         base.Upgraded(savedPlayerData);
         }
 
 
         public override void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
-            Lvl = gameData.GetSavedUpgradeLvl<DamageUpgrade>();
+             base.Initialize(gameData, savedPlayerData);
+            base.SetupData<DamageUpgrade>();
+            Lvl = data.Level;
             var crrDamageInfo = damageInfos[Lvl];
             savedPlayerData.damage = crrDamageInfo.DamageAmount;
         }

@@ -22,16 +22,21 @@ namespace _Project.Scripts.Character.Datas.SO
         // {
 
         // }
+        protected GameData _gameData;
         public virtual void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
+            _gameData = gameData;
 
         }
         public virtual void Upgraded(SavedPlayerData savedPlayerData)
         {
-
+           data.Level=Lvl;
         }
-
-
+        public PlayerSavedUpgradeInfos data;
+        public void SetupData<T>()
+        {
+            data = _gameData.GetSavedUpgrade<T>();
+        }
     }
 }
 

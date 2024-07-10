@@ -60,12 +60,13 @@ public class MapBehaviour : MonoBehaviour
         _bgImg.sprite = _mapUiInfo.mapImg;
         lockImg.sprite = _mapUiInfo.lockImg;
         lockImg.enabled = !_savedLevelData.IsOpen;
-        nameTxt.text=_mapUiInfo.name;
+        nameTxt.text = _mapUiInfo.name;
         if (_savedLevelData.MaxClearedEnemyPercentage > 1)
         {
-            percentTxt.text = $"Level <color=red> {_savedLevelData.MaxClearedEnemyPercentage}%</color> Cleared";
+            string cleared = _savedLevelData.MaxClearedEnemyPercentage.ToString("F1");
+            percentTxt.text = $"Level<color=red> {cleared}%</color> Cleared";
         }
-            
+
 
     }
 

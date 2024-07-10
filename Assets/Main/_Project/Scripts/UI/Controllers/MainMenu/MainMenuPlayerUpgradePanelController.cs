@@ -20,7 +20,7 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
         [Inject] GameData _gameData;
         [Inject] InGamePanelController _inGamePanelController;
         [Inject] private UpgradeVisualController _upgradeVisualController;
-        
+
         private List<PlayerUpgradeUIBehaviour> _uiBehaviours;
 
         public void Start()
@@ -62,6 +62,7 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
             _savedPlayerData.Upgraded();
             _inGamePanelController.SetCoinCounTxt();
             _upgradeVisualController.PlayerUpgraded();
+            _gameData.Save();
 
         }
 

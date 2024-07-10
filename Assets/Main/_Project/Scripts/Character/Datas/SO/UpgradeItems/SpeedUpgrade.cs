@@ -18,13 +18,16 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
             Lvl++;
             var crrFireRateInfo = fireRateInfos[Lvl];
             savedPlayerData.speed = crrFireRateInfo.Speed;
-
+            base.Upgraded(savedPlayerData);
         }
 
 
         public override void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
-            Lvl = gameData.GetSavedUpgradeLvl<SpeedUpgradeInfo>();
+            base.Initialize(gameData, savedPlayerData);
+            base.SetupData<SpeedUpgrade>();
+            Lvl = data.Level;
+
             var crrFireRateInfo = fireRateInfos[Lvl];
             savedPlayerData.speed = crrFireRateInfo.Speed;
         }

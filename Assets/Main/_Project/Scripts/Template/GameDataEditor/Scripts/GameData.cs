@@ -16,14 +16,15 @@ namespace Pack.GameData
 
         [SerializeField] private List<SavedLevelData> savedLevelDatas;
         [SerializeField] private List<PlayerSavedUpgradeInfos> playerSavedUpgradeInfos;
-        public int GetSavedUpgradeLvl<T>()
+        public PlayerSavedUpgradeInfos GetSavedUpgrade<T>()
         {
             var result = playerSavedUpgradeInfos.FirstOrDefault(x => x.type == typeof(T).ToString());
-            if (result != null) return result.Level;
+            if (result != null) return result;
             var info = new PlayerSavedUpgradeInfos(typeof(T).ToString());
             playerSavedUpgradeInfos.Add(info);
-            return info.Level;
+            return info;
         }
+       
         public SavedLevelData GetSavedLevelData(int lvl)
         {
             var result = savedLevelDatas.FirstOrDefault(x => x.lvl == lvl);

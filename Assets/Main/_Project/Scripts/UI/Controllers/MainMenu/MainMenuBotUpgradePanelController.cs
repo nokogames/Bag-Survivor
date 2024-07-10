@@ -20,7 +20,7 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
         [Inject] GameData _gameData;
         [Inject] InGamePanelController _inGamePanelController;
         private List<BotUpgradeUIBehaviour> _uiBehaviours;
-          [Inject] private UpgradeVisualController _upgradeVisualController;
+        [Inject] private UpgradeVisualController _upgradeVisualController;
         public void Start()
         {
             _uiBehaviours = new(_upgradeDatabase.BotMainMenuUpgradeInfos.Count);
@@ -58,13 +58,14 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
             _savedPlayerData.Upgraded();
             _inGamePanelController.SetGemCountTxt();
             _upgradeVisualController.BotUpgraded();
+            _gameData.Save();
 
         }
         private Tween _openAnim;
         public void Enable(bool isActive)
         {
             if (_openAnim != null) _openAnim.Kill();
-            _panelData.verticalLayoutGroup.spacing = 200f; 
+            _panelData.verticalLayoutGroup.spacing = 200f;
             _openAnim = DOTween.To(() => _panelData.verticalLayoutGroup.spacing, x => _panelData.verticalLayoutGroup.spacing = x, 0, 0.5f).SetEase(Ease.OutBack);
             _panelData.panel.SetActive(isActive);
         }

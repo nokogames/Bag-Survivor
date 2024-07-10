@@ -20,7 +20,7 @@ namespace _Project.Scripts.UI.Controllers
         [Inject] private MainMenuBotUpgradePanelController _botUpgradePanelController;
 
         [Inject] private UpgradeVisualController _upgradeVisualController;
-        
+
         private int _targetLvl;
         public void Start()
         {
@@ -47,7 +47,9 @@ namespace _Project.Scripts.UI.Controllers
             //Animation and show panels;
             //Load Level 
             //Delay
+            if (_targetLvl > 2) _targetLvl = 1;
             string targetLvlName = $"Level{_targetLvl + 1}";
+
             _sceneLoader.LoadLevelWithSplash(targetLvlName, () => _inLevelEvents.onNextLevel?.Invoke());
 
         }

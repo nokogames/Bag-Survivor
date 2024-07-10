@@ -24,12 +24,16 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
             var crr = damageInfos[Lvl];
             savedPlayerData.botDamage = crr.BotDamage;
 
+            base.Upgraded(savedPlayerData);
         }
 
 
         public override void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
-            Lvl = gameData.GetSavedUpgradeLvl<BotDamageUpgrade>();
+            base.Initialize(gameData, savedPlayerData);
+            base.SetupData<BotDamageUpgrade>();
+            Lvl = data.Level;
+
             var crrFireRateInfo = damageInfos[Lvl];
             savedPlayerData.botDamage = crrFireRateInfo.BotDamage;
         }
