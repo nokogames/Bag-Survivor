@@ -14,6 +14,7 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
     {
 
         [Inject] private MainMenuView _data;
+        [Inject] private MapPanelController _mapPanelController;
         private float _scrollAmountPerPage;
         private float _mapScrollAmountPerPage;
 
@@ -24,7 +25,8 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
             _scrollAmountPerPage = 1f / (_data.pages.Count - 1);
 
             _data.mapScrollBar.value = 0;
-            _mapScrollAmountPerPage = 1f / (_data.mapBehaviours.Count - 1);
+            // _mapScrollAmountPerPage = 1f / (_mapPanelController.mapBehaviours.Count - 1);
+            _mapScrollAmountPerPage = 0.5f;
 
             _data.menuBtnBehaviours.ForEach(x => x.Initialize(MoveMainPanel));
             _data.leftBtn.onClick.AddListener(() => MapMoveToLeft());
@@ -39,7 +41,7 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
         public void Tick()
         {
             _data.menuBtnBehaviours.ForEach(x => x.SetAnimByValue(_data.mainScrollBar.value));
-            _data.mapBehaviours.ForEach(x => x.SetAnimByValue(_data.mapScrollBar.value));
+            _mapPanelController.mapBehaviours.ForEach(x => x.SetAnimByValue(_data.mapScrollBar.value));
             if (Input.GetMouseButtonDown(0))
             {
                 _mouseStartPos = Input.mousePosition;
@@ -62,13 +64,21 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
         {
             if (_mapAnim != null) _mapAnim.Kill();
             var crrValue = _data.mapScrollBar.value;
-            _mapAnim = DOTween.To(() => _data.mapScrollBar.value, x => _data.mapScrollBar.value = x, Mathf.Clamp(crrValue - _mapScrollAmountPerPage, 0, 1), 0.2f).SetEase(Ease.Linear);
+            _mapAnim = DOTween.To(() => _data.mapScrollBar.value, x => _data.mapScrollBar.value = x, Mathf.Clamp(crrValue - _mapScrollAmountPerPage, 0, 1), 0.2f).SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                SelectedMap(_data.mapScrollBar.value);
+            });
         }
         public void MapMoveToRight()
         {
             if (_mapAnim != null) _mapAnim.Kill();
             var crrValue = _data.mapScrollBar.value;
-            _mapAnim = DOTween.To(() => _data.mapScrollBar.value, x => _data.mapScrollBar.value = x, Mathf.Clamp(crrValue + _mapScrollAmountPerPage, 0, 1), 0.2f).SetEase(Ease.Linear);
+            _mapAnim = DOTween.To(() => _data.mapScrollBar.value, x => _data.mapScrollBar.value = x, Mathf.Clamp(crrValue + _mapScrollAmountPerPage, 0, 1), 0.2f)
+            .SetEase(Ease.Linear).OnComplete(() =>
+            {
+                SelectedMap(_data.mapScrollBar.value);
+            });
         }
         private Tween _mainAnim;
         private Tween _mapAnim;
@@ -80,6 +90,12 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
             float result = remain > (_mapScrollAmountPerPage / 2f) ? (_mapScrollAmountPerPage - remain) + _data.mapScrollBar.value : _data.mapScrollBar.value - remain;
             var dest = Mathf.Clamp(result, 0f, 1f);
             _mainAnim = DOTween.To(() => _data.mapScrollBar.value, x => _data.mapScrollBar.value = x, dest, 0.05f).SetEase(Ease.Linear);
+            SelectedMap(dest);
+        }
+
+        private void SelectedMap(float dest)
+        {
+            _mapPanelController.mapBehaviours.ForEach(x => x.Selected(dest));
         }
 
         private void MainClampAnim()

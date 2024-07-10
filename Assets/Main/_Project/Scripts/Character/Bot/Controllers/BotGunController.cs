@@ -20,7 +20,7 @@ namespace _Project.Scripts.Character.Bot.Controllers
 
         public void FixedTick()
         {
-            _botGun.FixedTick();
+            // _botGun.FixedTick();
             if (_upgradedGun.gameObject.activeSelf) _botGun.FixedTick();
         }
     }

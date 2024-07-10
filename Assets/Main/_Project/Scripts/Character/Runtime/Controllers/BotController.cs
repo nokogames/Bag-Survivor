@@ -20,6 +20,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         private List<Sequence> _sequnce;
         private GameObject _botPrefab;
 
+        private int _botCount = 0;
         public void Initialise(GameObject botPrefab, List<Transform> botPlacePoints)
         {
             _bots = new(botPlacePoints.Count);
@@ -48,7 +49,12 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         public void PlaceBots()
         {
-            _bots.ForEach(bot => bot.ChangeStatByPlayer(bot.PlaceToPlayerState));
+            for (int i = 0; i < _botCount; i++)
+            {
+                var bot = _bots[i];
+                bot.ChangeStatByPlayer(bot.PlaceToPlayerState);
+            }
+            // _bots.ForEach(bot => bot.ChangeStatByPlayer(bot.PlaceToPlayerState));
         }
         public void UnPlaceBots()
         {
@@ -57,13 +63,30 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         internal void CraftBots()
         {
-            _bots.ForEach(bot => bot.ChangeStatByPlayer(bot.CraftState));
+            for (int i = 0; i < _botCount; i++)
+            {
+                var bot = _bots[i];
+                bot.ChangeStatByPlayer(bot.CraftState);
+            }
+
+            //_bots.ForEach(bot => bot.ChangeStatByPlayer(bot.CraftState));
         }
 
         internal void AttackBots()
         {
-            _bots.ForEach(bot => bot.ChangeStatByPlayer(bot.AttackState));
+            for (int i = 0; i < _botCount; i++)
+            {
+                var bot = _bots[i];
+                bot.ChangeStatByPlayer(bot.AttackState);
+            }
+            // _bots.ForEach(bot => bot.ChangeStatByPlayer(bot.AttackState));
 
+        }
+
+        internal void SetBotCount(int botCount) 
+        {
+
+            _botCount = botCount;
         }
     }
 }

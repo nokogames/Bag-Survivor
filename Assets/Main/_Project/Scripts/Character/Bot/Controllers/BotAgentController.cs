@@ -59,7 +59,10 @@ namespace _Project.Scripts.Character.Bot
             return _agent.remainingDistance <= _agent.stoppingDistance + offset && !_agent.pathPending;
         }
 
-
+        public void SetSpeed(float speed)
+        {
+              _agent.speed=speed;
+        }
         public void Update()
         {
 

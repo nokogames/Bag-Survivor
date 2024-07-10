@@ -15,8 +15,8 @@ MonoBehaviour:
   CurrentLvl: 0
   CurrentSection: 0
   playerResource:
-    GemCount: 0
-    CoinCount: 5000
+    GemCount: 960
+    CoinCount: 100
   playerSavedUpgradeInfos:
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.DamageRangeUpgrade
     Level: 0
@@ -29,4 +29,6 @@ MonoBehaviour:
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.HealtUpgrade
     Level: 0
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.PickUpRangeUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.SpeedUpgradeInfo
     Level: 0

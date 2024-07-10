@@ -14,9 +14,11 @@ namespace _Project.Scripts.Character.Datas.SO
 
         public List<LevelInfo> levelInfos;
         public List<PlayerMainMenuUpgradeInfo> PlayerMainMenuUpgradeInfos;
-        public void Initialize(GameData _gameData)
+        public List<PlayerMainMenuUpgradeInfo> BotMainMenuUpgradeInfos;
+        public void Initialize(GameData _gameData, SavedPlayerData savedPlayer)
         {
-            PlayerMainMenuUpgradeInfos.ForEach(upgradeInfo => upgradeInfo.Initialize(_gameData));
+            PlayerMainMenuUpgradeInfos.ForEach(upgradeInfo => upgradeInfo.Initialize(_gameData, savedPlayer));
+            BotMainMenuUpgradeInfos.ForEach(upgradeInfo => upgradeInfo.Initialize(_gameData, savedPlayer));
 
         }
 

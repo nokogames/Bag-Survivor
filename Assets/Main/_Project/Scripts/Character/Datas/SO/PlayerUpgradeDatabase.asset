@@ -23,3 +23,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd08cf4c156bb6b47ab389fb8a287b94, type: 2}
   - {fileID: 11400000, guid: 9dc98b04fb7d0d8439e98e92cb757389, type: 2}
   - {fileID: 11400000, guid: 55dcb92a29065d840a1cd5699824c418, type: 2}
+  - {fileID: 11400000, guid: c2ca8ae6d58b74042ab66da3eb71fb70, type: 2}
+  BotMainMenuUpgradeInfos:
+  - {fileID: 11400000, guid: 04a7c49832f756e40a40c51d6887a6ab, type: 2}
+  - {fileID: 11400000, guid: 9b5b0d2ab7796f4479dd59760265a6c4, type: 2}
+  - {fileID: 11400000, guid: 461ecf963ad19ce479cdc663355f9113, type: 2}
+  - {fileID: 11400000, guid: 87535164cb51c4045a1b40697aad1759, type: 2}

@@ -50,7 +50,11 @@ namespace _Project.Scripts.Loader
         public async void LoadLevelWithSplash(string levelName, Action action)
         {
             if (_asyncLoad != null && !_asyncLoad.isDone) return;
-
+            if (SceneManager.GetActiveScene().name == levelName)
+            {
+                action.Invoke();
+                return;
+            }
             _loaderMediator.StartSplashLoading();
             await Task.Delay(500);
             _asyncLoad = SceneManager.LoadSceneAsync(levelName);

@@ -23,9 +23,11 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
         }
 
 
-        public override void Initialize(GameData gameData)
+        public override void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
             Lvl = gameData.GetSavedUpgradeLvl<HealtUpgrade>();
+            var crrDamageInfo = healtInfos[Lvl];
+            savedPlayerData.healt = crrDamageInfo.Healt;
         }
 
 

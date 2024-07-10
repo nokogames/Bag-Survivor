@@ -25,16 +25,18 @@ namespace Pack.GameData
             _gamedData = gameData;
             _root = root;
             editorDataHolder = FileLoader.LoadFile<EditorDataHolder>(EditorDataHolderPath);
-            for (var i = 0; i < editorDataHolder.DefaultDataPathes.Count; i++)
-            {
-                var path = editorDataHolder.DefaultDataPathes[i];
-                int assetsIndex = path.IndexOf("Main");
-                if (assetsIndex != -1)
-                {
-                    var newPath = Application.dataPath + "/" + path.Substring(assetsIndex);
-                    editorDataHolder.DefaultDataPathes[i] = newPath;
-                }
-            }
+            if (editorDataHolder.DefaultDataPathes.Count == 0) Debug.LogWarning("Default Pathes are emty !!");
+            
+            // for (var i = 0; i < editorDataHolder.DefaultDataPathes.Count; i++)
+            // {
+            //     var path = editorDataHolder.DefaultDataPathes[i];
+            //     int assetsIndex = path.IndexOf("Main");
+            //     if (assetsIndex != -1)
+            //     {
+            //         var newPath = Application.dataPath + "/" + path.Substring(assetsIndex);
+            //         editorDataHolder.DefaultDataPathes[i] = newPath;
+            //     }
+            // }
 
             Debug.Log($"EditorData holder Loaded.. {editorDataHolder.DefaultDataPathes.Count}");
             CreateList();

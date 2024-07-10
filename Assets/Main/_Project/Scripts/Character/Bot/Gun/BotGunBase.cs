@@ -14,6 +14,7 @@ namespace _Project.Scripts.Character.Bot.Gun
         private float _rotationSpeed = 100f;
         private float _shootTimeRate = .5f;
         private int _bulletPoolIndex = 1;
+        private float _damege = .5f;
         private ITargetable _target;
         [Inject] private BotAnimationController _botAnimController;
         [Inject] private ICharacter _character;
@@ -55,6 +56,7 @@ namespace _Project.Scripts.Character.Bot.Gun
             bullet.transform.position = shootPoint.position;
             bullet.transform.forward = shootPoint.forward;
             bullet.SetActive(true);
+            bullet.GetComponent<BulletBehaviour>().Initialise(_damege);
             //   _character.OnGunShooted();
         }
 
@@ -63,6 +65,13 @@ namespace _Project.Scripts.Character.Bot.Gun
             shootPoint.LookAt(_character.Target.Transform.position);
 
 
+        }
+        public void SetFireRate(float fireRate)
+        {
+            _shootTimeRate = fireRate;
+        }
+        public void SetDamage(float damage){
+            _damege=damage;
         }
     }
 

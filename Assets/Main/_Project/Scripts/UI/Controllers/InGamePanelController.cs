@@ -33,15 +33,15 @@ namespace _Project.Scripts.UI.Controllers
 
         public void SetCoinCounTxt(int coin)
         {
-            _view.coinTxt.text = coin.ToString();
+            _view.coinTxt.ForEach(x => x.text = coin.ToString());
         }
         public void SetCoinCounTxt()
         {
-            _view.coinTxt.text = _gameData.playerResource.CoinCount.ToString();
+            _view.coinTxt.ForEach(x => x.text = _gameData.playerResource.CoinCount.ToString());
         }
         public void SetGemCountTxt()
         {
-            _view.gemTxt.text = _gameData.playerResource.GemCount.ToString();
+            _view.gemTxt.ForEach(x => x.text = _gameData.playerResource.GemCount.ToString());
         }
     }
 
@@ -49,7 +49,7 @@ namespace _Project.Scripts.UI.Controllers
     public class InGamePanelView
     {
         public TextMeshProUGUI timer;
-        public TextMeshProUGUI coinTxt;
-        public TextMeshProUGUI gemTxt;
+        public List<TextMeshProUGUI> coinTxt;
+        public List<TextMeshProUGUI> gemTxt;
     }
 }

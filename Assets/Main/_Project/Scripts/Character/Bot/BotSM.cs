@@ -22,6 +22,7 @@ namespace _Project.Scripts.Character.Bot
         [SerializeField] private BotUIMediator botUIMediator;
         [SerializeField] private BotCraftTool botCraftTool;
 
+
         //
         private ICharacter _character;
         private LifetimeScope _parentScope;
@@ -69,6 +70,9 @@ namespace _Project.Scripts.Character.Bot
                 builder.Register<CraftState>(Lifetime.Scoped);
                 builder.Register<UnPlaceFromPlayerState>(Lifetime.Scoped);
                 builder.Register<BotMovementController>(Lifetime.Scoped);
+
+                builder.RegisterEntryPoint<BotUpgradeApplyer>(Lifetime.Scoped);
+
                 for (int i = 0; i < guns.Count; i++)
                 {
                     var crr = guns[i];
@@ -85,7 +89,7 @@ namespace _Project.Scripts.Character.Bot
             AttackState = _childScope.Container.Resolve<AttackState>();
             CraftState = _childScope.Container.Resolve<CraftState>();
             UnPlaceFromPlayerState = _childScope.Container.Resolve<UnPlaceFromPlayerState>();
-
+            
 
         }
         private void InitializeStates()

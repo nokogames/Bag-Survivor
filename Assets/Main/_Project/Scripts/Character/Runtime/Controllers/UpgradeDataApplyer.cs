@@ -21,6 +21,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         [Inject] private CollectableDetector _collectableDetector;
         //Controllers
         [Inject] private HealthController _healthController;
+        [Inject] private PlayerMovementController _playerMovementController;
+        [Inject] private BotController _botController;
 
         // private float _enemyDetectorBaseRadius = 6f;
         // private float _collectableDetectorBaseRadius = 5.8f;
@@ -35,6 +37,9 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
             _upgradedData.AddReciver(this);
             _savedPlayerData.AddReciver(this);
+
+            SetMovementSpeed();
+            SetBotCount();
         }
         public void OnUpgraded()
         {
@@ -43,6 +48,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             SetCollectableDetector();
             SetHealt();
             SetHealingAmount();
+            SetMovementSpeed();
+            SetBotCount();
         }
 
         private void SetHealt()
@@ -61,7 +68,14 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         {
             _collectableDetector.SetRadius(_savedPlayerData.pickUpRange + _upgradedData.pickUpRange);
         }
-
+        private void SetMovementSpeed()
+        {
+            _playerMovementController.SetSpeed(_savedPlayerData.speed + _upgradedData.speed);
+        }
+        private void SetBotCount()
+        {
+             _botController.SetBotCount(_savedPlayerData.botCount);
+        }
         public void Dispose()
         {
             _upgradedData.RemoveReciver(this);

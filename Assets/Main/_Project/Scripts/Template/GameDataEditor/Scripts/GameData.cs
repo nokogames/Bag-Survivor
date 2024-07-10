@@ -14,6 +14,7 @@ namespace Pack.GameData
 
         public PlayerResource playerResource;
 
+        [SerializeField] private List<SavedLevelData> savedLevelDatas;
         [SerializeField] private List<PlayerSavedUpgradeInfos> playerSavedUpgradeInfos;
         public int GetSavedUpgradeLvl<T>()
         {
@@ -23,7 +24,23 @@ namespace Pack.GameData
             playerSavedUpgradeInfos.Add(info);
             return info.Level;
         }
+        public SavedLevelData GetSavedLevelData(int lvl)
+        {
+            var result = savedLevelDatas.FirstOrDefault(x => x.lvl == lvl);
+            if (result == null)
+            {
+                var newData = new SavedLevelData() { lvl = lvl };
+                savedLevelDatas.Add(newData);
+                if (lvl == 0) newData.IsOpen = true;
+                return newData;
+            }
+            return result;
 
+        }
+        public SavedLevelData GetSavedLevelData()
+        {
+            return GetSavedLevelData(CurrentLvl);
+        }
 
         public void Load() => SaveManager.LoadData(this);
         public void Save() => SaveManager.SaveData(this);
@@ -43,6 +60,7 @@ namespace Pack.GameData
     [Serializable]
     public class SavedLevelData
     {
+        public int lvl;
         public bool IsOpen;
         public float MaxPlayTime;
         public float MaxClearedEnemyPercentage;

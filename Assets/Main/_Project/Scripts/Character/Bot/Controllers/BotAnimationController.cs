@@ -39,6 +39,7 @@ namespace _Project.Scripts.Character.Bot
             KillAllCustomAnims();
             SetActiveAnimation(false);
             // _botAgentController.SetAgentStatus(false);
+            
             _placeScaleTween = _bot.Transform.DOScale(.3f, .3f).SetDelay(.1f);
             _placeRotationTween = _bot.Transform.DOLocalRotate(Vector3.zero, .2f);
             _openCorotine = StaticHelper.Instance.StartCoroutine(_bot.Transform.CustomDoJump(_bot.PlayerPlacePoint, 2f, .5f, () => Placed(onCompleted)));

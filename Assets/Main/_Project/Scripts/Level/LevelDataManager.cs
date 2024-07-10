@@ -36,6 +36,7 @@ namespace _Project.Scripts.Level
 
         private float _playTime;
         public EnemyManager EnemyManager { get; set; }
+        private SavedLevelData _savedLevelData;
         public void Start()
         {
             _events.onNextLevel += NextLevelStarted;
@@ -52,6 +53,7 @@ namespace _Project.Scripts.Level
             _startTime = Time.time;
             _startGemCount = _gameData.playerResource.GemCount;
             _collectedGemCount = 0;
+            _savedLevelData = _gameData.GetSavedLevelData();
         }
         private void OnShowNextSectionUI()
         {
@@ -96,7 +98,11 @@ namespace _Project.Scripts.Level
 
         private void SetPercentage()
         {
-            _levelEndDataPanel.SetPercentage(EnemyManager.ClearedPercentage());
+            var clearedEnemyPercentage = EnemyManager.ClearedPercentage();
+            _levelEndDataPanel.SetPercentage(clearedEnemyPercentage);
+            float savedPercentage = _savedLevelData.MaxClearedEnemyPercentage;
+            _savedLevelData.MaxClearedEnemyPercentage = savedPercentage < clearedEnemyPercentage ? clearedEnemyPercentage : savedPercentage;
+            _gameData.Save();
 
         }
         private void SetPlayedTime()

@@ -28,6 +28,7 @@ namespace _Project.Scripts.Character.Datas.SO
         public float botDamage = 0;
         public float botFirerate = 0;
         public float healt = 0;
+        public float speed = 0;
         //Aditional mechanics
         public float pickUpRange = 0;
         public int botCount = 0;
@@ -64,7 +65,7 @@ namespace _Project.Scripts.Character.Datas.SO
             //Aditional mechanics
             pickUpRange = 0;
             botCount = 0;
-
+            speed = 0;
             //Collectable
             collectedXpMultiply = 1;
             healtRegenRate = 0;//Ca
@@ -85,8 +86,10 @@ namespace _Project.Scripts.Character.Datas.SO
         public float pickUpRange = 0;
         public int botCount = 0;
         public float healt = 0;
-        public float speed=0;
-
+        public float speed = 0;
+        //Bot
+        public float botSpeed = 0;
+        
         private List<IPlayerUpgradedReciver> _recivers = new();
         public void AddReciver(IPlayerUpgradedReciver reciver)
         {

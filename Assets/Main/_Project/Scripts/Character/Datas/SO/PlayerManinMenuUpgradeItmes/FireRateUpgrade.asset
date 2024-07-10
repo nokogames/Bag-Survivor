@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BgSprite: {fileID: 21300000, guid: d01fb4f9c4816724e80b9b7d1094e59b, type: 3}
   UpgradeInfo: Fire Rate
-  Lvl: 6
+  Lvl: 0
   IsCompleted: 0
   fireRateInfos:
   - Price: 0

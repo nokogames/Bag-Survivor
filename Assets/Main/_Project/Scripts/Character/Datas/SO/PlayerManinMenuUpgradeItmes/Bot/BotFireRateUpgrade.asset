@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c623936c24aed094ba44d68e93419dfa, type: 3}
+  m_Name: BotFireRateUpgrade
+  m_EditorClassIdentifier: 
+  BgSprite: {fileID: 21300000, guid: d01fb4f9c4816724e80b9b7d1094e59b, type: 3}
+  UpgradeInfo: Bot firerate
+  Lvl: 0
+  IsCompleted: 0
+  botFireRateInfos:
+  - Price: 0
+    BotFireRate: 0.5
+  - Price: 30
+    BotFireRate: 0.45
+  - Price: 50
+    BotFireRate: 0.42
+  - Price: 100
+    BotFireRate: 0.4
+  - Price: 120
+    BotFireRate: 0.35
+  - Price: 150
+    BotFireRate: 0.3

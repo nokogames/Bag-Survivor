@@ -48,11 +48,21 @@ namespace _Project.Scripts.Character.Runtime.Controllers
                 if (value) MovingStoped();
             }
         }
+        private MovementSettings _crrMovementSettings = new();
+        private MovementSettings _crrAimingMovementSettings = new();
 
         public void Initialise()
         {
-            _activeMovementSettings = _characterGraphics.MovementSettings;
+            _crrMovementSettings = _characterGraphics.MovementSettings.Clone();
+            _crrAimingMovementSettings = _characterGraphics.MovementAimingSettings.Clone();
 
+            // _activeMovementSettings = _characterGraphics.MovementSettings;
+            _activeMovementSettings = _crrMovementSettings;
+        }
+        public void SetSpeed(float speed)
+        {
+            _crrMovementSettings.MoveSpeed = _characterGraphics.MovementSettings.MoveSpeed + speed;
+            _crrAimingMovementSettings.MoveSpeed = _characterGraphics.MovementAimingSettings.MoveSpeed + speed - 0.5f;
         }
         private void Move()
         {
@@ -92,10 +102,13 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         private void Rotate()
         {
-            if (_inputData.MovementInput == Vector3.zero) return;
 
-            if (!_isCloseEnemyFound) _playerTransform.rotation =
+            if (!_isCloseEnemyFound)
+            {
+                if (_inputData.MovementInput == Vector3.zero) return;
+                _playerTransform.rotation =
              Quaternion.Lerp(_playerTransform.rotation, Quaternion.LookRotation(_inputData.MovementInput), Time.deltaTime * _activeMovementSettings.RotationSpeed);
+            }
             else
             {
                 Vector3 newTargetPoint = _target.Transform.position;
@@ -115,7 +128,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         private void SetMovementSettings()
         {
-            _activeMovementSettings = IsCloseEnemyFound ? _characterGraphics.MovementAimingSettings : _characterGraphics.MovementSettings;
+            _activeMovementSettings = IsCloseEnemyFound ? _crrAimingMovementSettings : _crrMovementSettings;
 
         }
     }

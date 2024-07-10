@@ -22,9 +22,11 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
         }
 
 
-        public override void Initialize(GameData gameData)
+        public override void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
             Lvl = gameData.GetSavedUpgradeLvl<SpeedUpgradeInfo>();
+            var crrFireRateInfo = fireRateInfos[Lvl];
+            savedPlayerData.speed = crrFireRateInfo.Speed;
         }
 
 

@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.Level;
 using _Project.Scripts.Loader;
+using _Project.Scripts.UI.Controllers.MainMenu;
 using Pack.GameData;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,9 @@ namespace _Project.Scripts.UI.Controllers
         [Inject] private InLevelEvents _inLevelEvents;
         [Inject] private SceneLoader _sceneLoader;
         [Inject] private GameData _gameData;
+        [Inject] private UpgradeVisualController _upgradeVisualController;
+        [Inject] private MapPanelController _mapPanelController;
+
 
         public void Start()
         {
@@ -58,6 +62,7 @@ namespace _Project.Scripts.UI.Controllers
         }
         private void NextLevel()
         {
+            _upgradeVisualController.Activity(false);
             _panelControllerData.OpenPanel(_panelControllerData.InGamePanel);
         }
 
@@ -67,6 +72,7 @@ namespace _Project.Scripts.UI.Controllers
         }
         private void NextSection()
         {
+            _upgradeVisualController.Activity(false);
             _panelControllerData.OpenPanel(_panelControllerData.InGamePanel);
         }
 
@@ -77,6 +83,8 @@ namespace _Project.Scripts.UI.Controllers
         //From button
         public void OpenMainMenu()
         {
+            _mapPanelController.SetUpMaps();
+            _upgradeVisualController.Activity(true);
             _panelControllerData.OpenPanel(_panelControllerData.mainPanel);
         }
     }

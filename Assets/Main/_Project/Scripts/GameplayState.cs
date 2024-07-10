@@ -34,7 +34,10 @@ namespace _Project.Scripts
             }
             if (!_isValid) SceneManager.LoadScene("Startup");
 
-            Container.Resolve<PlayerUpgradeDatabase>().Initialize(_gameData);
+
+            var savedPlayer = Container.Resolve<SavedPlayerData>();
+            Container.Resolve<PlayerUpgradedData>().Reset();
+            Container.Resolve<PlayerUpgradeDatabase>().Initialize(_gameData, savedPlayer);
         }
 
         protected override void Configure(IContainerBuilder builder)
@@ -55,9 +58,9 @@ namespace _Project.Scripts
         }
         private void Start()
         {
-            Container.Resolve<SavedPlayerData>();
-            Container.Resolve<PlayerUpgradedData>().Reset();
+            //  var savedPlayer = Container.Resolve<SavedPlayerData>();
 
+            //Container.Resolve<PlayerUpgradeDatabase>().Initialize(_gameData, savedPlayer);
 
         }
 

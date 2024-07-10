@@ -28,6 +28,7 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
         }
         public void Initialize(PlayerMainMenuUpgradeInfo upgradeInfo, PlayerResource playerResource, MainMenuPlayerUpgradePanelController controller)
         {
+            if (_bgImg is null) _bgImg = GetComponent<Image>();
             _controller = controller;
             _playerResource = playerResource;
             _playerUpgradeInfo = upgradeInfo;
@@ -62,7 +63,6 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
 
 
             _controller.UpgradeBtnClicked(_playerUpgradeInfo);
-            _playerResource.CoinCount -= (int)_playerUpgradeInfo.Price;
 
             // _controller.Upgraded();
         }

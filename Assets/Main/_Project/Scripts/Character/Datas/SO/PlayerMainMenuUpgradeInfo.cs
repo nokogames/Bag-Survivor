@@ -18,7 +18,11 @@ namespace _Project.Scripts.Character.Datas.SO
         public int Lvl = 0;
         public bool IsCompleted = false;
 
-        public virtual void Initialize(GameData gameData)
+        // public virtual void Initialize(GameData gameData)
+        // {
+
+        // }
+        public virtual void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
 
         }
@@ -27,7 +31,7 @@ namespace _Project.Scripts.Character.Datas.SO
 
         }
 
-     
+
     }
 }
 
