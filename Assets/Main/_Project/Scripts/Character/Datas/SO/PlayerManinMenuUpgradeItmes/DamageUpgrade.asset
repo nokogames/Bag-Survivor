@@ -16,9 +16,12 @@ MonoBehaviour:
   UpgradeInfo: Damage Upgrade
   Lvl: 2
   IsCompleted: 0
+  data:
+    type: 
+    Level: 0
   damageInfos:
-  - Price: 10
-    DamageAmount: 1.0
+  - Price: 0
+    DamageAmount: 1
   - Price: 50
     DamageAmount: 1.2
   - Price: 100
@@ -28,7 +31,7 @@ MonoBehaviour:
   - Price: 120
     DamageAmount: 1.8
   - Price: 130
-    DamageAmount: 2.0
+    DamageAmount: 2
   - Price: 140
     DamageAmount: 2.2
   - Price: 150
@@ -38,7 +41,7 @@ MonoBehaviour:
   - Price: 170
     DamageAmount: 2.8
   - Price: 180
-    DamageAmount: 3.0
+    DamageAmount: 3
   - Price: 190
     DamageAmount: 3.2
   - Price: 200
@@ -48,7 +51,7 @@ MonoBehaviour:
   - Price: 246
     DamageAmount: 3.8
   - Price: 269
-    DamageAmount: 4.0
+    DamageAmount: 4
   - Price: 292
     DamageAmount: 4.2
   - Price: 315
@@ -58,7 +61,7 @@ MonoBehaviour:
   - Price: 361
     DamageAmount: 4.8
   - Price: 384
-    DamageAmount: 5.0
+    DamageAmount: 5
   - Price: 407
     DamageAmount: 5.2
   - Price: 430
@@ -68,7 +71,7 @@ MonoBehaviour:
   - Price: 490
     DamageAmount: 5.8
   - Price: 520
-    DamageAmount: 6.0
+    DamageAmount: 6
   - Price: 550
     DamageAmount: 6.2
   - Price: 580
@@ -78,7 +81,7 @@ MonoBehaviour:
   - Price: 640
     DamageAmount: 6.8
   - Price: 670
-    DamageAmount: 7.0
+    DamageAmount: 7
   - Price: 700
     DamageAmount: 7.2
   - Price: 730
@@ -88,7 +91,7 @@ MonoBehaviour:
   - Price: 802
     DamageAmount: 7.8
   - Price: 838
-    DamageAmount: 8.0
+    DamageAmount: 8
   - Price: 874
     DamageAmount: 8.2
   - Price: 910
@@ -98,7 +101,7 @@ MonoBehaviour:
   - Price: 982
     DamageAmount: 8.8
   - Price: 1018
-    DamageAmount: 9.0
+    DamageAmount: 9
   - Price: 1054
     DamageAmount: 9.2
   - Price: 1090
@@ -108,7 +111,7 @@ MonoBehaviour:
   - Price: 1190
     DamageAmount: 9.8
   - Price: 1240
-    DamageAmount: 10.0
+    DamageAmount: 10
   - Price: 1290
     DamageAmount: 10.2
   - Price: 1340
@@ -118,7 +121,7 @@ MonoBehaviour:
   - Price: 1440
     DamageAmount: 10.8
   - Price: 1490
-    DamageAmount: 11.0
+    DamageAmount: 11
   - Price: 1540
     DamageAmount: 11.2
   - Price: 1590
@@ -128,7 +131,7 @@ MonoBehaviour:
   - Price: 1712
     DamageAmount: 11.8
   - Price: 1773
-    DamageAmount: 12.0
+    DamageAmount: 12
   - Price: 1834
     DamageAmount: 12.2
   - Price: 1895
@@ -138,7 +141,7 @@ MonoBehaviour:
   - Price: 2017
     DamageAmount: 12.8
   - Price: 2078
-    DamageAmount: 13.0
+    DamageAmount: 13
   - Price: 2139
     DamageAmount: 13.2
   - Price: 2200
@@ -148,7 +151,7 @@ MonoBehaviour:
   - Price: 2340
     DamageAmount: 13.8
   - Price: 2410
-    DamageAmount: 14.0
+    DamageAmount: 14
   - Price: 2480
     DamageAmount: 14.2
   - Price: 2550
@@ -158,7 +161,7 @@ MonoBehaviour:
   - Price: 2690
     DamageAmount: 14.8
   - Price: 2760
-    DamageAmount: 15.0
+    DamageAmount: 15
   - Price: 2830
     DamageAmount: 15.2
   - Price: 2900
@@ -168,7 +171,7 @@ MonoBehaviour:
   - Price: 3060
     DamageAmount: 15.8
   - Price: 3140
-    DamageAmount: 16.0
+    DamageAmount: 16
   - Price: 3220
     DamageAmount: 16.2
   - Price: 3300
@@ -178,7 +181,6 @@ MonoBehaviour:
   - Price: 3460
     DamageAmount: 16.8
   - Price: 3540
-    DamageAmount: 17.0
+    DamageAmount: 17
   - Price: 3620
     DamageAmount: 17.2
-  id: 0
