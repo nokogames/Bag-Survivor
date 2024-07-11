@@ -63,7 +63,7 @@ namespace _Project.Scripts
             //  _loaderMediator = Container.Resolve<LoaderMediator>();
             _sceneLoader = Container.Resolve<SceneLoader>();
             Container.Resolve<ParticlePool>();
-            _sceneLoader.LoadLevel("Level1");
+            _sceneLoader.LoadLevel("Level" + (gameData.CurrentLvl + 1).ToString());
             _inLevelEvents = Container.Resolve<InLevelEvents>();
 
             var uiM = Container.Resolve<UIMediator>();

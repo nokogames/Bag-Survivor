@@ -15,7 +15,41 @@ MonoBehaviour:
   CurrentLvl: 0
   CurrentSection: 0
   playerResource:
-    GemCount: 10000
-    CoinCount: 10000
-  savedLevelDatas: []
-  playerSavedUpgradeInfos: []
+    GemCount: 11
+    CoinCount: 10
+  savedLevelDatas:
+  - lvl: 0
+    IsOpen: 1
+    MaxPlayTime: 0
+    MaxClearedEnemyPercentage: 5.0592885
+  - lvl: 1
+    IsOpen: 0
+    MaxPlayTime: 0
+    MaxClearedEnemyPercentage: 0
+  - lvl: 2
+    IsOpen: 0
+    MaxPlayTime: 0
+    MaxClearedEnemyPercentage: 0
+  playerSavedUpgradeInfos:
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.DamageRangeUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.DamageUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.FireRateUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.HealtRegenUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.HealtUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.PickUpRangeUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.SpeedUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.BotCountUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.BotDamageUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.BotFireRateInfo
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.BotSpeedUpgrade
+    Level: 0

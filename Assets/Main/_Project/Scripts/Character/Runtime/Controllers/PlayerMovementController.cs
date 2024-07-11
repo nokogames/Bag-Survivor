@@ -16,6 +16,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         [Inject]
         private CharacterGraphics _characterGraphics;
         [Inject] private Transform _playerTransform;
+        [Inject] private CharacterController _characterController;
         public bool IsCloseEnemyFound
         {
             get => _isCloseEnemyFound; set
@@ -80,8 +81,11 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
             _movementVelocity = _playerTransform.forward * _speed;
 
-            _playerTransform.position += _inputData.MovementInput * Time.deltaTime * _speed;
+            //  _playerTransform.position += _inputData.MovementInput * Time.deltaTime * _speed;
+            var movement = _inputData.MovementInput * Time.deltaTime * _speed;
+            if (!_characterController.isGrounded) movement += Vector3.down * Time.deltaTime;
 
+            _characterController.Move(movement);
             _characterGraphics.OnMoving(Mathf.InverseLerp(0, _activeMovementSettings.MoveSpeed, _speed),
                  _inputData.MovementInput, _isCloseEnemyFound);
             //If not found enemy 

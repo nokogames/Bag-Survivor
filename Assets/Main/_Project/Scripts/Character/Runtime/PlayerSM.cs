@@ -70,6 +70,7 @@ namespace _Project.Scripts.Character.Runtime
             {
 
                 builder.RegisterInstance(GetComponent<ICharacter>());
+                builder.RegisterInstance(GetComponent<CharacterController>());
                 builder.RegisterComponent(enemyDetector);
                 builder.RegisterComponent(gunBehavior);
                 builder.RegisterComponent(transform);
