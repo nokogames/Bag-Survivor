@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6878edcab27a174586c375580dcb08f, type: 3}
+  m_Name: Sec_2 Waves
+  m_EditorClassIdentifier: 
+  waveInfos:
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 10
+    timeOffset: 3
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 12
+    timeOffset: 5
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 18
+    timeOffset: 7
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 4
+    - enemyType: 1
+      Count: 12
+    timeOffset: 10
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 5
+    - enemyType: 1
+      Count: 15
+    timeOffset: 15
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 3
+    - enemyType: 1
+      Count: 12
+    - enemyType: 2
+      Count: 4
+    timeOffset: 18
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 10
+    - enemyType: 1
+      Count: 8
+    - enemyType: 1
+      Count: 8
+    timeOffset: 20
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 10
+    - enemyType: 1
+      Count: 9
+    - enemyType: 1
+      Count: 5
+    timeOffset: 25
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 20
+    - enemyType: 1
+      Count: 25
+    - enemyType: 2
+      Count: 8
+    timeOffset: 37
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 15
+    - enemyType: 1
+      Count: 20
+    - enemyType: 1
+      Count: 10
+    timeOffset: 30
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 20
+    - enemyType: 1
+      Count: 32
+    - enemyType: 2
+      Count: 10
+    timeOffset: 35
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 0
+      Count: 15
+    - enemyType: 1
+      Count: 25
+    - enemyType: 1
+      Count: 15
+    timeOffset: 25
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 2
+      Count: 20
+    - enemyType: 4
+      Count: 1
+    timeOffset: 0
+    mustClearNextWave: 0
+  timeOffset: 0

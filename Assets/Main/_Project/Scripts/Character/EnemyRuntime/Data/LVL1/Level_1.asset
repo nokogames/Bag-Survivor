@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756df9d8a18c62649bf3c709924289a3, type: 3}
+  m_Name: Level_1
+  m_EditorClassIdentifier: 
+  enmeySectionSpawnDatas:
+  - {fileID: 11400000, guid: 99b2c3d793aa64c9fbcc87dc705d31a0, type: 2}
+  - {fileID: 11400000, guid: 0269fae40ddd442838f1c1c8b10a6f22, type: 2}
+  - {fileID: 11400000, guid: dd6c9611021b64b81aad8fb497fff41d, type: 2}
+  EnemyCount: 767
+  TotalCoinCount: 100

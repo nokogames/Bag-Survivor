@@ -53,7 +53,7 @@ MonoBehaviour:
   deathParticle: {fileID: 395031058680739610, guid: 2f78b35c7aadc1e4782a97d7558897f1,
     type: 3}
   enemyType: 1
-  _damageAmount: 1.5
+  _damageAmount: 3
   animator: {fileID: 0}
   baseHealt: 5
   _attackDistance: 2

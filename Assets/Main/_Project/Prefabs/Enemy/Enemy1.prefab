@@ -87,7 +87,7 @@ MonoBehaviour:
   enemyType: 0
   _damageAmount: 1
   animator: {fileID: 0}
-  baseHealt: 5
+  baseHealt: 1
   _attackDistance: 2
   speed: 5
 --- !u!136 &7031041042669796911
