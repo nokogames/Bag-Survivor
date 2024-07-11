@@ -18,22 +18,155 @@ MonoBehaviour:
   IsCompleted: 0
   fireRateInfos:
   - Price: 0
-    Speed: 2
-  - Price: 100
     Speed: 2.2
+  - Price: 100
+    Speed: 2.23
   - Price: 200
-    Speed: 2.5
-  - Price: 300
-    Speed: 2.6
+    Speed: 2.26
   - Price: 400
-    Speed: 2.7
+    Speed: 2.29
   - Price: 500
-    Speed: 3
+    Speed: 2.32
   - Price: 600
-    Speed: 3.2
+    Speed: 2.35
   - Price: 700
-    Speed: 3.3
+    Speed: 2.38
   - Price: 800
-    Speed: 3.5
+    Speed: 2.41
   - Price: 900
-    Speed: 3.6
+    Speed: 2.44
+  - Price: 1000
+    Speed: 2.47
+  - Price: 1100
+    Speed: 2.5
+  - Price: 1200
+    Speed: 2.53
+  - Price: 1300
+    Speed: 2.56
+  - Price: 1400
+    Speed: 2.59
+  - Price: 1500
+    Speed: 2.62
+  - Price: 1600
+    Speed: 2.65
+  - Price: 1700
+    Speed: 2.68
+  - Price: 1800
+    Speed: 2.71
+  - Price: 1900
+    Speed: 2.74
+  - Price: 2000
+    Speed: 2.77
+  - Price: 2100
+    Speed: 2.8
+  - Price: 2200
+    Speed: 2.83
+  - Price: 2300
+    Speed: 2.86
+  - Price: 2400
+    Speed: 2.89
+  - Price: 2500
+    Speed: 2.92
+  - Price: 2600
+    Speed: 2.95
+  - Price: 2700
+    Speed: 2.98
+  - Price: 2800
+    Speed: 3.01
+  - Price: 2900
+    Speed: 3.04
+  - Price: 3000
+    Speed: 3.07
+  - Price: 3100
+    Speed: 3.1
+  - Price: 3200
+    Speed: 3.13
+  - Price: 3300
+    Speed: 3.16
+  - Price: 3400
+    Speed: 3.19
+  - Price: 3500
+    Speed: 3.22
+  - Price: 3600
+    Speed: 3.25
+  - Price: 3700
+    Speed: 3.28
+  - Price: 3800
+    Speed: 3.31
+  - Price: 3900
+    Speed: 3.34
+  - Price: 4000
+    Speed: 3.37
+  - Price: 4100
+    Speed: 3.4
+  - Price: 4200
+    Speed: 3.43
+  - Price: 4300
+    Speed: 3.46
+  - Price: 4400
+    Speed: 3.49
+  - Price: 4500
+    Speed: 3.52
+  - Price: 4600
+    Speed: 3.55
+  - Price: 4700
+    Speed: 3.58
+  - Price: 4800
+    Speed: 3.61
+  - Price: 4900
+    Speed: 3.64
+  - Price: 5000
+    Speed: 3.67
+  - Price: 5100
+    Speed: 3.7
+  - Price: 5200
+    Speed: 3.73
+  - Price: 5300
+    Speed: 3.76
+  - Price: 5400
+    Speed: 3.79
+  - Price: 5500
+    Speed: 3.82
+  - Price: 5600
+    Speed: 3.85
+  - Price: 5700
+    Speed: 3.88
+  - Price: 5800
+    Speed: 3.91
+  - Price: 5900
+    Speed: 3.94
+  - Price: 6000
+    Speed: 3.97
+  - Price: 6100
+    Speed: 4.0
+  - Price: 6200
+    Speed: 4.03
+  - Price: 6300
+    Speed: 4.06
+  - Price: 6400
+    Speed: 4.09
+  - Price: 6500
+    Speed: 4.12
+  - Price: 6600
+    Speed: 4.15
+  - Price: 6700
+    Speed: 4.18
+  - Price: 6800
+    Speed: 4.21
+  - Price: 6900
+    Speed: 4.24
+  - Price: 7000
+    Speed: 4.27
+  - Price: 7100
+    Speed: 4.3
+  - Price: 7200
+    Speed: 4.33
+  - Price: 7300
+    Speed: 4.36
+  - Price: 7400
+    Speed: 4.39
+  - Price: 7500
+    Speed: 4.42
+  - Price: 7600
+    Speed: 4.45
+  id: 0

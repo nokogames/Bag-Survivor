@@ -19,11 +19,160 @@ MonoBehaviour:
   healtRegenInfos:
   - Price: 0
     HealtRegenAmount: 0.1
-  - Price: 100
-    HealtRegenAmount: 0.15
   - Price: 200
+    HealtRegenAmount: 0.15
+  - Price: 220
     HealtRegenAmount: 0.2
-  - Price: 400
+  - Price: 240
+    HealtRegenAmount: 0.25
+  - Price: 260
     HealtRegenAmount: 0.3
-  - Price: 500
+  - Price: 280
     HealtRegenAmount: 0.35
+  - Price: 300
+    HealtRegenAmount: 0.4
+  - Price: 320
+    HealtRegenAmount: 0.45
+  - Price: 340
+    HealtRegenAmount: 0.5
+  - Price: 360
+    HealtRegenAmount: 0.55
+  - Price: 380
+    HealtRegenAmount: 0.6
+  - Price: 400
+    HealtRegenAmount: 0.65
+  - Price: 446
+    HealtRegenAmount: 0.7
+  - Price: 492
+    HealtRegenAmount: 0.75
+  - Price: 538
+    HealtRegenAmount: 0.8
+  - Price: 584
+    HealtRegenAmount: 0.85
+  - Price: 630
+    HealtRegenAmount: 0.9
+  - Price: 676
+    HealtRegenAmount: 0.95
+  - Price: 722
+    HealtRegenAmount: 1.0
+  - Price: 768
+    HealtRegenAmount: 1.05
+  - Price: 814
+    HealtRegenAmount: 1.1
+  - Price: 860
+    HealtRegenAmount: 1.15
+  - Price: 920
+    HealtRegenAmount: 1.2
+  - Price: 980
+    HealtRegenAmount: 1.25
+  - Price: 1040
+    HealtRegenAmount: 1.3
+  - Price: 1100
+    HealtRegenAmount: 1.35
+  - Price: 1160
+    HealtRegenAmount: 1.4
+  - Price: 1220
+    HealtRegenAmount: 1.45
+  - Price: 1280
+    HealtRegenAmount: 1.5
+  - Price: 1340
+    HealtRegenAmount: 1.55
+  - Price: 1400
+    HealtRegenAmount: 1.6
+  - Price: 1460
+    HealtRegenAmount: 1.65
+  - Price: 1532
+    HealtRegenAmount: 1.7
+  - Price: 1604
+    HealtRegenAmount: 1.75
+  - Price: 1676
+    HealtRegenAmount: 1.8
+  - Price: 1748
+    HealtRegenAmount: 1.85
+  - Price: 1820
+    HealtRegenAmount: 1.9
+  - Price: 1892
+    HealtRegenAmount: 1.95
+  - Price: 1964
+    HealtRegenAmount: 2.0
+  - Price: 2036
+    HealtRegenAmount: 2.05
+  - Price: 2108
+    HealtRegenAmount: 2.1
+  - Price: 2180
+    HealtRegenAmount: 2.15
+  - Price: 2280
+    HealtRegenAmount: 2.2
+  - Price: 2380
+    HealtRegenAmount: 2.25
+  - Price: 2480
+    HealtRegenAmount: 2.3
+  - Price: 2580
+    HealtRegenAmount: 2.35
+  - Price: 2680
+    HealtRegenAmount: 2.4
+  - Price: 2780
+    HealtRegenAmount: 2.45
+  - Price: 2880
+    HealtRegenAmount: 2.5
+  - Price: 2980
+    HealtRegenAmount: 2.55
+  - Price: 3080
+    HealtRegenAmount: 2.6
+  - Price: 3180
+    HealtRegenAmount: 2.65
+  - Price: 3280
+    HealtRegenAmount: 2.7
+  - Price: 3414
+    HealtRegenAmount: 2.75
+  - Price: 3548
+    HealtRegenAmount: 2.8
+  - Price: 3682
+    HealtRegenAmount: 2.85
+  - Price: 3816
+    HealtRegenAmount: 2.9
+  - Price: 3950
+    HealtRegenAmount: 2.95
+  - Price: 4084
+    HealtRegenAmount: 3.0
+  - Price: 4218
+    HealtRegenAmount: 3.05
+  - Price: 4352
+    HealtRegenAmount: 3.1
+  - Price: 4486
+    HealtRegenAmount: 3.15
+  - Price: 4620
+    HealtRegenAmount: 3.2
+  - Price: 4764
+    HealtRegenAmount: 3.25
+  - Price: 4908
+    HealtRegenAmount: 3.3
+  - Price: 5052
+    HealtRegenAmount: 3.35
+  - Price: 5196
+    HealtRegenAmount: 3.4
+  - Price: 5340
+    HealtRegenAmount: 3.45
+  - Price: 5484
+    HealtRegenAmount: 3.5
+  - Price: 5628
+    HealtRegenAmount: 3.55
+  - Price: 5772
+    HealtRegenAmount: 3.6
+  - Price: 5916
+    HealtRegenAmount: 3.65
+  - Price: 6060
+    HealtRegenAmount: 3.7
+  - Price: 6204
+    HealtRegenAmount: 3.75
+  - Price: 6348
+    HealtRegenAmount: 3.8
+  - Price: 6492
+    HealtRegenAmount: 3.85
+  - Price: 6636
+    HealtRegenAmount: 3.9
+  - Price: 6780
+    HealtRegenAmount: 3.95
+  - Price: 6924
+    HealtRegenAmount: 4.0
+  id: 0
