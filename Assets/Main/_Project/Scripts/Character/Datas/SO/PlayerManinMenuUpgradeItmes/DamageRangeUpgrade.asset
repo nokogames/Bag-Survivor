@@ -17,9 +17,206 @@ MonoBehaviour:
   Lvl: 0
   IsCompleted: 0
   damageRangeInfos:
-  - Price: 0
-    Range: 5
-  - Price: 50
-    Range: 6
   - Price: 100
-    Range: 7
+    Range: 8.0
+  - Price: 110
+    Range: 8.08
+  - Price: 120
+    Range: 8.16
+  - Price: 130
+    Range: 8.24
+  - Price: 140
+    Range: 8.32
+  - Price: 150
+    Range: 8.4
+  - Price: 160
+    Range: 8.48
+  - Price: 170
+    Range: 8.56
+  - Price: 180
+    Range: 8.64
+  - Price: 190
+    Range: 8.72
+  - Price: 200
+    Range: 8.8
+  - Price: 223
+    Range: 8.88
+  - Price: 246
+    Range: 8.96
+  - Price: 269
+    Range: 9.04
+  - Price: 292
+    Range: 9.12
+  - Price: 315
+    Range: 9.2
+  - Price: 338
+    Range: 9.28
+  - Price: 361
+    Range: 9.36
+  - Price: 384
+    Range: 9.44
+  - Price: 407
+    Range: 9.52
+  - Price: 430
+    Range: 9.6
+  - Price: 460
+    Range: 9.68
+  - Price: 490
+    Range: 9.76
+  - Price: 520
+    Range: 9.84
+  - Price: 550
+    Range: 9.92
+  - Price: 580
+    Range: 10.0
+  - Price: 610
+    Range: 10.08
+  - Price: 640
+    Range: 10.16
+  - Price: 670
+    Range: 10.24
+  - Price: 700
+    Range: 10.32
+  - Price: 730
+    Range: 10.4
+  - Price: 766
+    Range: 10.48
+  - Price: 802
+    Range: 10.56
+  - Price: 838
+    Range: 10.64
+  - Price: 874
+    Range: 10.72
+  - Price: 910
+    Range: 10.8
+  - Price: 946
+    Range: 10.88
+  - Price: 982
+    Range: 10.96
+  - Price: 1018
+    Range: 11.04
+  - Price: 1054
+    Range: 11.12
+  - Price: 1090
+    Range: 11.2
+  - Price: 1140
+    Range: 11.28
+  - Price: 1190
+    Range: 11.36
+  - Price: 1240
+    Range: 11.44
+  - Price: 1290
+    Range: 11.52
+  - Price: 1340
+    Range: 11.6
+  - Price: 1390
+    Range: 11.68
+  - Price: 1440
+    Range: 11.76
+  - Price: 1490
+    Range: 11.84
+  - Price: 1540
+    Range: 11.92
+  - Price: 1590
+    Range: 12.0
+  - Price: 1651
+    Range: 12.08
+  - Price: 1712
+    Range: 12.16
+  - Price: 1773
+    Range: 12.24
+  - Price: 1834
+    Range: 12.32
+  - Price: 1895
+    Range: 12.4
+  - Price: 1956
+    Range: 12.48
+  - Price: 2017
+    Range: 12.56
+  - Price: 2078
+    Range: 12.64
+  - Price: 2139
+    Range: 12.72
+  - Price: 2200
+    Range: 12.8
+  - Price: 2270
+    Range: 12.88
+  - Price: 2340
+    Range: 12.96
+  - Price: 2410
+    Range: 13.04
+  - Price: 2480
+    Range: 13.12
+  - Price: 2550
+    Range: 13.2
+  - Price: 2620
+    Range: 13.28
+  - Price: 2690
+    Range: 13.36
+  - Price: 2760
+    Range: 13.44
+  - Price: 2830
+    Range: 13.52
+  - Price: 2900
+    Range: 13.6
+  - Price: 2980
+    Range: 13.68
+  - Price: 3060
+    Range: 13.76
+  - Price: 3140
+    Range: 13.84
+  - Price: 3220
+    Range: 13.92
+  - Price: 3300
+    Range: 14.0
+  - Price: 3380
+    Range: 14.08
+  - Price: 3460
+    Range: 14.16
+  - Price: 3540
+    Range: 14.24
+  - Price: 3620
+    Range: 14.32
+  - Price: 3700
+    Range: 14.4
+  - Price: 3780
+    Range: 14.48
+  - Price: 3860
+    Range: 14.56
+  - Price: 3940
+    Range: 14.64
+  - Price: 4020
+    Range: 14.72
+  - Price: 4100
+    Range: 14.8
+  - Price: 4180
+    Range: 14.88
+  - Price: 4260
+    Range: 14.96
+  - Price: 4340
+    Range: 15.04
+  - Price: 4420
+    Range: 15.12
+  - Price: 4500
+    Range: 15.2
+  - Price: 4580
+    Range: 15.28
+  - Price: 4660
+    Range: 15.36
+  - Price: 4740
+    Range: 15.44
+  - Price: 4820
+    Range: 15.52
+  - Price: 4900
+    Range: 15.6
+  - Price: 4980
+    Range: 15.68
+  - Price: 5060
+    Range: 15.76
+  - Price: 5140
+    Range: 15.84
+  - Price: 5220
+    Range: 15.92
+  - Price: 5300
+    Range: 16.0
+  id: 0

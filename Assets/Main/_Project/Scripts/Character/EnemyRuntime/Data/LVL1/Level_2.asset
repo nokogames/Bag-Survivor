@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Level_2
   m_EditorClassIdentifier: 
   enmeySectionSpawnDatas:
-  - {fileID: 11400000, guid: 05602b2adc05c0b47bb3222526181f35, type: 2}
-  - {fileID: 11400000, guid: 05602b2adc05c0b47bb3222526181f35, type: 2}
-  EnemyCount: 12
+  - {fileID: 11400000, guid: d1e01460f4a3643328cf2999079fccb8, type: 2}
+  - {fileID: 11400000, guid: 4a92e120e88154806bc193aa1e8d6c05, type: 2}
+  - {fileID: 11400000, guid: d6ff72fcf151544668362ebcb57cd91c, type: 2}
+  - {fileID: 11400000, guid: 2a09f9c3196ad4a8c9a068c3e7833a22, type: 2}
+  - {fileID: 11400000, guid: d5858184701624671b0be49c8f992182, type: 2}
+  EnemyCount: 2285
+  TotalCoinCount: 2200

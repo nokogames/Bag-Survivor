@@ -9,33 +9,176 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dedd7a8bfbcf6d40b981b255f7bd590, type: 3}
-  m_Name: FireRateUpgrade
+  m_Script: {fileID: 11500000, guid: 7e1d32d8ebc38fe42b888b197f65994b, type: 3}
+  m_Name: DamageUpgrade
   m_EditorClassIdentifier: 
-  BgSprite: {fileID: 21300000, guid: d01fb4f9c4816724e80b9b7d1094e59b, type: 3}
-  UpgradeInfo: Fire Rate
-  Lvl: 0
+  BgSprite: {fileID: 21300000, guid: 8c3442f1b04f9ad4281068800831d6bd, type: 3}
+  UpgradeInfo: Damage Upgrade
+  Lvl: 2
   IsCompleted: 0
-  fireRateInfos:
-  - Price: 0
-    FireRate: 0.5
+  damageInfos:
+  - Price: 10
+    DamageAmount: 1.0
+  - Price: 50
+    DamageAmount: 1.2
   - Price: 100
-    FireRate: 0.45
+    DamageAmount: 1.4
+  - Price: 110
+    DamageAmount: 1.6
+  - Price: 120
+    DamageAmount: 1.8
+  - Price: 130
+    DamageAmount: 2.0
+  - Price: 140
+    DamageAmount: 2.2
+  - Price: 150
+    DamageAmount: 2.4
+  - Price: 160
+    DamageAmount: 2.6
+  - Price: 170
+    DamageAmount: 2.8
+  - Price: 180
+    DamageAmount: 3.0
+  - Price: 190
+    DamageAmount: 3.2
   - Price: 200
-    FireRate: 0.4
-  - Price: 300
-    FireRate: 0.38
-  - Price: 400
-    FireRate: 0.35
-  - Price: 500
-    FireRate: 0.4
-  - Price: 600
-    FireRate: 0.37
+    DamageAmount: 3.4
+  - Price: 223
+    DamageAmount: 3.6
+  - Price: 246
+    DamageAmount: 3.8
+  - Price: 269
+    DamageAmount: 4.0
+  - Price: 292
+    DamageAmount: 4.2
+  - Price: 315
+    DamageAmount: 4.4
+  - Price: 338
+    DamageAmount: 4.6
+  - Price: 361
+    DamageAmount: 4.8
+  - Price: 384
+    DamageAmount: 5.0
+  - Price: 407
+    DamageAmount: 5.2
+  - Price: 430
+    DamageAmount: 5.4
+  - Price: 460
+    DamageAmount: 5.6
+  - Price: 490
+    DamageAmount: 5.8
+  - Price: 520
+    DamageAmount: 6.0
+  - Price: 550
+    DamageAmount: 6.2
+  - Price: 580
+    DamageAmount: 6.4
+  - Price: 610
+    DamageAmount: 6.6
+  - Price: 640
+    DamageAmount: 6.8
+  - Price: 670
+    DamageAmount: 7.0
   - Price: 700
-    FireRate: 0.35
-  - Price: 800
-    FireRate: 0.3
-  - Price: 900
-    FireRate: 0.28
-  - Price: 1300
-    FireRate: 0.25
+    DamageAmount: 7.2
+  - Price: 730
+    DamageAmount: 7.4
+  - Price: 766
+    DamageAmount: 7.6
+  - Price: 802
+    DamageAmount: 7.8
+  - Price: 838
+    DamageAmount: 8.0
+  - Price: 874
+    DamageAmount: 8.2
+  - Price: 910
+    DamageAmount: 8.4
+  - Price: 946
+    DamageAmount: 8.6
+  - Price: 982
+    DamageAmount: 8.8
+  - Price: 1018
+    DamageAmount: 9.0
+  - Price: 1054
+    DamageAmount: 9.2
+  - Price: 1090
+    DamageAmount: 9.4
+  - Price: 1140
+    DamageAmount: 9.6
+  - Price: 1190
+    DamageAmount: 9.8
+  - Price: 1240
+    DamageAmount: 10.0
+  - Price: 1290
+    DamageAmount: 10.2
+  - Price: 1340
+    DamageAmount: 10.4
+  - Price: 1390
+    DamageAmount: 10.6
+  - Price: 1440
+    DamageAmount: 10.8
+  - Price: 1490
+    DamageAmount: 11.0
+  - Price: 1540
+    DamageAmount: 11.2
+  - Price: 1590
+    DamageAmount: 11.4
+  - Price: 1651
+    DamageAmount: 11.6
+  - Price: 1712
+    DamageAmount: 11.8
+  - Price: 1773
+    DamageAmount: 12.0
+  - Price: 1834
+    DamageAmount: 12.2
+  - Price: 1895
+    DamageAmount: 12.4
+  - Price: 1956
+    DamageAmount: 12.6
+  - Price: 2017
+    DamageAmount: 12.8
+  - Price: 2078
+    DamageAmount: 13.0
+  - Price: 2139
+    DamageAmount: 13.2
+  - Price: 2200
+    DamageAmount: 13.4
+  - Price: 2270
+    DamageAmount: 13.6
+  - Price: 2340
+    DamageAmount: 13.8
+  - Price: 2410
+    DamageAmount: 14.0
+  - Price: 2480
+    DamageAmount: 14.2
+  - Price: 2550
+    DamageAmount: 14.4
+  - Price: 2620
+    DamageAmount: 14.6
+  - Price: 2690
+    DamageAmount: 14.8
+  - Price: 2760
+    DamageAmount: 15.0
+  - Price: 2830
+    DamageAmount: 15.2
+  - Price: 2900
+    DamageAmount: 15.4
+  - Price: 2980
+    DamageAmount: 15.6
+  - Price: 3060
+    DamageAmount: 15.8
+  - Price: 3140
+    DamageAmount: 16.0
+  - Price: 3220
+    DamageAmount: 16.2
+  - Price: 3300
+    DamageAmount: 16.4
+  - Price: 3380
+    DamageAmount: 16.6
+  - Price: 3460
+    DamageAmount: 16.8
+  - Price: 3540
+    DamageAmount: 17.0
+  - Price: 3620
+    DamageAmount: 17.2
+  id: 0

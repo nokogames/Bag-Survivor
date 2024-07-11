@@ -13,19 +13,170 @@ MonoBehaviour:
   m_Name: HealtUpgrade
   m_EditorClassIdentifier: 
   BgSprite: {fileID: 21300000, guid: 813deea5535a6da4e86fb04d91452f03, type: 3}
-  UpgradeInfo: Healt upgrade
+  UpgradeInfo: Health upgrade
   Lvl: 0
   IsCompleted: 0
   healtInfos:
   - Price: 0
-    Healt: 50
+    Healt: 40
   - Price: 100
+    Healt: 40
+  - Price: 110
+    Healt: 41
+  - Price: 120
+    Healt: 42
+  - Price: 130
+    Healt: 43
+  - Price: 140
+    Healt: 44
+  - Price: 150
+    Healt: 45
+  - Price: 160
+    Healt: 46
+  - Price: 170
+    Healt: 47
+  - Price: 180
+    Healt: 48
+  - Price: 190
+    Healt: 49
+  - Price: 200
+    Healt: 50
+  - Price: 223
+    Healt: 51
+  - Price: 246
+    Healt: 52
+  - Price: 269
+    Healt: 53
+  - Price: 292
+    Healt: 54
+  - Price: 315
     Healt: 55
-  - Price: 300
+  - Price: 338
+    Healt: 56
+  - Price: 361
+    Healt: 57
+  - Price: 384
+    Healt: 58
+  - Price: 407
+    Healt: 59
+  - Price: 430
     Healt: 60
-  - Price: 500
+  - Price: 460
+    Healt: 61
+  - Price: 490
+    Healt: 62
+  - Price: 520
+    Healt: 63
+  - Price: 550
+    Healt: 64
+  - Price: 580
     Healt: 65
-  - Price: 600
-    Healt: 70
+  - Price: 610
+    Healt: 66
+  - Price: 640
+    Healt: 67
+  - Price: 670
+    Healt: 68
   - Price: 700
+    Healt: 69
+  - Price: 730
+    Healt: 70
+  - Price: 766
+    Healt: 71
+  - Price: 802
+    Healt: 72
+  - Price: 838
+    Healt: 73
+  - Price: 874
+    Healt: 74
+  - Price: 910
     Healt: 75
+  - Price: 946
+    Healt: 76
+  - Price: 982
+    Healt: 77
+  - Price: 1018
+    Healt: 78
+  - Price: 1054
+    Healt: 79
+  - Price: 1090
+    Healt: 80
+  - Price: 1140
+    Healt: 81
+  - Price: 1190
+    Healt: 82
+  - Price: 1240
+    Healt: 83
+  - Price: 1290
+    Healt: 84
+  - Price: 1340
+    Healt: 85
+  - Price: 1390
+    Healt: 86
+  - Price: 1440
+    Healt: 87
+  - Price: 1490
+    Healt: 88
+  - Price: 1540
+    Healt: 89
+  - Price: 1590
+    Healt: 90
+  - Price: 1651
+    Healt: 91
+  - Price: 1712
+    Healt: 92
+  - Price: 1773
+    Healt: 93
+  - Price: 1834
+    Healt: 94
+  - Price: 1895
+    Healt: 95
+  - Price: 1956
+    Healt: 96
+  - Price: 2017
+    Healt: 97
+  - Price: 2078
+    Healt: 98
+  - Price: 2139
+    Healt: 99
+  - Price: 2200
+    Healt: 100
+  - Price: 2270
+    Healt: 101
+  - Price: 2340
+    Healt: 102
+  - Price: 2410
+    Healt: 103
+  - Price: 2480
+    Healt: 104
+  - Price: 2550
+    Healt: 105
+  - Price: 2620
+    Healt: 106
+  - Price: 2690
+    Healt: 107
+  - Price: 2760
+    Healt: 108
+  - Price: 2830
+    Healt: 109
+  - Price: 2900
+    Healt: 110
+  - Price: 2980
+    Healt: 111
+  - Price: 3060
+    Healt: 112
+  - Price: 3140
+    Healt: 113
+  - Price: 3220
+    Healt: 114
+  - Price: 3300
+    Healt: 115
+  - Price: 3380
+    Healt: 116
+  - Price: 3460
+    Healt: 117
+  - Price: 3540
+    Healt: 118
+  - Price: 3620
+    Healt: 119
+  id: 0
