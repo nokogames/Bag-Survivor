@@ -18,24 +18,155 @@ MonoBehaviour:
   IsCompleted: 0
   speedInfos:
   - Price: 0
-    BotSpeed: 3
-  - Price: 10
-    BotSpeed: 3.1
-  - Price: 20
-    BotSpeed: 3.2
-  - Price: 30
-    BotSpeed: 3.3
-  - Price: 40
-    BotSpeed: 3.4
-  - Price: 50
-    BotSpeed: 3.5
-  - Price: 60
-    BotSpeed: 3.6
-  - Price: 70
-    BotSpeed: 3.8
-  - Price: 80
-    BotSpeed: 3.9
-  - Price: 90
-    BotSpeed: 4
+    BotSpeed: 2.0
   - Price: 100
-    BotSpeed: 4.1
+    BotSpeed: 2.04
+  - Price: 110
+    BotSpeed: 2.08
+  - Price: 120
+    BotSpeed: 2.12
+  - Price: 130
+    BotSpeed: 2.16
+  - Price: 140
+    BotSpeed: 2.2
+  - Price: 150
+    BotSpeed: 2.24
+  - Price: 160
+    BotSpeed: 2.28
+  - Price: 170
+    BotSpeed: 2.32
+  - Price: 180
+    BotSpeed: 2.36
+  - Price: 190
+    BotSpeed: 2.4
+  - Price: 200
+    BotSpeed: 2.44
+  - Price: 223
+    BotSpeed: 2.48
+  - Price: 246
+    BotSpeed: 2.52
+  - Price: 269
+    BotSpeed: 2.56
+  - Price: 292
+    BotSpeed: 2.6
+  - Price: 315
+    BotSpeed: 2.64
+  - Price: 338
+    BotSpeed: 2.68
+  - Price: 361
+    BotSpeed: 2.72
+  - Price: 384
+    BotSpeed: 2.76
+  - Price: 407
+    BotSpeed: 2.8
+  - Price: 430
+    BotSpeed: 2.84
+  - Price: 460
+    BotSpeed: 2.88
+  - Price: 490
+    BotSpeed: 2.92
+  - Price: 520
+    BotSpeed: 2.96
+  - Price: 550
+    BotSpeed: 3.0
+  - Price: 580
+    BotSpeed: 3.04
+  - Price: 610
+    BotSpeed: 3.08
+  - Price: 640
+    BotSpeed: 3.12
+  - Price: 670
+    BotSpeed: 3.16
+  - Price: 700
+    BotSpeed: 3.2
+  - Price: 730
+    BotSpeed: 3.24
+  - Price: 766
+    BotSpeed: 3.28
+  - Price: 802
+    BotSpeed: 3.32
+  - Price: 838
+    BotSpeed: 3.36
+  - Price: 874
+    BotSpeed: 3.4
+  - Price: 910
+    BotSpeed: 3.44
+  - Price: 946
+    BotSpeed: 3.48
+  - Price: 982
+    BotSpeed: 3.52
+  - Price: 1018
+    BotSpeed: 3.56
+  - Price: 1054
+    BotSpeed: 3.6
+  - Price: 1090
+    BotSpeed: 3.64
+  - Price: 1140
+    BotSpeed: 3.68
+  - Price: 1190
+    BotSpeed: 3.72
+  - Price: 1240
+    BotSpeed: 3.76
+  - Price: 1290
+    BotSpeed: 3.8
+  - Price: 1340
+    BotSpeed: 3.84
+  - Price: 1390
+    BotSpeed: 3.88
+  - Price: 1440
+    BotSpeed: 3.92
+  - Price: 1490
+    BotSpeed: 3.96
+  - Price: 1540
+    BotSpeed: 4.0
+  - Price: 1590
+    BotSpeed: 4.04
+  - Price: 1651
+    BotSpeed: 4.08
+  - Price: 1712
+    BotSpeed: 4.12
+  - Price: 1773
+    BotSpeed: 4.16
+  - Price: 1834
+    BotSpeed: 4.2
+  - Price: 1895
+    BotSpeed: 4.24
+  - Price: 1956
+    BotSpeed: 4.28
+  - Price: 2017
+    BotSpeed: 4.32
+  - Price: 2078
+    BotSpeed: 4.36
+  - Price: 2139
+    BotSpeed: 4.4
+  - Price: 2200
+    BotSpeed: 4.44
+  - Price: 2270
+    BotSpeed: 4.48
+  - Price: 2340
+    BotSpeed: 4.52
+  - Price: 2410
+    BotSpeed: 4.56
+  - Price: 2480
+    BotSpeed: 4.6
+  - Price: 2550
+    BotSpeed: 4.64
+  - Price: 2620
+    BotSpeed: 4.68
+  - Price: 2690
+    BotSpeed: 4.72
+  - Price: 2760
+    BotSpeed: 4.76
+  - Price: 2830
+    BotSpeed: 4.8
+  - Price: 2900
+    BotSpeed: 4.84
+  - Price: 2980
+    BotSpeed: 4.88
+  - Price: 3060
+    BotSpeed: 4.92
+  - Price: 3140
+    BotSpeed: 4.96
+  - Price: 3220
+    BotSpeed: 5.0
+  id: 0

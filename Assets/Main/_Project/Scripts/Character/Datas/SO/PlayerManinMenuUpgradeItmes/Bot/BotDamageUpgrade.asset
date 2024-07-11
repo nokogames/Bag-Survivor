@@ -18,8 +18,165 @@ MonoBehaviour:
   IsCompleted: 0
   damageInfos:
   - Price: 0
-    BotDamage: 1
-  - Price: 20
-    BotDamage: 1.1
-  - Price: 30
+    BotDamage: 0.5
+  - Price: 100
+    BotDamage: 0.62
+  - Price: 110
+    BotDamage: 0.73
+  - Price: 120
+    BotDamage: 0.85
+  - Price: 130
+    BotDamage: 0.97
+  - Price: 140
+    BotDamage: 1.08
+  - Price: 150
     BotDamage: 1.2
+  - Price: 160
+    BotDamage: 1.32
+  - Price: 170
+    BotDamage: 1.43
+  - Price: 180
+    BotDamage: 1.55
+  - Price: 190
+    BotDamage: 1.67
+  - Price: 200
+    BotDamage: 1.78
+  - Price: 223
+    BotDamage: 1.9
+  - Price: 246
+    BotDamage: 2.02
+  - Price: 269
+    BotDamage: 2.13
+  - Price: 292
+    BotDamage: 2.25
+  - Price: 315
+    BotDamage: 2.37
+  - Price: 338
+    BotDamage: 2.48
+  - Price: 361
+    BotDamage: 2.6
+  - Price: 384
+    BotDamage: 2.72
+  - Price: 407
+    BotDamage: 2.83
+  - Price: 430
+    BotDamage: 2.95
+  - Price: 460
+    BotDamage: 3.07
+  - Price: 490
+    BotDamage: 3.18
+  - Price: 520
+    BotDamage: 3.3
+  - Price: 550
+    BotDamage: 3.42
+  - Price: 580
+    BotDamage: 3.53
+  - Price: 610
+    BotDamage: 3.65
+  - Price: 640
+    BotDamage: 3.77
+  - Price: 670
+    BotDamage: 3.88
+  - Price: 700
+    BotDamage: 4
+  - Price: 730
+    BotDamage: 4.12
+  - Price: 766
+    BotDamage: 4.23
+  - Price: 802
+    BotDamage: 4.35
+  - Price: 838
+    BotDamage: 4.47
+  - Price: 874
+    BotDamage: 4.58
+  - Price: 910
+    BotDamage: 4.7
+  - Price: 946
+    BotDamage: 4.82
+  - Price: 982
+    BotDamage: 4.93
+  - Price: 1018
+    BotDamage: 5.05
+  - Price: 1054
+    BotDamage: 5.17
+  - Price: 1090
+    BotDamage: 5.28
+  - Price: 1140
+    BotDamage: 5.4
+  - Price: 1190
+    BotDamage: 5.52
+  - Price: 1240
+    BotDamage: 5.63
+  - Price: 1290
+    BotDamage: 5.75
+  - Price: 1340
+    BotDamage: 5.87
+  - Price: 1390
+    BotDamage: 5.98
+  - Price: 1440
+    BotDamage: 6.1
+  - Price: 1490
+    BotDamage: 6.22
+  - Price: 1540
+    BotDamage: 6.33
+  - Price: 1590
+    BotDamage: 6.45
+  - Price: 1651
+    BotDamage: 6.57
+  - Price: 1712
+    BotDamage: 6.68
+  - Price: 1773
+    BotDamage: 6.8
+  - Price: 1834
+    BotDamage: 6.92
+  - Price: 1895
+    BotDamage: 7.03
+  - Price: 1956
+    BotDamage: 7.15
+  - Price: 2017
+    BotDamage: 7.27
+  - Price: 2078
+    BotDamage: 7.38
+  - Price: 2139
+    BotDamage: 7.5
+  - Price: 2200
+    BotDamage: 7.62
+  - Price: 2270
+    BotDamage: 7.73
+  - Price: 2340
+    BotDamage: 7.85
+  - Price: 2410
+    BotDamage: 7.97
+  - Price: 2480
+    BotDamage: 8.08
+  - Price: 2550
+    BotDamage: 8.2
+  - Price: 2620
+    BotDamage: 8.32
+  - Price: 2690
+    BotDamage: 8.43
+  - Price: 2760
+    BotDamage: 8.55
+  - Price: 2830
+    BotDamage: 8.67
+  - Price: 2900
+    BotDamage: 8.78
+  - Price: 2980
+    BotDamage: 8.9
+  - Price: 3060
+    BotDamage: 9.02
+  - Price: 3140
+    BotDamage: 9.13
+  - Price: 3220
+    BotDamage: 9.25
+  - Price: 3300
+    BotDamage: 9.37
+  - Price: 3380
+    BotDamage: 9.48
+  - Price: 3460
+    BotDamage: 9.6
+  - Price: 3540
+    BotDamage: 9.72
+  - Price: 3620
+    BotDamage: 9.83
+  id: 0

@@ -19,13 +19,14 @@ MonoBehaviour:
   botCountInfos:
   - Price: 0
     BotCount: 2
-  - Price: 40
-    BotCount: 3
-  - Price: 60
-    BotCount: 4
-  - Price: 100
-    BotCount: 5
   - Price: 200
-    BotCount: 6
+    BotCount: 3
   - Price: 400
+    BotCount: 4
+  - Price: 600
+    BotCount: 5
+  - Price: 1000
+    BotCount: 6
+  - Price: 1600
     BotCount: 7
+  id: 0
