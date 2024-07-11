@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using _Project.Scripts.SkillManagement;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI.Interfacies;
+using Cysharp.Threading.Tasks;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +27,7 @@ namespace _Project.Scripts.UI.Controllers
         {
             //_eventHandler.AddReciever(this);
             _skillUIControllerData.RerollBtn.onClick.AddListener(_eventHandler.RerollBtnClicked);
+            _skillUIControllerData.RerollBtn.onClick.AddListener(CoolDownTimer);
             for (int i = 0; i < _skillUIControllerData.skillBehaviors.Count; i++) _skillUIControllerData.skillBehaviors[i].Initialize(_eventHandler);
             Setup();
         }
@@ -34,7 +36,17 @@ namespace _Project.Scripts.UI.Controllers
         {
             HidePanel();
         }
-
+        private int _delay = 10;
+        public void CoolDownTimer()
+        {
+            CoolDownTimerAsync().Forget();
+        }
+        public async UniTaskVoid CoolDownTimerAsync()
+        {
+            _skillUIControllerData.RerollBtn.interactable = false;
+            await UniTask.Delay(_delay);
+            _skillUIControllerData.RerollBtn.interactable = true;
+        }
         public void ShowPanel()
         {
             _skillUIControllerData.SkillPanel.SetActive(true);

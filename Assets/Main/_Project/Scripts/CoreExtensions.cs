@@ -1008,6 +1008,15 @@ public static class CoreExtensions
 
         return new Vector3(position.x + x, position.y, position.z + z);
     }
+    public static Vector3 GetRandomPositionAroundObjectIgnorRadius(this Vector3 position, float radius, float ignoreRadius)
+    {
+        float angle = Random.Range(ignoreRadius, 360);
+
+        float x = radius * Mathf.Cos(angle);
+        float z = radius * Mathf.Sin(angle);
+
+        return new Vector3(position.x + x, position.y, position.z + z);
+    }
 
     public static Vector3 GetRandomPosition(this Bounds bounds)
     {

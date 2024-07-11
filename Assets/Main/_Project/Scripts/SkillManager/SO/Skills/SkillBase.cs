@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.Character.Datas.SO;
+using _Project.Scripts.SkillManagement.Controllers;
 using UnityEngine;
 
 namespace _Project.Scripts.SkillManagement.SO.Skills
@@ -10,6 +11,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
 
     public class SkillBase : ScriptableObject
     {
+        public string Name;
         public string InfoTxt;
         public SkillCommenUIInfo skillCommenUIInfo;
         public SkillRarityPercentage SkillRarityPercentage;
@@ -18,7 +20,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         // public SkillRarity CurrentRarity => _skillRarity;
         public int Level { get; set; } = 0;
 
-        public virtual void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity) { }
+        public virtual void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController) { }
         public virtual string GetInfoTxt(SkillRarity rarity) => "";
 
         public SkillRarity GetRandomRarity(int seed = 0)

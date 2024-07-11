@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Character.Datas;
 using _Project.Scripts.Character.Datas.SO;
+using _Project.Scripts.Character.Runtime;
 using _Project.Scripts.Level;
 using _Project.Scripts.UI.Controllers;
 using _Project.Scripts.UI.Controllers.MainMenu;
@@ -35,6 +36,7 @@ namespace _Project.Scripts.UI
         public PanelController PanelController { get; private set; }
         public InGamePanelController InGamePanelController { get; private set; }
         public LevelEndDataPanel LevelEndDataPanel { get; private set; }
+       
 
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope)

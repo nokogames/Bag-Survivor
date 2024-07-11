@@ -21,6 +21,10 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         private GameObject _botPrefab;
 
         private int _botCount = 0;
+        private float _botCoolDown = 3f;
+        private float _botFightableTime = 2f;
+        private float _crrFightTime = 0;
+
         public void Initialise(GameObject botPrefab, List<Transform> botPlacePoints)
         {
             _bots = new(botPlacePoints.Count);
@@ -56,10 +60,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             }
             // _bots.ForEach(bot => bot.ChangeStatByPlayer(bot.PlaceToPlayerState));
         }
-        public void UnPlaceBots()
-        {
 
-        }
 
         internal void CraftBots()
         {
@@ -83,7 +84,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         }
 
-        internal void SetBotCount(int botCount) 
+        internal void SetBotCount(int botCount)
         {
 
             _botCount = botCount;

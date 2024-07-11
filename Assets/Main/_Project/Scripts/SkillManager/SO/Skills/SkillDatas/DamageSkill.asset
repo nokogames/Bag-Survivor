@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570be6b0485954e42bc5f0268dffabfc, type: 3}
   m_Name: DamageSkill
   m_EditorClassIdentifier: 
+  Name: DAMAGE
   InfoTxt: Damage
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
   SkillRarityPercentage: {fileID: 11400000, guid: f4594527709e2a447bccd7f2cf58ca20,

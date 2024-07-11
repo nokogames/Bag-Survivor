@@ -14,6 +14,7 @@ namespace _Project.Scripts.SkillManagement
 
     public class SkillBehaviour : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI nameTxt;
         [SerializeField] private Image skillBackGround;
         [SerializeField] private Image skillIconHolder;
         [SerializeField] private TextMeshProUGUI infoTxt;
@@ -27,6 +28,7 @@ namespace _Project.Scripts.SkillManagement
         private void Awake()
         {
             _btn = GetComponent<Button>();
+            _btn.onClick.RemoveAllListeners();
             _btn.onClick.AddListener(OnBtnClicked);
         }
         internal void Initialize(UIMediatorEventHandler eventHandler)
@@ -46,7 +48,7 @@ namespace _Project.Scripts.SkillManagement
             skillBackGround.sprite = _currentSkill.skillCommenUIInfo.GetSprite(_createdSkillInfo.SkillRarity);
             skillIconHolder.sprite = _currentSkill.Icon;
             infoTxt.text = _currentSkill.GetInfoTxt(_createdSkillInfo.SkillRarity);
-
+            nameTxt.text = _currentSkill.Name;
         }
 
         public void OnBtnClicked() => _uiEventHandler.OnSkillBtnClicked(_createdSkillInfo);

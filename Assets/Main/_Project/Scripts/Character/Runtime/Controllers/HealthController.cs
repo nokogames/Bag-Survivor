@@ -1,4 +1,5 @@
 using System;
+using _Project.Scripts.Character.Runtime.Data;
 using _Project.Scripts.Character.Runtime.SerializeData;
 using _Project.Scripts.Loader;
 using _Project.Scripts.UI.Controllers;
@@ -12,6 +13,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
   public class HealthController : IFixedTickable
   {
+    [Inject] private FVXData _vfxData;
     private PlayerSM _playerSm;
     [Inject] private SceneLoader _sceneLoader;
     [Inject] private GameData _gameData;
@@ -69,8 +71,13 @@ namespace _Project.Scripts.Character.Runtime.Controllers
       _health -= damage;
 
       if (_health <= 0) Dead();
-
       SetHealtBar();
+      DamageVFX();
+    }
+
+    private void DamageVFX()
+    {
+      if (_vfxData.GetDamageParticle != null) _vfxData.GetDamageParticle.Play();
     }
 
     private void SetHealtBar()

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.Character.Datas.SO;
+using _Project.Scripts.SkillManagement.Controllers;
 using UnityEngine;
 
 namespace _Project.Scripts.SkillManagement.SO.Skills
@@ -14,7 +15,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     {
 
         [SerializeField] private List<PlayerFireRateByRarity> playerFireRateByRarity;
-        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity)
+        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity,InGameSkillController inGameSkillController)
         {
             var result = playerFireRateByRarity.First(x => x.rarity == rarity);
             playerUpgradedData.firerate += result.firerate;

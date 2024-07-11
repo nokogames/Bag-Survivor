@@ -31,6 +31,7 @@ namespace _Project.Scripts.UI.Controllers
 
         public void OnSkillBtnClicked(CreatedSkillInfo createdSkillInfo)
         {
+            _recievers.ForEach(x => Debug.Log($"Selected FireBall Skill Rec {x}"));
             _recievers.ForEach(reciever => reciever.OnSkillBtnClicked(createdSkillInfo));
         }
     }

@@ -150,7 +150,7 @@ namespace _Project.Scripts
                 obj.SetActive(false);
                 obj.transform.parent = this.transform;
                 pooledObjects.Add(obj);
-                DontDestroyOnLoad(obj);
+             //   DontDestroyOnLoad(obj);
             }
             pooledObjectsList.Add(pooledObjects);
             positions.Add(0);

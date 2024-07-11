@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using System.Linq;
-using System.Threading.Tasks;
+
 
 using _Project.Scripts.UI.Interfacies;
 using UnityEngine;
@@ -12,11 +12,13 @@ using _Project.Scripts.UI.Controllers;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.Level;
+using Cysharp.Threading.Tasks;
+using _Project.Scripts.Character.Runtime;
 
 namespace _Project.Scripts.SkillManagement.Controllers
 {
 
-    public class SkillReciverController : ISkillReciever, IStartable, IDisposable, ITickable
+    public class SkillReciverController : ISkillReciever, IDisposable
     {
         [Inject] private UIMediatorEventHandler _uiMediatorEventHandler;
         [Inject] private SkillUIController _skillUIController;
@@ -25,17 +27,19 @@ namespace _Project.Scripts.SkillManagement.Controllers
         [Inject] private BarController _barController;
         [Inject] private PlayerUpgradedData _playerUpgradedData;
         [Inject] private InLevelEvents _inLevelEvents;
+        [Inject] private InGameSkillController _ingameSkillController;
+       
         // [Inject] private SkillCreator _skillCreator;
         public void CloseBtnClicked()
         {
 
-            Debug.Log($"Manger----CloseBtn");
-        }
 
+        }
 
         public void Start()
         {
-            // _playerInGameUpgradeBarController.SkillReciever = this;
+          
+            _uiMediatorEventHandler.RemoveReciever(this);
             _uiMediatorEventHandler.AddReciever(this);
             _inLevelEvents.onNextLevel += NextLevel;
 
@@ -48,12 +52,20 @@ namespace _Project.Scripts.SkillManagement.Controllers
 
         public void OnSkillBtnClicked(CreatedSkillInfo createdSkillInfo)
         {
-            createdSkillInfo.Skill.OnSelectedSkill(_playerUpgradedData, createdSkillInfo.SkillRarity);
+            createdSkillInfo.Skill.OnSelectedSkill(_playerUpgradedData, createdSkillInfo.SkillRarity, _ingameSkillController);
             _skillUIController.HidePanel();
-            //  _playerInGameUpgradeBarController.Upgraded();
             _barController.Upgraded();
+
         }
 
+
+        // public void OnSkillBtnClicked(CreatedSkillInfo createdSkillInfo)
+        // {
+        //     createdSkillInfo.Skill.OnSelectedSkill(_playerUpgradedData, createdSkillInfo.SkillRarity, _ingameSkillController);
+        //     _skillUIController.HidePanel();
+        //     //  _playerInGameUpgradeBarController.Upgraded();
+        //     _barController.Upgraded();
+        // }
 
 
         public void RerollBtnClicked()

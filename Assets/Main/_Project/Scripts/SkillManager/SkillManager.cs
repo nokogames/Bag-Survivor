@@ -16,12 +16,16 @@ namespace _Project.Scripts.SkillManagement
 
     public class SkillManager : MonoBehaviour
     {
+        [SerializeField] private InGameSkillData inGameSkillData;
 
         // [Inject] private PlayerSM playerSM;
+
         [Inject] private UIMediator uiMediator;
         private LifetimeScope _skillManagerScope;
         private BarController _barController;
         public BarController BarController => _barController;
+
+        public PlayerSM PlayerSM { get; internal set; }
 
         // public BarController BarController { get => null; }
 
@@ -35,13 +39,15 @@ namespace _Project.Scripts.SkillManagement
         {
             _skillManagerScope = parentScope.CreateChild(builder =>
                {
+                   builder.RegisterInstance(inGameSkillData);
                    builder.Register(_ => uiMediator.UIMediatorEventHandler, Lifetime.Scoped);
                    builder.Register(_ => uiMediator.SkillUIController, Lifetime.Scoped).AsSelf();
                    builder.Register(_ => uiMediator.PlayerInGameUpgradeBarController, Lifetime.Scoped);
 
                    builder.RegisterEntryPoint<BarController>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
                    builder.RegisterEntryPoint<SkillCreator>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
-                   builder.RegisterEntryPoint<SkillReciverController>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
+                   builder.Register<SkillReciverController>(Lifetime.Scoped);
+                   builder.Register<InGameSkillController>(Lifetime.Scoped);
                    // builder.RegisterInstance(Skills).AsSelf();
 
                });
@@ -52,14 +58,20 @@ namespace _Project.Scripts.SkillManagement
 
         }
 
-
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.U)) _skillManagerScope.Container.Resolve<SkillUIController>().ShowPanel();
+        }
 
         private void Start()
         {
+            _skillManagerScope.Container.Resolve<SkillReciverController>().Start();
+            _skillManagerScope.Container.Resolve<InGameSkillController>().Start(PlayerSM.Transform);
 
         }
         private void OnDestroy()
         {
+
             _skillManagerScope.Dispose();
         }
 

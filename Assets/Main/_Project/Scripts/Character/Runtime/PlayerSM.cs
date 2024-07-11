@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using _Project.Scripts.Character.Craft;
 using _Project.Scripts.Character.Runtime.Controllers;
+using _Project.Scripts.Character.Runtime.Data;
 using _Project.Scripts.Character.Runtime.SerializeData;
 using _Project.Scripts.Character.Runtime.States;
 using _Project.Scripts.Interactable.Collectable;
@@ -20,6 +21,7 @@ namespace _Project.Scripts.Character.Runtime
     public class PlayerSM : StateMachineMB, ICharacter, IDamagableByEnemy
     {
         [Header("UI Elements"), SerializeField] private PlayerUIData playerUIData;
+        [Header("VFX"), SerializeField] private FVXData fVXData;
         //PlayerController
         [Header("Components"), SerializeField] private CollectableDetector collectableDetector;
         [SerializeField] private CraftDetector craftDetector;
@@ -58,6 +60,7 @@ namespace _Project.Scripts.Character.Runtime
             _skillManager = skillManager;
             _parentScope = parentScope;
             _uiMediator = uIMediator;
+            _skillManager.PlayerSM = this;
             // var result = parentScope.Container.Resolve<UIMediator>();
             CreatePlayerScope();
         }
@@ -79,6 +82,7 @@ namespace _Project.Scripts.Character.Runtime
                 builder.RegisterComponent(animationEventHandler);
                 builder.RegisterComponent(collectableDetector);
                 builder.RegisterComponent(playerUIData);
+                builder.RegisterComponent(fVXData);
 
                 builder.Register<BotController>(Lifetime.Scoped);
                 builder.RegisterEntryPoint<DetectionController>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
@@ -86,7 +90,7 @@ namespace _Project.Scripts.Character.Runtime
                 builder.Register<BotController>(Lifetime.Scoped);
                 builder.Register<PlayerAnimationController>(Lifetime.Scoped);
                 builder.RegisterEntryPoint<HealthController>(Lifetime.Scoped).AsSelf();
-                
+
                 builder.Register(_ => _skillManager.BarController, Lifetime.Scoped);
                 builder.Register(_ => _uiMediator.PanelController, Lifetime.Scoped);
                 builder.Register(_ => _uiMediator.InGamePanelController, Lifetime.Scoped);
