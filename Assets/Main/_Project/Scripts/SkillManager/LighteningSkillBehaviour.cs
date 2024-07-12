@@ -57,12 +57,13 @@ public class LighteningSkillBehaviour : MonoBehaviour
     }
 
     private void Explosion()
-    {   
+    {
         _rigidbody.velocity = Vector3.zero;
         SetPhysicSatatus(false);
         explosionParticle.Play();
         ApplyDamageToEnemys();
         StartCoroutine(DisableSelf());
+        HapticManager.PlayHaptic(HapticType.MediumImpact);
     }
 
     private void ApplyDamageToEnemys()

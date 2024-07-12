@@ -89,7 +89,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     {
       _isDead = true;
       Debug.LogWarning("Player dead");
-
+      HapticManager.PlayHaptic(HapticType.Failure);
       _playerSm.ChangeState(_playerSm.DiedState);
       // string lvl = "Level" + (_gameData.CurrentLvl + 1).ToString();
       // _sceneLoader.LoadLevel(lvl);

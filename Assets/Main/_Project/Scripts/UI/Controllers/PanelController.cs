@@ -19,7 +19,8 @@ namespace _Project.Scripts.UI.Controllers
         [Inject] private UpgradeVisualController _upgradeVisualController;
         [Inject] private MapPanelController _mapPanelController;
 
-
+        [Inject] private MainMenuBotUpgradePanelController _mainMenuBotUpgradePanelController;
+        [Inject] private MainMenuPlayerUpgradePanelController _mainMenuPlayerUpgradePanelController;
         public void Start()
         {
             _panelControllerData.Initialize();
@@ -70,20 +71,26 @@ namespace _Project.Scripts.UI.Controllers
         public void PlayerDied()
         {
             _panelControllerData.OpenPanel(_panelControllerData.diedPanel);
+            _gameData.Save();
         }
         private void NextSection()
         {
             _upgradeVisualController.Activity(false);
             _panelControllerData.OpenPanel(_panelControllerData.InGamePanel);
+            _gameData.Save();
         }
 
         private void ShowNextSectionPanel()
         {
             _panelControllerData.OpenPanel(_panelControllerData.NextSectionPanel);
+            _gameData.Save();
         }
         //From button
         public void OpenMainMenu()
         {
+            _gameData.Save();
+            _mainMenuBotUpgradePanelController.OnOpenMainMenu();
+            _mainMenuPlayerUpgradePanelController.OnOpenMainMenu();
             _mapPanelController.SetUpMaps();
             _upgradeVisualController.Activity(true);
             _panelControllerData.OpenPanel(_panelControllerData.mainPanel);

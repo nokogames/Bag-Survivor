@@ -1177,7 +1177,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6203768170434244219}
-  - component: {fileID: 2577025722423682363}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -1202,29 +1201,6 @@ Transform:
   - {fileID: 7719963819638231059}
   m_Father: {fileID: 6439367763540766701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2577025722423682363
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2175765536773408625}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.12
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!1 &2284506866583236240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,7 +1968,7 @@ Transform:
   m_GameObject: {fileID: 4550458401802235238}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9274615, z: 0, w: -0.37391874}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 115.29, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3197,7 +3173,6 @@ GameObject:
   - component: {fileID: 6785955379202301471}
   - component: {fileID: 5042855066444352998}
   - component: {fileID: 4851700097229175835}
-  - component: {fileID: 8033760989278374394}
   m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
@@ -3270,29 +3245,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8033760989278374394
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7783012152832694877}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &7798651288558714254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4144,7 +4096,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7964360574884541066, guid: 3897d71a174929c40a8f709cc57a5b9b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1139886546358043497, guid: 3897d71a174929c40a8f709cc57a5b9b,

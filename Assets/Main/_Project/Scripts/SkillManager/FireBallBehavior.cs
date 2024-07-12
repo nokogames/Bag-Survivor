@@ -62,6 +62,7 @@ public class FireBallBehavior : MonoBehaviour
         explosionParticle.Play();
         ApplyDamageToEnemys();
         StartCoroutine(DisableSelf());
+        HapticManager.PlayHaptic(HapticType.SoftImpact);
     }
 
     private void ApplyDamageToEnemys()

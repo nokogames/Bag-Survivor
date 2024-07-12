@@ -75,6 +75,11 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
 
             _panelData.panel.SetActive(isActive);
         }
+
+        internal void OnOpenMainMenu()
+        {
+            _uiBehaviours.ForEach(x => x.MoneyChanged());
+        }
     }
 
     [Serializable]

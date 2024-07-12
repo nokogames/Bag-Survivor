@@ -13,6 +13,7 @@ namespace _Project.Scripts.Character.Runtime
         public Action OnCraft;
         public void Craft()
         {
+            HapticManager.PlayHaptic(HapticType.SoftImpact);
             OnCraft?.Invoke();
         }
     }

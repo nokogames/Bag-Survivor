@@ -2,6 +2,7 @@
 
 using System;
 using _Project.Scripts.Character.Runtime;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
@@ -15,37 +16,39 @@ namespace _Project.Scripts.SkillManagement.Controllers
         public void FireBall(int ballCount)
         {
             Debug.Log("Selected FireBall Skill 2");
-            CreateFireBall(ballCount);
+            CreateFireBall(ballCount).Forget();
         }
         public void Lightening(int count)
         {
-            CreateLightening(count);
+            CreateLightening(count).Forget();
         }
 
         internal void Start(Transform transform)
-        {
+        {   
+          
             _playerTransform = transform;
         }
 
-        private void CreateFireBall(int count)
+        private async UniTaskVoid CreateFireBall(int count)
         {
-            Debug.Log($"Selected FireBall Skill 3---{count}");
+
             for (int i = 0; i < count; i++)
             {
                 var fireBallBehavior = ParticlePool.SharedInstance.GetPooledObject(_data.fireballPrefab).GetComponent<FireBallBehavior>();
                 fireBallBehavior.Initialise(_playerTransform);
                 fireBallBehavior.gameObject.SetActive(true);
-
+                await UniTask.Delay(UnityEngine.Random.Range(0, 500));
             }
         }
-        private void CreateLightening(int count)
+        private async UniTaskVoid CreateLightening(int count)
         {
-            Debug.Log($"Selected Lightening Skill 3---{count}");
+
             for (int i = 0; i < count; i++)
             {
                 var fireBallBehavior = ParticlePool.SharedInstance.GetPooledObject(_data.lighteningPrefab).GetComponent<LighteningSkillBehaviour>();
                 fireBallBehavior.Initialise(_playerTransform);
                 fireBallBehavior.gameObject.SetActive(true);
+                await UniTask.Delay(UnityEngine.Random.Range(0, 700));
 
             }
         }

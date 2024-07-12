@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 namespace _Project.Scripts.Interactable.Craft
@@ -52,31 +53,38 @@ namespace _Project.Scripts.Interactable.Craft
             if (_remainPercentage < 90)
             {
                 cuttableSecions[0].SetActive(false);
-                if (_craftLvl == 0) CreateGem();
+                if (_craftLvl == 0) CreateGem().Forget();
             }
             if (_remainPercentage < 50)
             {
                 cuttableSecions[1].SetActive(false);
-                if (_craftLvl == 1) CreateGem();
+                if (_craftLvl == 3) CreateGem().Forget();
             }
 
             if (_remainPercentage <= 0)
             {
-                if (_craftLvl == 2) CreateGem();
+                if (_craftLvl == 6) CreateGem().Forget();
                 cuttableSecions[2].SetActive(false);
                 Crafted();
             }
         }
 
-        private void CreateGem()
+        public async UniTaskVoid CreateGem()
         {
-            _craftLvl++;
-            var gem = ParticlePool.SharedInstance.GetPooledObject(gemPrefab);
-            gem.transform.position = transform.position;
-            gem.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
-            gem.transform.GetComponent<Collider>().enabled = false;
-            gem.SetActive(true);
-            gem.transform.DOJump(gem.transform.position + (gem.transform.forward), 1f, 1, .5f);
+
+            for (int i = 0; i < 3; i++)
+            {
+                _craftLvl++;
+                var gem = ParticlePool.SharedInstance.GetPooledObject(gemPrefab);
+                gem.transform.position = transform.position;
+                gem.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
+                gem.transform.GetComponent<Collider>().enabled = false;
+                gem.SetActive(true);
+                await UniTask.Yield();
+                gem.transform.DOJump(gem.transform.position + (gem.transform.forward), 1f, 1, .5f);
+
+            }
+
         }
 
         private void Crafted()

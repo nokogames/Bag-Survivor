@@ -68,6 +68,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         private void Move()
         {
             if (_isDeath) return;
+
             Rotate();
             if (!_inputData.IsValid && _isMoving) MovingStoped();
 
@@ -83,7 +84,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
             //  _playerTransform.position += _inputData.MovementInput * Time.deltaTime * _speed;
             var movement = _inputData.MovementInput * Time.deltaTime * _speed;
-            if (!_characterController.isGrounded) movement += Vector3.down * Time.deltaTime;
+            if (!_characterController.isGrounded) movement += Vector3.down * Time.deltaTime * 5;
+
 
             _characterController.Move(movement);
             _characterGraphics.OnMoving(Mathf.InverseLerp(0, _activeMovementSettings.MoveSpeed, _speed),

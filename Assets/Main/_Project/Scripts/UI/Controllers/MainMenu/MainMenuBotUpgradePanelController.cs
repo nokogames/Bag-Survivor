@@ -69,6 +69,11 @@ namespace _Project.Scripts.UI.Controllers.MainMenu
             _openAnim = DOTween.To(() => _panelData.verticalLayoutGroup.spacing, x => _panelData.verticalLayoutGroup.spacing = x, 0, 0.5f).SetEase(Ease.OutBack);
             _panelData.panel.SetActive(isActive);
         }
+
+        internal void OnOpenMainMenu()
+        {
+            _uiBehaviours.ForEach(x => x.MoneyChanged());
+        }
     }
 
     [Serializable]
