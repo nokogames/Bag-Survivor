@@ -21,26 +21,153 @@ MonoBehaviour:
     Level: 0
   botCoolDownInfos:
   - Price: 0
-    coolDown: 3
-    playableTime: 5
-  - Price: 1
-    coolDown: 3.2
-    playableTime: 4.5
-  - Price: 2
-    coolDown: 3.5
-    playableTime: 4.2
-  - Price: 3
-    coolDown: 3.5
-    playableTime: 4.2
-  - Price: 4
-    coolDown: 3.5
-    playableTime: 4
-  - Price: 5
-    coolDown: 3.6
-    playableTime: 3.5
-  - Price: 10
+    coolDown: 5.0
+    playableTime: 5.0
+  - Price: 30
+    coolDown: 4.94
+    playableTime: 5.14
+  - Price: 60
+    coolDown: 4.88
+    playableTime: 5.28
+  - Price: 90
+    coolDown: 4.82
+    playableTime: 5.42
+  - Price: 120
+    coolDown: 4.76
+    playableTime: 5.56
+  - Price: 150
+    coolDown: 4.7
+    playableTime: 5.7
+  - Price: 180
+    coolDown: 4.64
+    playableTime: 5.84
+  - Price: 210
+    coolDown: 4.58
+    playableTime: 5.98
+  - Price: 240
+    coolDown: 4.52
+    playableTime: 6.12
+  - Price: 270
+    coolDown: 4.46
+    playableTime: 6.26
+  - Price: 300
+    coolDown: 4.4
+    playableTime: 6.4
+  - Price: 330
+    coolDown: 4.34
+    playableTime: 6.54
+  - Price: 360
+    coolDown: 4.28
+    playableTime: 6.68
+  - Price: 390
+    coolDown: 4.22
+    playableTime: 6.82
+  - Price: 420
+    coolDown: 4.16
+    playableTime: 6.96
+  - Price: 450
+    coolDown: 4.1
+    playableTime: 7.1
+  - Price: 480
+    coolDown: 4.04
+    playableTime: 7.24
+  - Price: 510
+    coolDown: 3.98
+    playableTime: 7.38
+  - Price: 540
+    coolDown: 3.92
+    playableTime: 7.52
+  - Price: 570
+    coolDown: 3.86
+    playableTime: 7.66
+  - Price: 600
     coolDown: 3.8
-    playableTime: 3.2
-  - Price: 20
-    coolDown: 4
-    playableTime: 3
+    playableTime: 7.8
+  - Price: 660
+    coolDown: 3.74
+    playableTime: 7.94
+  - Price: 720
+    coolDown: 3.68
+    playableTime: 8.08
+  - Price: 780
+    coolDown: 3.62
+    playableTime: 8.22
+  - Price: 840
+    coolDown: 3.56
+    playableTime: 8.36
+  - Price: 900
+    coolDown: 3.5
+    playableTime: 8.5
+  - Price: 960
+    coolDown: 3.44
+    playableTime: 8.64
+  - Price: 1020
+    coolDown: 3.38
+    playableTime: 8.78
+  - Price: 1080
+    coolDown: 3.32
+    playableTime: 8.92
+  - Price: 1140
+    coolDown: 3.26
+    playableTime: 9.06
+  - Price: 1200
+    coolDown: 3.2
+    playableTime: 9.2
+  - Price: 1260
+    coolDown: 3.14
+    playableTime: 9.34
+  - Price: 1320
+    coolDown: 3.08
+    playableTime: 9.48
+  - Price: 1380
+    coolDown: 3.02
+    playableTime: 9.62
+  - Price: 1440
+    coolDown: 2.96
+    playableTime: 9.76
+  - Price: 1500
+    coolDown: 2.9
+    playableTime: 9.9
+  - Price: 1560
+    coolDown: 2.84
+    playableTime: 10.04
+  - Price: 1620
+    coolDown: 2.78
+    playableTime: 10.18
+  - Price: 1680
+    coolDown: 2.72
+    playableTime: 10.32
+  - Price: 1740
+    coolDown: 2.66
+    playableTime: 10.46
+  - Price: 1800
+    coolDown: 2.6
+    playableTime: 10.6
+  - Price: 1860
+    coolDown: 2.54
+    playableTime: 10.74
+  - Price: 1920
+    coolDown: 2.48
+    playableTime: 10.88
+  - Price: 1980
+    coolDown: 2.42
+    playableTime: 11.02
+  - Price: 2040
+    coolDown: 2.36
+    playableTime: 11.16
+  - Price: 2100
+    coolDown: 2.3
+    playableTime: 11.3
+  - Price: 2160
+    coolDown: 2.24
+    playableTime: 11.44
+  - Price: 2220
+    coolDown: 2.18
+    playableTime: 11.58
+  - Price: 2280
+    coolDown: 2.12
+    playableTime: 11.72
+  - Price: 2340
+    coolDown: 2.06
+    playableTime: 11.86
+  id: 0
