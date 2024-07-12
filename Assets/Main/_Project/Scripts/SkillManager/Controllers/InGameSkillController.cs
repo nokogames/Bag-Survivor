@@ -17,6 +17,10 @@ namespace _Project.Scripts.SkillManagement.Controllers
             Debug.Log("Selected FireBall Skill 2");
             CreateFireBall(ballCount);
         }
+        public void Lightening(int count)
+        {
+            CreateLightening(count);
+        }
 
         internal void Start(Transform transform)
         {
@@ -34,10 +38,22 @@ namespace _Project.Scripts.SkillManagement.Controllers
 
             }
         }
+        private void CreateLightening(int count)
+        {
+            Debug.Log($"Selected Lightening Skill 3---{count}");
+            for (int i = 0; i < count; i++)
+            {
+                var fireBallBehavior = ParticlePool.SharedInstance.GetPooledObject(_data.lighteningPrefab).GetComponent<LighteningSkillBehaviour>();
+                fireBallBehavior.Initialise(_playerTransform);
+                fireBallBehavior.gameObject.SetActive(true);
+
+            }
+        }
     }
     [Serializable]
     public class InGameSkillData
     {
         public GameObject fireballPrefab;
+        public GameObject lighteningPrefab;
     }
 }

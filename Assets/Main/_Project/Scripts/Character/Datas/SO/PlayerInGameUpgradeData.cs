@@ -89,7 +89,10 @@ namespace _Project.Scripts.Character.Datas.SO
         public float speed = 0;
         //Bot
         public float botSpeed = 0;
-        
+        //CoolDown
+        public float botCoolDownTime = 0;
+        public float botPlayableTime = 0;
+
         private List<IPlayerUpgradedReciver> _recivers = new();
         public void AddReciver(IPlayerUpgradedReciver reciver)
         {

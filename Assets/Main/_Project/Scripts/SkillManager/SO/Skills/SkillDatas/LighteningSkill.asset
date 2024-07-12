@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd293488628d8943b5006b0eb9596b7, type: 3}
+  m_Name: LighteningSkill
+  m_EditorClassIdentifier: 
+  Name: LIGHTENING
+  InfoTxt: Lightening
+  skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
+  SkillRarityPercentage: {fileID: 11400000, guid: f4594527709e2a447bccd7f2cf58ca20,
+    type: 2}
+  Icon: {fileID: 21300000, guid: b5a9fd3fdb6b22343a5a961c57fd337a, type: 3}
+  fireBallCountByRarity:
+  - rarity: 0
+    count: 1
+  - rarity: 1
+    count: 2
+  - rarity: 2
+    count: 3
+  - rarity: 3
+    count: 4

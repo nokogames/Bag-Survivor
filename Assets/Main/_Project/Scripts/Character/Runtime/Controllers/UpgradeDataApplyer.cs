@@ -40,6 +40,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
             SetMovementSpeed();
             SetBotCount();
+            SetCoolDown();
         }
         public void OnUpgraded()
         {
@@ -50,6 +51,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             SetHealingAmount();
             SetMovementSpeed();
             SetBotCount();
+            SetCoolDown();
         }
 
         private void SetHealt()
@@ -74,11 +76,16 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         }
         private void SetBotCount()
         {
-             _botController.SetBotCount(_savedPlayerData.botCount);
+            _botController.SetBotCount(_savedPlayerData.botCount);
         }
         public void Dispose()
         {
             _upgradedData.RemoveReciver(this);
+        }
+
+        public void SetCoolDown()
+        {
+            _botController.SetCoolDown(_savedPlayerData.botCoolDownTime, _savedPlayerData.botPlayableTime);
         }
     }
 }

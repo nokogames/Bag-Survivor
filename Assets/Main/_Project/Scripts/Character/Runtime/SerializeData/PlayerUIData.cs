@@ -10,6 +10,8 @@ namespace _Project.Scripts.Character.Runtime.SerializeData
         public Image barImg;
         public Transform barTransform;
 
+        public Image coolDownImg;
+        public GameObject coolDownPanel;
 
         public float BarFillAomunt { get => barImg.fillAmount; set => barImg.fillAmount = value; }
         public bool EnabledBar { get => barTransform.gameObject.activeSelf; set => barTransform.gameObject.SetActive(value); }

@@ -84,7 +84,7 @@ namespace _Project.Scripts.Character.Runtime
                 builder.RegisterComponent(playerUIData);
                 builder.RegisterComponent(fVXData);
 
-                builder.Register<BotController>(Lifetime.Scoped);
+
                 builder.RegisterEntryPoint<DetectionController>(Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
                 builder.Register<PlayerMovementController>(Lifetime.Scoped);
                 builder.Register<BotController>(Lifetime.Scoped);
@@ -189,6 +189,11 @@ namespace _Project.Scripts.Character.Runtime
         {
 
             ChangeState(IdleState);
+        }
+        public override void Update()
+        {
+            base.Update();
+            _botController.Tick();
         }
 
         private void OnDestroy()

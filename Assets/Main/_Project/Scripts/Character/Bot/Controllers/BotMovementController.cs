@@ -20,18 +20,22 @@ namespace _Project.Scripts.Character.Bot.Controllers
         }
         public void FollowEnemy()
         {
-
+            // if (_character.Target == null) return;
             _agentController.FollowEnemy(_character.Target.Transform.position);
         }
 
         public void FollowCraftable()
         {
-
+            // if (_character.Target == null) return;
             _agentController.FollowCraftable(_character.Target.Transform.position);
         }
 
         public void RotateToTarget()
         {
+            // if (_character.Target == null) return;
+
+
+
             Vector3 targetDirection = _character.Target.Transform.position - _bot.Transform.position;
             targetDirection.y = 0;
 
@@ -44,7 +48,7 @@ namespace _Project.Scripts.Character.Bot.Controllers
         }
 
         internal float EnemyDistance()
-        {
+        {     
             return _agentController.Distance(_character.Target.Transform.position) + .1f;
         }
     }
