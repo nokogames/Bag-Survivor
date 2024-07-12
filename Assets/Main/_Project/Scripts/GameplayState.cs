@@ -49,6 +49,7 @@ namespace _Project.Scripts
             builder.RegisterComponentInHierarchy<EnemyManager>();
             builder.RegisterComponentInHierarchy<SkillManager>().AsSelf();
             builder.RegisterComponentInHierarchy<GemManager>();
+            builder.RegisterComponentInHierarchy<VolumeController>();
 
 
 

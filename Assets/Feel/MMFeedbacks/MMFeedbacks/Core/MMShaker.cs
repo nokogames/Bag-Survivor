@@ -196,7 +196,7 @@ namespace MoreMountains.Feedbacks
 			{
 				ResetShakerValues();
 			}            
-			this.enabled = false;
+			//this.enabled = false;
 		}
 
 		/// <summary>

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ae0014b6fe21b4bbd628c6ff5f357c, type: 3}
   m_Name: BotCoolDownUpgrade
   m_EditorClassIdentifier: 
-  BgSprite: {fileID: 21300000, guid: d01fb4f9c4816724e80b9b7d1094e59b, type: 3}
+  BgSprite: {fileID: 21300000, guid: 60ca50a9c481a7e46a08d4f915858a3c, type: 3}
   UpgradeInfo: Bot Colldown
   Lvl: 0
   IsCompleted: 0
   data:
-    type: 
+    type: _Project.Scripts.Character.Datas.SO.UpgradeItems.BotCountUpgrade
     Level: 0
   botCoolDownInfos:
   - Price: 0

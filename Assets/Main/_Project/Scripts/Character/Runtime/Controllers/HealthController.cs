@@ -18,7 +18,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     [Inject] private SceneLoader _sceneLoader;
     [Inject] private GameData _gameData;
     [Inject] private PlayerUIData _playerUIData;
-
+    [Inject] private VolumeController _volumeController;
     private float _baseHealth = 50;
     private float _health = 50;
     // private float _baseHealth = 100f;
@@ -69,7 +69,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
       if (_isDead) return;
       _health -= damage;
-
+      _volumeController.PlayChromatic();
       if (_health <= 0) Dead();
       SetHealtBar();
       DamageVFX();
