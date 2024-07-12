@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DamageRangeUpgrade
   m_EditorClassIdentifier: 
   BgSprite: {fileID: 21300000, guid: 22246d5b6b4e8ba4fb22deb04add273c, type: 3}
-  UpgradeInfo: Damage range upgrade
+  UpgradeInfo: Range Upgrade
   Lvl: 0
   IsCompleted: 0
   data:

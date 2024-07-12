@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: HealtUpgrade
   m_EditorClassIdentifier: 
   BgSprite: {fileID: 21300000, guid: 813deea5535a6da4e86fb04d91452f03, type: 3}
-  UpgradeInfo: Health upgrade
+  UpgradeInfo: Health Upgrade
   Lvl: 0
   IsCompleted: 0
+  data:
+    type: 
+    Level: 0
   healtInfos:
   - Price: 0
     Healt: 40
@@ -179,4 +182,3 @@ MonoBehaviour:
     Healt: 118
   - Price: 3620
     Healt: 119
-  id: 0

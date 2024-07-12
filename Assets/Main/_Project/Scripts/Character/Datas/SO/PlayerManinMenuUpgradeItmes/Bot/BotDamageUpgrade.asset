@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: BotDamageUpgrade
   m_EditorClassIdentifier: 
   BgSprite: {fileID: 21300000, guid: 8c3442f1b04f9ad4281068800831d6bd, type: 3}
-  UpgradeInfo: Bot damage
+  UpgradeInfo: Bot Damage
   Lvl: 0
   IsCompleted: 0
+  data:
+    type: 
+    Level: 0
   damageInfos:
   - Price: 0
     BotDamage: 0.5
@@ -179,4 +182,3 @@ MonoBehaviour:
     BotDamage: 9.72
   - Price: 3620
     BotDamage: 9.83
-  id: 0

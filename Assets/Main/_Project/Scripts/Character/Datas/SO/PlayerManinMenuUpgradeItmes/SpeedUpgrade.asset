@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: SpeedUpgrade
   m_EditorClassIdentifier: 
   BgSprite: {fileID: 21300000, guid: ebf71bcde8d52de45aa74cca0afb091f, type: 3}
-  UpgradeInfo: Player speed
+  UpgradeInfo: Player Speed
   Lvl: 0
   IsCompleted: 0
+  data:
+    type: 
+    Level: 0
   fireRateInfos:
   - Price: 0
     Speed: 2.2
@@ -138,7 +141,7 @@ MonoBehaviour:
   - Price: 6000
     Speed: 3.97
   - Price: 6100
-    Speed: 4.0
+    Speed: 4
   - Price: 6200
     Speed: 4.03
   - Price: 6300
@@ -169,4 +172,3 @@ MonoBehaviour:
     Speed: 4.42
   - Price: 7600
     Speed: 4.45
-  id: 0

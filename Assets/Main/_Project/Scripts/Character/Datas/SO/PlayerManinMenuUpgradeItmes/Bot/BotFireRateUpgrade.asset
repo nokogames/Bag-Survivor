@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: BotFireRateUpgrade
   m_EditorClassIdentifier: 
   BgSprite: {fileID: 21300000, guid: d01fb4f9c4816724e80b9b7d1094e59b, type: 3}
-  UpgradeInfo: Bot firerate
+  UpgradeInfo: Bot Fire Rate
   Lvl: 0
   IsCompleted: 0
+  data:
+    type: 
+    Level: 0
   botFireRateInfos:
   - Price: 0
     BotFireRate: 0.8
@@ -139,4 +142,3 @@ MonoBehaviour:
     BotFireRate: 0.21
   - Price: 4352
     BotFireRate: 0.2
-  id: 0

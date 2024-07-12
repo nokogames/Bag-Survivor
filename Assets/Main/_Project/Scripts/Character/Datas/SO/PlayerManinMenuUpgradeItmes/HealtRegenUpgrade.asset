@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: HealtRegenUpgrade
   m_EditorClassIdentifier: 
   BgSprite: {fileID: 21300000, guid: 9eb15654972600443a8961578d6deaf0, type: 3}
-  UpgradeInfo: 'Healt regen '
+  UpgradeInfo: 'Health Regen '
   Lvl: 0
   IsCompleted: 0
+  data:
+    type: 
+    Level: 0
   healtRegenInfos:
   - Price: 0
     HealtRegenAmount: 0.1
@@ -54,7 +57,7 @@ MonoBehaviour:
   - Price: 676
     HealtRegenAmount: 0.95
   - Price: 722
-    HealtRegenAmount: 1.0
+    HealtRegenAmount: 1
   - Price: 768
     HealtRegenAmount: 1.05
   - Price: 814
@@ -94,7 +97,7 @@ MonoBehaviour:
   - Price: 1892
     HealtRegenAmount: 1.95
   - Price: 1964
-    HealtRegenAmount: 2.0
+    HealtRegenAmount: 2
   - Price: 2036
     HealtRegenAmount: 2.05
   - Price: 2108
@@ -134,7 +137,7 @@ MonoBehaviour:
   - Price: 3950
     HealtRegenAmount: 2.95
   - Price: 4084
-    HealtRegenAmount: 3.0
+    HealtRegenAmount: 3
   - Price: 4218
     HealtRegenAmount: 3.05
   - Price: 4352
@@ -174,5 +177,4 @@ MonoBehaviour:
   - Price: 6780
     HealtRegenAmount: 3.95
   - Price: 6924
-    HealtRegenAmount: 4.0
-  id: 0
+    HealtRegenAmount: 4

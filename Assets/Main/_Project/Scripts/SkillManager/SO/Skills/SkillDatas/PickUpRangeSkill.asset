@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PickUpRangeSkill
   m_EditorClassIdentifier: 
   Name: PICKUP RANGE
-  InfoTxt: Pick Up Range
+  InfoTxt: Pick up far!
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
   SkillRarityPercentage: {fileID: 11400000, guid: f4594527709e2a447bccd7f2cf58ca20,
     type: 2}
