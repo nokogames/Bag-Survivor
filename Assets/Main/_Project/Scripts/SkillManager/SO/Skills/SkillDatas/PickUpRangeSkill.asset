@@ -22,8 +22,8 @@ MonoBehaviour:
   - rarity: 0
     pickUpRange: 0.05
   - rarity: 1
-    pickUpRange: 0.1
-  - rarity: 2
-    pickUpRange: 0.15
-  - rarity: 3
     pickUpRange: 0.2
+  - rarity: 2
+    pickUpRange: 0.4
+  - rarity: 3
+    pickUpRange: 1

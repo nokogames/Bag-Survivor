@@ -20,10 +20,10 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 3076999b95aec374c8a0d416154867bc, type: 3}
   playerFireRateByRarity:
   - rarity: 0
-    firerate: 0.005
+    firerate: 0.03
   - rarity: 1
-    firerate: 0.01
+    firerate: 0.06
   - rarity: 2
-    firerate: 0.015
+    firerate: 0.08
   - rarity: 3
-    firerate: 0.02
+    firerate: 0.1

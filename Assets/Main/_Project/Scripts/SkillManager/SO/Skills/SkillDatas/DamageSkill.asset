@@ -22,8 +22,8 @@ MonoBehaviour:
   - rarity: 0
     damageAmount: 0.1
   - rarity: 1
-    damageAmount: 0.15
-  - rarity: 2
     damageAmount: 0.2
-  - rarity: 3
+  - rarity: 2
     damageAmount: 0.3
+  - rarity: 3
+    damageAmount: 0.5

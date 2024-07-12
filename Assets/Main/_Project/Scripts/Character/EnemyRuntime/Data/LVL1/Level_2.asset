@@ -19,4 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a09f9c3196ad4a8c9a068c3e7833a22, type: 2}
   - {fileID: 11400000, guid: d5858184701624671b0be49c8f992182, type: 2}
   EnemyCount: 2285
-  TotalCoinCount: 2200
+  TotalCoinCount: 3200
