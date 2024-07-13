@@ -65,6 +65,7 @@ namespace _Project.Scripts.UI.Controllers
         private void NextLevel()
         {
             _upgradeVisualController.Activity(false);
+            CustomAddManager.ShowBanner();
             _panelControllerData.OpenPanel(_panelControllerData.InGamePanel);
         }
 
@@ -76,6 +77,7 @@ namespace _Project.Scripts.UI.Controllers
         private void NextSection()
         {
             _upgradeVisualController.Activity(false);
+            CustomAddManager.ShowBanner();
             _panelControllerData.OpenPanel(_panelControllerData.InGamePanel);
             _gameData.Save();
         }
@@ -88,6 +90,7 @@ namespace _Project.Scripts.UI.Controllers
         //From button
         public void OpenMainMenu()
         {
+            CustomAddManager.HideBanner();
             _gameData.Save();
             _mainMenuBotUpgradePanelController.OnOpenMainMenu();
             _mainMenuPlayerUpgradePanelController.OnOpenMainMenu();

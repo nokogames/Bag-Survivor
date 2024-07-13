@@ -33,7 +33,7 @@ namespace _Project.Scripts
             base.Awake();
             DontDestroyOnLoad(gameObject);
 
-
+            CustomAddManager.Initialize();
         }
         protected override void Configure(IContainerBuilder builder)
         {
