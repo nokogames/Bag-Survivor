@@ -4,6 +4,7 @@ public static class HapticManager
 {
     public static void PlayHaptic(HapticType hapticType)
     {
+        if (HapticController.IsPlaying()) return;
         HapticPatterns.PlayPreset((HapticPatterns.PresetType)hapticType);
 
 

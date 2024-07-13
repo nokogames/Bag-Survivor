@@ -1,9 +1,12 @@
-using System;
+
 using _Project.Scripts.Character.Runtime.Data;
 using _Project.Scripts.Character.Runtime.SerializeData;
 using _Project.Scripts.Loader;
 using _Project.Scripts.UI.Controllers;
+using Cysharp.Threading.Tasks;
+using MoreMountains.Tools;
 using Pack.GameData;
+using TMPro;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -49,6 +52,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
       // _playerUIData.BarFillAomunt = _health / _baseHealth;
 
+
       if (_health >= _baseHealth)
       {
         //   _playerUIData.EnabledBar = false;
@@ -72,13 +76,33 @@ namespace _Project.Scripts.Character.Runtime.Controllers
       _volumeController.PlayChromatic();
       if (_health <= 0) Dead();
       SetHealtBar();
-      DamageVFX();
+      DamageVFX(damage);
     }
 
-    private void DamageVFX()
+    private void DamageVFX(float damage)
     {
-      if (_vfxData.GetDamageParticle != null) _vfxData.GetDamageParticle.Play();
+      if (_vfxData.DamageParticle != null) _vfxData.DamageParticle.Play();
+      if (_vfxData.DamageTextParticle != null)
+      {
+
+        var obj = ParticlePool.SharedInstance.GetPooledObject(_vfxData.DamageTextParticle);
+        var textMesh = obj.GetComponent<TextMeshPro>();
+        textMesh.text = "-" + damage.ToString("F1");
+        obj.transform.forward = Camera.main.transform.forward;
+        obj.transform.position = _playerSm.transform.position + Vector3.up * 2f;
+        obj.SetActive(true);
+        StaticHelper.Instance.FloatingTextAnim(obj.transform, textMesh).Forget();
+        // obj.transform.position = _playerSm.transform.position + Vector3.up;
+        // obj.SetActive(true);
+      }
     }
+    #region  Text Animations
+
+
+
+
+
+    #endregion
 
     private void SetHealtBar()
     {
@@ -102,4 +126,6 @@ namespace _Project.Scripts.Character.Runtime.Controllers
       SetHealtBar();
     }
   }
+
+
 }

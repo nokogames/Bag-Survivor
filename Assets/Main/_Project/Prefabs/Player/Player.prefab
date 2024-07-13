@@ -531,7 +531,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.6563, y: 0.0786}
+  m_SizeDelta: {x: 0.887, y: 0.1062}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1408653017672781001
 CanvasRenderer:
@@ -1059,7 +1059,9 @@ MonoBehaviour:
     coolDownImg: {fileID: 8969004955054095483}
     coolDownPanel: {fileID: 6615323185032726859}
   fVXData:
-    GetDamageParticle: {fileID: 7458973644926014178}
+    DamageParticle: {fileID: 0}
+    DamageTextParticle: {fileID: 7226844735276793987, guid: 700f00e690d81b6469a401c679da7f80,
+      type: 3}
   collectableDetector: {fileID: 1225956675101682548}
   craftDetector: {fileID: 7145506908490437610}
   characterGraphics: {fileID: 1027869243198330993}
@@ -1122,7 +1124,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.35
   m_SlopeLimit: 0
-  m_StepOffset: 0.3
+  m_StepOffset: 0.01
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.84, z: 0}
@@ -2798,7 +2800,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.243}
-  m_SizeDelta: {x: 0.6693, y: 0.0975}
+  m_SizeDelta: {x: 0.9506, y: 0.1385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8596238906206717712
 CanvasRenderer:
@@ -3385,7 +3387,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.6693, y: 0.0975}
+  m_SizeDelta: {x: 0.9045, y: 0.1318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6564312551820561056
 CanvasRenderer:
@@ -4521,7 +4523,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.24300003}
-  m_SizeDelta: {x: 0.6563, y: 0.0786}
+  m_SizeDelta: {x: 0.9321, y: 0.1116}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7450954564642646081
 CanvasRenderer:
@@ -5241,12 +5243,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d28efb45aae6984d9e3e9097d99fef8, type: 3}
---- !u!198 &7458973644926014178 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8880623512764472350, guid: 3d28efb45aae6984d9e3e9097d99fef8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2071032449397034748}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7458973644945367620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8880623512782777528, guid: 3d28efb45aae6984d9e3e9097d99fef8,

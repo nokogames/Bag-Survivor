@@ -6,6 +6,7 @@ namespace _Project.Scripts.Character.Runtime.Data
     [Serializable]
     public class FVXData
     {
-        public ParticleSystem GetDamageParticle;
+        public ParticleSystem DamageParticle;
+        public GameObject DamageTextParticle;
     }
 }

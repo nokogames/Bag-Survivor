@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: FIREBALL
   InfoTxt: Cast a Fireball!
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
-  SkillRarityPercentage: {fileID: 11400000, guid: f4594527709e2a447bccd7f2cf58ca20,
+  SkillRarityPercentage: {fileID: 11400000, guid: 68a2c125d0a1d9c43bcbbdaafcb86d28,
     type: 2}
   Icon: {fileID: 21300000, guid: 300d371cb71ea6145a706fc64e4b5443, type: 3}
   fireBallCountByRarity:

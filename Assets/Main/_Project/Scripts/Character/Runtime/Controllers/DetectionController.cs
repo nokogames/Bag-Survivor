@@ -99,6 +99,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             //  var coroutine = StaticHelper.Instance.MoveToPositionWithFollow(_playerSM.Transform, collectableTransform, collectableType, OnCompletedCollecting);\
             if (collectableType == CollectableType.XP) _barController.CollectedXp();
             else if (collectableType == CollectableType.GEM) CollectedGem();
+
             var coroutine = collectableTransform.CustomDoJump(_playerSM.Transform, collectableType, 3f, .3f, OnCompletedCollecting);
             StaticHelper.Instance.StartHelperCoroutine(coroutine);
 
@@ -112,6 +113,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         private void OnCompletedCollecting(Transform collectable, CollectableType collectableType)
         {
+            HapticManager.PlayHaptic(HapticType.SoftImpact);
+
             collectable.gameObject.SetActive(false);
 
         }

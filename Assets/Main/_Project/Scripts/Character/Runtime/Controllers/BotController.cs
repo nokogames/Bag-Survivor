@@ -118,6 +118,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             {
                 // _playerUIData.coolDownPanel.SetActive(false);
                 _crrFightTime += Time.deltaTime;
+                _playerUIData.coolDownImg.fillAmount = 1f - _crrFightTime / _botFightableTime;
             }
             if (_crrFightTime > _botFightableTime)
             {
@@ -134,7 +135,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
                 {
                     _isCoolDown = false;
                     _crrCoolTime = 0;
-                    _playerUIData.coolDownPanel.SetActive(false);
+                    //   _playerUIData.coolDownPanel.SetActive(false);
                     switch (_reciveType)
                     {
                         case ReciveType.Attac:

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using static _Project.Scripts.Character.EnemyRuntime.EnemyManager;
 
@@ -11,6 +13,8 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
     public class Enemy : MonoBehaviour, IEnemy
     {
+        [SerializeField] private GameObject floatingTxt;
+        [SerializeField] private int xpCount = 1;
         [SerializeField] private GameObject xpPrefab;
         [SerializeField] private GameObject deathParticle;
         [SerializeField] private EnemyType enemyType;
@@ -53,6 +57,13 @@ namespace _Project.Scripts.Character.EnemyRuntime
         public void GetDamage(float damage)
         {
             if (IsDead) return;
+            var obj = ParticlePool.SharedInstance.GetPooledObject(floatingTxt);
+            var textMesh = obj.GetComponent<TextMeshPro>();
+            textMesh.text = "-" + damage.ToString("F1");
+            obj.transform.forward = Camera.main.transform.forward;
+            obj.transform.position = transform.position;
+            obj.SetActive(true);
+            StaticHelper.Instance.FloatingTextAnim(obj.transform, textMesh, .5f, Vector3.up * 4f).Forget();
             _healt -= damage;
             if (_healt <= 0)
                 Dead();
@@ -81,10 +92,46 @@ namespace _Project.Scripts.Character.EnemyRuntime
         {
             if (xpPrefab == null) return;
 
-            var obj = ParticlePool.SharedInstance.GetPooledObject(xpPrefab);
-            obj.transform.position = transform.position.SetY(.5f);
-            obj.SetActive(true);
+            for (int i = 0; i < xpCount; i++)
+            {
 
+                var obj = ParticlePool.SharedInstance.GetPooledObject(xpPrefab);
+                var startPos = transform.position.SetY(1f);
+                var destPos = startPos.GetRandomPositionAroundObject(1f);
+                obj.transform.position = startPos;
+                //  obj.transform.position = startPos.GetRandomPositionAroundObject(1f);
+                obj.SetActive(true);
+                JumpToPos(obj.transform, destPos).Forget();
+                //await UniTask.Delay(TimeSpan.FromSeconds(.2f));
+            }
+
+        }
+        private float duration = .3f;
+        private float height = .6f;
+        private async UniTaskVoid JumpToPos(Transform obj, Vector3 destPos)
+        {
+            // Height of the jump
+
+            Vector3 startPos = obj.position;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / duration;
+
+
+                Vector3 currentPos = Vector3.Lerp(startPos, destPos, t);
+
+
+                currentPos.y += height * Mathf.Sin(Mathf.PI * t);
+
+                obj.position = currentPos;
+
+                await UniTask.Yield();
+            }
+
+            obj.position = destPos;
         }
 
         private void SetFalse()
@@ -124,6 +171,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
             var distance = Vector3.Distance(transform.position, _playerTransform.position);
             var destination = new Vector3(_playerTransform.position.x, transform.position.y, _playerTransform.position.z);
             Quaternion lookAt = Quaternion.LookRotation(destination - transform.position);
+
             if (distance < _attackDistance)
             {
                 Attack();
@@ -142,7 +190,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         }
         private float _crrTime = 0;
-        private float _attackTimeRate = .2f;
+        private float _attackTimeRate = .5f;
         private void Attack()
         {
             if (animator != null) animator.SetBool("Move", false);
