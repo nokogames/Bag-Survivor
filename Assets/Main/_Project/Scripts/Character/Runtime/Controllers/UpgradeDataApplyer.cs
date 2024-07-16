@@ -32,7 +32,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             _enemyDetector.SetRadius(_savedPlayerData.range);
             _collectableDetector.SetRadius(_savedPlayerData.pickUpRange);
 
-            _healthController.SetBaseHealt(_savedPlayerData.healt);
+            _healthController.SetBaseHealtStart(_savedPlayerData.healt);
             _healthController.SetHealingAmount(_savedPlayerData.healtRegenAmount);
 
             _upgradedData.AddReciver(this);

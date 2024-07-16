@@ -37,10 +37,14 @@ namespace _Project.Scripts.SkillManagement.Controllers
 
         private void CreateSkill(int skillCount = 3)
         {
+            int[] skillIndexs = new int[] { -1, -1, -1 };
             for (int i = 0; i < skillCount; i++)
             {
                 //UnityEngine.Random.InitState(i);
                 int randomIndex = UnityEngine.Random.Range(0, Skills.Count);
+                while (skillIndexs.Contains(randomIndex)) randomIndex = UnityEngine.Random.Range(0, Skills.Count);
+                skillIndexs[i] = randomIndex;
+                
                 SkillBase rondomSkill = Skills[randomIndex];
                 SkillRarity skillRarity = rondomSkill.GetRandomRarity();
 

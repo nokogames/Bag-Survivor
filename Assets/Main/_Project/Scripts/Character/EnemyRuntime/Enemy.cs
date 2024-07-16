@@ -63,7 +63,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
             obj.transform.forward = Camera.main.transform.forward;
             obj.transform.position = transform.position;
             obj.SetActive(true);
-            StaticHelper.Instance.FloatingTextAnim(obj.transform, textMesh, .5f, Vector3.up * 4f).Forget();
+            StaticHelper.Instance.FloatingTextAnim(obj.transform, textMesh, .8f, Vector3.up * 4f).Forget();
             _healt -= damage;
             if (_healt <= 0)
                 Dead();

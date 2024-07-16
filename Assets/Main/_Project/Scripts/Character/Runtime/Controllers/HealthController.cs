@@ -38,10 +38,16 @@ namespace _Project.Scripts.Character.Runtime.Controllers
       _playerSm = playerSM;
     }
 
-    public void SetBaseHealt(float baseHealth)
+    public void SetBaseHealtStart(float baseHealth)
     {
       _baseHealth = baseHealth;
       _health = baseHealth;
+
+    }
+    public void SetBaseHealt(float baseHealth)
+    {
+      _baseHealth = baseHealth;
+
     }
     public void SetHealingAmount(float healingAmount)
     {
@@ -112,7 +118,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     private void Dead()
     {
       _isDead = true;
-      Debug.LogWarning("Player dead");
+   
       HapticManager.PlayHaptic(HapticType.Failure);
       _playerSm.ChangeState(_playerSm.DiedState);
       // string lvl = "Level" + (_gameData.CurrentLvl + 1).ToString();
@@ -121,6 +127,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
     internal void ResetHealth()
     {
+    
       _isDead = false;
       _health = _baseHealth;
       SetHealtBar();

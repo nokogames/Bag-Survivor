@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 3038302168208078255}
   model: {fileID: 1432926818091254761}
-  damageRange: 5
+  damageRange: 3
   damage: 10
 --- !u!54 &7523869405948771147
 Rigidbody:
