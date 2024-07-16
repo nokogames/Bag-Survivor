@@ -28,14 +28,14 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
         public override void Initialize(GameData gameData, SavedPlayerData savedPlayerData)
         {
             base.Initialize(gameData, savedPlayerData);
-            base.SetupData<BotCountUpgrade>();
+            base.SetupData<BotCoolDownUpgrade>();
 
             Lvl = data.Level;
 
 
             var crrFireRateInfo = botCoolDownInfos[Lvl];
             savedPlayerData.botCoolDownTime = crrFireRateInfo.coolDown;
-            savedPlayerData.botPlayableTime = crrFireRateInfo.coolDown;
+            savedPlayerData.botPlayableTime = crrFireRateInfo.playableTime;
         }
 
 

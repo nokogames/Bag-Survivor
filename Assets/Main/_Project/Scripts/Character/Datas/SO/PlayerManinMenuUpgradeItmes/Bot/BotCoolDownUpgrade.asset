@@ -22,7 +22,7 @@ MonoBehaviour:
   botCoolDownInfos:
   - Price: 0
     coolDown: 5
-    playableTime: 5
+    playableTime: 50
   - Price: 30
     coolDown: 4.94
     playableTime: 5.14
