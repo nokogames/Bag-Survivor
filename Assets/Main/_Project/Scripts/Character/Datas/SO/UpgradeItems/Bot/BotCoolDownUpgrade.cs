@@ -17,7 +17,7 @@ namespace _Project.Scripts.Character.Datas.SO.UpgradeItems
             Lvl++;
             var crr = botCoolDownInfos[Lvl];
             savedPlayerData.botCoolDownTime = crr.coolDown;
-            savedPlayerData.botPlayableTime = crr.coolDown;
+            savedPlayerData.botPlayableTime = crr.playableTime;
 
 
             base.Upgraded(savedPlayerData);
