@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.UI.Inventory;
 using UnityEngine;
+using VContainer;
 
-public class InventoryTetrisAssets : MonoBehaviour {
+public class InventoryTetrisAssets : MonoBehaviour
+{
 
 
     public static InventoryTetrisAssets Instance { get; private set; }
 
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
+
+       
     }
 
     public ItemTetrisSO[] itemTetrisSOArray;
@@ -22,9 +28,12 @@ public class InventoryTetrisAssets : MonoBehaviour {
     public ItemTetrisSO shotgun;
     public ItemTetrisSO money;
 
-    public ItemTetrisSO GetItemTetrisSOFromName(string itemTetrisSOName) {
-        foreach (ItemTetrisSO itemTetrisSO in itemTetrisSOArray) {
-            if (itemTetrisSO.name == itemTetrisSOName) {
+    public ItemTetrisSO GetItemTetrisSOFromName(string itemTetrisSOName)
+    {
+        foreach (ItemTetrisSO itemTetrisSO in itemTetrisSOArray)
+        {
+            if (itemTetrisSO.name == itemTetrisSOName)
+            {
                 return itemTetrisSO;
             }
         }

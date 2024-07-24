@@ -6,6 +6,7 @@ using _Project.Scripts.Level;
 using _Project.Scripts.Loader;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI;
+using CodeMonkey.InventorySystem;
 using Pack.GameData;
 using ScriptableObjects;
 using UnityEngine;
@@ -16,6 +17,10 @@ namespace _Project.Scripts
 {
     public class ApplicationController : LifetimeScope
     {
+
+
+
+
         [SerializeField] private LoaderMediator loaderMediatorPrefab;
         [SerializeField] private InputDataSO inputData;
         [SerializeField] private GameData gameData;
@@ -88,5 +93,11 @@ namespace _Project.Scripts
             base.OnDestroy();
 
         }
+    }
+
+    public enum GameStatus
+    {
+        Playing = 0,
+        Pause = 0,
     }
 }

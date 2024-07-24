@@ -22,7 +22,7 @@ namespace _Project.Scripts.Reusable
 
 		bool _inTransition = false;
 
-		
+
 		public void ChangeState(IState newState)
 		{
 			// ensure we're ready for a new state
@@ -62,6 +62,7 @@ namespace _Project.Scripts.Reusable
 		// pass down Update ticks to States, since they won't have a MonoBehaviour
 		public virtual void Update()
 		{
+			//if (StaticHelper.Instance.gameStatus == GameStatus.Pause) return;
 			// simulate update ticks in states
 			if (CurrentState != null && !_inTransition)
 				CurrentState.Tick();
@@ -69,6 +70,7 @@ namespace _Project.Scripts.Reusable
 
 		public virtual void FixedUpdate()
 		{
+		//	if (StaticHelper.Instance.gameStatus == GameStatus.Pause) return;
 			// simulate fixedUpdate ticks in states
 			if (CurrentState != null && !_inTransition)
 				CurrentState.FixedTick();

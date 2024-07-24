@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
-public class InventoryTetrisManualPlacement : MonoBehaviour {
+public class InventoryTetrisManualPlacement : MonoBehaviour
+{
 
     public static InventoryTetrisManualPlacement Instance { get; private set; }
 
@@ -22,47 +23,61 @@ public class InventoryTetrisManualPlacement : MonoBehaviour {
 
 
 
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
 
         inventoryTetris = GetComponent<InventoryTetris>();
 
         placedObjectTypeSO = null;
 
-        if (canvas == null) {
+        if (canvas == null)
+        {
             canvas = GetComponentInParent<Canvas>();
         }
 
-        if (canvas != null) {
+        if (canvas != null)
+        {
             canvasRectTransform = canvas.GetComponent<RectTransform>();
         }
 
         itemContainer = transform.Find("ItemContainer").GetComponent<RectTransform>();
     }
 
-    private void Update() {
+    private void Update()
+    {
         // Try to place
-        if (Input.GetMouseButtonDown(0) && placedObjectTypeSO != null) {
+        if (Input.GetMouseButtonDown(0) && placedObjectTypeSO != null)
+        {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(itemContainer, Input.mousePosition, null, out Vector2 anchoredPosition);
-            
+
             Vector2Int placedObjectOrigin = inventoryTetris.GetGridPosition(anchoredPosition);
 
             bool tryPlaceItem = inventoryTetris.TryPlaceItem(placedObjectTypeSO as ItemTetrisSO, placedObjectOrigin, dir);
 
-            if (tryPlaceItem) {
+            if (tryPlaceItem)
+            {
                 OnObjectPlaced?.Invoke(this, EventArgs.Empty);
-            } else {
+            }
+            else
+            {
                 // Cannot build here
                 TooltipCanvas.ShowTooltip_Static("Cannot Build Here!");
                 FunctionTimer.Create(() => { TooltipCanvas.HideTooltip_Static(); }, 2f, "HideTooltip", true, true);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             dir = PlacedObjectTypeSO.GetNextDir(dir);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { placedObjectTypeSO = placedObjectTypeSOList[0]; RefreshSelectedObjectType(); }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Pressed 1");
+
+            placedObjectTypeSO = placedObjectTypeSOList[0]; RefreshSelectedObjectType();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha2)) { placedObjectTypeSO = placedObjectTypeSOList[1]; RefreshSelectedObjectType(); }
         if (Input.GetKeyDown(KeyCode.Alpha3)) { placedObjectTypeSO = placedObjectTypeSOList[2]; RefreshSelectedObjectType(); }
         if (Input.GetKeyDown(KeyCode.Alpha4)) { placedObjectTypeSO = placedObjectTypeSOList[3]; RefreshSelectedObjectType(); }
@@ -91,36 +106,47 @@ public class InventoryTetrisManualPlacement : MonoBehaviour {
         */
     }
 
-    private void DeselectObjectType() {
+    private void DeselectObjectType()
+    {
         placedObjectTypeSO = null; RefreshSelectedObjectType();
     }
 
-    private void RefreshSelectedObjectType() {
+    private void RefreshSelectedObjectType()
+    {
         OnSelectedChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public Vector2 GetCanvasSnappedPosition() {
+    public Vector2 GetCanvasSnappedPosition()
+    {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(itemContainer, Input.mousePosition, null, out Vector2 anchoredPosition);
         inventoryTetris.GetGrid().GetXY(anchoredPosition, out int x, out int y);
 
-        if (placedObjectTypeSO != null) {
+        if (placedObjectTypeSO != null)
+        {
             Vector2Int rotationOffset = placedObjectTypeSO.GetRotationOffset(dir);
             Vector2 placedObjectCanvas = inventoryTetris.GetGrid().GetWorldPosition(x, y) + new Vector3(rotationOffset.x, rotationOffset.y) * inventoryTetris.GetGrid().GetCellSize();
             return placedObjectCanvas;
-        } else {
+        }
+        else
+        {
             return anchoredPosition;
         }
     }
 
-    public Quaternion GetPlacedObjectRotation() {
-        if (placedObjectTypeSO != null) {
+    public Quaternion GetPlacedObjectRotation()
+    {
+        if (placedObjectTypeSO != null)
+        {
             return Quaternion.Euler(0, 0, -placedObjectTypeSO.GetRotationAngle(dir));
-        } else {
+        }
+        else
+        {
             return Quaternion.identity;
         }
     }
 
-    public PlacedObjectTypeSO GetPlacedObjectTypeSO() {
+    public PlacedObjectTypeSO GetPlacedObjectTypeSO()
+    {
         return placedObjectTypeSO;
     }
 

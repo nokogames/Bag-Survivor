@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlacedObject : MonoBehaviour {
 
     public static PlacedObject Create(Vector3 worldPosition, Vector2Int origin, PlacedObjectTypeSO.Dir dir, PlacedObjectTypeSO placedObjectTypeSO) {
+        
         Transform placedObjectTransform = Instantiate(placedObjectTypeSO.prefab, worldPosition, Quaternion.Euler(0, placedObjectTypeSO.GetRotationAngle(dir), 0));
 
         PlacedObject placedObject = placedObjectTransform.GetComponent<PlacedObject>();

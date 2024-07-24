@@ -7,6 +7,7 @@ using _Project.Scripts.Character.Runtime;
 using _Project.Scripts.Level;
 using _Project.Scripts.UI.Controllers;
 using _Project.Scripts.UI.Controllers.MainMenu;
+using _Project.Scripts.UI.Inventory;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -16,6 +17,15 @@ namespace _Project.Scripts.UI
 
     public class UIMediator : MonoBehaviour
     {
+
+        [Header("Inventory"), SerializeField]
+        private InventoryTetrisAssets inventoryTetrisAssets;
+        [SerializeField] private InventoryTetrisDragDropSystem inventoryTetrisDragDropSystem;
+        [SerializeField] private CameraTarget cameraTarget;
+        [SerializeField] private GameAssets gameAssets;
+        [SerializeField] private InventoryTetrisTesting inventoryTetrisTesting;
+        [SerializeField] private InventoryData inventoryData;
+
         private LifetimeScope _parentScope;
         public LifetimeScope _uiScope;
         [SerializeField] private UpgradeVisualController upgradeVisualControllerPref;
@@ -36,7 +46,7 @@ namespace _Project.Scripts.UI
         public PanelController PanelController { get; private set; }
         public InGamePanelController InGamePanelController { get; private set; }
         public LevelEndDataPanel LevelEndDataPanel { get; private set; }
-       
+
 
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
@@ -51,6 +61,16 @@ namespace _Project.Scripts.UI
         {
             _uiScope = _parentScope.CreateChild(builder =>
            {
+               builder.RegisterComponentInNewPrefab(inventoryTetrisAssets, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+               builder.RegisterComponentInNewPrefab(inventoryTetrisDragDropSystem, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+               builder.RegisterComponentInNewPrefab(cameraTarget, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+               builder.RegisterComponentInNewPrefab(gameAssets, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+               builder.RegisterComponentInNewPrefab(inventoryTetrisTesting, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+
+               builder.RegisterInstance(inventoryData.Assets);
+               builder.RegisterInstance(inventoryData.InventoryDragDropData);
+               builder.RegisterInstance(inventoryData.testingData);
+
                builder.RegisterComponent(GetComponent<UIMediatorEventHandler>());
 
                builder.RegisterInstance(playerInGameUpgradeBarControllerData);
@@ -88,7 +108,9 @@ namespace _Project.Scripts.UI
         }
         private void Start()
         {
-
+            _uiScope.Container.Resolve<InventoryTetrisAssets>();
+            _uiScope.Container.Resolve<InventoryTetrisDragDropSystem>();
+            _uiScope.Container.Resolve<InventoryTetrisTesting>();
         }
         private void Resolve()
         {

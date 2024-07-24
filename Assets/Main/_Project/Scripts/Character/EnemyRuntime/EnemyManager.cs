@@ -113,6 +113,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
                     yield return new WaitForSeconds(0.1f);
                 }
                 if (crrWave.mustClearNextWave) yield return new WaitWhile(() => IsAliveEnemy());
+                yield return new WaitWhile(() => StaticHelper.Instance.gameStatus==GameStatus.Pause);
                 yield return new WaitForSeconds(crrWave.timeOffset);
 
 

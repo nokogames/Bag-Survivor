@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using _Project.Scripts;
 using _Project.Scripts.Interactable.Collectable;
 using Cysharp.Threading.Tasks;
 using TMPro;
@@ -8,14 +9,19 @@ using UnityEngine;
 public class StaticHelper : MonoBehaviour
 {
     public static StaticHelper Instance;
+    public GameStatus gameStatus;
     private void Awake()
     {
         Instance = this;
+        gameStatus = GameStatus.Playing;
         DontDestroyOnLoad(this);
 
     }
 
-
+    public void Start()
+    {
+        gameStatus = GameStatus.Playing;
+    }
     public Coroutine StartHelperCoroutine(IEnumerator enumerator)
     {
         return StartCoroutine(enumerator);
@@ -74,7 +80,7 @@ public class StaticHelper : MonoBehaviour
         Vector3 startPos = transform.position;
         Vector3 endPos = startPos + offsetEndPos; // The text floats upwards by 2 units
         Color startColor = textMeshProUGUI.color;
-      
+
         // The text fades to transparent
 
         float elapsedTime = 0f;
@@ -88,14 +94,14 @@ public class StaticHelper : MonoBehaviour
             transform.position = Vector3.Lerp(startPos, endPos, t);
 
             // Interpolate color
-         
+
 
             await UniTask.Yield();
         }
 
         // Ensure the text reaches the final state
         transform.position = endPos;
-      
+
 
         // Optionally, you can deactivate or destroy the text object after the animation
         textMeshProUGUI.gameObject.SetActive(false);
