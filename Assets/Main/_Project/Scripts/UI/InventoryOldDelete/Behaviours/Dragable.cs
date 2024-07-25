@@ -11,7 +11,7 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
 
     public class Dragable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
-        [SerializeField] private Image _img;
+        [SerializeField] protected Image _img;
         protected InventoryManager _inventoryManager;
         public Transform checkPoint;
         public Transform placementPoint;
@@ -39,7 +39,7 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
             _startParent = transform.parent.GetComponent<RectTransform>();
             rectTransform = GetComponent<RectTransform>();
 
-            _img = GetComponent<Image>();
+            // _img = GetComponent<Image>();
 
             SetAlpha(0);
         }

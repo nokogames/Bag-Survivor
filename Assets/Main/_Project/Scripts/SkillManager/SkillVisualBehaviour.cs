@@ -19,6 +19,7 @@ public class SkillVisualBehaviour : Dragable
         ItemHolder = customInventoryData.itemHolder;
         _skillVisualData = skillVisualData;
         size=skillVisualData.Size;
+       // _img.mainTexture=skillVisualData.
     }
 
     // Start is called before the first frame update
