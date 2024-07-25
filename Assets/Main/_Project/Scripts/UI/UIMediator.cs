@@ -17,6 +17,8 @@ namespace _Project.Scripts.UI
 
     public class UIMediator : MonoBehaviour
     {
+        [Header("Custom Inventory"), SerializeField]
+        CustomInventoryData customInventoryData;
 
         [Header("Inventory"), SerializeField]
         private InventoryTetrisAssets inventoryTetrisAssets;
@@ -61,15 +63,15 @@ namespace _Project.Scripts.UI
         {
             _uiScope = _parentScope.CreateChild(builder =>
            {
-               builder.RegisterComponentInNewPrefab(inventoryTetrisAssets, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
-               builder.RegisterComponentInNewPrefab(inventoryTetrisDragDropSystem, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
-               builder.RegisterComponentInNewPrefab(cameraTarget, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
-               builder.RegisterComponentInNewPrefab(gameAssets, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
-               builder.RegisterComponentInNewPrefab(inventoryTetrisTesting, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+               //    builder.RegisterComponentInNewPrefab(inventoryTetrisAssets, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+               //    builder.RegisterComponentInNewPrefab(inventoryTetrisDragDropSystem, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+               //    builder.RegisterComponentInNewPrefab(cameraTarget, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+               //    builder.RegisterComponentInNewPrefab(gameAssets, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
+               //    builder.RegisterComponentInNewPrefab(inventoryTetrisTesting, Lifetime.Singleton).DontDestroyOnLoad().AsSelf();
 
-               builder.RegisterInstance(inventoryData.Assets);
-               builder.RegisterInstance(inventoryData.InventoryDragDropData);
-               builder.RegisterInstance(inventoryData.testingData);
+               //    builder.RegisterInstance(inventoryData.Assets);
+               //    builder.RegisterInstance(inventoryData.InventoryDragDropData);
+               //    builder.RegisterInstance(inventoryData.testingData);
 
                builder.RegisterComponent(GetComponent<UIMediatorEventHandler>());
 
@@ -83,6 +85,8 @@ namespace _Project.Scripts.UI
                builder.RegisterInstance(playerUpgradePanelData);
                builder.RegisterInstance(botUpgradePanelData);
                builder.RegisterInstance(mapPanelData);
+               builder.RegisterInstance(customInventoryData);
+
 
                builder.RegisterComponentInNewPrefab(upgradeVisualControllerPref, Lifetime.Scoped).DontDestroyOnLoad();
 
@@ -97,6 +101,9 @@ namespace _Project.Scripts.UI
                builder.RegisterEntryPoint<MainMenuBotUpgradePanelController>(Lifetime.Scoped).AsSelf();
                builder.RegisterEntryPoint<MapPanelController>(Lifetime.Scoped).AsSelf();
 
+               builder.RegisterEntryPoint<InventoryManager>(Lifetime.Scoped).AsSelf();
+               builder.Register<InventoryGridFactory>(Lifetime.Scoped).AsSelf();
+
 
 
                builder.Register<SectionUIController>(Lifetime.Scoped);
@@ -108,9 +115,9 @@ namespace _Project.Scripts.UI
         }
         private void Start()
         {
-            _uiScope.Container.Resolve<InventoryTetrisAssets>();
-            _uiScope.Container.Resolve<InventoryTetrisDragDropSystem>();
-            _uiScope.Container.Resolve<InventoryTetrisTesting>();
+            // _uiScope.Container.Resolve<InventoryTetrisAssets>();
+            // _uiScope.Container.Resolve<InventoryTetrisDragDropSystem>();
+            // _uiScope.Container.Resolve<InventoryTetrisTesting>();
         }
         private void Resolve()
         {

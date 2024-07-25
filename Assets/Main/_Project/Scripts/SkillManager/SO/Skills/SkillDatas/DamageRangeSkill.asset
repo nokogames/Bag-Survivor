@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d630194c69a5543bdae9ef179dcda7, type: 3}
   m_Name: DamageRangeSkill
   m_EditorClassIdentifier: 
+  skillVisualData:
+    Size: {x: 2, y: 2}
   Name: RANGE
   InfoTxt: Increase your Range
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}

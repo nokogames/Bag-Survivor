@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f19501c869f23f4db6039765000d86d, type: 3}
   m_Name: BotDamgeSkill
   m_EditorClassIdentifier: 
+  skillVisualData:
+    Size: {x: 2, y: 2}
   Name: BOT DAMAGE
   InfoTxt: Increase Bot's Damage
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}

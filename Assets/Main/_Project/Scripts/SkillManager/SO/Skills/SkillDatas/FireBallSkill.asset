@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb7aa1b2a5a5f046a316c40ac86e5d7, type: 3}
   m_Name: FireBallSkill
   m_EditorClassIdentifier: 
+  skillVisualData:
+    Size: {x: 2, y: 2}
   Name: FIREBALL
   InfoTxt: Cast a Fireball!
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}

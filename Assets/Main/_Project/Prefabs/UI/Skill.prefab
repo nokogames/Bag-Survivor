@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85ec38d5f53bef409f6da1e29ca784b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillVisualPref: {fileID: 4947287836930972244, guid: b4aed85dd17b6a548938653dcc0f3a9d,
+    type: 3}
   nameTxt: {fileID: 6755172396486608672}
   skillBackGround: {fileID: 4150028743908497815}
   skillIconHolder: {fileID: 444228343017750748}

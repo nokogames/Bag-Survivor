@@ -11,6 +11,8 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
 
     public class SkillBase : ScriptableObject
     {
+        public SkillVisualData skillVisualData;
+        
         public string Name;
         public string InfoTxt;
         public SkillCommenUIInfo skillCommenUIInfo;
