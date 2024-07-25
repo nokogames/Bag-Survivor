@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Character.Runtime;
 using _Project.Scripts.SkillManagement.Controllers;
-using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI;
 using _Project.Scripts.UI.Controllers;
 using _Project.Scripts.UI.Interfacies;

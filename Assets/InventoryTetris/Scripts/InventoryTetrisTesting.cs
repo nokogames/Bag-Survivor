@@ -50,7 +50,7 @@ public class InventoryTetrisTesting : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log(data.inventoryTetris.Save());
+            //  Debug.Log(data.inventoryTetris.Save());
         }
     }
 

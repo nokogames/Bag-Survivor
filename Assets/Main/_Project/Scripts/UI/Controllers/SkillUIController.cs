@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using _Project.Scripts.SkillManagement;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI.Interfacies;
+using _Project.Scripts.UI.Inventory;
 using Cysharp.Threading.Tasks;
 using ScriptableObjects;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace _Project.Scripts.UI.Controllers
         [Inject] private SkillUIControllerData _skillUIControllerData;
         [Inject] private InputDataSO _inputDataSO;
         [Inject] private UIMediatorEventHandler _eventHandler;
-
+        [Inject] private CustomInventoryData _customInventoryData;
         public Transform SkillTransformParent => _skillUIControllerData.skillParentTransform;
         public List<SkillBehaviour> SkillBehaviors => _skillUIControllerData.skillBehaviors;
         public Button RerollBtn => _skillUIControllerData.RerollBtn;
@@ -28,7 +29,7 @@ namespace _Project.Scripts.UI.Controllers
             //_eventHandler.AddReciever(this);
             _skillUIControllerData.RerollBtn.onClick.AddListener(_eventHandler.RerollBtnClicked);
             _skillUIControllerData.RerollBtn.onClick.AddListener(CoolDownTimer);
-            for (int i = 0; i < _skillUIControllerData.skillBehaviors.Count; i++) _skillUIControllerData.skillBehaviors[i].Initialize(_eventHandler);
+            for (int i = 0; i < _skillUIControllerData.skillBehaviors.Count; i++) _skillUIControllerData.skillBehaviors[i].Initialize(_eventHandler,_customInventoryData);
             Setup();
         }
 
