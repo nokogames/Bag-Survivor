@@ -21,6 +21,7 @@ namespace _Project.Scripts.UI.Controllers
         [Inject] private InputDataSO _inputDataSO;
         [Inject] private UIMediatorEventHandler _eventHandler;
         [Inject] private CustomInventoryData _customInventoryData;
+        [Inject] private InventoryManager _inventoryManager;
         public Transform SkillTransformParent => _skillUIControllerData.skillParentTransform;
         public List<SkillBehaviour> SkillBehaviors => _skillUIControllerData.skillBehaviors;
         public Button RerollBtn => _skillUIControllerData.RerollBtn;
@@ -29,7 +30,7 @@ namespace _Project.Scripts.UI.Controllers
             //_eventHandler.AddReciever(this);
             _skillUIControllerData.RerollBtn.onClick.AddListener(_eventHandler.RerollBtnClicked);
             _skillUIControllerData.RerollBtn.onClick.AddListener(CoolDownTimer);
-            for (int i = 0; i < _skillUIControllerData.skillBehaviors.Count; i++) _skillUIControllerData.skillBehaviors[i].Initialize(_eventHandler,_customInventoryData);
+            for (int i = 0; i < _skillUIControllerData.skillBehaviors.Count; i++) _skillUIControllerData.skillBehaviors[i].Initialize(_eventHandler, _customInventoryData, _inventoryManager);
             Setup();
         }
 

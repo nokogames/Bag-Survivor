@@ -7,17 +7,18 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public bool isOccupied;
+    private bool _isOccupied;
+    public bool IsOccupied { get => _isOccupied; set { _isOccupied = value; SetColorByStatus(); } }
     public Image itemImage;
     public Vector2Int gridPosition; // Slotun griddeki pozisyonu
     private InventoryManager _inventoryManager;
     private void Start()
     {
-        isOccupied = false;
+        IsOccupied = false;
     }
     public void Setup(bool isOccupied, Vector2Int gridPosition, InventoryManager inventoryManager)
     {
-        this.isOccupied = isOccupied;
+        this.IsOccupied = isOccupied;
         this.gridPosition = gridPosition;
         _inventoryManager = inventoryManager;
 
@@ -32,36 +33,39 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
 
     public void ClearSlot()
     {
-        itemImage.sprite = null;
-        itemImage.enabled = false;
-        isOccupied = false;
+        // itemImage.sprite = null;
+        // itemImage.enabled = false;
+        IsOccupied = false;
         // Diğer gerekli işlemler
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        Dragable draggableItem = eventData.pointerDrag.GetComponent<Dragable>();
-        if (draggableItem != null)
-        {
-            draggableItem.startPlaceInventorySlot = this;
-            draggableItem.CanPlace = !isOccupied;
-            Debug.Log($"Dragable name {draggableItem.gameObject.transform.name}");
-        }
+        // Dragable draggableItem = eventData.pointerDrag.GetComponent<Dragable>();
+        // if (draggableItem == null) return;
+
+        // _inventoryManager.AddItem(this, draggableItem);
+        // draggableItem.startPlaceInventorySlot = this;
+
+
 
     }
 
     internal void SetColor(Color red)
     {
-        itemImage.color = red;
+       // itemImage.color = red;
     }
-
+    internal void SetColorByStatus()
+    {
+        itemImage.color = _isOccupied ? Color.red : Color.green;
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Dragable draggableItem = eventData.pointerDrag.GetComponent<Dragable>();
-        if (draggableItem == null) return;
+        // Dragable draggableItem = eventData.pointerDrag.GetComponent<Dragable>();
+        // if (draggableItem == null) return;
 
-        _inventoryManager.OnPointerEnter(this, draggableItem);
-        //SetColor(Color.red);
+        // _inventoryManager.OnPointerEnter(this, draggableItem);
+        // //SetColor(Color.red);
     }
 
     public void OnPointerExit(PointerEventData eventData)

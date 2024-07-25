@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using _Project.Scripts.UI.Inventory.Behaviours;
 using UnityEngine;
+
 using VContainer;
 using VContainer.Unity;
 
@@ -30,7 +30,7 @@ namespace _Project.Scripts.UI.Inventory
                         InventorySlot slot = GetSlotAt(position + new Vector2Int(x, y));
                         if (slot != null)
                         {
-                            slot.isOccupied = true;
+                            slot.IsOccupied = true;
                         }
                     }
                 }
@@ -58,13 +58,13 @@ namespace _Project.Scripts.UI.Inventory
 
         private bool CanPlaceItem(Vector2Int position, Vector2Int size)
         {
-            ResetColor();
+
             for (int x = 0; x < size.x; x++)
             {
                 for (int y = 0; y < size.y; y++)
                 {
                     InventorySlot slot = GetSlotAt(position + new Vector2Int(x, y));
-                    if (slot == null || slot.isOccupied)
+                    if (slot == null || slot.IsOccupied)
                     {
                         return false;
                     }
@@ -98,6 +98,9 @@ namespace _Project.Scripts.UI.Inventory
         {
             ResetColor();
             var placeableSlots = GetPlaceableSlots(inventorySlot, draggableItem);
+            // var canPlace = CanPlaceItem(inventorySlot.gridPosition, draggableItem.size);
+            // draggableItem.CanPlace = canPlace;
+            // if (canPlace) _selectedDragable.startPlaceInventorySlot = inventorySlot;
             ChangeColorByPlaceable(placeableSlots, CanPlaceItem(inventorySlot.gridPosition, draggableItem.size));
 
         }
@@ -120,11 +123,73 @@ namespace _Project.Scripts.UI.Inventory
                 for (int y = 0; y < draggableItem.size.y; y++)
                 {
                     InventorySlot slot = GetSlotAt(inventorySlot.gridPosition + new Vector2Int(x, y));
-                    if (slot != null)
+                    if (slot != null && !slot.IsOccupied)
                     {
                         // slot.isOccupied = true;
                         result.Add(slot);
                     }
+                }
+            }
+            return result;
+        }
+
+
+
+
+        // from items
+        private Dragable _selectedDragable;
+        internal void OnBeginDrag(Dragable dragable)
+        {
+            if (dragable.InventorySlot != null)
+            {
+                RemoveItem(dragable.InventorySlot.gridPosition, dragable.size);
+            }
+            _selectedDragable = dragable;
+        }
+
+        internal void OnDrag()
+        {
+            if (_selectedDragable == null) return;
+
+            InventorySlot closestSlot = GetClosestSlot();
+            OnPointerEnter(closestSlot, _selectedDragable);
+
+
+        }
+        internal void OnEndDrag()
+        {
+            InventorySlot closestSlot = GetClosestSlot();
+            ResetColor();
+            var result = AddItem(closestSlot.gridPosition, _selectedDragable.size);
+            // Assert.IsTrue(!result,"Result is false");
+            if (result)
+            {
+                _selectedDragable.CanPlace = true;
+                // if (_selectedDragable.startPlaceInventorySlot != null) RemoveItem(_selectedDragable.startPlaceInventorySlot.gridPosition, _selectedDragable.size);
+                _selectedDragable.InventorySlot = closestSlot;
+            }
+            else if (_selectedDragable.InventorySlot != null)
+            {
+                AddItem(_selectedDragable.InventorySlot.gridPosition, _selectedDragable.size);
+            }
+            //  var placeableSlots = GetPlaceableSlots(closestSlot, _selectedDragable);
+            // draggableItem.CanPlace = canPlace;
+            // if (canPlace) _selectedDragable.startPlaceInventorySlot = inventorySlot;
+            _selectedDragable = null;
+        }
+        private InventorySlot GetClosestSlot()
+        {
+            Transform checkPoint = _selectedDragable.checkPoint;
+            InventorySlot result = null;
+            float distance = float.MaxValue;
+            for (int i = 0; i < _data.slots.Count; i++)
+            {
+                var crrSlot = _data.slots[i];
+                var crrDistance = Vector3.Distance(checkPoint.position, crrSlot.transform.position);
+                if (crrDistance < distance)
+                {
+                    result = crrSlot;
+                    distance = crrDistance;
                 }
             }
             return result;

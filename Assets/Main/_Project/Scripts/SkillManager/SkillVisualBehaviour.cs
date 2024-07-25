@@ -8,11 +8,12 @@ using UnityEngine;
 namespace _Project.Scripts.SkillManagement{
 
 public class SkillVisualBehaviour : Dragable
-{
+{   
     private CustomInventoryData _customInventoryData;
 
-    internal void Initialize(CustomInventoryData customInventoryData, SkillVisualData skillVisualData)
-    {
+    internal void Initialize(CustomInventoryData customInventoryData, SkillVisualData skillVisualData,InventoryManager inventoryManager)
+    {  
+        _inventoryManager=inventoryManager;
         _customInventoryData = customInventoryData;
         onSelectParentTransform = customInventoryData.onSelectParent.GetComponent<RectTransform>();
         ItemHolder = customInventoryData.itemHolder;

@@ -30,16 +30,18 @@ namespace _Project.Scripts.SkillManagement
         private Button _btn;
         private SkillVisualBehaviour _createdSkillBehaviour;
         private CustomInventoryData _customInventoryData;
+        private InventoryManager _inventoryManager;
         private void Awake()
         {
             _btn = GetComponent<Button>();
             _btn.onClick.RemoveAllListeners();
             //_btn.onClick.AddListener(OnBtnClicked);
         }
-        internal void Initialize(UIMediatorEventHandler eventHandler, CustomInventoryData customInventoryData)
+        internal void Initialize(UIMediatorEventHandler eventHandler, CustomInventoryData customInventoryData, InventoryManager inventoryManager)
         {
             _uiEventHandler = eventHandler;
             _customInventoryData = customInventoryData;
+            _inventoryManager = inventoryManager;
         }
 
         public void Setup(CreatedSkillInfo createdSkillInfo)
@@ -55,7 +57,7 @@ namespace _Project.Scripts.SkillManagement
         private void CreateVisual()
         {
             _createdSkillBehaviour = Instantiate(skillVisualPref, transform.parent).GetComponent<SkillVisualBehaviour>();
-            _createdSkillBehaviour.Initialize(_customInventoryData,_currentSkill.skillVisualData);
+            _createdSkillBehaviour.Initialize(_customInventoryData, _currentSkill.skillVisualData, _inventoryManager);
             _createdSkillBehaviour.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
             _createdSkillBehaviour.onPlaceInventory += OnPlaceInventory;
         }
