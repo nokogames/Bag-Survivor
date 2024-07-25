@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireBallSkill
   m_EditorClassIdentifier: 
   skillVisualData:
-    Size: {x: 1, y: 2}
+    Size: {x: 2, y: 1}
   Name: FIREBALL
   InfoTxt: Cast a Fireball!
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
