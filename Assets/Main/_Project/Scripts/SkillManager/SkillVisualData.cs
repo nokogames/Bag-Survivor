@@ -11,6 +11,6 @@ namespace _Project.Scripts.SkillManagement
     public class SkillVisualData
     {
         public Vector2Int Size;
-        internal Sprite img;
+        public Sprite img;
     }
 }

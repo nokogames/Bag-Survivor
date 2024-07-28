@@ -44,7 +44,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
                 int randomIndex = UnityEngine.Random.Range(0, Skills.Count);
                 while (skillIndexs.Contains(randomIndex)) randomIndex = UnityEngine.Random.Range(0, Skills.Count);
                 skillIndexs[i] = randomIndex;
-                
+
                 SkillBase rondomSkill = Skills[randomIndex];
                 SkillRarity skillRarity = rondomSkill.GetRandomRarity();
 
@@ -66,6 +66,10 @@ namespace _Project.Scripts.SkillManagement.Controllers
             CreateSkill();
         }
 
+        internal void DisableMoveSkillVisual()
+        {
+            _skillBehaviors.ForEach(x => x.DisableMoveSkillVisual());
+        }
     }
 
 

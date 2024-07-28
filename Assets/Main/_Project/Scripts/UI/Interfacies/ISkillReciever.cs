@@ -8,7 +8,8 @@ using _Project.Scripts.SkillManagement.SO.Skills;
 namespace _Project.Scripts.UI.Interfacies
 {
     public interface ISkillReciever
-    {
+    {   
+        void OnSkillPlacedInventory();
         void AbleToUpgrade();
         public void CloseBtnClicked();
 

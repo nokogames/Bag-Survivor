@@ -28,7 +28,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
         [Inject] private PlayerUpgradedData _playerUpgradedData;
         [Inject] private InLevelEvents _inLevelEvents;
         [Inject] private InGameSkillController _ingameSkillController;
-       
+
         // [Inject] private SkillCreator _skillCreator;
         public void CloseBtnClicked()
         {
@@ -38,7 +38,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
 
         public void Start()
         {
-          
+
             _uiMediatorEventHandler.RemoveReciever(this);
             _uiMediatorEventHandler.AddReciever(this);
             _inLevelEvents.onNextLevel += NextLevel;
@@ -90,6 +90,11 @@ namespace _Project.Scripts.SkillManagement.Controllers
         public void Tick()
         {
             if (Input.GetKeyDown(KeyCode.U)) _skillUIController.ShowPanel();
+        }
+
+        public void OnSkillPlacedInventory()
+        {
+           _skillCreator.DisableMoveSkillVisual();
         }
     }
 }

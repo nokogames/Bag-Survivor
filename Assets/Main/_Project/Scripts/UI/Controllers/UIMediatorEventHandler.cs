@@ -34,6 +34,11 @@ namespace _Project.Scripts.UI.Controllers
             _recievers.ForEach(x => Debug.Log($"Selected FireBall Skill Rec {x}"));
             _recievers.ForEach(reciever => reciever.OnSkillBtnClicked(createdSkillInfo));
         }
+
+        public void OnSkillPlacedInventory()
+        {
+            _recievers.ForEach(x => x.OnSkillPlacedInventory());
+        }
     }
 
 }

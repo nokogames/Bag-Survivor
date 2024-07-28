@@ -11,8 +11,10 @@ namespace _Project.Scripts.SkillManagement
     public class SkillVisualBehaviour : Dragable
     {
         private CustomInventoryData _customInventoryData;
+        private SkillBehaviour _skillBehavior;
 
-        internal void Initialize(CustomInventoryData customInventoryData, SkillVisualData skillVisualData, InventoryManager inventoryManager)
+        internal void Initialize(CustomInventoryData customInventoryData, SkillVisualData skillVisualData,
+        InventoryManager inventoryManager, SkillBehaviour skillBehaviour)
         {
             _inventoryManager = inventoryManager;
             _customInventoryData = customInventoryData;
@@ -20,23 +22,23 @@ namespace _Project.Scripts.SkillManagement
             ItemHolder = customInventoryData.itemHolder;
             _skillVisualData = skillVisualData;
             size = skillVisualData.Size;
+            _skillBehavior = skillBehaviour;
             if (skillVisualData.img != null)
             {
-
+                bgImg.sprite = skillVisualData.img;
+                bgImg.SetNativeSize();
                 _img.sprite = skillVisualData.img;
+                _img.SetNativeSize();
             }
         }
 
-        // Start is called before the first frame update
-        void Start()
+        public override void NotPlaced()
         {
 
         }
-
-        // Update is called once per frame
-        void Update()
+        public override void PlacedToInventory()
         {
-
+            if (_skillBehavior != null) _skillBehavior.SkillVisualPlaced();
         }
 
 

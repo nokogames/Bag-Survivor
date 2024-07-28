@@ -12,12 +12,13 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
     public class Dragable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
         [SerializeField] protected Image _img;
+        [SerializeField] protected Image bgImg;
         protected InventoryManager _inventoryManager;
         public Transform checkPoint;
         public Transform placementPoint;
         public bool CanPlace { get; set; }
         public Vector2Int size;
-        public Action onPlaceInventory;
+        //public Action onPlaceInventory;
         public RectTransform onSelectParentTransform;
         public Transform ItemHolder;
 
@@ -78,18 +79,22 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
             {
                 rectTransform.position = InventorySlot.GetComponent<RectTransform>().position + offsetPlacementPoint;
                 transform.SetParent(ItemHolder);
-                onPlaceInventory?.Invoke();
+              //  onPlaceInventory?.Invoke();
+                PlacedToInventory();
             }
             else if (InventorySlot != null)
             {
                 rectTransform.position = InventorySlot.GetComponent<RectTransform>().position + offsetPlacementPoint;
                 transform.SetParent(ItemHolder);
+                
+                PlacedToInventory();
             }
             else
             {
                 SetAlpha(0);
                 rectTransform.position = _startPos;
                 transform.SetParent(_startParent);
+                NotPlaced();
             }
 
             _img.raycastTarget = true;
@@ -103,11 +108,14 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
                 _img.color = color;
             }
         }
-        public void PlacedToInventory()
+        public virtual void PlacedToInventory()
         {
 
         }
+        public virtual void NotPlaced()
+        {
 
+        }
     }
 
 

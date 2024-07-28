@@ -57,14 +57,14 @@ namespace _Project.Scripts.SkillManagement
         private void CreateVisual()
         {
             _createdSkillBehaviour = Instantiate(skillVisualPref, transform.parent).GetComponent<SkillVisualBehaviour>();
-            _createdSkillBehaviour.Initialize(_customInventoryData, _currentSkill.skillVisualData, _inventoryManager);
+            _createdSkillBehaviour.Initialize(_customInventoryData, _currentSkill.skillVisualData, _inventoryManager, this);
             _createdSkillBehaviour.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
-            _createdSkillBehaviour.onPlaceInventory += OnPlaceInventory;
+            // _createdSkillBehaviour.onPlaceInventory += OnPlaceInventory;
         }
 
         private void OnPlaceInventory()
         {
-            _createdSkillBehaviour.onPlaceInventory -= OnPlaceInventory;
+            // _createdSkillBehaviour.onPlaceInventory -= OnPlaceInventory;
             _createdSkillBehaviour = null;
         }
 
@@ -83,7 +83,16 @@ namespace _Project.Scripts.SkillManagement
 
         public void OnBtnClicked() => _uiEventHandler.OnSkillBtnClicked(_createdSkillInfo);
 
+        internal void DisableMoveSkillVisual()
+        {
+            if (_createdSkillBehaviour != null) Destroy(_createdSkillBehaviour);
+        }
 
+        public void SkillVisualPlaced()
+        {
+            _createdSkillBehaviour = null;
+            _uiEventHandler.OnSkillPlacedInventory();
+        }
     }
 
 }
