@@ -166,7 +166,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
         }
         private void FixedUpdate()
         {
-            if (StaticHelper.Instance.gameStatus == GameStatus.Pause) return;
+           // if (StaticHelper.Instance.gameStatus == GameStatus.Pause) return;
             if (_playerTransform == null || IsDead) return;
 
             var distance = Vector3.Distance(transform.position, _playerTransform.position);

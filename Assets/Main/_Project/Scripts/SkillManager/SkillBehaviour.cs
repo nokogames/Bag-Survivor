@@ -28,7 +28,7 @@ namespace _Project.Scripts.SkillManagement
         private SkillBase _currentSkill;
         private UIMediatorEventHandler _uiEventHandler;
         private Button _btn;
-        private SkillVisualBehaviour _createdSkillBehaviour;
+        private SkillVisualBehaviour _createdSkillVisualBehaviour;
         private CustomInventoryData _customInventoryData;
         private InventoryManager _inventoryManager;
         private void Awake()
@@ -56,21 +56,21 @@ namespace _Project.Scripts.SkillManagement
 
         private void CreateVisual()
         {
-            _createdSkillBehaviour = Instantiate(skillVisualPref, transform.parent).GetComponent<SkillVisualBehaviour>();
-            _createdSkillBehaviour.Initialize(_customInventoryData, _currentSkill.skillVisualData, _inventoryManager, this);
-            _createdSkillBehaviour.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
+            _createdSkillVisualBehaviour = Instantiate(skillVisualPref, transform.parent).GetComponent<SkillVisualBehaviour>();
+            _createdSkillVisualBehaviour.Initialize(_customInventoryData, _currentSkill.skillVisualData, _inventoryManager, this,_createdSkillInfo.Skill);
+            _createdSkillVisualBehaviour.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
             // _createdSkillBehaviour.onPlaceInventory += OnPlaceInventory;
         }
 
         private void OnPlaceInventory()
         {
             // _createdSkillBehaviour.onPlaceInventory -= OnPlaceInventory;
-            _createdSkillBehaviour = null;
+            _createdSkillVisualBehaviour = null;
         }
 
         private void ClearVisual()
         {
-            if (_createdSkillBehaviour != null) Destroy(_createdSkillBehaviour.gameObject);
+            if (_createdSkillVisualBehaviour != null) Destroy(_createdSkillVisualBehaviour.gameObject);
         }
 
         private void SetupUI()
@@ -85,12 +85,12 @@ namespace _Project.Scripts.SkillManagement
 
         internal void DisableMoveSkillVisual()
         {
-            if (_createdSkillBehaviour != null) Destroy(_createdSkillBehaviour);
+            if (_createdSkillVisualBehaviour != null) Destroy(_createdSkillVisualBehaviour);
         }
 
         public void SkillVisualPlaced()
         {
-            _createdSkillBehaviour = null;
+            _createdSkillVisualBehaviour = null;
             _uiEventHandler.OnSkillPlacedInventory();
         }
     }

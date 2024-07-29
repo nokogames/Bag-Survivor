@@ -95,7 +95,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         public void OnCollectableDetected(CollectableType collectableType, Transform collectableTransform)
         {
             if (!_eneble) return;
-
+            if(_barController==null) Debug.LogError("_barController is null");
             //  var coroutine = StaticHelper.Instance.MoveToPositionWithFollow(_playerSM.Transform, collectableTransform, collectableType, OnCompletedCollecting);\
             if (collectableType == CollectableType.XP) _barController.CollectedXp();
             else if (collectableType == CollectableType.GEM) CollectedGem();

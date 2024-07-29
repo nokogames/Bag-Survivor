@@ -13,6 +13,7 @@ namespace _Project.Scripts.UI.Inventory
     {
         [Inject] private CustomInventoryData _data;
         [Inject] private InventoryGridFactory _gridFactory;
+        public Transform PlayerTransform { get; set; }
         public void Start()
         {
             _gridFactory.CreateGrid(3, 3, this);
@@ -109,6 +110,7 @@ namespace _Project.Scripts.UI.Inventory
         {
             Color color = Color.white;
             color = canPlace ? Color.green : Color.red;
+            color = color.SetAlpha(.4f);
             placeableSlots.ForEach(x => x.SetColor(color));
 
         }
@@ -145,6 +147,14 @@ namespace _Project.Scripts.UI.Inventory
                 RemoveItem(dragable.InventorySlot.gridPosition, dragable.size);
             }
             _selectedDragable = dragable;
+
+            SetSkillStatus(dragable, false);
+        }
+
+        private void SetSkillStatus(Dragable dragable, bool v)
+        {
+            if (v) dragable.Skill.ActiveSkill(dragable.Skill,PlayerTransform);
+            else dragable.Skill.DeactivateSkill(dragable.Skill);
         }
 
         internal void OnDrag()
@@ -154,10 +164,16 @@ namespace _Project.Scripts.UI.Inventory
             InventorySlot closestSlot = GetClosestSlot();
             OnPointerEnter(closestSlot, _selectedDragable);
 
-
+            if (Input.GetKey(KeyCode.A))
+            {
+                _selectedDragable.Skill.DeactivateSkill(_selectedDragable.Skill);
+                _selectedDragable.Kill();
+            }
         }
         internal void OnEndDrag()
         {
+            if (_selectedDragable == null) return;
+
             InventorySlot closestSlot = GetClosestSlot();
             ResetColor();
             var result = AddItem(closestSlot.gridPosition, _selectedDragable.size);
@@ -167,6 +183,7 @@ namespace _Project.Scripts.UI.Inventory
                 _selectedDragable.CanPlace = true;
                 // if (_selectedDragable.startPlaceInventorySlot != null) RemoveItem(_selectedDragable.startPlaceInventorySlot.gridPosition, _selectedDragable.size);
                 _selectedDragable.InventorySlot = closestSlot;
+                SetSkillStatus(_selectedDragable, true);
             }
             else if (_selectedDragable.InventorySlot != null)
             {

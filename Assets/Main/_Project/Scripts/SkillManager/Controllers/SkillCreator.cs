@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.SkillManagement.SO;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI.Controllers;
@@ -11,11 +12,11 @@ using VContainer.Unity;
 
 namespace _Project.Scripts.SkillManagement.Controllers
 {
-    public class SkillCreator : IStartable
+    public class SkillCreator:IStartable
     {
         [Inject] private List<SkillBase> Skills;
         [Inject] private SkillUIController _skillUIController;
-
+        [Inject] private PlayerUpgradedData _playerUpgradedData;
 
         private List<SkillBehaviour> _skillBehaviors = new();
 
@@ -31,6 +32,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
         {
 
             _skillBehaviors = _skillUIController.SkillBehaviors;
+            Skills.ForEach(skill => skill.Initialize(_playerUpgradedData));
 
         }
 

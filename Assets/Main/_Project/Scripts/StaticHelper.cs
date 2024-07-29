@@ -9,7 +9,7 @@ using UnityEngine;
 public class StaticHelper : MonoBehaviour
 {
     public static StaticHelper Instance;
-    public GameStatus gameStatus;
+    private GameStatus gameStatus;
     private void Awake()
     {
         Instance = this;

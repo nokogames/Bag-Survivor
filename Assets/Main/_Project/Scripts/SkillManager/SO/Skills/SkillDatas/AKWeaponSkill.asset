@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355e8007cf99c514d9585354135139ab, type: 3}
+  m_Name: AKWeaponSkill
+  m_EditorClassIdentifier: 
+  skillVisualData:
+    Size: {x: 1, y: 2}
+    img: {fileID: 21300000, guid: 704f7e1f33dc0034188b0714b8ea26fc, type: 3}
+  Name: AK
+  InfoTxt: ak
+  skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
+  SkillRarityPercentage: {fileID: 11400000, guid: 68a2c125d0a1d9c43bcbbdaafcb86d28,
+    type: 2}
+  Icon: {fileID: 21300000, guid: 75f2bc9444554214eb33a7236ceae891, type: 3}
+  _akWeaponByRarity:
+  - rarity: 0
+  - rarity: 1
+  - rarity: 2
+  - rarity: 3

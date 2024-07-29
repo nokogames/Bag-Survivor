@@ -54,14 +54,14 @@ namespace _Project.Scripts.UI.Controllers
             _skillUIControllerData.SkillPanel.SetActive(true);
             _inputDataSO.disableJoystick = true;
             // Time.timeScale = 0;
-            Time.timeScale = 1;
-            StaticHelper.Instance.gameStatus = GameStatus.Pause;
+            Time.timeScale = 0;
+           // StaticHelper.Instance.gameStatus = GameStatus.Pause;
         }
         public void HidePanel()
         {
             _skillUIControllerData.SkillPanel.SetActive(false);
             _inputDataSO.disableJoystick = false;
-            StaticHelper.Instance.gameStatus = GameStatus.Playing;
+          //  StaticHelper.Instance.gameStatus = GameStatus.Playing;
             Time.timeScale = 1;
 
         }

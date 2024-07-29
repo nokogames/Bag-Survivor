@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI.Inventory;
 using _Project.Scripts.UI.Inventory.Behaviours;
 using UnityEngine;
@@ -14,7 +14,7 @@ namespace _Project.Scripts.SkillManagement
         private SkillBehaviour _skillBehavior;
 
         internal void Initialize(CustomInventoryData customInventoryData, SkillVisualData skillVisualData,
-        InventoryManager inventoryManager, SkillBehaviour skillBehaviour)
+        InventoryManager inventoryManager, SkillBehaviour skillBehaviour, SkillBase skillBase)
         {
             _inventoryManager = inventoryManager;
             _customInventoryData = customInventoryData;
@@ -30,6 +30,7 @@ namespace _Project.Scripts.SkillManagement
                 _img.sprite = skillVisualData.img;
                 _img.SetNativeSize();
             }
+            _skillBase = skillBase;
         }
 
         public override void NotPlaced()

@@ -59,14 +59,18 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
             // _activeMovementSettings = _characterGraphics.MovementSettings;
             _activeMovementSettings = _crrMovementSettings;
+            CustomExtentions.ColorLog($"Speed  iNITIALISE{_crrAimingMovementSettings.MoveSpeed} cc{_crrMovementSettings.MoveSpeed}", Color.red);
         }
         public void SetSpeed(float speed)
         {
             _crrMovementSettings.MoveSpeed = _characterGraphics.MovementSettings.MoveSpeed + speed;
             _crrAimingMovementSettings.MoveSpeed = _characterGraphics.MovementAimingSettings.MoveSpeed + speed - 0.5f;
+            CustomExtentions.ColorLog($"Speed {_crrAimingMovementSettings.MoveSpeed} cc{_crrMovementSettings.MoveSpeed}", Color.red);
         }
         private void Move()
         {
+            CustomExtentions.ColorLog($"Speed {_crrAimingMovementSettings.MoveSpeed} cc{_crrMovementSettings.MoveSpeed}", Color.yellow);
+
             if (_isDeath) return;
 
             Rotate();

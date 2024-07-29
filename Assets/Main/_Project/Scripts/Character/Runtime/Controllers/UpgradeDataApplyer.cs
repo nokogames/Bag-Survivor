@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.Interactable.Collectable;
+using _Project.Scripts.SkillManagement.SO.Skills;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
 namespace _Project.Scripts.Character.Runtime.Controllers
 {
-    public class UpgradeDataApplyer : IStartable, IPlayerUpgradedReciver, IDisposable
+    public class UpgradeDataApplyer : IPlayerUpgradedReciver, IDisposable,IStartable
     {
         //Datas
         [Inject] private PlayerUpgradedData _upgradedData;
@@ -28,7 +29,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         // private float _collectableDetectorBaseRadius = 5.8f;
         public void Start()
         {
-
+            CustomExtentions.ColorLog("Start ", Color.yellow);
             _enemyDetector.SetRadius(_savedPlayerData.range);
             _collectableDetector.SetRadius(_savedPlayerData.pickUpRange);
 
@@ -52,6 +53,10 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             SetMovementSpeed();
             SetBotCount();
             SetCoolDown();
+        }
+        public void FixedTick()
+        {
+            _upgradedData.FixedTick();
         }
 
         private void SetHealt()
@@ -86,6 +91,18 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         public void SetCoolDown()
         {
             _botController.SetCoolDown(_savedPlayerData.botCoolDownTime, _savedPlayerData.botPlayableTime);
+        }
+
+        public void ActivatedSkill(SkillBase skill)
+        {
+            CustomExtentions.ColorLog($"Activated {skill}", Color.green);
+
+        }
+
+        public void DeactivatedSkill(SkillBase skill)
+        {
+            CustomExtentions.ColorLog($"Activated {skill}", Color.red);
+
         }
     }
 }

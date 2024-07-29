@@ -6,6 +6,11 @@ using UnityEngine;
 
 public static class CustomExtentions
 {
+    public static void ColorLog(object v, Color color)
+    {
+        string colorCode = ColorUtility.ToHtmlStringRGB(color);
+        Debug.Log($"<color=#{colorCode}>{v}</color>");
+    }
     public static IEnumerator CustomDoJump(this Transform transform, Transform targetPosition, float jumpHeight, float duration, Action OnCompleted = null)
     {
         Vector3 startPosition = transform.position;
@@ -59,3 +64,4 @@ public static class CustomExtentions
         OnCompleted?.Invoke(transform, type);
     }
 }
+

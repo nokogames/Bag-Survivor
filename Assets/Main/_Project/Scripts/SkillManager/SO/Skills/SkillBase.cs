@@ -12,7 +12,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     public class SkillBase : ScriptableObject
     {
         public SkillVisualData skillVisualData;
-        
+        protected Transform _playerTransform;
         public string Name;
         public string InfoTxt;
         public SkillCommenUIInfo skillCommenUIInfo;
@@ -20,11 +20,23 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         public Sprite Icon;
         // private SkillRarity _skillRarity;
         // public SkillRarity CurrentRarity => _skillRarity;
+        protected PlayerUpgradedData _playerUpgradedData;
         public int Level { get; set; } = 0;
-
+        public virtual void Initialize(PlayerUpgradedData playerUpgradedData)
+        {
+            _playerUpgradedData = playerUpgradedData;
+        }
         public virtual void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController) { }
         public virtual string GetInfoTxt(SkillRarity rarity) => "";
-
+        public virtual bool ActiveSkill(SkillBase skillBase, Transform playerTransform)
+        {
+            _playerTransform = playerTransform;
+            return false;
+        }
+        public virtual bool DeactivateSkill(SkillBase skillBase)
+        {
+            return false;
+        }
         public SkillRarity GetRandomRarity(int seed = 0)
         {
             SkillRarity _skillRarity = SkillRarity.Common;
@@ -43,6 +55,11 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             }
 
             return _skillRarity;
+        }
+
+        internal virtual void FixedTick()
+        {
+
         }
     }
 }

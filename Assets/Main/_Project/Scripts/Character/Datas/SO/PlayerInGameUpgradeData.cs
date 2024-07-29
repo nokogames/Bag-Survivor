@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using _Project.Scripts.SkillManagement.SO.Skills;
 using UnityEditor;
 using UnityEngine;
 
@@ -36,11 +37,32 @@ namespace _Project.Scripts.Character.Datas.SO
         //Collectable
         public float collectedXpMultiply = 1;
         public float healtRegenRate = 0;//Can yenilemesini hizlandir
+        private List<SkillBase> _activeSkills = new();
 
+        public bool ActiveSkill(SkillBase skill)
+        {
+            Debug.Log("1");
+          
+            if (_activeSkills.Contains(skill)) return false;
+            Debug.Log($"2 =={_recivers.Count}  {this.GetHashCode()}");
+
+            _activeSkills.Add(skill);
+            _recivers.ForEach(x => x.ActivatedSkill(skill));
+            return true;
+        }
+        public bool DeactiveSkill(SkillBase skill)
+        {
+            if (!_activeSkills.Contains(skill)) return false;
+            _activeSkills.Remove(skill);
+            _recivers.ForEach(x => x.DeactivatedSkill(skill));
+            return true;
+        }
         private List<IPlayerUpgradedReciver> _recivers = new();
         public void AddReciver(IPlayerUpgradedReciver reciver)
         {
+            Debug.Log($"<color=red> AddReciver </color> {reciver}   {this.GetHashCode()}");
             if (!_recivers.Contains(reciver)) _recivers.Add(reciver);
+            Debug.Log($"<color=red> AddReciver </color> {_recivers.Count}");
         }
         public void RemoveReciver(IPlayerUpgradedReciver reciver)
         {
@@ -70,7 +92,13 @@ namespace _Project.Scripts.Character.Datas.SO
             collectedXpMultiply = 1;
             healtRegenRate = 0;//Ca
             healt = 0;
+            _activeSkills.Clear();
 
+        }
+
+        internal void FixedTick()
+        {
+            _activeSkills.ForEach(x => x.FixedTick());
         }
     }
     [Serializable]
@@ -140,7 +168,8 @@ namespace _Project.Scripts.Character.Datas.SO
     {
         public void OnUpgraded();
 
-
+        public void ActivatedSkill(SkillBase skill);
+        public void DeactivatedSkill(SkillBase skill);
     }
 
 }

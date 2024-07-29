@@ -49,6 +49,17 @@ namespace _Project.Scripts.UI
         public InGamePanelController InGamePanelController { get; private set; }
         public LevelEndDataPanel LevelEndDataPanel { get; private set; }
 
+        private InventoryManager _inventoryManager;
+        private Transform _playerTransform;
+        public Transform PlayerTransform
+        {
+            get { return _playerTransform; }
+            set
+            {
+                _playerTransform = value;
+                if (_inventoryManager != null) _inventoryManager.PlayerTransform = value;
+            }
+        }
 
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope)
@@ -127,6 +138,8 @@ namespace _Project.Scripts.UI
             PanelController = _uiScope.Container.Resolve<PanelController>();
             InGamePanelController = _uiScope.Container.Resolve<InGamePanelController>();
             LevelEndDataPanel = _uiScope.Container.Resolve<LevelEndDataPanel>();
+            _inventoryManager = _uiScope.Container.Resolve<InventoryManager>();
+            _inventoryManager.PlayerTransform=_playerTransform;
         }
     }
 

@@ -35,7 +35,11 @@ public static class CoreExtensions
 
 
 
-
+    public static void ColorLog( object val, Color color)
+    {
+        string result = $"<color={color}> {val}";
+        Debug.Log(result);
+    }
 
     #endregion
     public static List<T> FindComponentsInChild<T>(this Transform startGameObject)

@@ -12,3 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3085b8f04bef2841b8f5ed0e3c0a4cf, type: 3}
   m_Name: PlayerInGameUpgradeData
   m_EditorClassIdentifier: 
+  barData:
+    StartLvl: 0
+    NextLvl: 1
+    BarFillAmount: 0
+  savedPlayerData:
+    damage: 1
+    range: 8
+    firerate: 0.8
+    botDamage: 0.5
+    botFirerate: 0.8
+    healtRegenAmount: 0.1
+    pickUpRange: 5.5
+    botCount: 2
+    healt: 40
+    speed: 3
+    botSpeed: 2
+    botCoolDownTime: 5
+    botPlayableTime: 50
+  playerUpgradedData:
+    damage: 23434
+    range: 0
+    firerate: 0
+    botDamage: 0
+    botFirerate: 0
+    healt: 0
+    speed: 0
+    pickUpRange: 0
+    botCount: 0
+    collectedXpMultiply: 1
+    healtRegenRate: 0

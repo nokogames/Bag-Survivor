@@ -32,7 +32,12 @@ namespace _Project.Scripts
             {
                 Parent.Container.Inject(this);
             }
-            if (!_isValid) SceneManager.LoadScene("Startup");
+            if (!_isValid)
+            {
+                SceneManager.LoadScene("Startup");
+                return;
+            }
+
 
 
             var savedPlayer = Container.Resolve<SavedPlayerData>();

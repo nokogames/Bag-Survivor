@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.Character.Bot.Gun;
 using _Project.Scripts.Character.Datas.SO;
+using _Project.Scripts.SkillManagement.SO.Skills;
 using Pack.GameData;
 using VContainer;
 using VContainer.Unity;
+using UnityEngine;
 
 namespace _Project.Scripts.Character.Bot.Controllers
 {
@@ -49,6 +52,17 @@ namespace _Project.Scripts.Character.Bot.Controllers
         public void Dispose()
         {
             _playerSavedData.RemoveReciver(this);
+        }
+
+        public void ActivatedSkill(SkillBase skill)
+        {  
+             Debug.Log("3 XX");
+            //  $"ActivatedSkill {skill}".ColorLog(Color.green);
+        }
+
+        public void DeactivatedSkill(SkillBase skill)
+        {
+            //  $"DeactivatedSkill{skill}".ColorLog(Color.red);
         }
     }
 }
