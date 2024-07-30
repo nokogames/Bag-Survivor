@@ -28,7 +28,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         }
         public virtual void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController) { }
         public virtual string GetInfoTxt(SkillRarity rarity) => "";
-        public virtual bool ActiveSkill(  Transform playerTransform,SkillRarity skillRarity)
+        public virtual bool ActiveSkill(Transform playerTransform, SkillRarity skillRarity)
         {
             _playerTransform = playerTransform;
             return false;

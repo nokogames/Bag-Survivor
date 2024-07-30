@@ -153,7 +153,7 @@ namespace _Project.Scripts.UI.Inventory
         }
 
         private void SetSkillStatus(Dragable dragable, bool v)
-        {
+        { 
             if (v) dragable.Skill.ActiveSkill(PlayerTransform, dragable.SkillRarity);
             else dragable.Skill.DeactivateSkill();
         }

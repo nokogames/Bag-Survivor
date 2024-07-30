@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FireBallSkill
   m_EditorClassIdentifier: 
   skillVisualData:
-    Size: {x: 1, y: 2}
-    img: {fileID: 21300000, guid: 704f7e1f33dc0034188b0714b8ea26fc, type: 3}
+    Size: {x: 1, y: 1}
+    img: {fileID: 21300000, guid: 5766f42f0c783cf41bd88224841085d6, type: 3}
   Name: FIREBALL
   InfoTxt: Cast a Fireball!
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
@@ -24,9 +24,15 @@ MonoBehaviour:
   fireBallCountByRarity:
   - rarity: 0
     count: 1
+    ballFireRate: 1
   - rarity: 1
     count: 2
+    ballFireRate: 1
   - rarity: 2
     count: 3
+    ballFireRate: 1
   - rarity: 3
     count: 5
+    ballFireRate: 1
+  ballPref: {fileID: 7700228033681709496, guid: 412ad1f4d59b7fb459698412ea5ec995,
+    type: 3}

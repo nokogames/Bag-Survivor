@@ -13,10 +13,11 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     {
 
         [SerializeField] private List<FireBallCountByRarity> fireBallCountByRarity;
-
+        [SerializeField] private GameObject ballPref;
+        private FireBallCountByRarity _skillRarityData;
         public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController)
         {
-        
+
             var result = fireBallCountByRarity.First(x => x.rarity == rarity);
             inGameSkillController.FireBall(result.count);
 
@@ -30,17 +31,46 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             var result = fireBallCountByRarity.First(x => x.rarity == rarity);
             return $"{InfoTxt} +{result.count}";
         }
-        // public override bool ActiveSkill(SkillBase skillBase,Transform transform)
-        // {
-        //     Debug.Log("Active");
-        //     return _playerUpgradedData.ActiveSkill(skillBase);
+        public override bool ActiveSkill(Transform playerTransform, SkillRarity skillRarity)
+        {
 
-        // }
-        // public override bool DeactivateSkill(SkillBase skillBase)
-        // {
-        //     Debug.Log("Deactivated");
-        //     return _playerUpgradedData.DeactiveSkill(skillBase);
-        // }
+            _playerTransform = playerTransform;
+
+            Debug.Log("Active");
+
+            var result = _playerUpgradedData.ActiveSkill(this);
+            if (result)
+            {
+                _skillRarityData = fireBallCountByRarity.First(x => x.rarity == skillRarity);
+                _fireRate = _skillRarityData.ballFireRate;
+            }
+            return result;
+        }
+
+        public override bool DeactivateSkill()
+        {
+            Debug.Log("Deactivated");
+            return _playerUpgradedData.DeactiveSkill(this);
+        }
+
+        private float _fireRate;
+        private float _crrTime = 0;
+        internal override void FixedTick()
+        {
+            _crrTime += Time.fixedDeltaTime;
+            if (_crrTime < _fireRate) return;
+            _crrTime = 0;
+
+            CreateFireBall();
+
+        }
+        private void CreateFireBall()
+        {
+            var fireBallBehavior = ParticlePool.SharedInstance.GetPooledObject(ballPref).GetComponent<FireBallBehavior>();
+            fireBallBehavior.Initialise(_playerTransform);
+            fireBallBehavior.gameObject.SetActive(true);
+        }
+
     }
 
     [Serializable]
@@ -48,5 +78,6 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     {
         public SkillRarity rarity;
         public int count;
+        public float ballFireRate;
     }
 }
