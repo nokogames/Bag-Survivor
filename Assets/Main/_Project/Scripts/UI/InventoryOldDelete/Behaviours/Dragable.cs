@@ -17,6 +17,7 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
         public Transform checkPoint;
         public Transform placementPoint;
         public bool CanPlace { get; set; }
+        public bool IsPlacedInventory { get; set; }
         public Vector2Int size;
         //public Action onPlaceInventory;
         public RectTransform onSelectParentTransform;
@@ -37,7 +38,8 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
 
         protected SkillBase _skillBase;
         public SkillBase Skill => _skillBase;
-
+        protected SkillRarity _skillRarity;
+        public SkillRarity SkillRarity => _skillRarity;
         private void Awake()
         {
 
@@ -79,20 +81,24 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
             _inventoryManager.OnEndDrag();
 
             var offsetPlacementPoint = transform.position - placementPoint.position;
-            if (InventorySlot != null && CanPlace)
-            {
-                rectTransform.position = InventorySlot.GetComponent<RectTransform>().position + offsetPlacementPoint;
-                transform.SetParent(ItemHolder);
-                //  onPlaceInventory?.Invoke();
-                PlacedToInventory();
-            }
-            else if (InventorySlot != null)
+            if (InventorySlot != null)
             {
                 rectTransform.position = InventorySlot.GetComponent<RectTransform>().position + offsetPlacementPoint;
                 transform.SetParent(ItemHolder);
 
-                PlacedToInventory();
+                //  onPlaceInventory?.Invoke();
+                if (IsPlacedInventory) MovedInInventory();
+                else PlacedToInventory();
+
+                IsPlacedInventory = true;
             }
+            // else if (InventorySlot != null)
+            // {
+            //     rectTransform.position = InventorySlot.GetComponent<RectTransform>().position + offsetPlacementPoint;
+            //     transform.SetParent(ItemHolder);
+
+            //     PlacedToInventory();
+            // }
             else
             {
                 SetAlpha(0);
@@ -116,6 +122,10 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
         {
 
         }
+        public virtual void MovedInInventory()
+        {
+
+        }
         public virtual void NotPlaced()
         {
 
@@ -123,7 +133,7 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
 
         internal virtual void Kill()
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 

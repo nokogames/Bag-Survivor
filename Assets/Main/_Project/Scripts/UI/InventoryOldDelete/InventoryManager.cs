@@ -17,6 +17,7 @@ namespace _Project.Scripts.UI.Inventory
         public void Start()
         {
             _gridFactory.CreateGrid(3, 3, this);
+            _data.skillSellPointBehaviour.Initialize(this);
         }
 
 
@@ -153,8 +154,8 @@ namespace _Project.Scripts.UI.Inventory
 
         private void SetSkillStatus(Dragable dragable, bool v)
         {
-            if (v) dragable.Skill.ActiveSkill(dragable.Skill,PlayerTransform);
-            else dragable.Skill.DeactivateSkill(dragable.Skill);
+            if (v) dragable.Skill.ActiveSkill(PlayerTransform, dragable.SkillRarity);
+            else dragable.Skill.DeactivateSkill();
         }
 
         internal void OnDrag()
@@ -166,14 +167,21 @@ namespace _Project.Scripts.UI.Inventory
 
             if (Input.GetKey(KeyCode.A))
             {
-                _selectedDragable.Skill.DeactivateSkill(_selectedDragable.Skill);
+                _selectedDragable.Skill.DeactivateSkill();
                 _selectedDragable.Kill();
             }
         }
+        public bool IsSelling { get; set; }
         internal void OnEndDrag()
         {
             if (_selectedDragable == null) return;
-
+            if (IsSelling)
+            {
+                _selectedDragable.Skill.DeactivateSkill();
+                _selectedDragable.Kill();
+                IsSelling = false;
+                return;
+            }
             InventorySlot closestSlot = GetClosestSlot();
             ResetColor();
             var result = AddItem(closestSlot.gridPosition, _selectedDragable.size);
@@ -222,5 +230,6 @@ namespace _Project.Scripts.UI.Inventory
         public GameObject slotPref;
         public GameObject grid;
         public List<InventorySlot> slots;
+        public SkillSellPointBehaviour skillSellPointBehaviour;
     }
 }

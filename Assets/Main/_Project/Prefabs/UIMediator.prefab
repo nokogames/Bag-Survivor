@@ -6462,6 +6462,7 @@ GameObject:
   - component: {fileID: 5886662651067786025}
   - component: {fileID: 5518371495102968311}
   - component: {fileID: 8984144496730398278}
+  - component: {fileID: 5194681772063345612}
   m_Layer: 5
   m_Name: SellPoint
   m_TagString: Untagged
@@ -6485,8 +6486,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -119, y: 98}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &5518371495102968311
 CanvasRenderer:
@@ -6526,6 +6527,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5194681772063345612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124162311306924070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57e884d78c73b1439e01ffb9889fcbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2127439596769109382
 GameObject:
   m_ObjectHideFlags: 0
@@ -16627,6 +16640,7 @@ MonoBehaviour:
       type: 3}
     grid: {fileID: 6263834204008339177}
     slots: []
+    skillSellPointBehaviour: {fileID: 5194681772063345612}
   inventoryTetrisAssets: {fileID: 5762327763994829426, guid: 9253c1481d4aad54f9419b42cd6d179b,
     type: 3}
   inventoryTetrisDragDropSystem: {fileID: 3665569740657265421, guid: 50f6c489e5cfbd1498e01eaea49afe55,

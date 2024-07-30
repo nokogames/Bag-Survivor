@@ -94,7 +94,12 @@ namespace _Project.Scripts.SkillManagement.Controllers
 
         public void OnSkillPlacedInventory()
         {
-           _skillCreator.DisableMoveSkillVisual();
+            _skillCreator.DisableMoveSkillVisual();
+        }
+
+        public void OnSkillKill()
+        {
+            _skillCreator.DisableMoveSkillVisual();
         }
     }
 }

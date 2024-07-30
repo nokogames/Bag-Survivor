@@ -42,10 +42,12 @@ namespace _Project.Scripts.SkillManagement
             _uiEventHandler = eventHandler;
             _customInventoryData = customInventoryData;
             _inventoryManager = inventoryManager;
+            _btn.interactable = true;
         }
 
         public void Setup(CreatedSkillInfo createdSkillInfo)
         {
+            _btn.interactable = true;
             ClearVisual();
             _createdSkillInfo = createdSkillInfo;
             _currentSkill = _createdSkillInfo.Skill;
@@ -57,7 +59,7 @@ namespace _Project.Scripts.SkillManagement
         private void CreateVisual()
         {
             _createdSkillVisualBehaviour = Instantiate(skillVisualPref, transform.parent).GetComponent<SkillVisualBehaviour>();
-            _createdSkillVisualBehaviour.Initialize(_customInventoryData, _currentSkill.skillVisualData, _inventoryManager, this,_createdSkillInfo.Skill);
+            _createdSkillVisualBehaviour.Initialize(_customInventoryData, _currentSkill.skillVisualData, _inventoryManager, this, _createdSkillInfo);
             _createdSkillVisualBehaviour.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
             // _createdSkillBehaviour.onPlaceInventory += OnPlaceInventory;
         }
@@ -86,6 +88,7 @@ namespace _Project.Scripts.SkillManagement
         internal void DisableMoveSkillVisual()
         {
             if (_createdSkillVisualBehaviour != null) Destroy(_createdSkillVisualBehaviour);
+            _btn.interactable = false;
         }
 
         public void SkillVisualPlaced()
@@ -93,6 +96,17 @@ namespace _Project.Scripts.SkillManagement
             _createdSkillVisualBehaviour = null;
             _uiEventHandler.OnSkillPlacedInventory();
         }
+        public void SkillMovedInInventory()
+        {
+
+        }
+        public void Kill()
+        {   
+           
+            _createdSkillVisualBehaviour = null;
+            _uiEventHandler.OnKillSkill();
+        }
+
     }
 
 }

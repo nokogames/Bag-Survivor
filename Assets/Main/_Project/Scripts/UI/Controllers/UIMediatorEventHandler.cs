@@ -39,6 +39,10 @@ namespace _Project.Scripts.UI.Controllers
         {
             _recievers.ForEach(x => x.OnSkillPlacedInventory());
         }
+        public void OnKillSkill()
+        {
+            _recievers.ForEach(x => x.OnSkillKill());
+        }
     }
 
 }
