@@ -30,17 +30,17 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             var result = fireBallCountByRarity.First(x => x.rarity == rarity);
             return $"{InfoTxt} +{result.count}";
         }
-        public override bool ActiveSkill(SkillBase skillBase,Transform transform)
-        {
-            Debug.Log("Active");
-            return _playerUpgradedData.ActiveSkill(skillBase);
+        // public override bool ActiveSkill(SkillBase skillBase,Transform transform)
+        // {
+        //     Debug.Log("Active");
+        //     return _playerUpgradedData.ActiveSkill(skillBase);
 
-        }
-        public override bool DeactivateSkill(SkillBase skillBase)
-        {
-            Debug.Log("Deactivated");
-            return _playerUpgradedData.DeactiveSkill(skillBase);
-        }
+        // }
+        // public override bool DeactivateSkill(SkillBase skillBase)
+        // {
+        //     Debug.Log("Deactivated");
+        //     return _playerUpgradedData.DeactiveSkill(skillBase);
+        // }
     }
 
     [Serializable]

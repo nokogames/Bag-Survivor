@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.SkillManagement.Controllers;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI.Inventory;
 using _Project.Scripts.UI.Inventory.Behaviours;
@@ -14,7 +15,7 @@ namespace _Project.Scripts.SkillManagement
         private SkillBehaviour _skillBehavior;
 
         internal void Initialize(CustomInventoryData customInventoryData, SkillVisualData skillVisualData,
-        InventoryManager inventoryManager, SkillBehaviour skillBehaviour, SkillBase skillBase)
+        InventoryManager inventoryManager, SkillBehaviour skillBehaviour, CreatedSkillInfo createdSkillInfo)
         {
             _inventoryManager = inventoryManager;
             _customInventoryData = customInventoryData;
@@ -30,7 +31,8 @@ namespace _Project.Scripts.SkillManagement
                 _img.sprite = skillVisualData.img;
                 _img.SetNativeSize();
             }
-            _skillBase = skillBase;
+            _skillBase = createdSkillInfo.Skill;
+            _skillRarity = createdSkillInfo.SkillRarity;
         }
 
         public override void NotPlaced()
@@ -41,6 +43,17 @@ namespace _Project.Scripts.SkillManagement
         {
             if (_skillBehavior != null) _skillBehavior.SkillVisualPlaced();
         }
+
+        public override void MovedInInventory()
+        {
+            if (_skillBehavior != null) _skillBehavior.SkillMovedInInventory();
+        }
+        internal override void Kill()
+        {
+            if (_skillBehavior != null && !IsPlacedInventory) _skillBehavior.Kill();
+            base.Kill();
+        }
+
 
 
     }

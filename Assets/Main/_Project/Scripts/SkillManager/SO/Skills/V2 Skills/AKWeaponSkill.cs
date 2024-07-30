@@ -15,6 +15,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     {
 
         [SerializeField] private List<AKWeaponSkillByRarity> _akWeaponByRarity;
+        private AKWeaponSkillByRarity _skillRarityData;
 
 
         public override string GetInfoTxt(SkillRarity rarity)
@@ -23,23 +24,45 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             //+{result.count}
             return $"{InfoTxt} ";
         }
-        public override bool ActiveSkill(SkillBase skillBase, Transform playerTransform)
+        public override bool ActiveSkill(Transform playerTransform, SkillRarity skillRarity)
         {
             _playerTransform = playerTransform;
 
             Debug.Log("Active");
-            return _playerUpgradedData.ActiveSkill(skillBase);
+
+            var result = _playerUpgradedData.ActiveSkill(this);
+            if (result)
+            {
+                _skillRarityData = _akWeaponByRarity.First(x => x.rarity == skillRarity);
+                _fireRate = _skillRarityData.fireRate;
+            }
+            return result;
+
 
         }
-        public override bool DeactivateSkill(SkillBase skillBase)
+        public override bool DeactivateSkill()
         {
             Debug.Log("Deactivated");
-            return _playerUpgradedData.DeactiveSkill(skillBase);
+            return _playerUpgradedData.DeactiveSkill(this);
         }
 
+        private float _fireRate;
+        private float _crrTime = 0;
         internal override void FixedTick()
         {
+            _crrTime += Time.fixedDeltaTime;
+            if (_crrTime < _fireRate) return;
+            _crrTime = 0;
+            CreateBullet();
             CustomExtentions.ColorLog($"Player Pos {_playerTransform.position}", Color.blue);
+        }
+
+        private void CreateBullet()
+        {
+            var bullet = ParticlePool.SharedInstance.GetPooledObject(_skillRarityData.bulletPref);
+            bullet.transform.position = _playerTransform.position + Vector3.up;
+            bullet.transform.Rotate(Vector3.up * UnityEngine.Random.Range(-360, 360));
+            bullet.SetActive(true);
         }
     }
 
@@ -47,6 +70,8 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     public struct AKWeaponSkillByRarity
     {
         public SkillRarity rarity;
+        public GameObject bulletPref;
+        public float fireRate;
 
     }
 }
