@@ -12,7 +12,7 @@ using VContainer.Unity;
 
 namespace _Project.Scripts.SkillManagement.Controllers
 {
-    public class SkillCreator:IStartable
+    public class SkillCreator : IStartable
     {
         [Inject] private List<SkillBase> Skills;
         [Inject] private SkillUIController _skillUIController;
@@ -44,10 +44,15 @@ namespace _Project.Scripts.SkillManagement.Controllers
             {
                 //UnityEngine.Random.InitState(i);
                 int randomIndex = UnityEngine.Random.Range(0, Skills.Count);
-                while (skillIndexs.Contains(randomIndex)) randomIndex = UnityEngine.Random.Range(0, Skills.Count);
+                SkillBase rondomSkill = Skills[randomIndex];
+                while (skillIndexs.Contains(randomIndex) || _playerUpgradedData.IsActiveSkill(rondomSkill))
+                {
+                    randomIndex = UnityEngine.Random.Range(0, Skills.Count);
+                    rondomSkill = Skills[randomIndex];
+                }
                 skillIndexs[i] = randomIndex;
 
-                SkillBase rondomSkill = Skills[randomIndex];
+                //    rondomSkill = Skills[randomIndex];
                 SkillRarity skillRarity = rondomSkill.GetRandomRarity();
 
                 SkillBehaviour skillBehaviour = _skillBehaviors[i];

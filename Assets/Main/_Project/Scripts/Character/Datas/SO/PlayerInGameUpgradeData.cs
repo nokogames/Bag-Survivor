@@ -50,6 +50,7 @@ namespace _Project.Scripts.Character.Datas.SO
             _recivers.ForEach(x => x.ActivatedSkill(skill));
             return true;
         }
+        public bool IsActiveSkill(SkillBase skill) =>_activeSkills.Contains(skill);
         public bool DeactiveSkill(SkillBase skill)
         {
             if (!_activeSkills.Contains(skill)) return false;

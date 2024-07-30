@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.SkillManagement;
+using _Project.Scripts.SkillManagement.Controllers;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using _Project.Scripts.UI.Interfacies;
 using _Project.Scripts.UI.Inventory;
@@ -22,8 +23,10 @@ namespace _Project.Scripts.UI.Controllers
         [Inject] private UIMediatorEventHandler _eventHandler;
         [Inject] private CustomInventoryData _customInventoryData;
         [Inject] private InventoryManager _inventoryManager;
+      
         public Transform SkillTransformParent => _skillUIControllerData.skillParentTransform;
         public List<SkillBehaviour> SkillBehaviors => _skillUIControllerData.skillBehaviors;
+        public Button GoBtn =>_skillUIControllerData.GoBtn;
         public Button RerollBtn => _skillUIControllerData.RerollBtn;
         public void Start()
         {
@@ -55,17 +58,18 @@ namespace _Project.Scripts.UI.Controllers
             _inputDataSO.disableJoystick = true;
             // Time.timeScale = 0;
             Time.timeScale = 0;
-           // StaticHelper.Instance.gameStatus = GameStatus.Pause;
+            // StaticHelper.Instance.gameStatus = GameStatus.Pause;
         }
         public void HidePanel()
         {
             _skillUIControllerData.SkillPanel.SetActive(false);
             _inputDataSO.disableJoystick = false;
-          //  StaticHelper.Instance.gameStatus = GameStatus.Playing;
+            //  StaticHelper.Instance.gameStatus = GameStatus.Playing;
             Time.timeScale = 1;
 
         }
 
+       
 
 
 
@@ -91,5 +95,6 @@ namespace _Project.Scripts.UI.Controllers
         public Transform skillParentTransform;
         public List<SkillBehaviour> skillBehaviors;
         public Button RerollBtn;
+        public Button GoBtn;
     }
 }

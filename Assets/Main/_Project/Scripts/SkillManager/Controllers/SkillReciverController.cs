@@ -22,6 +22,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
     {
         [Inject] private UIMediatorEventHandler _uiMediatorEventHandler;
         [Inject] private SkillUIController _skillUIController;
+     
         [Inject] private SkillCreator _skillCreator;
         // [Inject] private PlayerInGameUpgradeBarController _playerInGameUpgradeBarController;
         [Inject] private BarController _barController;
@@ -42,7 +43,15 @@ namespace _Project.Scripts.SkillManagement.Controllers
             _uiMediatorEventHandler.RemoveReciever(this);
             _uiMediatorEventHandler.AddReciever(this);
             _inLevelEvents.onNextLevel += NextLevel;
+            _skillUIController.GoBtn.onClick.AddListener(GoBtnClicked);
+           // _skillUIControllerData.GoBtn.onClick.AddListener(GoBtnClicked);
 
+        }
+
+        private void GoBtnClicked()
+        {
+            _skillUIController.HidePanel();
+            _barController.Upgraded();
         }
 
         private void NextLevel()
