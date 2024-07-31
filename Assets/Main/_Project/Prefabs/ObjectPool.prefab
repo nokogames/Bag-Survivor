@@ -73,22 +73,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsToPool:
   - enemyType: 0
-    objectToPool: {fileID: 7705978550122137453, guid: 6199805f3b0baaf49b81b431077b7224,
+    objectToPool: {fileID: 7705978550122137453, guid: effe3a1ed5f363c45a99f3ce9528d37d,
       type: 3}
     amountToPool: 0
     shouldExpand: 1
   - enemyType: 1
-    objectToPool: {fileID: 6235212639050972488, guid: 73873a47acd560b4e9d73fa01359f1f7,
+    objectToPool: {fileID: 7705978550122137453, guid: 783834ce8ca7220448126ce88c3f8bda,
       type: 3}
     amountToPool: 0
     shouldExpand: 1
   - enemyType: 3
-    objectToPool: {fileID: 6103575254849927635, guid: 2184f026498c7ba4ea033acedf7c0bfa,
+    objectToPool: {fileID: 6103575254849927635, guid: 77cff5b43ebc4c746a05b1b6e9b5b2b8,
       type: 3}
     amountToPool: 0
     shouldExpand: 1
   - enemyType: 2
-    objectToPool: {fileID: 6235212639050972488, guid: c287d8453f4e1c04997aea2cfdff1da2,
+    objectToPool: {fileID: 7705978550122137453, guid: 72ee0cd6a352b704e9b37f0e19d3b09b,
       type: 3}
     amountToPool: 0
     shouldExpand: 1

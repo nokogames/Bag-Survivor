@@ -15,16 +15,16 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         [SerializeField] private List<FireBallCountByRarity> fireBallCountByRarity;
         [SerializeField] private GameObject ballPref;
         private FireBallCountByRarity _skillRarityData;
-        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController)
-        {
+        // public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController)
+        // {
 
-            var result = fireBallCountByRarity.First(x => x.rarity == rarity);
-            inGameSkillController.FireBall(result.count);
+        //     var result = fireBallCountByRarity.First(x => x.rarity == rarity);
+        //     inGameSkillController.FireBall(result.count);
 
-            // playerUpgradedData.damage += result.damageAmount;
-            // playerUpgradedData.Upgraded();
-            Debug.Log("Selected FireBall Skill");
-        }
+        //     // playerUpgradedData.damage += result.damageAmount;
+        //     // playerUpgradedData.Upgraded();
+        //     Debug.Log("Selected FireBall Skill");
+        // }
 
         public override string GetInfoTxt(SkillRarity rarity)
         {

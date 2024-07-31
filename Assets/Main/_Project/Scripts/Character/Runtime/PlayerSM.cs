@@ -195,7 +195,7 @@ namespace _Project.Scripts.Character.Runtime
         public override void Update()
         {
             base.Update();
-            _botController.Tick();
+           // _botController.Tick();
         }
 
         private void OnDestroy()

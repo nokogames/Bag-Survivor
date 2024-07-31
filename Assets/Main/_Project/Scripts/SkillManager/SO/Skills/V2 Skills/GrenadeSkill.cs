@@ -10,17 +10,18 @@ using UnityEngine;
 
 namespace _Project.Scripts.SkillManagement.SO.Skills
 {
-    [CreateAssetMenu(fileName = "LighteningSkill", menuName = "ScriptableObjects/SkillSystem/LighteningSkill", order = 0)]
-    public class LighteningSkill : SkillBase
+    [CreateAssetMenu(fileName = "GrenadeSkill", menuName = "ScriptableObjects/SkillSystem/GrenadeSkill", order = 0)]
+    public class GrenadeSkill : SkillBase
     {
 
-        [SerializeField] private List<LighteningSkillByRarity> lighteningSkillDataByRarity;
+        [SerializeField] private List<GrenadeSkillDataByRarity> grenadeDataByRarity;
         [SerializeField] private GameObject prefab;
-        private LighteningSkillByRarity _skillRarityData;
+        private GrenadeSkillDataByRarity _skillRarityData;
         // public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController)
         // {
+
         //     var result = fireBallCountByRarity.First(x => x.rarity == rarity);
-        //     inGameSkillController.Lightening(result.count);
+        //     inGameSkillController.FireBall(result.count);
 
         //     // playerUpgradedData.damage += result.damageAmount;
         //     // playerUpgradedData.Upgraded();
@@ -29,11 +30,9 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
 
         public override string GetInfoTxt(SkillRarity rarity)
         {
-            var result = lighteningSkillDataByRarity.First(x => x.rarity == rarity);
+            var result = grenadeDataByRarity.First(x => x.rarity == rarity);
             return $"{InfoTxt} +{result.count}";
         }
-
-
         public override bool ActiveSkill(Transform playerTransform, SkillRarity skillRarity)
         {
 
@@ -44,7 +43,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             var result = _playerUpgradedData.ActiveSkill(this);
             if (result)
             {
-                _skillRarityData = lighteningSkillDataByRarity.First(x => x.rarity == skillRarity);
+                _skillRarityData = grenadeDataByRarity.First(x => x.rarity == skillRarity);
                 _fireRate = _skillRarityData.fireRate;
             }
             return result;
@@ -64,19 +63,20 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             if (_crrTime < _fireRate) return;
             _crrTime = 0;
 
-            CreateLightening();
+            CreateGrenade();
 
         }
-        private void CreateLightening()
+        private void CreateGrenade()
         {
-            var fireBallBehavior = ParticlePool.SharedInstance.GetPooledObject(prefab).GetComponent<LighteningSkillBehaviour>();
+            var fireBallBehavior = ParticlePool.SharedInstance.GetPooledObject(prefab).GetComponent<GrenadeBehaviour>();
             fireBallBehavior.Initialise(_playerTransform);
             fireBallBehavior.gameObject.SetActive(true);
         }
+
     }
 
     [Serializable]
-    public struct LighteningSkillByRarity
+    public struct GrenadeSkillDataByRarity
     {
         public SkillRarity rarity;
         public int count;

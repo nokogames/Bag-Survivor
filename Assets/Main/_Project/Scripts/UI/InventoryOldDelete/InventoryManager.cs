@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using _Project.Scripts.Level;
 using _Project.Scripts.UI.Inventory.Behaviours;
 using UnityEngine;
 
@@ -13,13 +13,22 @@ namespace _Project.Scripts.UI.Inventory
     {
         [Inject] private CustomInventoryData _data;
         [Inject] private InventoryGridFactory _gridFactory;
+        [Inject] private InLevelEvents _inLvelEvents;
+
+        private List<Dragable> _addedDragable;
         public Transform PlayerTransform { get; set; }
         public void Start()
         {
+            _addedDragable = new();
             _gridFactory.CreateGrid(3, 3, this);
             _data.skillSellPointBehaviour.Initialize(this);
+            _inLvelEvents.onNextLevel += OnNextLevel;
         }
 
+        private void OnNextLevel()
+        {     _data.slots.ForEach(x=>x.Reset());
+            _addedDragable.ForEach(x => x.Kill());
+        }
 
         public bool AddItem(Vector2Int position, Vector2Int size)
         {
@@ -153,7 +162,7 @@ namespace _Project.Scripts.UI.Inventory
         }
 
         private void SetSkillStatus(Dragable dragable, bool v)
-        { 
+        {
             if (v) dragable.Skill.ActiveSkill(PlayerTransform, dragable.SkillRarity);
             else dragable.Skill.DeactivateSkill();
         }
@@ -161,7 +170,7 @@ namespace _Project.Scripts.UI.Inventory
         internal void OnDrag()
         {
             if (_selectedDragable == null) return;
-
+            if (_addedDragable.Contains(_selectedDragable)) _addedDragable.Remove(_selectedDragable);
             InventorySlot closestSlot = GetClosestSlot();
             OnPointerEnter(closestSlot, _selectedDragable);
 
@@ -169,6 +178,10 @@ namespace _Project.Scripts.UI.Inventory
             {
                 _selectedDragable.Skill.DeactivateSkill();
                 _selectedDragable.Kill();
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                OnNextLevel();
             }
         }
         public bool IsSelling { get; set; }
@@ -197,6 +210,7 @@ namespace _Project.Scripts.UI.Inventory
             {
                 AddItem(_selectedDragable.InventorySlot.gridPosition, _selectedDragable.size);
             }
+            _addedDragable.Add(_selectedDragable);
             //  var placeableSlots = GetPlaceableSlots(closestSlot, _selectedDragable);
             // draggableItem.CanPlace = canPlace;
             // if (canPlace) _selectedDragable.startPlaceInventorySlot = inventorySlot;

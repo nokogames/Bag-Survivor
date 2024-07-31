@@ -72,4 +72,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
     {
         // SetColor(Color.white);
     }
+
+    internal void Reset()
+    {
+        IsOccupied = false;
+        itemImage.color = Color.white;
+    }
 }

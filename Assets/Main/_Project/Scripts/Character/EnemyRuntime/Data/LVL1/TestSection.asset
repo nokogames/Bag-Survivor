@@ -15,7 +15,13 @@ MonoBehaviour:
   waveInfos:
   - spawnEnemyInfos:
     - enemyType: 0
-      Count: 30
+      Count: 10
+    - enemyType: 1
+      Count: 10
+    - enemyType: 2
+      Count: 10
+    - enemyType: 3
+      Count: 1
     timeOffset: 20
     mustClearNextWave: 0
   - spawnEnemyInfos:

@@ -11,9 +11,10 @@ namespace _Project.Scripts.UI.Inventory
     public class InventoryGridFactory
     {
         [Inject] private CustomInventoryData _data;
-        
-        public void CreateGrid(int x, int y,InventoryManager inventoryManager)
+       
+        public void CreateGrid(int x, int y, InventoryManager inventoryManager)
         {
+          
             _data.slots.Clear();
             for (int i = 0; i < x; i++)
             {

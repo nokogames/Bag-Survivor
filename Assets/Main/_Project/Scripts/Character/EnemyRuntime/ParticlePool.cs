@@ -115,7 +115,7 @@ namespace _Project.Scripts
                 obj.SetActive(false);
                 obj.transform.parent = this.transform;
                 pooledObjectsList[index].Add(obj);
-                DontDestroyOnLoad(obj);
+                //  DontDestroyOnLoad(obj);
                 return obj;
 
             }
@@ -148,9 +148,9 @@ namespace _Project.Scripts
             {
                 GameObject obj = (GameObject)Instantiate(item.objectToPool);
                 obj.SetActive(false);
-                obj.transform.parent = this.transform;
+                obj.transform.SetParent(transform);
                 pooledObjects.Add(obj);
-             //   DontDestroyOnLoad(obj);
+                //   DontDestroyOnLoad(obj);
             }
             pooledObjectsList.Add(pooledObjects);
             positions.Add(0);
