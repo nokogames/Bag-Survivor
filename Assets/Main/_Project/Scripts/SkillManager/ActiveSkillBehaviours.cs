@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActiveSkillBehaviours : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Image bar;
+    [SerializeField] private Image bgImg;
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize(Sprite sprite)
     {
-        
+        bgImg.sprite = sprite;
+    }
+    public void SetBar(float value)
+    {
+        bar.fillAmount = value;
     }
 }

@@ -42,7 +42,7 @@ namespace _Project.Scripts.Character.Datas.SO
         public bool ActiveSkill(SkillBase skill)
         {
             Debug.Log("1");
-          
+
             if (_activeSkills.Contains(skill)) return false;
             Debug.Log($"2 =={_recivers.Count}  {this.GetHashCode()}");
 
@@ -50,7 +50,7 @@ namespace _Project.Scripts.Character.Datas.SO
             _recivers.ForEach(x => x.ActivatedSkill(skill));
             return true;
         }
-        public bool IsActiveSkill(SkillBase skill) =>_activeSkills.Contains(skill);
+        public bool IsActiveSkill(SkillBase skill) => _activeSkills.Contains(skill);
         public bool DeactiveSkill(SkillBase skill)
         {
             if (!_activeSkills.Contains(skill)) return false;
@@ -172,5 +172,5 @@ namespace _Project.Scripts.Character.Datas.SO
         public void ActivatedSkill(SkillBase skill);
         public void DeactivatedSkill(SkillBase skill);
     }
-
+   
 }

@@ -82,23 +82,23 @@ MonoBehaviour:
       type: 3}
     amountToPool: 0
     shouldExpand: 1
-  - enemyType: 3
-    objectToPool: {fileID: 6103575254849927635, guid: 77cff5b43ebc4c746a05b1b6e9b5b2b8,
-      type: 3}
-    amountToPool: 0
-    shouldExpand: 1
   - enemyType: 2
     objectToPool: {fileID: 7705978550122137453, guid: 72ee0cd6a352b704e9b37f0e19d3b09b,
       type: 3}
     amountToPool: 0
     shouldExpand: 1
+  - enemyType: 3
+    objectToPool: {fileID: 6103575254849927635, guid: 77cff5b43ebc4c746a05b1b6e9b5b2b8,
+      type: 3}
+    amountToPool: 0
+    shouldExpand: 1
   - enemyType: 4
-    objectToPool: {fileID: 6103575254849927635, guid: c05a66ca2b0a4ff46ad6ff64ee2ec17e,
+    objectToPool: {fileID: 6103575254849927635, guid: 106dcb457f3e4b94a9e9be90e676e5d1,
       type: 3}
     amountToPool: 0
     shouldExpand: 1
   - enemyType: 5
-    objectToPool: {fileID: 6103575254849927635, guid: a889dd4df66651a499381e29fd608988,
+    objectToPool: {fileID: 6103575254849927635, guid: 3848a0f59211fb84c9e669079c6a549b,
       type: 3}
     amountToPool: 0
     shouldExpand: 1

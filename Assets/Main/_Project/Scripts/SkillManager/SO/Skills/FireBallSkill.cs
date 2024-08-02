@@ -55,7 +55,8 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
 
         private float _fireRate;
         private float _crrTime = 0;
-        internal override void FixedTick()
+        public override float SkillPercentage => _crrTime / _fireRate;
+         internal override void FixedTick()
         {
             _crrTime += Time.fixedDeltaTime;
             if (_crrTime < _fireRate) return;

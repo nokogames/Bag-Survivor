@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SpawnData
   m_EditorClassIdentifier: 
   enemyLevelSpawnDatas:
-  - {fileID: 11400000, guid: cf4105cc5e90246c2b375af55ea7c6ea, type: 2}
+  - {fileID: 11400000, guid: bd8a66e54ccafe84b8f45fdecc6f02fc, type: 2}
   - {fileID: 11400000, guid: 1f2b9eca6162a47b08f2b56833239cc6, type: 2}
   - {fileID: 11400000, guid: 08217a4cd63e64c73906ef21ac42467b, type: 2}

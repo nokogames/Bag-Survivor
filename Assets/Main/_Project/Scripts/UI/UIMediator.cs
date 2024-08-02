@@ -17,6 +17,7 @@ namespace _Project.Scripts.UI
 
     public class UIMediator : MonoBehaviour
     {
+        [Header("Active Skill Ui Data"), SerializeField] private ActiveSkillUIControllerData activeSkillUIControllerData;
         [Header("Custom Inventory"), SerializeField]
         CustomInventoryData customInventoryData;
 
@@ -97,7 +98,7 @@ namespace _Project.Scripts.UI
                builder.RegisterInstance(botUpgradePanelData);
                builder.RegisterInstance(mapPanelData);
                builder.RegisterInstance(customInventoryData);
-
+               builder.RegisterInstance(activeSkillUIControllerData);
 
                builder.RegisterComponentInNewPrefab(upgradeVisualControllerPref, Lifetime.Scoped).DontDestroyOnLoad();
 
@@ -111,6 +112,7 @@ namespace _Project.Scripts.UI
                builder.RegisterEntryPoint<MainMenuPlayerUpgradePanelController>(Lifetime.Scoped).AsSelf();
                builder.RegisterEntryPoint<MainMenuBotUpgradePanelController>(Lifetime.Scoped).AsSelf();
                builder.RegisterEntryPoint<MapPanelController>(Lifetime.Scoped).AsSelf();
+               builder.RegisterEntryPoint<ActiveSkillUIController>(Lifetime.Scoped).AsSelf();
 
                builder.RegisterEntryPoint<InventoryManager>(Lifetime.Scoped).AsSelf();
                builder.Register<InventoryGridFactory>(Lifetime.Scoped).AsSelf();
@@ -139,7 +141,7 @@ namespace _Project.Scripts.UI
             InGamePanelController = _uiScope.Container.Resolve<InGamePanelController>();
             LevelEndDataPanel = _uiScope.Container.Resolve<LevelEndDataPanel>();
             _inventoryManager = _uiScope.Container.Resolve<InventoryManager>();
-            _inventoryManager.PlayerTransform=_playerTransform;
+            _inventoryManager.PlayerTransform = _playerTransform;
         }
     }
 

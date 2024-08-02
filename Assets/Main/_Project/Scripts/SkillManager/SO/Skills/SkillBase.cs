@@ -13,6 +13,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     {
         public SkillVisualData skillVisualData;
         protected Transform _playerTransform;
+        public virtual float SkillPercentage => 0;
         public string Name;
         public string InfoTxt;
         public SkillCommenUIInfo skillCommenUIInfo;

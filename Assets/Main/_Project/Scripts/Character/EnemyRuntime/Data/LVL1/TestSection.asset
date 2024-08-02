@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveInfos:
   - spawnEnemyInfos:
-    - enemyType: 0
+    - enemyType: 3
       Count: 10
-    - enemyType: 1
+    - enemyType: 4
       Count: 10
-    - enemyType: 2
+    - enemyType: 5
       Count: 10
     - enemyType: 3
       Count: 1
