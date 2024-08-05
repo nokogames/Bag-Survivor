@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using _Project.Scripts.Character.Craft;
+using _Project.Scripts.Character.EnemyRuntime;
 using _Project.Scripts.Character.Runtime.Controllers;
 using _Project.Scripts.Character.Runtime.Data;
 using _Project.Scripts.Character.Runtime.SerializeData;
@@ -32,6 +33,7 @@ namespace _Project.Scripts.Character.Runtime
         [SerializeField] private GameObject botPrefab;
         [SerializeField] private AnimationEventHandler animationEventHandler;
         [SerializeField] private GameObject pickAxe;
+
         private LifetimeScope _parentScope;
         private LifetimeScope _playerScope;
         private SkillManager _skillManager;
@@ -52,6 +54,7 @@ namespace _Project.Scripts.Character.Runtime
 
         private PlayerAnimationController _playerAnimationController;
         private InLevelEvents _inLevelEvents;
+        public EnemyManager EnemyManager { get; set; }
 
         [Inject]
         public void InjectDependenciesAndInitialize(LifetimeScope parentScope, SkillManager skillManager, UIMediator uIMediator, InLevelEvents inlevelEvents)
@@ -62,6 +65,7 @@ namespace _Project.Scripts.Character.Runtime
             _uiMediator = uIMediator;
             _skillManager.PlayerSM = this;
             _uiMediator.PlayerTransform = transform;
+
             // var result = parentScope.Container.Resolve<UIMediator>();
             CreatePlayerScope();
         }
@@ -72,6 +76,11 @@ namespace _Project.Scripts.Character.Runtime
 
             _playerScope = _parentScope.CreateChild(builder =>
             {
+                CustomExtentions.ColorLog($"CreateChild PlayerSm {this}", Color.cyan);
+
+                builder.Register(_ => _skillManager.BarController, Lifetime.Scoped);
+                builder.Register(_ => _uiMediator.PanelController, Lifetime.Scoped);
+                builder.Register(_ => _uiMediator.InGamePanelController, Lifetime.Scoped);
 
                 builder.RegisterInstance(GetComponent<ICharacter>());
                 builder.RegisterInstance(GetComponent<CharacterController>());
@@ -92,13 +101,10 @@ namespace _Project.Scripts.Character.Runtime
                 builder.Register<PlayerAnimationController>(Lifetime.Scoped);
                 builder.RegisterEntryPoint<HealthController>(Lifetime.Scoped).AsSelf();
 
-                builder.Register(_ => _skillManager.BarController, Lifetime.Scoped);
-                builder.Register(_ => _uiMediator.PanelController, Lifetime.Scoped);
-                builder.Register(_ => _uiMediator.InGamePanelController, Lifetime.Scoped);
 
-                builder.RegisterEntryPoint<UpgradeDataApplyer>(Lifetime.Scoped);
+                builder.RegisterEntryPoint<UpgradeDataApplyer>(Lifetime.Scoped).AsSelf().AsImplementedInterfaces();
 
-                //States
+                // //States
                 builder.Register<IdleState>(Lifetime.Scoped);
                 builder.Register<CraftState>(Lifetime.Scoped);
                 builder.Register<AttackState>(Lifetime.Scoped);
@@ -158,7 +164,7 @@ namespace _Project.Scripts.Character.Runtime
             IdleState.Initialize();
             CraftState.Initialize(pickAxe);
             AttackState.Initialize();
-
+            DiedState.Initialize(EnemyManager);
 
         }
 
@@ -167,15 +173,15 @@ namespace _Project.Scripts.Character.Runtime
             _playerMovementController = _playerScope.Container.Resolve<PlayerMovementController>();
             _detectionController = _playerScope.Container.Resolve<DetectionController>();
             _botController = _playerScope.Container.Resolve<BotController>();
-            //States
+            _playerAnimationController = _playerScope.Container.Resolve<PlayerAnimationController>();
+            _healthController = _playerScope.Container.Resolve<HealthController>();
+            // //States
             IdleState = _playerScope.Container.Resolve<IdleState>();
             CraftState = _playerScope.Container.Resolve<CraftState>();
             AttackState = _playerScope.Container.Resolve<AttackState>();
             DiedState = _playerScope.Container.Resolve<DiedState>();
 
-            _playerAnimationController = _playerScope.Container.Resolve<PlayerAnimationController>();
-            _healthController = _playerScope.Container.Resolve<HealthController>();
-            // _playerScope.Container.Resolve<UpgradeDataApplyer>().Start();
+            _playerScope.Container.Resolve<IUpgradeDataApplyer>();
         }
 
 

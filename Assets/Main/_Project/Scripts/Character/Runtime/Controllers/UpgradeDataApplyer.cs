@@ -11,7 +11,7 @@ using VContainer.Unity;
 
 namespace _Project.Scripts.Character.Runtime.Controllers
 {
-    public class UpgradeDataApplyer : IPlayerUpgradedReciver, IDisposable, IStartable, IFixedTickable,IUpgradeDataApplyer
+    public class UpgradeDataApplyer : IPlayerUpgradedReciver, IDisposable, IStartable, IFixedTickable, IUpgradeDataApplyer
     {
         //Datas
         [Inject] private PlayerUpgradedData _upgradedData;
@@ -77,8 +77,8 @@ namespace _Project.Scripts.Character.Runtime.Controllers
         }
         private void SetAdditionalHealingAmount()
         {
-            _healthController.AddHealt(_upgradedData.healt);
-            _upgradedData.additionalHelat = 0;
+            _healthController.AddHealt(_upgradedData.additionalHealt);
+            _upgradedData.additionalHealt = 0;
         }
         private void SetHealingAmount()
         {

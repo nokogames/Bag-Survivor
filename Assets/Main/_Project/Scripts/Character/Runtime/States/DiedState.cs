@@ -16,12 +16,12 @@ namespace _Project.Scripts.Character.Runtime.States
         [Inject] private CharacterGraphics _characterGraphics;
         [Inject] private PanelController _panelController;
         [Inject] private DetectionController _detectionController;
-        [Inject] private EnemyManager _enemyManager;
+        private EnemyManager _enemyManager;
         [Inject] private LevelDataManager _levelDataManager;
         //  [Inject] private InLevelEvents _inLevelEvents;
-        public void Initialize()
+        public void Initialize(EnemyManager enemyManager)
         {
-
+            _enemyManager = enemyManager;
         }
         public void Enter()
         {

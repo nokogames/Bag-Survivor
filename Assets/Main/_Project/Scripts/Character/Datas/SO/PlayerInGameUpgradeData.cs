@@ -29,7 +29,7 @@ namespace _Project.Scripts.Character.Datas.SO
         public float botDamage = 0;
         public float botFirerate = 0;
         public float healt = 0;
-        public float additionalHelat = 0;
+        public float additionalHealt = 0;
         public float speed = 0;
         //Aditional mechanics
         public float pickUpRange = 0;
@@ -94,7 +94,7 @@ namespace _Project.Scripts.Character.Datas.SO
             collectedXpMultiply = 1;
             healtRegenRate = 0;//Ca
             healt = 0;
-            additionalHelat = 0;
+            additionalHealt = 0;
             _activeSkills.Clear();
 
         }

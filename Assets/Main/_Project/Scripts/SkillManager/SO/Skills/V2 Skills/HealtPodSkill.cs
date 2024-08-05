@@ -49,7 +49,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             return result;
         }
 
-
+public override float SkillPercentage => _timeRater.Percentage;
         internal override void AlwaysFixedTick()
         {   
             CustomExtentions.ColorLog($"{_timeRater.CrrTime}",Color.blue);
@@ -60,7 +60,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         }
 
 
-
+ 
         public override bool DeactivateSkill()
         {
             Debug.Log("Deactivated");
@@ -68,7 +68,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         }
         private void Healing()
         {
-            _playerUpgradedData.additionalHelat = _skillRarityData.healtAmount;
+            _playerUpgradedData.additionalHealt = _skillRarityData.healtAmount;
             _playerUpgradedData.Upgraded();
             var particle = ParticlePool.SharedInstance.GetPooledObject(healingParticle);
             particle.transform.position = _playerTransform.position;
