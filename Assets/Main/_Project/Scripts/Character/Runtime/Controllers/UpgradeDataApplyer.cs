@@ -11,7 +11,7 @@ using VContainer.Unity;
 
 namespace _Project.Scripts.Character.Runtime.Controllers
 {
-    public class UpgradeDataApplyer : IPlayerUpgradedReciver, IDisposable,IStartable
+    public class UpgradeDataApplyer : IPlayerUpgradedReciver, IDisposable, IStartable, IFixedTickable,IUpgradeDataApplyer
     {
         //Datas
         [Inject] private PlayerUpgradedData _upgradedData;
@@ -27,6 +27,10 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
         // private float _enemyDetectorBaseRadius = 6f;
         // private float _collectableDetectorBaseRadius = 5.8f;
+        public UpgradeDataApplyer()
+        {
+            CustomExtentions.ColorLog($"UpgradeDataApplyer Created  {this}", Color.yellow);
+        }
         public void Start()
         {
             CustomExtentions.ColorLog("Start ", Color.yellow);
@@ -50,18 +54,31 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             SetCollectableDetector();
             SetHealt();
             SetHealingAmount();
+            SetAdditionalHealingAmount();
             SetMovementSpeed();
             SetBotCount();
             SetCoolDown();
         }
-        public void FixedTick()
+
+
+
+        public void AttacktFixedTick()
         {
-            _upgradedData.FixedTick();
+            _upgradedData.AttacktFixedTick();
         }
 
+        public void FixedTick()
+        {
+            _upgradedData.AlwaysFixedTick();
+        }
         private void SetHealt()
         {
             _healthController.SetBaseHealt(_savedPlayerData.healt + _upgradedData.healt);
+        }
+        private void SetAdditionalHealingAmount()
+        {
+            _healthController.AddHealt(_upgradedData.healt);
+            _upgradedData.additionalHelat = 0;
         }
         private void SetHealingAmount()
         {
@@ -104,5 +121,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
             CustomExtentions.ColorLog($"Activated {skill}", Color.red);
 
         }
+
+
     }
 }

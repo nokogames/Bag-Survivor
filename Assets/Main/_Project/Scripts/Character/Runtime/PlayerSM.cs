@@ -61,7 +61,7 @@ namespace _Project.Scripts.Character.Runtime
             _parentScope = parentScope;
             _uiMediator = uIMediator;
             _skillManager.PlayerSM = this;
-            _uiMediator.PlayerTransform=transform;
+            _uiMediator.PlayerTransform = transform;
             // var result = parentScope.Container.Resolve<UIMediator>();
             CreatePlayerScope();
         }
@@ -96,7 +96,7 @@ namespace _Project.Scripts.Character.Runtime
                 builder.Register(_ => _uiMediator.PanelController, Lifetime.Scoped);
                 builder.Register(_ => _uiMediator.InGamePanelController, Lifetime.Scoped);
 
-                builder.RegisterEntryPoint<UpgradeDataApplyer>(Lifetime.Scoped).AsSelf();
+                builder.RegisterEntryPoint<UpgradeDataApplyer>(Lifetime.Scoped);
 
                 //States
                 builder.Register<IdleState>(Lifetime.Scoped);
@@ -175,7 +175,7 @@ namespace _Project.Scripts.Character.Runtime
 
             _playerAnimationController = _playerScope.Container.Resolve<PlayerAnimationController>();
             _healthController = _playerScope.Container.Resolve<HealthController>();
-           // _playerScope.Container.Resolve<UpgradeDataApplyer>().Start();
+            // _playerScope.Container.Resolve<UpgradeDataApplyer>().Start();
         }
 
 
@@ -195,7 +195,7 @@ namespace _Project.Scripts.Character.Runtime
         public override void Update()
         {
             base.Update();
-           // _botController.Tick();
+            // _botController.Tick();
         }
 
         private void OnDestroy()

@@ -40,6 +40,9 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
         public SkillBase Skill => _skillBase;
         protected SkillRarity _skillRarity;
         public SkillRarity SkillRarity => _skillRarity;
+
+        private static bool _isDragging = false;
+        private bool _canDragSelf = false;
         private void Awake()
         {
 
@@ -52,62 +55,78 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (!IsValidDragTarget(eventData)) return;
+            _isDragging = true;
+            _canDragSelf = true;
             SetAlpha(1f);
             _startPos = rectTransform.position;
             transform.SetParent(onSelectParentTransform);
             transform.SetAsLastSibling();
-            _img.raycastTarget = false;
+            SetRaycastTarget(false);
 
-            //   RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, eventData.pressEventCamera, out offset);
             offset = rectTransform.position - new Vector3(eventData.pressPosition.x, eventData.pressPosition.y, 0);
-
             _inventoryManager.OnBeginDrag(this);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
 
-            // RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, null, out Vector2 localPoint);
-            // rectTransform.anchoredPosition = localPoint;
-
+            if (!_canDragSelf) return;
             transform.position = Input.mousePosition + offset;
             _inventoryManager.OnDrag();
         }
 
         public void OnEndDrag(PointerEventData eventData)
-        {    // 1-Select from skill bar
-
-            // RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, eventData.position, null, out Vector2 localPoint);
+        {
+            if (!_canDragSelf) return;
+            _isDragging = false;
+            _canDragSelf = false;
             _inventoryManager.OnEndDrag();
+            HandlePlacement();
+        }
 
+        private bool IsValidDragTarget(PointerEventData eventData)
+        {
+            return !_isDragging;
+            //return !eventData.pointerDrag.gameObject.TryGetComponent<Dragable>(out var dragable) || dragable == this;
+        }
+
+        private void HandlePlacement()
+        {
             var offsetPlacementPoint = transform.position - placementPoint.position;
             if (InventorySlot != null)
             {
-                rectTransform.position = InventorySlot.GetComponent<RectTransform>().position + offsetPlacementPoint;
-                transform.SetParent(ItemHolder);
-
-                //  onPlaceInventory?.Invoke();
-                if (IsPlacedInventory) MovedInInventory();
-                else PlacedToInventory();
-
-                IsPlacedInventory = true;
+                PlaceInInventory(offsetPlacementPoint);
             }
-            // else if (InventorySlot != null)
-            // {
-            //     rectTransform.position = InventorySlot.GetComponent<RectTransform>().position + offsetPlacementPoint;
-            //     transform.SetParent(ItemHolder);
-
-            //     PlacedToInventory();
-            // }
             else
             {
-                SetAlpha(0);
-                rectTransform.position = _startPos;
-                transform.SetParent(_startParent);
-                NotPlaced();
+                ReturnToStartPosition();
             }
+            SetRaycastTarget(true);
+        }
 
-            _img.raycastTarget = true;
+        private void PlaceInInventory(Vector3 offsetPlacementPoint)
+        {
+            rectTransform.position = InventorySlot.GetComponent<RectTransform>().position + offsetPlacementPoint;
+            transform.SetParent(ItemHolder);
+
+            if (IsPlacedInventory) MovedInInventory();
+            else PlacedToInventory();
+
+            IsPlacedInventory = true;
+        }
+
+        private void ReturnToStartPosition()
+        {
+            SetAlpha(0);
+            rectTransform.position = _startPos;
+            transform.SetParent(_startParent);
+            NotPlaced();
+        }
+
+        private void SetRaycastTarget(bool state)
+        {
+            _img.raycastTarget = state;
         }
         public void SetAlpha(float alpha)
         {

@@ -67,5 +67,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5f643fec7196a9e4392db0a1921fdebf, type: 2}
   - {fileID: 11400000, guid: 24d1c0122348a75479bb91f14aa463e7, type: 2}
   - {fileID: 11400000, guid: 5508c68d7275afb449a149e8efb11bf9, type: 2}
+  - {fileID: 11400000, guid: 3d3b3df63f09fea4c9c18358e3633a67, type: 2}
   particlePool: {fileID: 4333410329428915840, guid: d916e15de64d77d4798658225b91b961,
     type: 3}

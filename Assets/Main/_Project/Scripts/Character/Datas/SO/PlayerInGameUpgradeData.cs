@@ -29,6 +29,7 @@ namespace _Project.Scripts.Character.Datas.SO
         public float botDamage = 0;
         public float botFirerate = 0;
         public float healt = 0;
+        public float additionalHelat = 0;
         public float speed = 0;
         //Aditional mechanics
         public float pickUpRange = 0;
@@ -93,14 +94,22 @@ namespace _Project.Scripts.Character.Datas.SO
             collectedXpMultiply = 1;
             healtRegenRate = 0;//Ca
             healt = 0;
+            additionalHelat = 0;
             _activeSkills.Clear();
 
         }
 
-        internal void FixedTick()
+        internal void AttacktFixedTick()
         {
-            _activeSkills.ForEach(x => x.FixedTick());
+            _activeSkills.ForEach(x => x.AttactFixedTick());
         }
+        internal void AlwaysFixedTick()
+        {
+            CustomExtentions.ColorLog("Always Tick", Color.green);
+            _activeSkills.ForEach(x => x.AlwaysFixedTick());
+
+        }
+
     }
     [Serializable]
     public class SavedPlayerData
@@ -171,6 +180,7 @@ namespace _Project.Scripts.Character.Datas.SO
 
         public void ActivatedSkill(SkillBase skill);
         public void DeactivatedSkill(SkillBase skill);
+
     }
-   
+
 }

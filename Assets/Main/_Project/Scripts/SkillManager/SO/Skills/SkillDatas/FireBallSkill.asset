@@ -24,15 +24,15 @@ MonoBehaviour:
   fireBallCountByRarity:
   - rarity: 0
     count: 1
-    ballFireRate: 1
+    ballFireRate: 5
   - rarity: 1
-    count: 2
-    ballFireRate: 1
+    count: 1
+    ballFireRate: 5
   - rarity: 2
-    count: 3
-    ballFireRate: 1
+    count: 1
+    ballFireRate: 5
   - rarity: 3
-    count: 5
-    ballFireRate: 1
+    count: 1
+    ballFireRate: 5
   ballPref: {fileID: 7700228033681709496, guid: 412ad1f4d59b7fb459698412ea5ec995,
     type: 3}

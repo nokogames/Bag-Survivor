@@ -13,7 +13,7 @@ namespace _Project.Scripts.Character.Runtime.States
         [Inject] private CharacterGraphics _characterGraphics;
         [Inject] private BotController _botController;
         [Inject] private DetectionController _detectionController;
-        [Inject] private UpgradeDataApplyer _upgradeDataApplyer;
+      //  [Inject] private IUpgradeDataApplyer _upgradeDataApplyer;
         public void Initialize()
         {
 
@@ -32,7 +32,7 @@ namespace _Project.Scripts.Character.Runtime.States
         public void FixedTick()
         {
             _gunBehavior.GunFixedUpdate();
-            _upgradeDataApplyer.FixedTick();
+             // _upgradeDataApplyer.AttacktFixedTick();
         }
 
         public void Tick()

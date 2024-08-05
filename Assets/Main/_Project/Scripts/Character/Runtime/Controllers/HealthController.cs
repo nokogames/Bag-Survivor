@@ -56,23 +56,28 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     public void FixedTick()
     {
 
-      // _playerUIData.BarFillAomunt = _health / _baseHealth;
+      // // _playerUIData.BarFillAomunt = _health / _baseHealth;
 
 
-      if (_health >= _baseHealth)
-      {
-        //   _playerUIData.EnabledBar = false;
-        return;
-      }
+      // if (_health >= _baseHealth)
+      // {
+      //   //   _playerUIData.EnabledBar = false;
+      //   return;
+      // }
 
-      _crrTime += Time.fixedDeltaTime;
-      if (_crrTime < _healingTimeRate) return;
-      _crrTime = 0;
-      _health += _healingAmount;
-      _playerUIData.EnabledBar = true;
+      // _crrTime += Time.fixedDeltaTime;
+      // if (_crrTime < _healingTimeRate) return;
+      // _crrTime = 0;
+      // _health += _healingAmount;
+      // _playerUIData.EnabledBar = true;
 
     }
-
+    public void AddHealt(float additionalHelat)
+    {
+      _health += additionalHelat;
+      if (_health > _baseHealth) _health = _baseHealth;
+      SetHealtBar();
+    }
     public void GetDamage(float damage)
     {
       _playerUIData.EnabledBar = true;
@@ -118,7 +123,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
     private void Dead()
     {
       _isDead = true;
-   
+
       HapticManager.PlayHaptic(HapticType.Failure);
       _playerSm.ChangeState(_playerSm.DiedState);
       // string lvl = "Level" + (_gameData.CurrentLvl + 1).ToString();
@@ -127,7 +132,7 @@ namespace _Project.Scripts.Character.Runtime.Controllers
 
     internal void ResetHealth()
     {
-    
+
       _isDead = false;
       _health = _baseHealth;
       SetHealtBar();

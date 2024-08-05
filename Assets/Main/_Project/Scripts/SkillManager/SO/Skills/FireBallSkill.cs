@@ -26,6 +26,13 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         //     Debug.Log("Selected FireBall Skill");
         // }
 
+        private TimeRater _timeRater;
+        public override void Initialize(PlayerUpgradedData playerUpgradedData)
+        {
+            base.Initialize(playerUpgradedData);
+            _timeRater = TimeRater.Init(100);
+
+        }
         public override string GetInfoTxt(SkillRarity rarity)
         {
             var result = fireBallCountByRarity.First(x => x.rarity == rarity);
@@ -42,7 +49,8 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             if (result)
             {
                 _skillRarityData = fireBallCountByRarity.First(x => x.rarity == skillRarity);
-                _fireRate = _skillRarityData.ballFireRate;
+                //  _fireRate = _skillRarityData.ballFireRate;
+                _timeRater.SetTimeRate(_skillRarityData.ballFireRate);
             }
             return result;
         }
@@ -53,15 +61,13 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             return _playerUpgradedData.DeactiveSkill(this);
         }
 
-        private float _fireRate;
-        private float _crrTime = 0;
-        public override float SkillPercentage => _crrTime / _fireRate;
-         internal override void FixedTick()
+        //  private float _fireRate;
+        //  private float _crrTime = 0;
+        //public override float SkillPercentage => _crrTime / _fireRate;
+        public override float SkillPercentage => _timeRater.Percentage;
+        internal override void AttactFixedTick()
         {
-            _crrTime += Time.fixedDeltaTime;
-            if (_crrTime < _fireRate) return;
-            _crrTime = 0;
-
+            if (!_timeRater.Execute(Time.fixedDeltaTime)) return;
             CreateFireBall();
 
         }

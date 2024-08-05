@@ -58,10 +58,17 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
             return _skillRarity;
         }
 
-        internal virtual void FixedTick()
+        internal virtual void AttactFixedTick()
         {
 
         }
+
+        internal virtual void AlwaysFixedTick()
+        {
+
+        }
+
+
     }
 }
 
