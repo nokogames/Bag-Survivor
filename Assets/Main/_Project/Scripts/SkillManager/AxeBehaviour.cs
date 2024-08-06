@@ -6,10 +6,10 @@ using UnityEngine;
 public class AxeBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject hitParticle;
-   // [SerializeField] private Animator model;
+    // [SerializeField] private Animator model;
     private float _speed = 7f;
     private Coroutine moveCorotine;
-    private float _damege = 3;
+    [SerializeField] private float _damege = 3;
     public void Initialise(float damage)
     {
         _damege = damage;

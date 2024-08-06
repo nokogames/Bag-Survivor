@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GrenadeSkill
   m_EditorClassIdentifier: 
   skillVisualData:
-    Size: {x: 2, y: 2}
+    Size: {x: 1, y: 1}
     img: {fileID: 21300000, guid: 74460aa08033ece4e8af7bf8ec9280d3, type: 3}
   Name: Grenade
   InfoTxt: Throw a bomb

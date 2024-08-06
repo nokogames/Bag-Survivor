@@ -17,7 +17,7 @@ public class EnemyDetector : MonoBehaviour
     public void Initialise(IEnemyDetector enemyDetector)
     {
         _enemyDetector = enemyDetector;
-        circle.transform.parent = null;
+        // circle.transform.parent = null;
 
     }
 
@@ -38,11 +38,11 @@ public class EnemyDetector : MonoBehaviour
     private float _timeRate = .1f;
     private float _crrTime = 0;
 
-    private void Update()
-    {
-        circle.transform.position = transform.position;
-        circle.transform.localScale = transform.localScale;
-    }
+    // private void Update()
+    // {
+    //     circle.transform.position = transform.position;
+
+    // }
     private void FixedUpdate()
     {
 
@@ -114,6 +114,7 @@ public class EnemyDetector : MonoBehaviour
     public void SetRadius(float radius)
     {
         transform.localScale = new Vector3(radius, radius, radius);
+       // circle.transform.localScale = transform.localScale;
     }
     public void ClearDeatected()
     {

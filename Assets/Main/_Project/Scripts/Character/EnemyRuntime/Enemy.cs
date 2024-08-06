@@ -56,6 +56,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         public void GetDamage(float damage)
         {
+            transform.Translate(Vector3.back * 0.3f);
             if (IsDead) return;
             var obj = ParticlePool.SharedInstance.GetPooledObject(floatingTxt);
             var textMesh = obj.GetComponent<TextMeshPro>();
@@ -64,6 +65,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
             obj.transform.position = transform.position;
             obj.SetActive(true);
             StaticHelper.Instance.FloatingTextAnim(obj.transform, textMesh, .8f, Vector3.up * 4f).Forget();
+
             _healt -= damage;
             if (_healt <= 0)
                 Dead();
@@ -166,7 +168,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
         }
         private void FixedUpdate()
         {
-           // if (StaticHelper.Instance.gameStatus == GameStatus.Pause) return;
+            // if (StaticHelper.Instance.gameStatus == GameStatus.Pause) return;
             if (_playerTransform == null || IsDead) return;
 
             var distance = Vector3.Distance(transform.position, _playerTransform.position);
