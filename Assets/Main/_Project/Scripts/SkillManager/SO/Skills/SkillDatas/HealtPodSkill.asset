@@ -23,16 +23,15 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: d1ee2c380fc34954386b5c495c915e3c, type: 3}
   healtPodByRarities:
   - rarity: 0
-    healtTimeRate: 1
+    healtTimeRate: 10
     healtAmount: 5
   - rarity: 1
-    healtTimeRate: 1
+    healtTimeRate: 10
     healtAmount: 5
   - rarity: 2
-    healtTimeRate: 1
+    healtTimeRate: 10
     healtAmount: 5
   - rarity: 3
-    healtTimeRate: 1
+    healtTimeRate: 10
     healtAmount: 5
-  healingParticle: {fileID: 395031058680739610, guid: 9a6a7c0483f4d5644a646864ea1ac01c,
-    type: 3}
+  healingParticle: {fileID: 105942, guid: ff672eaca96d32c419d7a1f1b0346e8d, type: 3}

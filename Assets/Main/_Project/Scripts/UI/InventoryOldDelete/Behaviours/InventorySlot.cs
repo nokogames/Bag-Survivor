@@ -53,11 +53,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
 
     internal void SetColor(Color red)
     {
-        // itemImage.color = red;
+        itemImage.color = red;
     }
     internal void SetColorByStatus()
     {
-        itemImage.color = _isOccupied ? Color.red.SetAlpha(.6f) : Color.white;
+        // itemImage.color = _isOccupied ? Color.red.SetAlpha(.6f) : Color.white;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

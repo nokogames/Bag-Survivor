@@ -7,11 +7,12 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-
+    [SerializeField] private GameObject hitParticlePrefab;
     public int hitParticlePoolIndex = 2;
     private float _speed = 10f;
     private Coroutine moveCorotine;
-    private float _damege = 1;
+    [SerializeField] private float _damege = 1;
+    [SerializeField] private float lifeTime = 3f;
     public void Initialise(float damage)
     {
         _damege = damage;
@@ -24,7 +25,7 @@ public class BulletBehaviour : MonoBehaviour
     float _spawnedTime = 0;
     IEnumerator Move()
     {
-        while (_spawnedTime < 3f)
+        while (_spawnedTime < lifeTime)
         {
             _spawnedTime += Time.deltaTime;
             transform.position += transform.forward * Time.deltaTime * _speed;
@@ -40,7 +41,8 @@ public class BulletBehaviour : MonoBehaviour
         if (other.transform.TryGetComponent<IEnemy>(out IEnemy enemy))
         {
             enemy.GetDamage(_damege);
-            var particle = ObjectPooler.SharedInstance.GetPooledObject(hitParticlePoolIndex);
+            // var particle = ObjectPooler.SharedInstance.GetPooledObject(hitParticlePoolIndex);
+            var particle = ParticlePool.SharedInstance.GetPooledObject(hitParticlePrefab);
             particle.transform.position = transform.position;
             particle.SetActive(true);
             StopCoroutine(Move());

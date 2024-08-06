@@ -1,5 +1,9 @@
 
 
+
+
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +14,13 @@ using UnityEngine;
 
 namespace _Project.Scripts.SkillManagement.SO.Skills
 {
-    [CreateAssetMenu(fileName = "AKWeaponSkill", menuName = "ScriptableObjects/SkillSystem/AKWeaponSkill", order = 0)]
-    public class AKWeaponSkill : SkillBase
+    [CreateAssetMenu(fileName = "ShotGunWeaponSkill", menuName = "ScriptableObjects/SkillSystem/ShotGunWeaponSkill", order = 0)]
+    public class ShotGunWeaponSkill : SkillBase
     {
 
-        [SerializeField] private List<AKWeaponSkillByRarity> _akWeaponByRarity;
-        private AKWeaponSkillByRarity _skillRarityData;
+        [SerializeField] private List<ShotGunWeaponSkillByRarity> _akWeaponByRarity;
+        [SerializeField] private GameObject bulletPrefab;
+        private ShotGunWeaponSkillByRarity _skillRarityData;
         private TimeRater _timeRater;
         public override void Initialize(PlayerUpgradedData playerUpgradedData)
         {
@@ -60,25 +65,34 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         {
             if (!_timeRater.Execute(Time.fixedDeltaTime)) return;
 
-            CreateBullet();
+            CreateBullet(_skillRarityData.count);
             CustomExtentions.ColorLog($"Player Pos {_playerTransform.position}", Color.blue);
         }
 
-        private void CreateBullet()
+        private float _randomAngle = 10;
+        private void CreateBullet(int count)
         {
-            var bullet = ParticlePool.SharedInstance.GetPooledObject(_skillRarityData.bulletPref);
-            bullet.transform.position = _playerTransform.position + Vector3.up;
-            bullet.transform.Rotate(Vector3.up * UnityEngine.Random.Range(-360, 360));
-            bullet.SetActive(true);
+            // var randomRotate = Vector3.up * UnityEngine.Random.Range(-360, 360);
+            for (int i = 0; i < count; i++)
+            {
+
+                var bullet = ParticlePool.SharedInstance.GetPooledObject(bulletPrefab);
+                bullet.transform.position = _playerTransform.position + Vector3.up;
+                // bullet.transform.Rotate(randomRotate);
+                bullet.transform.forward = _playerTransform.forward;
+                bullet.transform.Rotate(bullet.transform.up * UnityEngine.Random.Range(-_randomAngle, _randomAngle));
+                bullet.transform.Rotate(bullet.transform.right * UnityEngine.Random.Range(-_randomAngle, _randomAngle));
+                bullet.SetActive(true);
+            }
         }
     }
 
     [Serializable]
-    public struct AKWeaponSkillByRarity
+    public struct ShotGunWeaponSkillByRarity
     {
         public SkillRarity rarity;
-        public GameObject bulletPref;
         public float fireRate;
+        public int count;
 
     }
 }

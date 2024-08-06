@@ -6,6 +6,7 @@ using _Project.Scripts.Character.Runtime;
 using _Project.Scripts.Level;
 using _Project.Scripts.UI;
 using _Project.Scripts.UI.Controllers;
+using Cysharp.Threading.Tasks;
 using Pack.GameData;
 using UnityEngine;
 using VContainer;
@@ -109,7 +110,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
                 {
                     var typeOfType = crrWave.spawnEnemyInfos[j].enemyType;
 
-                    CreateEnemy(typeOfType, crrWave.spawnEnemyInfos[j].Count);
+                    CreateEnemy(typeOfType, crrWave.spawnEnemyInfos[j].Count).Forget();
 
                     yield return new WaitForSeconds(0.1f);
                 }
@@ -147,7 +148,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
 
         }
-        private void CreateEnemy(EnemyType typeOfType, int count)
+        private async UniTaskVoid CreateEnemy(EnemyType typeOfType, int count)
         {
             for (int i = 0; i < count; i++)
             {
@@ -164,6 +165,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
                 obj.SetActive(true);
                 obj.transform.position = obj.transform.position.SetY(0.05f);
                 enemyBehaviour.Initialize(_playerTransform, this, _damageableByEnemy);
+                await UniTask.DelayFrame(1);
             }
 
 

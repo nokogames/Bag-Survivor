@@ -113,14 +113,14 @@ namespace _Project.Scripts.UI.Inventory
             // draggableItem.CanPlace = canPlace;
             // if (canPlace) _selectedDragable.startPlaceInventorySlot = inventorySlot;
             ChangeColorByPlaceable(placeableSlots, CanPlaceItem(inventorySlot.gridPosition, draggableItem.size));
-
+        
         }
 
         private void ChangeColorByPlaceable(List<InventorySlot> placeableSlots, bool canPlace)
         {
             Color color = Color.white;
             color = canPlace ? Color.green : Color.red;
-            color = color.SetAlpha(.4f);
+            color = color.SetAlpha(.9f);
             placeableSlots.ForEach(x => x.SetColor(color));
 
         }

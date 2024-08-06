@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08e8dabc73d45b46a56c09d493245ec, type: 3}
+  m_Name: ShotGunWeaponSkill
+  m_EditorClassIdentifier: 
+  skillVisualData:
+    Size: {x: 1, y: 2}
+    img: {fileID: 21300000, guid: 5e285383039b63148b329181bb87376d, type: 3}
+  Name: Shotgun
+  InfoTxt: Shotgun
+  skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
+  SkillRarityPercentage: {fileID: 11400000, guid: 68a2c125d0a1d9c43bcbbdaafcb86d28,
+    type: 2}
+  Icon: {fileID: 21300000, guid: d6056ce186eade44581c0f70c3085751, type: 3}
+  _akWeaponByRarity:
+  - rarity: 0
+    fireRate: 2
+    count: 10
+  - rarity: 1
+    fireRate: 2
+    count: 10
+  - rarity: 2
+    fireRate: 2
+    count: 10
+  - rarity: 3
+    fireRate: 2
+    count: 10
+  bulletPrefab: {fileID: 3396717415887868776, guid: 8f4f4887b9e6cdf48a31dd4a5c04a002,
+    type: 3}
