@@ -64,7 +64,8 @@ public class BasicGun : BaseGunBehavior
 
     private void CreateBullet()
     {
-        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject(gunData.bulletPoolIndex);
+        // GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject(gunData.bulletPoolIndex);
+        GameObject bullet = ParticlePool.SharedInstance.GetPooledObject(gunData.bulletPrefab);
         var bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
         var damage = gunData.Damage;
         Debug.Log($"==Gun damage={damage}");

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - c6568abb83daa7996cad8fc3f792a08c
+  - 8eecbe872d2d2094ac5b0a668656cc45
   appIds:
-  - 2926863934120516
+  - 1074427820682056
   appLabels:
-  - Mecha Diver
+  - Bag Survivor
   cookie: 1
   logging: 1
   status: 1

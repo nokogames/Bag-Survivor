@@ -26,7 +26,7 @@ public class GrenadeBehaviour : MonoBehaviour
         _playerTransform = playerTransform;
         transform.position = playerTransform.position + Vector3.up;
         // transform.position = playerTransform.position.GetRandomPositionAroundObjectIgnorRadius(5, 90) + Vector3.up * 10f;
-        _rigidbody.velocity = Vector3.up * 5 + playerTransform.forward * 5;
+        _rigidbody.velocity = Vector3.up * 4 + playerTransform.forward * 3;
 
     }
     public void Initialise()

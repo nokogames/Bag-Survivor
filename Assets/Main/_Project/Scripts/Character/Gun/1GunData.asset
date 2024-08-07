@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b2882b20dc7d14db804baf80811008, type: 3}
   m_Name: 1GunData
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3396717415887868776, guid: 328cd6177531ded4db39c139b7214b68,
+    type: 3}
   playerUpgradeDataSO: {fileID: 11400000, guid: cb6cbfd369335614a988248b3585b885,
     type: 2}
   bulletPoolIndex: 1

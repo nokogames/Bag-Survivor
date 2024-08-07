@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Elephant/elephant_scene.unity
+    guid: 47a686e3b898646ae802a7832a649176
+  - enabled: 1
     path: Assets/Scenes/Startup.unity
     guid: e5c702c7ff9c0c340a0655887a1170df
   - enabled: 1
@@ -13,11 +16,8 @@ EditorBuildSettings:
     guid: bc56e0195d37fd342977c3209d704ba3
   - enabled: 1
     path: Assets/Scenes/Level2.unity
-    guid: a0a48f20d54f96f46b561c338780cc03
+    guid: cc40b38b71960a94097fbeae74465498
   - enabled: 1
     path: Assets/Scenes/Level3.unity
-    guid: 2c49a79ed4fcd74439845904f9f8e117
-  - enabled: 0
-    path: Assets/Elephant/elephant_scene.unity
-    guid: 47a686e3b898646ae802a7832a649176
+    guid: b9cf2e092db5bc84a98dbfd49b0744f1
   m_configObjects: {}

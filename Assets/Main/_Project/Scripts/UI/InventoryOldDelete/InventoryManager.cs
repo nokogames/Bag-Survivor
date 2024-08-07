@@ -26,7 +26,8 @@ namespace _Project.Scripts.UI.Inventory
         }
 
         private void OnNextLevel()
-        {     _data.slots.ForEach(x=>x.Reset());
+        {
+            _data.slots.ForEach(x => x.Reset());
             _addedDragable.ForEach(x => x.Kill());
         }
 
@@ -79,7 +80,7 @@ namespace _Project.Scripts.UI.Inventory
                     {
                         return false;
                     }
-                 //   slot.SetColor(Color.red);
+                    //   slot.SetColor(Color.red);
                 }
             }
             return true;
@@ -113,7 +114,7 @@ namespace _Project.Scripts.UI.Inventory
             // draggableItem.CanPlace = canPlace;
             // if (canPlace) _selectedDragable.startPlaceInventorySlot = inventorySlot;
             ChangeColorByPlaceable(placeableSlots, CanPlaceItem(inventorySlot.gridPosition, draggableItem.size));
-        
+
         }
 
         private void ChangeColorByPlaceable(List<InventorySlot> placeableSlots, bool canPlace)
@@ -193,6 +194,7 @@ namespace _Project.Scripts.UI.Inventory
                 _selectedDragable.Skill.DeactivateSkill();
                 _selectedDragable.Kill();
                 IsSelling = false;
+                ResetColor();
                 return;
             }
             InventorySlot closestSlot = GetClosestSlot();
