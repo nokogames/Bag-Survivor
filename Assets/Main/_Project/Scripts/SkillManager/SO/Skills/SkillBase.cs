@@ -11,6 +11,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
 
     public class SkillBase : ScriptableObject
     {
+        public virtual SkillActivityType SkillActivityType { get; set; }
         public SkillVisualData skillVisualData;
         protected Transform _playerTransform;
         public virtual float SkillPercentage => 0;
@@ -69,6 +70,12 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         }
 
 
+    }
+
+    public enum SkillActivityType
+    {
+        Active = default,
+        Pasive
     }
 }
 

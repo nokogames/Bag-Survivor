@@ -96,10 +96,10 @@ namespace _Project.Scripts.SkillManagement.Controllers
             _uiMediatorEventHandler.RemoveReciever(this);
             _inLevelEvents.onNextLevel -= NextLevel;
         }
-        public void Tick()
-        {
-            if (Input.GetKeyDown(KeyCode.U)) _skillUIController.ShowPanel();
-        }
+        // public void Tick()
+        // {
+        //     if (Input.GetKeyDown(KeyCode.U)) _skillUIController.ShowPanel();
+        // }
 
         public void OnSkillPlacedInventory()
         {

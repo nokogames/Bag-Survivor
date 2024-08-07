@@ -70,5 +70,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d3b3df63f09fea4c9c18358e3633a67, type: 2}
   - {fileID: 11400000, guid: b0d917329d881a0449da8811a580537d, type: 2}
   - {fileID: 11400000, guid: 00330074c5fc27344bcfd278bc491f13, type: 2}
+  - {fileID: 11400000, guid: d928ba05bf1e2d34a85a49ae49b624d4, type: 2}
+  - {fileID: 11400000, guid: ced8c95338830b64c98903310a5dc1ae, type: 2}
+  - {fileID: 11400000, guid: f2318404da8360d4ab051d3f764751f6, type: 2}
+  - {fileID: 11400000, guid: 26360533487e3ca47b6c6c5b6309f40a, type: 2}
   particlePool: {fileID: 4333410329428915840, guid: d916e15de64d77d4798658225b91b961,
     type: 3}

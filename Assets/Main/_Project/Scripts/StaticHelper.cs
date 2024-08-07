@@ -100,11 +100,14 @@ public class StaticHelper : MonoBehaviour
         }
 
         // Ensure the text reaches the final state
-        transform.position = endPos;
+        if (transform != null)
+        {
+            transform.position = endPos;
+            // Optionally, you can deactivate or destroy the text object after the animation
+            textMeshProUGUI.gameObject.SetActive(false);
+        }
 
 
-        // Optionally, you can deactivate or destroy the text object after the animation
-        textMeshProUGUI.gameObject.SetActive(false);
     }
 }
 

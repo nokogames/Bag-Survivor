@@ -15,11 +15,16 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     {
 
         [SerializeField] private List<PlayerFireRateByRarity> playerFireRateByRarity;
-        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity,InGameSkillController inGameSkillController)
+        public override void Initialize(PlayerUpgradedData playerUpgradedData)
+        {
+            base.Initialize(playerUpgradedData);
+            SkillActivityType = SkillActivityType.Pasive;
+        }
+        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController)
         {
             var result = playerFireRateByRarity.First(x => x.rarity == rarity);
             playerUpgradedData.firerate += result.firerate;
-             playerUpgradedData.Upgraded();
+            playerUpgradedData.Upgraded();
             Debug.Log("Selected Player FireRate Skill");
         }
         public override string GetInfoTxt(SkillRarity rarity)

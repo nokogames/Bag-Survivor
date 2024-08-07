@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.SkillManagement.Controllers;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _Project.Scripts.SkillManagement.SO.Skills
@@ -60,16 +61,29 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         {
             if (!_timeRater.Execute(Time.fixedDeltaTime)) return;
 
-            CreateBullet();
+            CreateBullet(_skillRarityData.count).Forget();
             CustomExtentions.ColorLog($"Player Pos {_playerTransform.position}", Color.blue);
         }
 
-        private void CreateBullet()
+        private async UniTaskVoid CreateBullet(int count = 1)
         {
-            var bullet = ParticlePool.SharedInstance.GetPooledObject(_skillRarityData.bulletPref);
-            bullet.transform.position = _playerTransform.position + Vector3.up;
-            bullet.transform.Rotate(Vector3.up * UnityEngine.Random.Range(-360, 360));
-            bullet.SetActive(true);
+            float anglePerBullet = 360 / count;
+            float crrAngle = 0;
+
+
+
+
+            for (int i = 0; i < count; i++)
+            {
+                var bullet = ParticlePool.SharedInstance.GetPooledObject(_skillRarityData.bulletPref);
+                bullet.transform.position = _playerTransform.position + Vector3.up;
+                bullet.transform.rotation = Quaternion.identity;
+                bullet.transform.Rotate(Vector3.up * crrAngle);
+                crrAngle += anglePerBullet;
+                bullet.SetActive(true);
+                await UniTask.Delay(25);
+
+            }
         }
     }
 
@@ -79,6 +93,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         public SkillRarity rarity;
         public GameObject bulletPref;
         public float fireRate;
+        public int count;
 
     }
 }

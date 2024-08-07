@@ -25,16 +25,20 @@ MonoBehaviour:
   - rarity: 0
     prefab: {fileID: 7700228033681709496, guid: 7433857e68671c34b89c268665c7832d,
       type: 3}
-    fireRate: 1
+    fireRate: 3
+    count: 5
   - rarity: 1
     prefab: {fileID: 7700228033681709496, guid: 7433857e68671c34b89c268665c7832d,
       type: 3}
-    fireRate: 1
+    fireRate: 3
+    count: 5
   - rarity: 2
     prefab: {fileID: 7700228033681709496, guid: 7433857e68671c34b89c268665c7832d,
       type: 3}
-    fireRate: 1
+    fireRate: 3
+    count: 5
   - rarity: 3
     prefab: {fileID: 7700228033681709496, guid: 7433857e68671c34b89c268665c7832d,
       type: 3}
-    fireRate: 1
+    fireRate: 3
+    count: 5

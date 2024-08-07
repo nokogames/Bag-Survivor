@@ -31,7 +31,8 @@ namespace _Project.Scripts.UI.Controllers
 
         public void OnSkillBtnClicked(CreatedSkillInfo createdSkillInfo)
         {
-            _recievers.ForEach(x => Debug.Log($"Selected FireBall Skill Rec {x}"));
+            CustomExtentions.ColorLog($"Seleceted fireball {createdSkillInfo.Skill.name}", Color.magenta);
+            // _recievers.ForEach(x => CustomExtentions.ColorLog($"Seleceted fireball {}") Debug.Log($"Selected FireBall Skill Rec {x}"));
             _recievers.ForEach(reciever => reciever.OnSkillBtnClicked(createdSkillInfo));
         }
 

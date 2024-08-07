@@ -79,7 +79,7 @@ namespace _Project.Scripts.UI.Inventory
                     {
                         return false;
                     }
-                    slot.SetColor(Color.red);
+                 //   slot.SetColor(Color.red);
                 }
             }
             return true;

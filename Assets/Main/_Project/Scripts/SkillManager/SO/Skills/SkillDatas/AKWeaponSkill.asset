@@ -25,16 +25,20 @@ MonoBehaviour:
   - rarity: 0
     bulletPref: {fileID: 1612157279310386263, guid: d3333f2c2f22bfd419e52c56a5ce33e0,
       type: 3}
-    fireRate: 0.2
+    fireRate: 7
+    count: 25
   - rarity: 1
     bulletPref: {fileID: 1612157279310386263, guid: d3333f2c2f22bfd419e52c56a5ce33e0,
       type: 3}
-    fireRate: 0.1
+    fireRate: 7
+    count: 25
   - rarity: 2
     bulletPref: {fileID: 1612157279310386263, guid: d3333f2c2f22bfd419e52c56a5ce33e0,
       type: 3}
-    fireRate: 0.1
+    fireRate: 7
+    count: 25
   - rarity: 3
     bulletPref: {fileID: 1612157279310386263, guid: d3333f2c2f22bfd419e52c56a5ce33e0,
       type: 3}
-    fireRate: 0.1
+    fireRate: 7
+    count: 25

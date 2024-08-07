@@ -11,17 +11,22 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     [CreateAssetMenu(fileName = "DamageSkill", menuName = "ScriptableObjects/SkillSystem/DamageSkill", order = 0)]
     public class DamageSkill : SkillBase
     {
-       
+
         [SerializeField] private List<DamageAmountByRarity> damageAmountByRarity;
-        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity,InGameSkillController inGameSkillController)
+        public override void Initialize(PlayerUpgradedData playerUpgradedData)
+        {
+            base.Initialize(playerUpgradedData);
+            SkillActivityType = SkillActivityType.Pasive;
+        }
+        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController)
         {
             var result = damageAmountByRarity.First(x => x.rarity == rarity);
             playerUpgradedData.damage += result.damageAmount;
-             playerUpgradedData.Upgraded();
+            playerUpgradedData.Upgraded();
             Debug.Log("Selected Damage Skill");
         }
 
-          public override string GetInfoTxt(SkillRarity rarity)
+        public override string GetInfoTxt(SkillRarity rarity)
         {
             var result = damageAmountByRarity.First(x => x.rarity == rarity);
             return $"{InfoTxt} +{result.damageAmount}";

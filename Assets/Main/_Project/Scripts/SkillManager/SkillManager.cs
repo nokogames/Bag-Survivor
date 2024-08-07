@@ -61,9 +61,14 @@ namespace _Project.Scripts.SkillManagement
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.U)) _skillManagerScope.Container.Resolve<SkillUIController>().ShowPanel();
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                _skillManagerScope.Container.Resolve<SkillCreator>().ReCreateSkill();
+                _skillManagerScope.Container.Resolve<SkillUIController>().ShowPanel();
+            }
             if (Input.GetKeyDown(KeyCode.Y))
             {
+
                 _barController.Upgraded();
                 _skillManagerScope.Container.Resolve<SkillUIController>().HidePanel();
 

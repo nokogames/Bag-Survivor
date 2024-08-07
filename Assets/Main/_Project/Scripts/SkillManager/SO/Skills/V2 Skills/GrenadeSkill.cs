@@ -31,7 +31,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         public override string GetInfoTxt(SkillRarity rarity)
         {
             var result = grenadeDataByRarity.First(x => x.rarity == rarity);
-            return $"{InfoTxt} +{result.count}";
+            return $"{InfoTxt}";
         }
         public override bool ActiveSkill(Transform playerTransform, SkillRarity skillRarity)
         {
@@ -57,7 +57,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
 
         private float _fireRate;
         private float _crrTime = 0;
-      public override float SkillPercentage =>  _crrTime /_fireRate ;
+        public override float SkillPercentage => _crrTime / _fireRate;
         internal override void AttactFixedTick()
         {
             _crrTime += Time.fixedDeltaTime;

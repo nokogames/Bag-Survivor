@@ -17,6 +17,7 @@ namespace _Project.Scripts.SkillManagement
 
     public class SkillBehaviour : MonoBehaviour
     {
+        [SerializeField] private GameObject pasiveText;
         [SerializeField] private GameObject skillVisualPref;
         [SerializeField] private TextMeshProUGUI nameTxt;
         [SerializeField] private Image skillBackGround;
@@ -39,13 +40,22 @@ namespace _Project.Scripts.SkillManagement
             _skillsSizeVisualBehaviour = GetComponentInChildren<SkillSizeVisualBehaviour>();
             //_btn.onClick.AddListener(OnBtnClicked);
         }
+        private void AddListenerToBtn()
+        {
+            ClearListeners();
+            _btn.onClick.AddListener(OnBtnClicked);
+        }
+        private void ClearListeners()
+        {
+            _btn.onClick.RemoveAllListeners();
+        }
         internal void Initialize(UIMediatorEventHandler eventHandler, CustomInventoryData customInventoryData, InventoryManager inventoryManager)
         {
             _uiEventHandler = eventHandler;
             _customInventoryData = customInventoryData;
             _inventoryManager = inventoryManager;
             _btn.interactable = true;
-           
+
         }
 
         public void Setup(CreatedSkillInfo createdSkillInfo)
@@ -55,7 +65,18 @@ namespace _Project.Scripts.SkillManagement
             _createdSkillInfo = createdSkillInfo;
             _currentSkill = _createdSkillInfo.Skill;
             SetupUI();
-            CreateVisual();
+            if (_createdSkillInfo.Skill.SkillActivityType == SkillActivityType.Active)
+            {
+                ClearListeners();
+                CreateVisual();
+                pasiveText.SetActive(false);
+            }
+            else
+            {
+                AddListenerToBtn();
+                _skillsSizeVisualBehaviour.Clear();
+                pasiveText.SetActive(true);
+            }
 
         }
 
@@ -64,7 +85,7 @@ namespace _Project.Scripts.SkillManagement
             _createdSkillVisualBehaviour = Instantiate(skillVisualPref, transform.parent).GetComponent<SkillVisualBehaviour>();
             _createdSkillVisualBehaviour.Initialize(_customInventoryData, _currentSkill.skillVisualData, _inventoryManager, this, _createdSkillInfo);
             _createdSkillVisualBehaviour.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
-             _skillsSizeVisualBehaviour.Initialize(_currentSkill.skillVisualData.Size);
+            _skillsSizeVisualBehaviour.Initialize(_currentSkill.skillVisualData.Size);
             // _createdSkillBehaviour.onPlaceInventory += OnPlaceInventory;
         }
 
@@ -91,7 +112,7 @@ namespace _Project.Scripts.SkillManagement
 
         internal void DisableMoveSkillVisual()
         {
-            if (_createdSkillVisualBehaviour != null) Destroy(_createdSkillVisualBehaviour);
+            ClearVisual();
             _btn.interactable = false;
         }
 

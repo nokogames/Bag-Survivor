@@ -16,12 +16,17 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     {
 
         [SerializeField] private List<RangeByRarity> damageRangeByRarity;
-        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity,InGameSkillController inGameSkillController)
+        public override void Initialize(PlayerUpgradedData playerUpgradedData)
+        {
+            base.Initialize(playerUpgradedData);
+            SkillActivityType = SkillActivityType.Pasive;
+        }
+        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController)
         {
             var result = damageRangeByRarity.First(x => x.rarity == rarity);
 
             playerUpgradedData.range += result.range;
-             playerUpgradedData.Upgraded();
+            playerUpgradedData.Upgraded();
             Debug.Log("Selected Damage Range Skill");
         }
         public override string GetInfoTxt(SkillRarity rarity)

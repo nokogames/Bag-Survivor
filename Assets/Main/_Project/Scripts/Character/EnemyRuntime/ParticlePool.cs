@@ -90,8 +90,17 @@ namespace _Project.Scripts
         }
         public GameObject GetPooledObject(GameObject go)
         {
-            var index = objectToIndex[go];
-            return GetPooledObject(index);
+            try
+            {
+                var index = objectToIndex[go];
+                return GetPooledObject(index);
+            }
+            catch (System.Exception)
+            {
+                Debug.LogError($"{go.transform.name}");
+                throw;
+            }
+
         }
 
         public GameObject GetPooledObject(int index)

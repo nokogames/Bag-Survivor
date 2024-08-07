@@ -34,9 +34,11 @@ namespace _Project.Scripts.Character.EnemyRuntime
         private Transform _playerTransform;
         //private CharacterController _characterController;
         private Rigidbody _rb;
+        private bool _canDamageAnim = false;
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            _canDamageAnim = enemyType == EnemyType.Level1 || enemyType == EnemyType.Level2 || enemyType == EnemyType.Level3;
             // _characterController = GetComponent<CharacterController>();
         }
         private void OnEnable()
@@ -56,7 +58,8 @@ namespace _Project.Scripts.Character.EnemyRuntime
 
         public void GetDamage(float damage)
         {
-            transform.Translate(Vector3.back * 0.3f);
+            if (_canDamageAnim) transform.Translate(Vector3.back * 0.3f);
+
             if (IsDead) return;
             var obj = ParticlePool.SharedInstance.GetPooledObject(floatingTxt);
             var textMesh = obj.GetComponent<TextMeshPro>();

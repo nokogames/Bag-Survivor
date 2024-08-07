@@ -6,6 +6,7 @@ using UnityEngine;
 public class KunaiBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject hitParticle;
+    [SerializeField] private float lifeTime=1f;
     // [SerializeField] private Animator model;
     private float _speed = 7f;
     private Coroutine moveCorotine;
@@ -22,7 +23,7 @@ public class KunaiBehaviour : MonoBehaviour
     float _spawnedTime = 0;
     IEnumerator Move()
     {
-        while (_spawnedTime < 3f)
+        while (_spawnedTime < lifeTime)
         {
             _spawnedTime += Time.deltaTime;
             transform.position += transform.forward * Time.deltaTime * _speed;

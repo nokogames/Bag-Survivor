@@ -6,6 +6,10 @@ using UnityEngine;
 public class SkillSizeVisualBehaviour : MonoBehaviour
 {
     [SerializeField] private List<SkillColumnData> skillColumnDatas;
+    private void Awake()
+    {
+        Clear();
+    }
     public void Initialize(Vector2Int size)
     {
         skillColumnDatas.ForEach(e => e.Close());
@@ -16,6 +20,10 @@ public class SkillSizeVisualBehaviour : MonoBehaviour
         }
     }
 
+    internal void Clear()
+    {
+        skillColumnDatas.ForEach(skillColumnData => skillColumnData.Close());
+    }
 }
 
 [Serializable]

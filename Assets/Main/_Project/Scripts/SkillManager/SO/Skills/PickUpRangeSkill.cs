@@ -15,7 +15,12 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
     {
 
         [SerializeField] private List<PickUpRangeByRarity> damageRangeByRarity;
-        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity,InGameSkillController inGameSkillController)
+        public override void Initialize(PlayerUpgradedData playerUpgradedData)
+        {
+            base.Initialize(playerUpgradedData);
+            SkillActivityType = SkillActivityType.Pasive;
+        }
+        public override void OnSelectedSkill(PlayerUpgradedData playerUpgradedData, SkillRarity rarity, InGameSkillController inGameSkillController)
         {
             var result = damageRangeByRarity.First(x => x.rarity == rarity);
 

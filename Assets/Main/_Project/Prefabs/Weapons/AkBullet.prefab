@@ -57,7 +57,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae53ef3e5b2623245ad3e691c6e9820e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticlePrefab: {fileID: 1879272669879180, guid: 52baafc6c69151e418a228e14e1bd356,
+    type: 3}
   hitParticlePoolIndex: 2
+  _damege: 1
+  lifeTime: 3
 --- !u!135 &5252841069119427950
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -152,15 +156,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1096d44f53e630248aaed2d521804d7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.2516
+      value: 1.32
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1096d44f53e630248aaed2d521804d7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.2516
+      value: 1.32
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1096d44f53e630248aaed2d521804d7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.2516
+      value: 1.32
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1096d44f53e630248aaed2d521804d7f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -202,6 +206,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1096d44f53e630248aaed2d521804d7f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 1096d44f53e630248aaed2d521804d7f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aaab254ca2c070844a0e0cd721f27c47, type: 2}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 1096d44f53e630248aaed2d521804d7f, type: 3}
     m_RemovedGameObjects: []
@@ -235,7 +247,7 @@ PrefabInstance:
     - target: {fileID: 3165669306297623587, guid: 6cba9a3e2c90be94d9e7f85b33cb31ed,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.014000073
+      value: -0.088
       objectReference: {fileID: 0}
     - target: {fileID: 3165669306297623587, guid: 6cba9a3e2c90be94d9e7f85b33cb31ed,
         type: 3}
@@ -280,6 +292,11 @@ PrefabInstance:
     - target: {fileID: 3165669306305256779, guid: 6cba9a3e2c90be94d9e7f85b33cb31ed,
         type: 3}
       propertyPath: m_Time
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165669306305256779, guid: 6cba9a3e2c90be94d9e7f85b33cb31ed,
+        type: 3}
+      propertyPath: m_MinVertexDistance
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3165669306305256779, guid: 6cba9a3e2c90be94d9e7f85b33cb31ed,
