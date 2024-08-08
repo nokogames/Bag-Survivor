@@ -83,17 +83,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingTxt: {fileID: 7226844735276793987, guid: 700f00e690d81b6469a401c679da7f80,
     type: 3}
-  xpCount: 3
+  xpCount: 7
   xpPrefab: {fileID: 7464668921528478123, guid: 984ff2dec4c62274e9d4c2cdb741c829,
     type: 3}
   deathParticle: {fileID: 395031058680739610, guid: 2f78b35c7aadc1e4782a97d7558897f1,
     type: 3}
   enemyType: 2
-  _damageAmount: 12
+  _damageAmount: 6
   animator: {fileID: 5159799307515638560}
-  baseHealt: 15
+  baseHealt: 10
   _attackDistance: 2
-  speed: 8
+  speed: 10
 --- !u!136 &7031041042669796911
 CapsuleCollider:
   m_ObjectHideFlags: 0

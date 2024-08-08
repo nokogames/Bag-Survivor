@@ -15,8 +15,8 @@ MonoBehaviour:
   skillVisualData:
     Size: {x: 1, y: 1}
     img: {fileID: 21300000, guid: 2cf7e90f61936b944bf1549631b774b6, type: 3}
-  Name: Helath Pot
-  InfoTxt: 
+  Name: Health Potion
+  InfoTxt: Gain HP per Second
   skillCommenUIInfo: {fileID: 11400000, guid: abf43f6c10fdd49468b5284806986b2a, type: 2}
   SkillRarityPercentage: {fileID: 11400000, guid: f4594527709e2a447bccd7f2cf58ca20,
     type: 2}
