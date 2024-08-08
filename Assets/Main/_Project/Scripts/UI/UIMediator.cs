@@ -17,6 +17,8 @@ namespace _Project.Scripts.UI
 
     public class UIMediator : MonoBehaviour
     {
+
+        [SerializeField] private TutorialController tutorialController;
         [Header("Active Skill Ui Data"), SerializeField] private ActiveSkillUIControllerData activeSkillUIControllerData;
         [Header("Custom Inventory"), SerializeField]
         CustomInventoryData customInventoryData;
@@ -49,7 +51,7 @@ namespace _Project.Scripts.UI
         public PanelController PanelController { get; private set; }
         public InGamePanelController InGamePanelController { get; private set; }
         public LevelEndDataPanel LevelEndDataPanel { get; private set; }
-
+        public TutorialController TutorialController => tutorialController;
         private InventoryManager _inventoryManager;
         private Transform _playerTransform;
         public Transform PlayerTransform
@@ -99,6 +101,8 @@ namespace _Project.Scripts.UI
                builder.RegisterInstance(mapPanelData);
                builder.RegisterInstance(customInventoryData);
                builder.RegisterInstance(activeSkillUIControllerData);
+
+               builder.RegisterComponent(tutorialController);
 
                builder.RegisterComponentInNewPrefab(upgradeVisualControllerPref, Lifetime.Scoped).DontDestroyOnLoad();
 

@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Character.Datas;
 using _Project.Scripts.Character.Datas.SO;
@@ -29,6 +30,7 @@ namespace _Project.Scripts
         [SerializeField] private UIMediator uiMediatorPref;
         [SerializeField] private PlayerUpgradeDataSO playerRuntimeUpgradeData;
         [SerializeField] private List<SkillBase> Skills;
+        [SerializeField] private TutorialSkillsHolder tutorialSkillsHolder;
         [SerializeField] private ParticlePool particlePool;
         // private LoaderMediator _loaderMediator;
         private SceneLoader _sceneLoader;
@@ -57,9 +59,10 @@ namespace _Project.Scripts
             builder.RegisterInstance(playerRuntimeUpgradeData.playerUpgradedData);
 
             builder.RegisterInstance(Skills).AsSelf();
-
+            builder.RegisterInstance(tutorialSkillsHolder);
             //Events
             builder.RegisterInstance(new InLevelEvents()).AsSelf().AsImplementedInterfaces();
+            builder.RegisterInstance(gameData.SavedTutorialData);
 
         }
         private InLevelEvents _inLevelEvents;
@@ -100,4 +103,11 @@ namespace _Project.Scripts
         Playing = 0,
         Pause = 0,
     }
+}
+
+
+[Serializable]
+public class TutorialSkillsHolder
+{
+    public List<SkillBase> skills;
 }

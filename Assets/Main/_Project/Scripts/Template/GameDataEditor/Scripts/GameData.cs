@@ -13,7 +13,7 @@ namespace Pack.GameData
         public int CurrentSection;
 
         public PlayerResource playerResource;
-
+        public SavedTutorialData SavedTutorialData;
         [SerializeField] private List<SavedLevelData> savedLevelDatas;
         [SerializeField] private List<PlayerSavedUpgradeInfos> playerSavedUpgradeInfos;
         public PlayerSavedUpgradeInfos GetSavedUpgrade<T>()
@@ -50,7 +50,7 @@ namespace Pack.GameData
     [Serializable]
     public class SavedTutorialData
     {
-         
+        public bool isCompletedSwipeTutorial;
     }
     [Serializable]
     public class PlayerSavedUpgradeInfos

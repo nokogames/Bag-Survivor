@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.SkillManagement.SO;
 using _Project.Scripts.SkillManagement.SO.Skills;
+using _Project.Scripts.UI;
 using _Project.Scripts.UI.Controllers;
 using UnityEngine;
 using VContainer;
@@ -17,7 +18,8 @@ namespace _Project.Scripts.SkillManagement.Controllers
         [Inject] private List<SkillBase> Skills;
         [Inject] private SkillUIController _skillUIController;
         [Inject] private PlayerUpgradedData _playerUpgradedData;
-
+        [Inject] private TutorialController _tutorialController;
+        [Inject] private TutorialSkillsHolder _tutorialSkillsHolder;
         private List<SkillBehaviour> _skillBehaviors = new();
 
         private readonly static int SKILL_PREFAB_POOL_INDEX = 4;
@@ -25,7 +27,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
         public void Start()
         {
             PrepareSkillBehaviors();
-            CreateSkill(3);
+            //  CreateSkill(3);
         }
 
         private void PrepareSkillBehaviors()
@@ -37,8 +39,30 @@ namespace _Project.Scripts.SkillManagement.Controllers
         }
 
 
+        private void CreateTutorialSkill(int skillCount = 3)
+        {
+
+            int[] skillIndexs = new int[] { -1, -1, -1 };
+            for (int i = 0; i < skillCount; i++)
+            {
+                //UnityEngine.Random.InitState(i);
+                //  int randomIndex = UnityEngine.Random.Range(0, Skills.Count);
+                SkillBase rondomSkill = _tutorialSkillsHolder.skills[i];
+                skillIndexs[i] = i;
+
+                //    rondomSkill = Skills[randomIndex];
+                SkillRarity skillRarity = rondomSkill.GetRandomRarity();
+
+                SkillBehaviour skillBehaviour = _skillBehaviors[i];
+
+                skillBehaviour.Setup(new CreatedSkillInfo(skillRarity, rondomSkill));
+
+            }
+            _tutorialController.SetSwipeTutorial(true, _skillBehaviors[0].transform.position, _skillBehaviors[2].transform.position);
+        }
         private void CreateSkill(int skillCount = 3)
         {
+
             int[] skillIndexs = new int[] { -1, -1, -1 };
             for (int i = 0; i < skillCount; i++)
             {
@@ -60,17 +84,19 @@ namespace _Project.Scripts.SkillManagement.Controllers
                 skillBehaviour.Setup(new CreatedSkillInfo(skillRarity, rondomSkill));
 
             }
-
+            _tutorialController.SetSwipeTutorial(true, _skillBehaviors[0].transform.position, _skillBehaviors[2].transform.position);
         }
 
         internal void Reroll()
         {
-            CreateSkill();
+            if (_tutorialController.SavedTutorialData.isCompletedSwipeTutorial) CreateSkill();
+            else CreateTutorialSkill();
         }
 
         internal void ReCreateSkill()
         {
-            CreateSkill();
+            if (_tutorialController.SavedTutorialData.isCompletedSwipeTutorial) CreateSkill();
+            else CreateTutorialSkill();
         }
 
         internal void DisableMoveSkillVisual()

@@ -42,7 +42,7 @@ namespace _Project.Scripts.SkillManagement
                    builder.Register(_ => uiMediator.UIMediatorEventHandler, Lifetime.Scoped);
                    builder.Register(_ => uiMediator.SkillUIController, Lifetime.Scoped).AsSelf();
                    builder.Register(_ => uiMediator.PlayerInGameUpgradeBarController, Lifetime.Scoped);
-
+                   builder.Register(_ => uiMediator.TutorialController, Lifetime.Scoped);
                    builder.RegisterEntryPoint<BarController>(Lifetime.Scoped).AsSelf();
                    builder.RegisterEntryPoint<SkillCreator>(Lifetime.Scoped).AsSelf();
                    builder.Register<SkillReciverController>(Lifetime.Scoped);
