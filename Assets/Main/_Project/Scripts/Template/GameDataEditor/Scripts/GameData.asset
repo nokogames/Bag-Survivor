@@ -16,32 +16,32 @@ MonoBehaviour:
   CurrentSection: 0
   playerResource:
     GemCount: 0
-    CoinCount: 0
+    CoinCount: 199650
   savedLevelDatas:
   - lvl: 0
     IsOpen: 1
     MaxPlayTime: 0
     MaxClearedEnemyPercentage: 0
   - lvl: 1
-    IsOpen: 1
+    IsOpen: 0
     MaxPlayTime: 0
     MaxClearedEnemyPercentage: 0
   - lvl: 2
-    IsOpen: 1
+    IsOpen: 0
     MaxPlayTime: 0
     MaxClearedEnemyPercentage: 0
   playerSavedUpgradeInfos:
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.DamageRangeUpgrade
-    Level: 0
+    Level: 2
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.DamageUpgrade
-    Level: 0
+    Level: 4
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.FireRateUpgrade
-    Level: 0
+    Level: 2
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.HealtRegenUpgrade
     Level: 0
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.HealtUpgrade
-    Level: 0
+    Level: 2
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.PickUpRangeUpgrade
-    Level: 0
+    Level: 2
   - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.SpeedUpgrade
-    Level: 0
+    Level: 1

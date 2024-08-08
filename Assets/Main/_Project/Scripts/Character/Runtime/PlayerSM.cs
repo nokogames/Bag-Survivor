@@ -164,7 +164,7 @@ namespace _Project.Scripts.Character.Runtime
             IdleState.Initialize();
             CraftState.Initialize(pickAxe);
             AttackState.Initialize();
-            DiedState.Initialize(EnemyManager);
+
 
         }
 
@@ -182,6 +182,7 @@ namespace _Project.Scripts.Character.Runtime
             DiedState = _playerScope.Container.Resolve<DiedState>();
 
             _playerScope.Container.Resolve<IUpgradeDataApplyer>();
+            DiedState.Initialize(EnemyManager);
         }
 
 
@@ -197,6 +198,7 @@ namespace _Project.Scripts.Character.Runtime
         {
 
             ChangeState(IdleState);
+            DiedState.Initialize(EnemyManager);
         }
         public override void Update()
         {

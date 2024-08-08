@@ -62,9 +62,9 @@ namespace _Project.Scripts.Character.Datas.SO
         private List<IPlayerUpgradedReciver> _recivers = new();
         public void AddReciver(IPlayerUpgradedReciver reciver)
         {
-            Debug.Log($"<color=red> AddReciver </color> {reciver}   {this.GetHashCode()}");
+            
             if (!_recivers.Contains(reciver)) _recivers.Add(reciver);
-            Debug.Log($"<color=red> AddReciver </color> {_recivers.Count}");
+          
         }
         public void RemoveReciver(IPlayerUpgradedReciver reciver)
         {
@@ -73,7 +73,7 @@ namespace _Project.Scripts.Character.Datas.SO
 
         public void Upgraded()
         {
-            Debug.Log($"111  PlayerUpgradedData  {_recivers.Count} ");
+         
             _recivers.ForEach(x => Debug.Log($"111 {x}"));
             _recivers.ForEach(x => x.OnUpgraded());
         }

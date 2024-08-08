@@ -119,7 +119,7 @@ MonoBehaviour:
     shouldExpand: 1
   - objectToPool: {fileID: 7700228033681709496, guid: af75ea8671a2a8b4288e8be97418a96a,
       type: 3}
-    amountToPool: 5
+    amountToPool: 20
     shouldExpand: 1
   - objectToPool: {fileID: 3396717415887868776, guid: 8f4f4887b9e6cdf48a31dd4a5c04a002,
       type: 3}

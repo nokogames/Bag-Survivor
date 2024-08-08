@@ -24,7 +24,7 @@ namespace Pack.GameData
             playerSavedUpgradeInfos.Add(info);
             return info;
         }
-       
+
         public SavedLevelData GetSavedLevelData(int lvl)
         {
             var result = savedLevelDatas.FirstOrDefault(x => x.lvl == lvl);
@@ -46,6 +46,11 @@ namespace Pack.GameData
         public void Load() => SaveManager.LoadData(this);
         public void Save() => SaveManager.SaveData(this);
 
+    }
+    [Serializable]
+    public class SavedTutorialData
+    {
+         
     }
     [Serializable]
     public class PlayerSavedUpgradeInfos

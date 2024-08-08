@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _Project.Scripts.Character.Datas.SO;
+using _Project.Scripts.Level;
 using _Project.Scripts.SkillManagement.SO.Skills;
 using JetBrains.Annotations;
 using Pack.GameData;
@@ -23,10 +24,17 @@ namespace _Project.Scripts.UI.Controllers
         [Inject] private PlayerUpgradedData _playerUpgradedData;
         [Inject] private ActiveSkillUIControllerData _data;
         private Dictionary<SkillBase, ActiveSkillBehaviours> _activeSkillBehaviours;
+        [Inject] private InLevelEvents _inLevelEvents;
         public void Start()
         {
             _activeSkillBehaviours = new();
             _playerUpgradedData.AddReciver(this);
+            _inLevelEvents.onNextLevel += OnNextLevel;
+        }
+
+        private void OnNextLevel()
+        {
+            _activeSkillBehaviours.ForEachKey(x => RemoveActiveSkillUI(x));
         }
 
         public void ActivatedSkill(SkillBase skill)
@@ -61,8 +69,8 @@ namespace _Project.Scripts.UI.Controllers
         public void FixedTick()
         {
             foreach (var kvp in _activeSkillBehaviours)
-               kvp.Value.SetBar(kvp.Key.SkillPercentage);
-           
+                kvp.Value.SetBar(kvp.Key.SkillPercentage);
+
         }
     }
 

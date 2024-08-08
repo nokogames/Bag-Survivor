@@ -22,7 +22,7 @@ public class AxeBehaviour : MonoBehaviour
     float _spawnedTime = 0;
     IEnumerator Move()
     {
-        while (_spawnedTime < 3f)
+        while (_spawnedTime < 2f)
         {
             _spawnedTime += Time.deltaTime;
             transform.position += transform.forward * Time.deltaTime * _speed;
