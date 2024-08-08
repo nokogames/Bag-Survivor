@@ -110,6 +110,8 @@ MonoBehaviour:
       Count: 20
     - enemyType: 4
       Count: 1
+    - enemyType: 3
+      Count: 1
     timeOffset: 0
     mustClearNextWave: 0
   timeOffset: 0

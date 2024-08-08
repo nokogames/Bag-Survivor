@@ -15,99 +15,99 @@ MonoBehaviour:
   waveInfos:
   - spawnEnemyInfos:
     - enemyType: 0
-      Count: 10
+      Count: 15
     timeOffset: 3
     mustClearNextWave: 0
   - spawnEnemyInfos:
     - enemyType: 0
-      Count: 12
+      Count: 17
     timeOffset: 5
     mustClearNextWave: 0
   - spawnEnemyInfos:
     - enemyType: 0
-      Count: 18
+      Count: 23
     timeOffset: 7
     mustClearNextWave: 0
   - spawnEnemyInfos:
     - enemyType: 0
-      Count: 4
+      Count: 9
     - enemyType: 1
-      Count: 12
+      Count: 17
     timeOffset: 10
     mustClearNextWave: 0
   - spawnEnemyInfos:
     - enemyType: 0
-      Count: 5
+      Count: 10
     - enemyType: 1
-      Count: 15
+      Count: 20
     timeOffset: 15
     mustClearNextWave: 0
   - spawnEnemyInfos:
-    - enemyType: 0
-      Count: 3
     - enemyType: 1
-      Count: 12
+      Count: 8
+    - enemyType: 1
+      Count: 17
     - enemyType: 2
-      Count: 4
+      Count: 9
     timeOffset: 18
     mustClearNextWave: 0
   - spawnEnemyInfos:
-    - enemyType: 0
-      Count: 10
     - enemyType: 1
-      Count: 8
+      Count: 15
     - enemyType: 1
-      Count: 8
+      Count: 13
+    - enemyType: 1
+      Count: 13
     timeOffset: 20
     mustClearNextWave: 0
   - spawnEnemyInfos:
     - enemyType: 0
+      Count: 15
+    - enemyType: 1
+      Count: 14
+    - enemyType: 1
       Count: 10
-    - enemyType: 1
-      Count: 9
-    - enemyType: 1
-      Count: 5
     timeOffset: 25
     mustClearNextWave: 0
   - spawnEnemyInfos:
     - enemyType: 0
-      Count: 20
-    - enemyType: 1
       Count: 25
+    - enemyType: 1
+      Count: 30
     - enemyType: 2
-      Count: 8
+      Count: 13
     timeOffset: 37
     mustClearNextWave: 0
   - spawnEnemyInfos:
     - enemyType: 0
-      Count: 15
-    - enemyType: 1
       Count: 20
-    - enemyType: 1
-      Count: 10
-    timeOffset: 30
-    mustClearNextWave: 0
-  - spawnEnemyInfos:
-    - enemyType: 0
-      Count: 20
-    - enemyType: 1
-      Count: 32
-    - enemyType: 2
-      Count: 10
-    timeOffset: 35
-    mustClearNextWave: 0
-  - spawnEnemyInfos:
-    - enemyType: 0
-      Count: 15
     - enemyType: 1
       Count: 25
     - enemyType: 1
       Count: 15
+    timeOffset: 30
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 1
+      Count: 25
+    - enemyType: 0
+      Count: 15
+    - enemyType: 2
+      Count: 15
+    timeOffset: 35
+    mustClearNextWave: 0
+  - spawnEnemyInfos:
+    - enemyType: 1
+      Count: 20
+    - enemyType: 2
+      Count: 15
+    - enemyType: 1
+      Count: 20
     timeOffset: 25
     mustClearNextWave: 0
   - spawnEnemyInfos:
     - enemyType: 2
-      Count: 20
+      Count: 25
     - enemyType: 4
       Count: 1
     timeOffset: 0

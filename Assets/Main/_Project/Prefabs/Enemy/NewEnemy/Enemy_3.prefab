@@ -89,11 +89,11 @@ MonoBehaviour:
   deathParticle: {fileID: 395031058680739610, guid: 2f78b35c7aadc1e4782a97d7558897f1,
     type: 3}
   enemyType: 2
-  _damageAmount: 1
+  _damageAmount: 12
   animator: {fileID: 5159799307515638560}
-  baseHealt: 6
+  baseHealt: 15
   _attackDistance: 2
-  speed: 9
+  speed: 8
 --- !u!136 &7031041042669796911
 CapsuleCollider:
   m_ObjectHideFlags: 0
