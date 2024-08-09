@@ -14,7 +14,7 @@ namespace _Project.Scripts.UI.Inventory
         [Inject] private CustomInventoryData _data;
         [Inject] private InventoryGridFactory _gridFactory;
         [Inject] private InLevelEvents _inLvelEvents;
-
+         [Inject] private TutorialController _tutorialController;
         private List<Dragable> _addedDragable;
         public Transform PlayerTransform { get; set; }
         public void Start()
@@ -202,11 +202,12 @@ namespace _Project.Scripts.UI.Inventory
             var result = AddItem(closestSlot.gridPosition, _selectedDragable.size);
             // Assert.IsTrue(!result,"Result is false");
             if (result)
-            {
+            {    
                 _selectedDragable.CanPlace = true;
                 // if (_selectedDragable.startPlaceInventorySlot != null) RemoveItem(_selectedDragable.startPlaceInventorySlot.gridPosition, _selectedDragable.size);
                 _selectedDragable.InventorySlot = closestSlot;
                 SetSkillStatus(_selectedDragable, true);
+                _tutorialController.CompletedSwipe();
             }
             else if (_selectedDragable.InventorySlot != null)
             {

@@ -51,6 +51,12 @@ namespace Pack.GameData
     public class SavedTutorialData
     {
         public bool isCompletedSwipeTutorial;
+        public bool isCompletedTapTutorial;
+        public bool isCompletedGoBtnTutorial;
+        internal void CompletedSwipe()
+        {
+            isCompletedSwipeTutorial = true;
+        }
     }
     [Serializable]
     public class PlayerSavedUpgradeInfos

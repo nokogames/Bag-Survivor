@@ -58,7 +58,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
                 skillBehaviour.Setup(new CreatedSkillInfo(skillRarity, rondomSkill));
 
             }
-            _tutorialController.SetSwipeTutorial(true, _skillBehaviors[0].transform.position, _skillBehaviors[2].transform.position);
+            _tutorialController.StartSwipeTutorial( _skillBehaviors[0].transform.position);
         }
         private void CreateSkill(int skillCount = 3)
         {
@@ -84,7 +84,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
                 skillBehaviour.Setup(new CreatedSkillInfo(skillRarity, rondomSkill));
 
             }
-            _tutorialController.SetSwipeTutorial(true, _skillBehaviors[0].transform.position, _skillBehaviors[2].transform.position);
+            _tutorialController.StartSwipeTutorial(_skillBehaviors[0].transform.position);
         }
 
         internal void Reroll()

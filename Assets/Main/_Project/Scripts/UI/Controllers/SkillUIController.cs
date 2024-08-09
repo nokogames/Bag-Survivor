@@ -23,13 +23,15 @@ namespace _Project.Scripts.UI.Controllers
         [Inject] private UIMediatorEventHandler _eventHandler;
         [Inject] private CustomInventoryData _customInventoryData;
         [Inject] private InventoryManager _inventoryManager;
-
+        [Inject] private TutorialController _tutorialController;
         public Transform SkillTransformParent => _skillUIControllerData.skillParentTransform;
         public List<SkillBehaviour> SkillBehaviors => _skillUIControllerData.skillBehaviors;
         public Button GoBtn => _skillUIControllerData.GoBtn;
         public Button RerollBtn => _skillUIControllerData.RerollBtn;
         public void Start()
         {
+            _tutorialController.GoBtnPosition = _skillUIControllerData.GoBtn.transform.position;
+            _skillUIControllerData.GoBtn.onClick.AddListener(() => _tutorialController.GoBtnClicked());
             //_eventHandler.AddReciever(this);
             if (_skillUIControllerData.RerollBtn != null)
             {
