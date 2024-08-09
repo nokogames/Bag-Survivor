@@ -19,7 +19,33 @@ MonoBehaviour:
     CoinCount: 0
   SavedTutorialData:
     isCompletedSwipeTutorial: 1
-    isCompletedTapTutorial: 1
+    isCompletedTapTutorial: 0
     isCompletedGoBtnTutorial: 1
-  savedLevelDatas: []
-  playerSavedUpgradeInfos: []
+  savedLevelDatas:
+  - lvl: 0
+    IsOpen: 1
+    MaxPlayTime: 0
+    MaxClearedEnemyPercentage: 0
+  - lvl: 1
+    IsOpen: 0
+    MaxPlayTime: 0
+    MaxClearedEnemyPercentage: 0
+  - lvl: 2
+    IsOpen: 0
+    MaxPlayTime: 0
+    MaxClearedEnemyPercentage: 0
+  playerSavedUpgradeInfos:
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.DamageRangeUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.DamageUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.FireRateUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.HealtRegenUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.HealtUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.PickUpRangeUpgrade
+    Level: 0
+  - type: _Project.Scripts.Character.Datas.SO.UpgradeItems.SpeedUpgrade
+    Level: 0

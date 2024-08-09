@@ -15,6 +15,8 @@ namespace _Project.Scripts.UI
     {
         [SerializeField] private GameObject killTheEnemyTutorial;
         [SerializeField] private GameObject swipeTutorial;
+        [SerializeField] private GameObject skillTapTutorial;
+        [SerializeField] private GameObject skillTapHand;
         [SerializeField] private GameObject swipeHand;
         [SerializeField] private GameObject goBtnHand;
         [Inject] private SavedTutorialData _savedData;
@@ -23,6 +25,7 @@ namespace _Project.Scripts.UI
         public SavedTutorialData SavedTutorialData => _savedData;
         private void Start()
         {
+            skillTapTutorial.SetActive(false);
             goBtnHand.SetActive(false);
             SetKillTheEnemyTutorial(false);
             CustomExtentions.ColorLog("SavedDat" + _savedData, Color.blue);
@@ -43,7 +46,7 @@ namespace _Project.Scripts.UI
 
         }
         private CancellationTokenSource _cancellationTokenSource;
-
+        #region Swipe
         public void StartSwipeTutorial(Vector3 startPos)
         {
 
@@ -120,7 +123,7 @@ namespace _Project.Scripts.UI
             action?.Invoke();
         }
 
-
+        #endregion
 
         public void SetKillTheEnemyTutorial(bool status)
         {
@@ -136,20 +139,20 @@ namespace _Project.Scripts.UI
             if (_savedData.isCompletedGoBtnTutorial) return;
             _goBtncancellationTokenSource = new CancellationTokenSource();
             goBtnHand.SetActive(true);
-            GoBtnAnim(_goBtncancellationTokenSource.Token).Forget();
+            ScaleUpDowAnim(_goBtncancellationTokenSource.Token, goBtnHand.transform, GoBtnPosition).Forget();
         }
         public void StopGoBtnTutorial()
         {
             _goBtncancellationTokenSource?.Cancel();
             goBtnHand.SetActive(false);
         }
-        private async UniTaskVoid GoBtnAnim(CancellationToken cancellationToken)
+        private async UniTaskVoid ScaleUpDowAnim(CancellationToken cancellationToken, Transform animTransform, Vector3 position)
         {
 
             float scaleDuration = 0.5f; // Objenin küçülüp büyüme süresi
-            Vector3 originalScale = goBtnHand.transform.localScale;
+            Vector3 originalScale = animTransform.localScale;
             Vector3 minScale = originalScale * 0.8f; // Objenin küçüleceği minimum boyut
-            goBtnHand.transform.position = GoBtnPosition;
+            animTransform.position = position;
             while (!cancellationToken.IsCancellationRequested)
             {
                 float elapsedTime = 0f;
@@ -158,7 +161,7 @@ namespace _Project.Scripts.UI
                 while (elapsedTime < scaleDuration && !cancellationToken.IsCancellationRequested)
                 {
                     elapsedTime += Time.unscaledDeltaTime;
-                    goBtnHand.transform.localScale = Vector3.Lerp(originalScale, minScale, elapsedTime / scaleDuration);
+                    animTransform.localScale = Vector3.Lerp(originalScale, minScale, elapsedTime / scaleDuration);
                     await UniTask.Yield();
                 }
 
@@ -167,10 +170,10 @@ namespace _Project.Scripts.UI
                 while (elapsedTime < scaleDuration && !cancellationToken.IsCancellationRequested)
                 {
                     elapsedTime += Time.unscaledDeltaTime;
-                    goBtnHand.transform.localScale = Vector3.Lerp(minScale, originalScale, elapsedTime / scaleDuration);
+                    animTransform.localScale = Vector3.Lerp(minScale, originalScale, elapsedTime / scaleDuration);
                     await UniTask.Yield();
                 }
-                goBtnHand.transform.localScale = originalScale;
+                animTransform.localScale = originalScale;
             }
         }
 
@@ -184,6 +187,31 @@ namespace _Project.Scripts.UI
         }
         #endregion
 
+
+        public Vector3 TapToSkillStartPoint { get; set; }
+        #region  TapToSkill
+        private CancellationTokenSource _tapToSkillTokenSource;
+
+
+        public void StartTapToSkillTutorial()
+        {
+            _tapToSkillTokenSource?.Cancel();
+            if (_savedData.isCompletedTapTutorial || !_savedData.isCompletedSwipeTutorial) return;
+            skillTapTutorial.SetActive(true);
+            _tapToSkillTokenSource = new CancellationTokenSource();
+            skillTapHand.SetActive(true);
+            ScaleUpDowAnim(_tapToSkillTokenSource.Token, skillTapHand.transform, TapToSkillStartPoint).Forget();
+
+        }
+        public void SkillTaped()
+        {
+            skillTapTutorial.SetActive(false);
+            _tapToSkillTokenSource?.Cancel();
+            _savedData.isCompletedTapTutorial = true;
+
+
+        }
+        #endregion
     }
 
 }

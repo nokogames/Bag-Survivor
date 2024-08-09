@@ -14,6 +14,7 @@ using _Project.Scripts.Character.Datas.SO;
 using _Project.Scripts.Level;
 using Cysharp.Threading.Tasks;
 using _Project.Scripts.Character.Runtime;
+using _Project.Scripts.UI;
 
 namespace _Project.Scripts.SkillManagement.Controllers
 {
@@ -22,13 +23,14 @@ namespace _Project.Scripts.SkillManagement.Controllers
     {
         [Inject] private UIMediatorEventHandler _uiMediatorEventHandler;
         [Inject] private SkillUIController _skillUIController;
-     
+
         [Inject] private SkillCreator _skillCreator;
         // [Inject] private PlayerInGameUpgradeBarController _playerInGameUpgradeBarController;
         [Inject] private BarController _barController;
         [Inject] private PlayerUpgradedData _playerUpgradedData;
         [Inject] private InLevelEvents _inLevelEvents;
         [Inject] private InGameSkillController _ingameSkillController;
+        [Inject] private TutorialController _tutorialController;
 
         // [Inject] private SkillCreator _skillCreator;
         public void CloseBtnClicked()
@@ -44,7 +46,7 @@ namespace _Project.Scripts.SkillManagement.Controllers
             _uiMediatorEventHandler.AddReciever(this);
             _inLevelEvents.onNextLevel += NextLevel;
             _skillUIController.GoBtn.onClick.AddListener(GoBtnClicked);
-           // _skillUIControllerData.GoBtn.onClick.AddListener(GoBtnClicked);
+            // _skillUIControllerData.GoBtn.onClick.AddListener(GoBtnClicked);
 
         }
 
@@ -64,6 +66,8 @@ namespace _Project.Scripts.SkillManagement.Controllers
             createdSkillInfo.Skill.OnSelectedSkill(_playerUpgradedData, createdSkillInfo.SkillRarity, _ingameSkillController);
             _skillUIController.HidePanel();
             _barController.Upgraded();
+            _tutorialController.SkillTaped();
+
 
         }
 

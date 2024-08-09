@@ -43,22 +43,29 @@ namespace _Project.Scripts.SkillManagement.Controllers
         {
 
             int[] skillIndexs = new int[] { -1, -1, -1 };
-            for (int i = 0; i < skillCount; i++)
+            for (int j = 0; j < skillCount; j++)
             {
                 //UnityEngine.Random.InitState(i);
                 //  int randomIndex = UnityEngine.Random.Range(0, Skills.Count);
+
+                int i;
+                if (_tutorialController.SavedTutorialData.isCompletedSwipeTutorial && j == 1) i = 3;
+                else i = j;
+
                 SkillBase rondomSkill = _tutorialSkillsHolder.skills[i];
-                skillIndexs[i] = i;
+                skillIndexs[j] = j;
 
                 //    rondomSkill = Skills[randomIndex];
                 SkillRarity skillRarity = rondomSkill.GetRandomRarity();
 
-                SkillBehaviour skillBehaviour = _skillBehaviors[i];
+                SkillBehaviour skillBehaviour = _skillBehaviors[j];
 
                 skillBehaviour.Setup(new CreatedSkillInfo(skillRarity, rondomSkill));
 
             }
-            _tutorialController.StartSwipeTutorial( _skillBehaviors[0].transform.position);
+            _tutorialController.StartSwipeTutorial(_skillBehaviors[1].transform.position);
+            _tutorialController.TapToSkillStartPoint = _skillBehaviors[0].transform.position;
+            _tutorialController.StartTapToSkillTutorial();
         }
         private void CreateSkill(int skillCount = 3)
         {
@@ -89,13 +96,19 @@ namespace _Project.Scripts.SkillManagement.Controllers
 
         internal void Reroll()
         {
-            if (_tutorialController.SavedTutorialData.isCompletedSwipeTutorial) CreateSkill();
+            if (_tutorialController.SavedTutorialData.isCompletedSwipeTutorial &&
+            _tutorialController.SavedTutorialData.isCompletedGoBtnTutorial &&
+            _tutorialController.SavedTutorialData.isCompletedTapTutorial
+            ) CreateSkill();
             else CreateTutorialSkill();
         }
 
         internal void ReCreateSkill()
         {
-            if (_tutorialController.SavedTutorialData.isCompletedSwipeTutorial) CreateSkill();
+            if (_tutorialController.SavedTutorialData.isCompletedSwipeTutorial &&
+            _tutorialController.SavedTutorialData.isCompletedGoBtnTutorial &&
+            _tutorialController.SavedTutorialData.isCompletedTapTutorial
+            ) CreateSkill();
             else CreateTutorialSkill();
         }
 

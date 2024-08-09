@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
@@ -35,7 +36,7 @@ public static class CoreExtensions
 
 
 
-    public static void ColorLog( object val, Color color)
+    public static void ColorLog(object val, Color color)
     {
         string result = $"<color={color}> {val}";
         Debug.Log(result);
@@ -1273,7 +1274,7 @@ public static class CoreExtensions
 
     public static void ForEachKey<T, K>(this Dictionary<T, K> dictionary, Action<T> action)
     {
-        foreach (var key in dictionary.Keys)
+        foreach (var key in dictionary.Keys.ToList())
         {
             action(key);
         }

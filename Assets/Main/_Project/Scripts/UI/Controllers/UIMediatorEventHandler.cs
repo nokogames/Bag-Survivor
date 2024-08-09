@@ -9,7 +9,8 @@ namespace _Project.Scripts.UI.Controllers
 {
 
     public class UIMediatorEventHandler : MonoBehaviour, IUIMediatorEventHandler
-    {
+    {   
+        
         private List<ISkillReciever> _recievers = new();
         public void AddReciever(ISkillReciever reciever)
         {
