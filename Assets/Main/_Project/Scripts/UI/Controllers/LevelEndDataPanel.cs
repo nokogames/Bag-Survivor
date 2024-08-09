@@ -33,7 +33,7 @@ namespace _Project.Scripts.UI.Controllers
         }
         internal void SetCollectedCoinTxt(string v)
         {
-              panelData.EarnedCoin=v;
+            panelData.EarnedCoin = v;
         }
     }
 
@@ -54,7 +54,7 @@ namespace _Project.Scripts.UI.Controllers
         }
         [SerializeField] private List<TextMeshProUGUI> ClearPercentageTxts;
 
-        public string ClearPercentage { set => ClearPercentageTxts.ForEach(x => x.text = $"Stage Cleared {value}%"); }
+        public string ClearPercentage { set => ClearPercentageTxts.ForEach(x => x.text = $"You Survived {value}%"); }
 
         [SerializeField] private List<TextMeshProUGUI> EarnedCoinTxts;
         public string EarnedCoin { set => EarnedCoinTxts.ForEach(x => x.text = value); }

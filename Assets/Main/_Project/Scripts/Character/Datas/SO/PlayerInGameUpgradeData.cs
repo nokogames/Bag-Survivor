@@ -42,10 +42,10 @@ namespace _Project.Scripts.Character.Datas.SO
 
         public bool ActiveSkill(SkillBase skill)
         {
-            Debug.Log("1");
+           
 
             if (_activeSkills.Contains(skill)) return false;
-            Debug.Log($"2 =={_recivers.Count}  {this.GetHashCode()}");
+           
 
             _activeSkills.Add(skill);
             _recivers.ForEach(x => x.ActivatedSkill(skill));

@@ -34,7 +34,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         {
             _playerTransform = playerTransform;
 
-            Debug.Log("Active");
+         
 
             var result = _playerUpgradedData.ActiveSkill(this);
             if (result)

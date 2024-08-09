@@ -152,7 +152,7 @@ namespace _Project.Scripts.UI.Inventory.Behaviours
 
         internal virtual void Kill()
         {
-            Destroy(gameObject);
+            if (gameObject!=null  ) Destroy(gameObject);
         }
     }
 

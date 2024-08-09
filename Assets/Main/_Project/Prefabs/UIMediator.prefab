@@ -17559,16 +17559,16 @@ MonoBehaviour:
     panel: {fileID: 4831219912236390177}
     mapUiInfo:
     - name: Space
-      mapImg: {fileID: 21300000, guid: c95d6cf66ca3626408d1782e7256771c, type: 3}
+      mapImg: {fileID: 21300000, guid: 3e29c272b5e319a488fff35c5a51e772, type: 3}
       lockImg: {fileID: 21300000, guid: 9cd9ddf08f1daf240989bb205037b785, type: 3}
       targetLvl: 0
     - name: Desert
-      mapImg: {fileID: 21300000, guid: 8c3218aa6b225ec4ba25f0f848d7cb91, type: 3}
-      lockImg: {fileID: 21300000, guid: 9cd9ddf08f1daf240989bb205037b785, type: 3}
+      mapImg: {fileID: 21300000, guid: b6d2168ec5de4614ea33a6b474d05bb8, type: 3}
+      lockImg: {fileID: 21300000, guid: dd498918f2a60ed4b808ec8d519146c7, type: 3}
       targetLvl: 1
     - name: Ocean
-      mapImg: {fileID: 21300000, guid: b6a663839a94738478dd9fd32375d311, type: 3}
-      lockImg: {fileID: 21300000, guid: 9cd9ddf08f1daf240989bb205037b785, type: 3}
+      mapImg: {fileID: 21300000, guid: 1290bdc57bbd0fd44ad85b417a39d3a0, type: 3}
+      lockImg: {fileID: 21300000, guid: 04cccaeb61eb0ac4a973fcf551417150, type: 3}
       targetLvl: 2
   playerUpgradePanelData:
     upgradeItemPrefab: {fileID: 2302373792844929360, guid: 97147f60f75b19f4d836c7dfa61ed02f,
@@ -28304,6 +28304,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165902182906467407, guid: 98ec7ae53c28c374f87818919ceb62e4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -73
+      objectReference: {fileID: 0}
+    - target: {fileID: 5165902182906467407, guid: 98ec7ae53c28c374f87818919ceb62e4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -82
       objectReference: {fileID: 0}
     - target: {fileID: 6180533356513120515, guid: 98ec7ae53c28c374f87818919ceb62e4,
         type: 3}

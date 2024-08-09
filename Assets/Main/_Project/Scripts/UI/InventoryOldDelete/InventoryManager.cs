@@ -14,7 +14,7 @@ namespace _Project.Scripts.UI.Inventory
         [Inject] private CustomInventoryData _data;
         [Inject] private InventoryGridFactory _gridFactory;
         [Inject] private InLevelEvents _inLvelEvents;
-         [Inject] private TutorialController _tutorialController;
+        [Inject] private TutorialController _tutorialController;
         private List<Dragable> _addedDragable;
         public Transform PlayerTransform { get; set; }
         public void Start()
@@ -28,7 +28,15 @@ namespace _Project.Scripts.UI.Inventory
         private void OnNextLevel()
         {
             _data.slots.ForEach(x => x.Reset());
+            // Debug.Log($"111111111111111111111111111111111111");
+            // for (int i = 0; i < _addedDragable.Count; i++)
+            // {
+            //     var crr = _addedDragable[i];
+            //     Debug.Log($"xxxx  {crr.name}");
+            // }
+            // Debug.Log($"222222222222222222222222222222222222");
             _addedDragable.ForEach(x => x.Kill());
+            _addedDragable.Clear();
         }
 
         public bool AddItem(Vector2Int position, Vector2Int size)
@@ -202,7 +210,7 @@ namespace _Project.Scripts.UI.Inventory
             var result = AddItem(closestSlot.gridPosition, _selectedDragable.size);
             // Assert.IsTrue(!result,"Result is false");
             if (result)
-            {    
+            {
                 _selectedDragable.CanPlace = true;
                 // if (_selectedDragable.startPlaceInventorySlot != null) RemoveItem(_selectedDragable.startPlaceInventorySlot.gridPosition, _selectedDragable.size);
                 _selectedDragable.InventorySlot = closestSlot;

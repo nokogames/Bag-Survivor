@@ -104,7 +104,7 @@ namespace _Project.Scripts.Character.EnemyRuntime
             for (int i = 0; i < waveInfos.Count; i++)
             {
                 var crrWave = waveInfos[i];
-                Debug.LogWarning("..New Wave is coming ..." + crrWave.spawnEnemyInfos.Count);
+              
 
                 for (int j = 0; j < crrWave.spawnEnemyInfos.Count; j++)
                 {

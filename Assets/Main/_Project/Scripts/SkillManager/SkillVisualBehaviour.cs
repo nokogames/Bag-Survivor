@@ -51,7 +51,9 @@ namespace _Project.Scripts.SkillManagement
         internal override void Kill()
         {
             if (_skillBehavior != null && !IsPlacedInventory) _skillBehavior.Kill();
-            base.Kill();
+            else base.Kill();
+
+
         }
 
 

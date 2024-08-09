@@ -68,7 +68,7 @@ public class BasicGun : BaseGunBehavior
         GameObject bullet = ParticlePool.SharedInstance.GetPooledObject(gunData.bulletPrefab);
         var bulletBehaviour = bullet.GetComponent<BulletBehaviour>();
         var damage = gunData.Damage;
-        Debug.Log($"==Gun damage={damage}");
+    
         bulletBehaviour.Initialise(gunData.Damage);
         bullet.transform.position = shootPoint.position;
         bullet.transform.forward = shootPoint.forward;
