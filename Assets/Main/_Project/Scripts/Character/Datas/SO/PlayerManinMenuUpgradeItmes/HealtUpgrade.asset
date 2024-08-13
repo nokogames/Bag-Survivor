@@ -17,11 +17,11 @@ MonoBehaviour:
   Lvl: 0
   IsCompleted: 0
   data:
-    type: 
+    type: _Project.Scripts.Character.Datas.SO.UpgradeItems.HealtUpgrade
     Level: 0
   healtInfos:
   - Price: 0
-    Healt: 40
+    Healt: 10000
   - Price: 100
     Healt: 40
   - Price: 110

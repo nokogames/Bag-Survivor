@@ -16,11 +16,14 @@ MonoBehaviour:
   UpgradeInfo: Fire Rate
   Lvl: 0
   IsCompleted: 0
+  data:
+    type: _Project.Scripts.Character.Datas.SO.UpgradeItems.FireRateUpgrade
+    Level: 0
   fireRateInfos:
   - Price: 0
     FireRate: 0.8
   - Price: 100
-    FireRate: 0.79
+    FireRate: 0.9
   - Price: 110
     FireRate: 0.78
   - Price: 120
@@ -149,4 +152,3 @@ MonoBehaviour:
     FireRate: 0.16
   - Price: 2480
     FireRate: 0.15
-  id: 0

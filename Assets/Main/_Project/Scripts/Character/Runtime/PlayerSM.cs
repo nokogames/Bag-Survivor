@@ -21,6 +21,7 @@ namespace _Project.Scripts.Character.Runtime
 {
     public class PlayerSM : StateMachineMB, ICharacter, IDamagableByEnemy
     {
+        [SerializeField] private ParticleSystem upgradedParticle;
         [Header("UI Elements"), SerializeField] private PlayerUIData playerUIData;
         [Header("VFX"), SerializeField] private FVXData fVXData;
         //PlayerController
@@ -203,6 +204,10 @@ namespace _Project.Scripts.Character.Runtime
         public override void Update()
         {
             base.Update();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                upgradedParticle.Play();
+            }
             // _botController.Tick();
         }
 

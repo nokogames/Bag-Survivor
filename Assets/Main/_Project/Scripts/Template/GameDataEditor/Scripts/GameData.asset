@@ -19,19 +19,19 @@ MonoBehaviour:
     CoinCount: 0
   SavedTutorialData:
     isCompletedSwipeTutorial: 1
-    isCompletedTapTutorial: 0
+    isCompletedTapTutorial: 1
     isCompletedGoBtnTutorial: 1
   savedLevelDatas:
   - lvl: 0
     IsOpen: 1
     MaxPlayTime: 0
-    MaxClearedEnemyPercentage: 0
+    MaxClearedEnemyPercentage: 1.8900343
   - lvl: 1
-    IsOpen: 0
+    IsOpen: 1
     MaxPlayTime: 0
     MaxClearedEnemyPercentage: 0
   - lvl: 2
-    IsOpen: 0
+    IsOpen: 1
     MaxPlayTime: 0
     MaxClearedEnemyPercentage: 0
   playerSavedUpgradeInfos:

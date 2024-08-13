@@ -52,23 +52,27 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
 
         private float _fireRate;
         private float _crrTime = 0;
-        public override float SkillPercentage =>  _crrTime /_fireRate ;
+        public override float SkillPercentage => _crrTime / _fireRate;
         internal override void AttactFixedTick()
         {
             _crrTime += Time.fixedDeltaTime;
             if (_crrTime < _fireRate) return;
             _crrTime = 0;
-            CreateAxe();
+            CreateAxe(_skillRarityData.count);
             CustomExtentions.ColorLog($"Player Pos {_playerTransform.position}", Color.blue);
         }
 
-        private void CreateAxe()
+        private void CreateAxe(int count)
         {
-            var bullet = ParticlePool.SharedInstance.GetPooledObject(_skillRarityData.axePrefab);
-            bullet.transform.position = _playerTransform.position + Vector3.up;
-            bullet.transform.rotation = Quaternion.Euler(0, 0, 0);
-            bullet.transform.Rotate(Vector3.up * UnityEngine.Random.Range(-360, 360));
-            bullet.SetActive(true);
+            for (int i = 0; i < count; i++)
+            {
+                var bullet = ParticlePool.SharedInstance.GetPooledObject(_skillRarityData.axePrefab);
+                bullet.transform.position = _playerTransform.position + Vector3.up;
+                bullet.transform.rotation = Quaternion.Euler(0, 0, 0);
+                bullet.transform.Rotate(Vector3.up * UnityEngine.Random.Range(-360, 360));
+                bullet.SetActive(true);
+
+            }
         }
     }
 
@@ -78,6 +82,7 @@ namespace _Project.Scripts.SkillManagement.SO.Skills
         public SkillRarity rarity;
         public GameObject axePrefab;
         public float fireRate;
+        public int count;
 
     }
 }

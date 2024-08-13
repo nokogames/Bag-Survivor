@@ -26,15 +26,19 @@ MonoBehaviour:
     axePrefab: {fileID: 7700228033681709496, guid: 93f3c6833e4faed4d8b213ad1873cd78,
       type: 3}
     fireRate: 2
+    count: 5
   - rarity: 1
     axePrefab: {fileID: 7700228033681709496, guid: 93f3c6833e4faed4d8b213ad1873cd78,
       type: 3}
     fireRate: 2
+    count: 5
   - rarity: 2
     axePrefab: {fileID: 7700228033681709496, guid: 93f3c6833e4faed4d8b213ad1873cd78,
       type: 3}
     fireRate: 2
+    count: 5
   - rarity: 3
     axePrefab: {fileID: 7700228033681709496, guid: 93f3c6833e4faed4d8b213ad1873cd78,
       type: 3}
     fireRate: 2
+    count: 5
