@@ -11,6 +11,12 @@ public static class CustomExtentions
         // string colorCode = ColorUtility.ToHtmlStringRGB(color);
         //  Debug.Log($"<color=#{colorCode}>{v}</color>");
     }
+    public static void ColoredLog(object v, Color color)
+    {
+        string colorCode = ColorUtility.ToHtmlStringRGB(color);
+        Debug.Log($"<color=#{colorCode}>{v}</color>");
+    }
+
     public static IEnumerator CustomDoJump(this Transform transform, Transform targetPosition, float jumpHeight, float duration, Action OnCompleted = null)
     {
         Vector3 startPosition = transform.position;

@@ -77,10 +77,7 @@ namespace _Project.Scripts
             var uiM = Container.Resolve<UIMediator>();
             Application.targetFrameRate = 60;
             QualitySettings.vSyncCount = 0;
-#if !UNITY_EDITOR
-            Debug.unityLogger.logEnabled=false;
-            
-#endif
+
 
         }
         // private void Update()
